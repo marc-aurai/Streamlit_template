@@ -1,4 +1,6 @@
 .DS_Store
 .vscode
 __pycache__
+
 scraper_data
+openai_gpt3

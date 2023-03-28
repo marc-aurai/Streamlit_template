@@ -1,44 +1,54 @@
 import requests
 from selenium import webdriver
-from utils.get_metadata import (
-    create_dataframe,
-    get_content,
-    get_game_details,
-    get_teams,
-    get_title,
-)
-
-cup, titles, text, away, home, dates = ([],) * 6
+from tqdm import tqdm
+from utils.get_metadata import (create_dataframe, format_data, get_content,
+                                get_game_details, get_score, get_teams,
+                                get_title)
 
 
 def initialize():
     return webdriver.Chrome()
 
 
-def format_data(game_details, title, team_home, team_away, date, article_text) -> list:
-    cup.append(game_details)
-    titles.append(title)
-    dates.append(date)
-    text.append(article_text)
-    home.append(team_home)
-    away.append(team_away)
-    return cup, titles, dates, text, home, away
-
-
-def scrape_espn(driver, start_id=637328, stop_id=637332):
-    for i in range(start_id, stop_id):
+def scrape_espn(driver, start_id=637408, stop_id=637412):
+    for i in tqdm(range(start_id, stop_id)):
         url = f"https://www.espn.nl/voetbal/verslag?wedstrijdId={i}"
         driver.get(url)
+        score_home, score_away = get_score(driver)
         game_details = get_game_details(driver)
         title = get_title(driver)
-        team_home, team_away = get_teams(driver)
-        date, text = get_content(driver)
+        team_home, team_away, home_abbrev, away_abbrev = get_teams(driver)
+        date, article = get_content(driver)
 
-        cup, titles, dates, text, home, away = format_data(
-            game_details, title, team_home, team_away, date, text
+        (
+            espn_ids,
+            score_home_lst,
+            score_away_lst,
+            cup,
+            titles,
+            dates,
+            articles,
+            home,
+            away,
+            home_abbrev_lst,
+            away_abbrev_lst,
+        ) = format_data(
+            i,
+            score_home,
+            score_away,
+            game_details,
+            title,
+            team_home,
+            team_away,
+            home_abbrev,
+            away_abbrev,
+            date,
+            article,
         )
 
-    create_dataframe(dates, cup, home, away, titles, text)
+    create_dataframe(
+        espn_ids, score_home_lst, score_away_lst, cup, titles, dates, articles, home, away, home_abbrev_lst, away_abbrev_lst
+    )
 
 
 if __name__ == "__main__":
