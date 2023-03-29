@@ -73,6 +73,7 @@ def get_matchstats_cards(df: pd.DataFrame) -> pd.DataFrame:
 
 def get_matchstats_goals(df: pd.DataFrame) -> pd.DataFrame:
     """Currenty assistPlayerName is not supported, since this does not occur in every goal"""
+    
     all_team_goals = []
     print("Get Goal Events..\n")
     for match in tqdm(df.index):
