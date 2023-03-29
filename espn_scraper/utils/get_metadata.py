@@ -59,14 +59,18 @@ def get_teams(driver) -> str:
 
 
 def get_score(driver):
-    score_home = driver.find_element(
-        By.XPATH,
-        '//*[@id="gamepackage-matchup-wrap--soccer"]/div[2]/div[1]/div/div[3]/span',
-    ).text
-    score_away = driver.find_element(
-        By.XPATH,
-        '//*[@id="gamepackage-matchup-wrap--soccer"]/div[2]/div[3]/div/div[1]/span',
-    ).text
+    try:
+        score_home = driver.find_element(
+            By.XPATH,
+            '//*[@id="gamepackage-matchup-wrap--soccer"]/div[2]/div[1]/div/div[3]/span',
+        ).text
+        score_away = driver.find_element(
+            By.XPATH,
+            '//*[@id="gamepackage-matchup-wrap--soccer"]/div[2]/div[3]/div/div[1]/span',
+        ).text
+    except:
+        score_home = ""
+        score_away = ""
     return float(score_home or math.nan), float(score_away or math.nan)
 
 
