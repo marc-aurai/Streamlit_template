@@ -10,7 +10,7 @@ def initialize():
     return webdriver.Chrome()
 
 
-def scrape_espn(driver, start_id=637408, stop_id=637412):
+def scrape_espn(driver, start_id=637000, stop_id=637428):
     for i in tqdm(range(start_id, stop_id)):
         url = f"https://www.espn.nl/voetbal/verslag?wedstrijdId={i}"
         driver.get(url)

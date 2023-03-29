@@ -32,4 +32,4 @@ if __name__ == "__main__":
     df_competetion, which_competition = get_eredivisies(
         competitions=competitions, which_competition="Eredivisie"
     )
-    df_competetion.to_csv("./opta/data/{}.csv".format(which_competition), sep=";")
+    df_competetion.to_csv("./opta/data/competitions/{}.csv".format(which_competition), sep=";")
