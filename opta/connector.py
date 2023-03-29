@@ -56,6 +56,6 @@ if __name__ == "__main__":
     df_tournament.to_csv(
         "./opta/data/{}_{}.csv".format(table_kind, competition), sep=";"
     )
-    df_merged.to_csv("./opta/data/merged/merged_{}.csv".format(table_kind), sep=";")
+    df_merged.to_csv("./opta/data/merged/merged_{}.csv".format(table_kind), sep=";", index=False)
     df_cards.to_csv("./opta/data/merged/cards.csv", sep=";")
     df_goals.to_csv("./opta/data/merged/goals.csv", sep=";")
