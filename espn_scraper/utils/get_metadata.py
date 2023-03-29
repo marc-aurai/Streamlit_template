@@ -44,12 +44,12 @@ def get_teams(driver) -> str:
 
         home_abbrev = driver.find_element(
             By.XPATH,
-            '//*[@id="leagues"]/li/div/div[4]/a/div[2]/ul/li[2]/div[2]/div[1]/span[3]',
-        ).text
+            '//*[@id="gamepackage-matchup-wrap--soccer"]/div[2]/div[1]/div/div[2]/div[1]/div/a/span[3]',
+        ).get_attribute('textContent')
         away_abbrev = driver.find_element(
             By.XPATH,
-            '//*[@id="leagues"]/li/div/div[4]/a/div[2]/ul/li[1]/div[2]/div[1]/span[3]',
-        ).text
+            '//*[@id="gamepackage-matchup-wrap--soccer"]/div[2]/div[3]/div/div[3]/div[2]/div/a/span[3]',
+        ).get_attribute('textContent')
     except:
         team_away = ""
         team_home = ""
@@ -109,16 +109,16 @@ def create_dataframe(
     article: list,
     home: list,
     away: list,
-    home_abbrev: list,
-    away_abbrev: list,
+    home_abbreviations: list,
+    away_abbreviations: list,
 ):
     df = pd.DataFrame(
         {
             "espn_id": espn_ids,
             "home_team": home,
             "away_team": away,
-            "home_abbrev": home_abbrev,
-            "away_abbrev": away_abbrev,
+            "home_abbrev": home_abbreviations,
+            "away_abbrev": away_abbreviations,
             "score_home": score_home_lst,
             "score_away": score_away_lst,
             "date": dates,
@@ -132,7 +132,7 @@ def create_dataframe(
     # df = df[df["article"].str.contains("EMPTY") == False]
     df["score_home"] = df["score_home"].astype(int)
     df["score_away"] = df["score_away"].astype(int)
-    df.to_csv("./espn_scraper/scraper_data/articles_10.csv", sep=";")
+    df.to_csv("./espn_scraper/scraper_data/articles_1500.csv", sep=";")
 
 
 def format_data(
