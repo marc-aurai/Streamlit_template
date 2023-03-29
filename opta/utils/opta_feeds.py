@@ -1,6 +1,7 @@
-import requests
 import pandas as pd
+import requests
 from tqdm import tqdm
+
 
 def get_tournamentschedule(
     table_kind="tournamentschedule", competition_season_id="d1k1pqdg2yvw8e8my74yvrdw4"

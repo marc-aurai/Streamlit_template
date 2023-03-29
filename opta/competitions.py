@@ -1,6 +1,6 @@
 # Get all Eredivisies ID's
-import requests
 import pandas as pd
+import requests
 
 
 def get_competetions() -> dict:

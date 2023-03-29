@@ -1,6 +1,6 @@
 import datetime as dt
-from itertools import repeat
 import math
+from itertools import repeat
 
 import pandas as pd
 from bs4 import BeautifulSoup as bs

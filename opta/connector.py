@@ -1,6 +1,7 @@
 import pandas as pd
 import requests
-from utils.opta_feeds import get_tournamentschedule, get_matchstats_cards, get_matchstats_goals
+from utils.opta_feeds import (get_matchstats_cards, get_matchstats_goals,
+                              get_tournamentschedule)
 
 
 def get_espn_data(csv_name: str) -> pd.DataFrame:
