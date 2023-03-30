@@ -103,3 +103,6 @@ def get_matchstats_goals(df: pd.DataFrame) -> pd.DataFrame:
         all_team_goals.append(team_goals)
     df['goal_events'] = all_team_goals
     return df
+
+def get_stadion():
+     pass

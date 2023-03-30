@@ -45,7 +45,7 @@ def merge(df_espn: pd.DataFrame, df_tournament: pd.DataFrame) -> pd.DataFrame:
 
 
 if __name__ == "__main__":
-    df_espn = get_espn_data(csv_name="articles_28")
+    df_espn = get_espn_data(csv_name="articles_5000_notna")
     competition, table_kind, df_tournament = get_tournamentschedule()
     df_tournament = refactor_df(df_tournament)
     df_cards = get_matchstats_cards(df_tournament)
@@ -57,5 +57,7 @@ if __name__ == "__main__":
         "./opta/data/{}_{}.csv".format(table_kind, competition), sep=";"
     )
     df_merged.to_csv("./opta/data/merged/merged_{}.csv".format(table_kind), sep=";", index=False)
+    df_merged.to_excel("./opta/data/merged/merged_{}.xlsx".format(table_kind), index=False)
+
     df_cards.to_csv("./opta/data/merged/cards.csv", sep=";")
     df_goals.to_csv("./opta/data/merged/goals.csv", sep=";")
