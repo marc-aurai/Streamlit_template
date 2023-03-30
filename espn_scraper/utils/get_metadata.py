@@ -136,7 +136,7 @@ def create_dataframe(
     # df = df[df["article"].str.contains("EMPTY") == False]
     df["score_home"] = df["score_home"].astype(int)
     df["score_away"] = df["score_away"].astype(int)
-    df.to_csv("./espn_scraper/scraper_data/articles_2428.csv", sep=";")
+    df.to_csv("./scraper_data/articles_espn_ids.csv", sep=";")
 
 
 def format_data(

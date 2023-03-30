@@ -104,5 +104,17 @@ def get_matchstats_goals(df: pd.DataFrame) -> pd.DataFrame:
     df['goal_events'] = all_team_goals
     return df
 
-def get_stadion():
-     pass
+def get_venue(df: pd.DataFrame) -> pd.DataFrame:
+    all_venues = []
+    print("Get venues..\n")
+    for match in tqdm(df.index):
+        try:
+            response = requests.get(f'http://api.performfeeds.com/soccerdata/matchstats/6bxvue6su4ev1690mzy62a41t/?_rt=b&_fmt=json&fx={{}}'.format(
+                df['id'][match])
+                ).json()
+            venue = response['matchInfo']['venue']['longName']
+        except:
+            venue = ""
+        all_venues.append(venue)
+    df['venue'] = all_venues
+    return df

@@ -4,6 +4,7 @@ from utils.opta_feeds import (
     get_matchstats_cards,
     get_matchstats_goals,
     get_tournamentschedule,
+    get_venue,
 )
 
 
@@ -49,7 +50,8 @@ if __name__ == "__main__":
     competition, table_kind, df_tournament = get_tournamentschedule()
     df_tournament = refactor_df(df_tournament)
     df_cards = get_matchstats_cards(df_tournament)
-    df_goals = get_matchstats_goals(df_cards)
+    df_venues = get_venue(df_cards)
+    df_goals = get_matchstats_goals(df_venues)
 
     df_merged = merge(df_espn, df_goals)
 

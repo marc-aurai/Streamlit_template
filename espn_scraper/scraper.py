@@ -1,4 +1,5 @@
 import requests
+import json
 from selenium import webdriver
 from tqdm import tqdm
 from utils.get_metadata import (create_dataframe, format_data, get_content,
@@ -9,10 +10,18 @@ from utils.get_metadata import (create_dataframe, format_data, get_content,
 def initialize():
     return webdriver.Chrome()
 
+def get_ESPN_urls():
+    eredivisie_ids = json.load(open("./ESPN_ids_data/content-objects-eredivisie.json"))
+    urls = []
+    for publicatie in eredivisie_ids['contentObjects']:
+        urls.append(publicatie['commonProperties']['publishEnvironments']['5']['publishedFullURL'])
+    return urls
 
-def scrape_espn(driver, start_id=637000, stop_id=637428):
-    for i in tqdm(range(start_id, stop_id)):
-        url = f"https://www.espn.nl/voetbal/verslag?wedstrijdId={i}"
+
+def scrape_espn(driver, urls):
+    urls = urls[:5]
+    for i in tqdm(range(len(urls))):
+        url = f"{urls[i]}"
         driver.get(url)
         score_home, score_away = get_score(driver)
         game_details = get_game_details(driver)
@@ -33,7 +42,7 @@ def scrape_espn(driver, start_id=637000, stop_id=637428):
             home_abbrev_lst,
             away_abbrev_lst,
         ) = format_data(
-            i,
+            url.replace('https://www.espn.nl/voetbal/verslag?wedstrijdId=', ''),
             score_home,
             score_away,
             game_details,
@@ -53,4 +62,5 @@ def scrape_espn(driver, start_id=637000, stop_id=637428):
 
 if __name__ == "__main__":
     driver = initialize()
-    scrape_espn(driver=driver)
+    urls = get_ESPN_urls()
+    scrape_espn(driver=driver, urls=urls)
