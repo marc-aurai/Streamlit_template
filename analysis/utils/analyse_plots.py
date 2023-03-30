@@ -87,7 +87,7 @@ def trigrams_plot(ax5: plt.Axes, df: pd.DataFrame, amount_words: int) -> plt.Axe
 def plot_all_axes(
     ax1: plt.Axes,
     ax2: plt.Axes,
-    ax3: plt.Axes,
+    #ax3: plt.Axes,
     ax4: plt.Axes,
     ax5: plt.Axes,
     df: pd.DataFrame,
@@ -95,7 +95,7 @@ def plot_all_axes(
 ) -> plt.Axes:
     ax1 = woorden_per_samenvatting_plot(ax1, df)
     ax2 = meest_voorkomende_woorden_plot(ax2, df, amount_words)
-    ax3 = wordcloud_plot(ax3, df, amount_words)
+    #ax3 = wordcloud_plot(ax3, df, amount_words)
     ax4 = bigrams_plot(ax4, df, amount_words)
     ax5 = trigrams_plot(ax5, df, amount_words)
-    return ax1, ax2, ax3, ax4, ax5
+    return ax1, ax2, ax4, ax5

@@ -8,6 +8,7 @@ from stop_words import get_stop_words
 
 def _corpus(text):
     stop_words_dutch = get_stop_words('dutch')
+    stop_words_dutch.append('###')
     text_list = [word for word in text.lower().split() if word not in stop_words_dutch]
     return text_list
 

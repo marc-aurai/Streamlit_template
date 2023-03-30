@@ -59,6 +59,7 @@ def get_matchstats_cards(df: pd.DataFrame) -> pd.DataFrame:
                     card["contestantId"],
                     card["periodId"],
                     card["timeMin"],
+                    card["playerId"],
                     card["playerName"],
                     card["type"],
                 ]
@@ -94,6 +95,7 @@ def get_matchstats_goals(df: pd.DataFrame) -> pd.DataFrame:
                     goal["contestantId"],
                     goal["periodId"],
                     goal["timeMin"],
+                    goal["scorerId"],
                     goal["scorerName"]
                 ]
                 for goal in matchstats
