@@ -19,7 +19,6 @@ def get_ESPN_urls():
 
 
 def scrape_espn(driver, urls):
-    urls = urls[:5]
     for i in tqdm(range(len(urls))):
         url = f"{urls[i]}"
         driver.get(url)
