@@ -74,7 +74,7 @@ with st.spinner("Een momentje..."):
         ax5 = fig.add_subplot(4, 1, 4)
         plt.subplots_adjust(hspace=0.5)
 
-        ax1, ax2, ax3, ax4, ax5 = plot_all_axes(
+        ax1, ax2, ax4, ax5 = plot_all_axes(
             ax1=ax1,
             ax2=ax2,
             ax4=ax4,
