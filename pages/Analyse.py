@@ -4,7 +4,7 @@ import streamlit as st
 from PIL import Image
 import matplotlib.pyplot as plt
 
-from utils.analyse_plots import plot_all_axes
+from analysis.utils.analyse_plots import plot_all_axes
 
 sns.set(
     rc={
@@ -31,7 +31,7 @@ def load_images():
 
 @st.cache_data(show_spinner="Een momentje...")
 def load_dataset():
-    df = pd.read_csv("./sample_dataset/labeled_dataset.csv")
+    df = pd.read_csv("./espn_scraper/scraper_data/articles_ereD_notna.csv.csv")
     df["word_count"] = df["Prompt"].apply(lambda x: len(x.split()))
     return df
 
