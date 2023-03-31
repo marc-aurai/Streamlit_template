@@ -56,7 +56,7 @@ st.write(""" # South-Fields Analyse """)
 selected_sport = st.sidebar.multiselect(
     "Selecteer een type sport:",
     max_selections=1,
-    options=df.Type_sport.unique(),
+    options=df.cup.unique(),
     default="Voetbal",
 )
 
@@ -67,17 +67,16 @@ amount_words = st.sidebar.slider(
 with st.spinner("Een momentje..."):
     if selected_sport != []:
         fig = plt.figure(figsize=(16, 50))
-        ax1 = fig.add_subplot(5, 1, 1)
-        ax2 = fig.add_subplot(5, 1, 2)
-        ax3 = fig.add_subplot(5, 1, 3)
-        ax4 = fig.add_subplot(5, 1, 4)
-        ax5 = fig.add_subplot(5, 1, 5)
+        ax1 = fig.add_subplot(4, 1, 1)
+        ax2 = fig.add_subplot(4, 1, 2)
+        #ax3 = fig.add_subplot(5, 1, 3)
+        ax4 = fig.add_subplot(4, 1, 3)
+        ax5 = fig.add_subplot(4, 1, 4)
         plt.subplots_adjust(hspace=0.5)
 
         ax1, ax2, ax3, ax4, ax5 = plot_all_axes(
             ax1=ax1,
             ax2=ax2,
-            ax3=ax3,
             ax4=ax4,
             ax5=ax5,
             df=df,
