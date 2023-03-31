@@ -65,7 +65,7 @@ if check_password():
     if submit:
         with st.spinner("Even een samenvatting aan het schrijven, momentje..."):
             if input_data != "..":
-                generated_output = "GPT not implemented yet." #streamlit_prompt_curie(input_data, TEMP=temperature_GPT)
+                generated_output = "\nGPT not implemented yet." #streamlit_prompt_curie(input_data, TEMP=temperature_GPT)
                 _datetime = get_datetime()
                 st.session_state.message_history.append(_datetime + generated_output)
                 for message_ in reversed(st.session_state.message_history):
