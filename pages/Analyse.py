@@ -80,7 +80,6 @@ with st.spinner("Een momentje..."):
             ax4=ax4,
             ax5=ax5,
             df=df,
-            selected_sport=selected_sport,
             amount_words=amount_words,
         )
 
