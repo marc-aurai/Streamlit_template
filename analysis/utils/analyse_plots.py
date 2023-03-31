@@ -8,10 +8,10 @@ from analysis.utils.analysis import get_corpus, most_common_words, Bigrams, Trig
 
 
 def woorden_per_samenvatting_plot(
-    ax1: plt.Axes, df: pd.DataFrame
+    ax1: plt.Axes, df: pd.DataFrame, selected_sport: list
 ) -> plt.Axes:
     sns.histplot(
-        df,
+        df.loc[df.cup == selected_sport[0]],
         x="word_count",
         kde=True,
         color="#FFFFFF",
@@ -92,8 +92,9 @@ def plot_all_axes(
     ax5: plt.Axes,
     df: pd.DataFrame,
     amount_words: int,
+    selected_sport: list,
 ) -> plt.Axes:
-    ax1 = woorden_per_samenvatting_plot(ax1, df)
+    ax1 = woorden_per_samenvatting_plot(ax1, df, selected_sport = selected_sport)
     ax2 = meest_voorkomende_woorden_plot(ax2, df, amount_words)
     #ax3 = wordcloud_plot(ax3, df, amount_words)
     ax4 = bigrams_plot(ax4, df, amount_words)

@@ -46,7 +46,7 @@ def merge(df_espn: pd.DataFrame, df_tournament: pd.DataFrame) -> pd.DataFrame:
 
 
 if __name__ == "__main__":
-    df_espn = get_espn_data(csv_name="articles_5000_notna")
+    df_espn = get_espn_data(csv_name="articles_eredivisie22_23")
     competition, table_kind, df_tournament = get_tournamentschedule()
     df_tournament = refactor_df(df_tournament)
     df_cards = get_matchstats_cards(df_tournament)
