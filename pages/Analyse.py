@@ -57,7 +57,7 @@ selected_sport = st.sidebar.multiselect(
     "Selecteer een type sport:",
     max_selections=1,
     options=df.cup.unique(),
-    default="Voetbal",
+    default="2022-23 Eredivisie, Regulier seizoen",
 )
 
 amount_words = st.sidebar.slider(
