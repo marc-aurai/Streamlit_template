@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from wordcloud import STOPWORDS, WordCloud
 from nltk.probability import FreqDist
 
-from utils.analysis import get_corpus, most_common_words, Bigrams, Trigrams
+from analysis.utils.analysis import get_corpus, most_common_words, Bigrams, Trigrams
 
 
 def woorden_per_samenvatting_plot(

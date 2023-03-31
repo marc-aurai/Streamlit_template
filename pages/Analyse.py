@@ -4,7 +4,7 @@ import streamlit as st
 from PIL import Image
 import matplotlib.pyplot as plt
 
-from pages.utils_streamlit.analyse_plots import plot_all_axes
+from analysis.utils.analyse_plots import plot_all_axes
 
 sns.set(
     rc={

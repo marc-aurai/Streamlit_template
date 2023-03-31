@@ -2,7 +2,6 @@ import pandas as pd
 from sklearn.feature_extraction.text import CountVectorizer
 from collections import Counter
 from tqdm import trange
-from wordcloud import STOPWORDS
 
 from stop_words import get_stop_words
 
