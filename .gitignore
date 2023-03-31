@@ -2,6 +2,7 @@
 .vscode
 __pycache__
 
-scraper_data
+#scraper_data
 openai_gpt3
 #ESPN_ids_data
+old
