@@ -25,7 +25,7 @@ sns.set(
 
 @st.cache_data(show_spinner="Een momentje...")
 def load_images():
-    image = Image.open("assests/image/southfields_logo.png")
+    image = Image.open("assets/image/southfields_logo.png")
     return image
 
 
