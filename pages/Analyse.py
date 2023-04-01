@@ -53,7 +53,7 @@ df = load_dataset()
 st.image(image)
 
 df_counted = df['cup'].value_counts()
-df_unqiue = df_counted[df_counted>50]
+df_unqiue = df_counted[df_counted>10]
 print(df_unqiue)
 
 st.write(""" # South-Fields Analyse """)
