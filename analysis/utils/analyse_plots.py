@@ -8,10 +8,10 @@ from analysis.utils.analysis import get_corpus, most_common_words, Bigrams, Trig
 
 
 def woorden_per_samenvatting_plot(
-    ax1: plt.Axes, df: pd.DataFrame, selected_sport: list
+    ax1: plt.Axes, df: pd.DataFrame, cup: list
 ) -> plt.Axes:
     sns.histplot(
-        df.loc[df.cup == selected_sport[0]],
+        df.loc[df.cup == cup[0]],
         x="word_count",
         kde=True,
         color="#FFFFFF",
@@ -26,9 +26,9 @@ def woorden_per_samenvatting_plot(
 
 
 def meest_voorkomende_woorden_plot(
-    ax2: plt.Axes, df: pd.DataFrame, amount_words: int
+    ax2: plt.Axes, df: pd.DataFrame, amount_words: int, cup: list
 ) -> plt.Axes:
-    corpus = get_corpus(df)
+    corpus = get_corpus(df.loc[df.cup == cup[0]])
     words, freq = most_common_words(corpus, amount_words=amount_words)
     sns.barplot(x=freq, y=words, color="#FFFFFF", ax=ax2)
     ax2.set_title("Top {} meest voorkomende woorden".format(amount_words))
@@ -37,7 +37,8 @@ def meest_voorkomende_woorden_plot(
     return ax2
 
 
-def wordcloud_plot(ax3: plt.Axes, df: pd.DataFrame, amount_words: int) -> plt.Axes:
+def wordcloud_plot(ax3: plt.Axes, df: pd.DataFrame, amount_words: int, cup: list) -> plt.Axes:
+    df = df.loc[df.cup == cup[0]]
     article_text = df.article.values
     wordcloud = WordCloud(
         max_font_size=60,
@@ -56,8 +57,8 @@ def wordcloud_plot(ax3: plt.Axes, df: pd.DataFrame, amount_words: int) -> plt.Ax
     return ax3
 
 
-def bigrams_plot(ax4: plt.Axes, df: pd.DataFrame, amount_words: int) -> plt.Axes:
-    ngram_freq, ngram_type = Bigrams(df)
+def bigrams_plot(ax4: plt.Axes, df: pd.DataFrame, amount_words: int, cup: list) -> plt.Axes:
+    ngram_freq, ngram_type = Bigrams(df.loc[df.cup == cup[0]])
     sns.barplot(
         x=ngram_freq["frequency"][:amount_words],
         y=ngram_freq["ngram"][:amount_words],
@@ -70,8 +71,8 @@ def bigrams_plot(ax4: plt.Axes, df: pd.DataFrame, amount_words: int) -> plt.Axes
     return ax4
 
 
-def trigrams_plot(ax5: plt.Axes, df: pd.DataFrame, amount_words: int) -> plt.Axes:
-    ngram_freq, ngram_type = Trigrams(df)
+def trigrams_plot(ax5: plt.Axes, df: pd.DataFrame, amount_words: int, cup: list) -> plt.Axes:
+    ngram_freq, ngram_type = Trigrams(df.loc[df.cup == cup[0]])
     sns.barplot(
         x=ngram_freq["frequency"][:amount_words],
         y=ngram_freq["ngram"][:amount_words],
@@ -92,11 +93,11 @@ def plot_all_axes(
     ax5: plt.Axes,
     df: pd.DataFrame,
     amount_words: int,
-    selected_sport: list,
+    cup_selected: list,
 ) -> plt.Axes:
-    ax1 = woorden_per_samenvatting_plot(ax1, df, selected_sport = selected_sport)
-    ax2 = meest_voorkomende_woorden_plot(ax2, df, amount_words)
+    ax1 = woorden_per_samenvatting_plot(ax1, df, cup_selected)
+    ax2 = meest_voorkomende_woorden_plot(ax2, df, amount_words, cup_selected)
     #ax3 = wordcloud_plot(ax3, df, amount_words)
-    ax4 = bigrams_plot(ax4, df, amount_words)
-    ax5 = trigrams_plot(ax5, df, amount_words)
+    ax4 = bigrams_plot(ax4, df, amount_words, cup_selected)
+    ax5 = trigrams_plot(ax5, df, amount_words, cup_selected)
     return ax1, ax2, ax4, ax5
