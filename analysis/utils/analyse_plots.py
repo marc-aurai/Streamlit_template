@@ -28,7 +28,8 @@ def woorden_per_samenvatting_plot(
 def meest_voorkomende_woorden_plot(
     ax2: plt.Axes, df: pd.DataFrame, amount_words: int, cup: list
 ) -> plt.Axes:
-    corpus = get_corpus(df.loc[df.cup == cup[0]])
+    df = df.loc[df.cup == cup[0]]
+    corpus = get_corpus(df)
     words, freq = most_common_words(corpus, amount_words=amount_words)
     sns.barplot(x=freq, y=words, color="#FFFFFF", ax=ax2)
     ax2.set_title("Top {} meest voorkomende woorden".format(amount_words))
