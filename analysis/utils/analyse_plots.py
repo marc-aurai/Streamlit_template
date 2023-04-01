@@ -30,7 +30,7 @@ def meest_voorkomende_woorden_plot(
 ) -> plt.Axes:
     corpus = get_corpus(df)
     words, freq = most_common_words(corpus, amount_words=amount_words)
-    sns.barplot(x=freq, y=words, color="#FFFFFF", ax=ax2)
+    sns.barplot(x=freq, y=words, color="#FFFFFF", ax=ax2, width=2.0)
     ax2.set_title("Top {} meest voorkomende woorden".format(amount_words))
     ax2.set_xlabel("Frequentie")
     ax2.set_ylabel("Woord combinatie")
