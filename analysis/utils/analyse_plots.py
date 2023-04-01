@@ -15,9 +15,10 @@ def woorden_per_samenvatting_plot(
         x="word_count",
         kde=True,
         color="#FFFFFF",
-        binwidth=5,
+        binwidth=2,
         alpha=0.9,
         ax=ax1,
+        bins=500
     )
     ax1.set_title("Totaal aantal woorden\n per samenvatting")
     ax1.set_xlabel("Aantal woorden")
