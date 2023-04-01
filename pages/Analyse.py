@@ -84,7 +84,7 @@ with st.spinner("Een momentje..."):
             ax5=ax5,
             df=df,
             amount_words=amount_words,
-            selected_sport=selected_sport,
+            cup_selected=selected_sport,
         )
 
         st.pyplot(fig, clear_figure=True)
