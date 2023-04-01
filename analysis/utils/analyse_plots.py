@@ -3,9 +3,26 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 from wordcloud import STOPWORDS, WordCloud
 from nltk.probability import FreqDist
+import plotly.express as px
 
 from analysis.utils.analysis import get_corpus, most_common_words, Bigrams, Trigrams
 
+def woorden_per_samenvatting_plotly(
+    ax1: plt.Axes, df: pd.DataFrame, cup: list
+) -> plt.Axes:
+    df["word_count"] = df["article"].apply(lambda x: len(x.split()))
+    ax1 = px.histogram(
+        df, 
+        y=df.word_count.value_counts().values, 
+        x=df.word_count.value_counts().index,
+        nbins=500,
+        title="Totaal aantal woorden <br> per samenvatting"
+        ).update_layout(plot_bgcolor='#100c44',
+                        paper_bgcolor='#100c44', 
+                        font_color='#FFFFFF',
+                        xaxis_title="Aantal woorden",
+                        yaxis_title="Aantal samenvatting <br> met dit aantal woorden")
+    return ax1
 
 def woorden_per_samenvatting_plot(
     ax1: plt.Axes, df: pd.DataFrame, cup: list
@@ -30,7 +47,7 @@ def meest_voorkomende_woorden_plot(
 ) -> plt.Axes:
     corpus = get_corpus(df)
     words, freq = most_common_words(corpus, amount_words=amount_words)
-    sns.barplot(x=freq, y=words, color="#FFFFFF", ax=ax2, width=2.0)
+    sns.barplot(x=freq, y=words, color="#FFFFFF", ax=ax2)
     ax2.set_title("Top {} meest voorkomende woorden".format(amount_words))
     ax2.set_xlabel("Frequentie")
     ax2.set_ylabel("Woord combinatie")
@@ -94,7 +111,7 @@ def plot_all_axes(
     amount_words: int,
     cup_selected: list,
 ) -> plt.Axes:
-    ax1 = woorden_per_samenvatting_plot(ax1, df, cup_selected)
+    ax1 = woorden_per_samenvatting_plotly(ax1, df, cup_selected)
     ax2 = meest_voorkomende_woorden_plot(ax2, df, amount_words, cup_selected)
     #ax3 = wordcloud_plot(ax3, df, amount_words)
     ax4 = bigrams_plot(ax4, df, amount_words, cup_selected)
