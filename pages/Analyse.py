@@ -54,6 +54,7 @@ st.image(image)
 
 df_counted = df['cup'].value_counts()
 df_unqiue = df_counted[df_counted>50]
+print(df_unqiue)
 
 st.write(""" # South-Fields Analyse """)
 selected_sport = st.sidebar.multiselect(
