@@ -15,7 +15,7 @@ def woorden_per_samenvatting_plot(
         x="word_count",
         kde=True,
         color="#FFFFFF",
-        binwidth=2,
+        binwidth=5,
         alpha=0.9,
         ax=ax1,
     )
