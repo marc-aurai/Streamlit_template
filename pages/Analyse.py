@@ -54,13 +54,12 @@ st.image(image)
 
 df_counted = df['cup'].value_counts()
 df_unqiue = df_counted[df_counted>10]
-print(df_unqiue)
 
 st.write(""" # South-Fields Analyse """)
 selected_sport = st.sidebar.multiselect(
     "Selecteer een type sport:",
     max_selections=1,
-    options=df_unqiue,
+    options=df_unqiue.index.to_list(),
     default="2022-23 Eredivisie, Regulier seizoen",
 )
 
