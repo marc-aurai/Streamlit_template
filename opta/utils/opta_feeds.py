@@ -4,11 +4,16 @@ from tqdm import tqdm
 
 
 def get_tournamentschedule(
-    table_kind="tournamentschedule", competitions=["d1k1pqdg2yvw8e8my74yvrdw4", "dp0vwa5cfgx2e733gg98gfhg4", "bp1sjjiswd4t3nw86vf6yq7hm"] #ID's van Eredivisie seizoenen volgorde 23/22/21
+    table_kind="tournamentschedule",
+    competitions=[
+        "d1k1pqdg2yvw8e8my74yvrdw4",
+        "dp0vwa5cfgx2e733gg98gfhg4",
+        "bp1sjjiswd4t3nw86vf6yq7hm",
+    ],  # ID's van Eredivisie seizoenen volgorde 23/22/21
 ) -> tuple[str, str, pd.DataFrame]:
-    df_all_matches = pd.DataFrame() # From different competitions as well
+    df_all_matches = pd.DataFrame()  
 
-    # Loop through different divisions 
+    # Loop through different divisions
     for competition in competitions:
         url = f"http://api.performfeeds.com/soccerdata/{{}}/6bxvue6su4ev1690mzy62a41t/{{}}?_rt=b&_fmt=json".format(
             table_kind, competition
@@ -19,12 +24,11 @@ def get_tournamentschedule(
         df_matches = pd.DataFrame()
         df_matches = pd.concat(
             [
-            # Concat all matches in competition in dataframe 
+                # Concat all matches in competition in dataframe
                 pd.concat(
                     [df_matches, pd.DataFrame(response["matchDate"][matches]["match"])]
                 )
-
-                # Range are all matches within the season 
+                # Range are all matches within the season
                 for matches in range(len(response["matchDate"]))
             ],
             ignore_index=True,
@@ -36,8 +40,7 @@ def get_tournamentschedule(
     return (
         response["competition"]["name"],
         table_kind,
-
-        # Return only selected columns from dataframe 
+        # Return only selected columns from dataframe
         df_all_matches[
             [
                 "id",
@@ -55,53 +58,57 @@ def get_tournamentschedule(
 
 def get_matchstats_cards(df: pd.DataFrame) -> pd.DataFrame:
     """
-    Function to get the stats on cards during a match 
-    Loops through df containing match id's and performs API call to statsperform 
+    Function to get the stats on cards during a match
+    Loops through df containing match id's and performs API call to statsperform
     """
 
     # Create container for new column
     all_team_cards = []
     print("Get Card Events..\n")
 
-    # Loop through df to get match id's 
+    # Loop through df to get match id's
     for match in tqdm(df.index):
         try:
             matchstats = (
                 requests.get(
-                    f"http://api.performfeeds.com/soccerdata/matchstats/6bxvue6su4ev1690mzy62a41t/?_rt=b&_fmt=json&fx={{}}".format(df['id'][match])
+                    f"http://api.performfeeds.com/soccerdata/matchstats/6bxvue6su4ev1690mzy62a41t/?_rt=b&_fmt=json&fx={{}}".format(
+                        df["id"][match]
+                    )
                 )
-
-                # Access card information from live data 
+                # Access card information from live data
                 .json()["liveData"]["card"]
             )
 
-            # For every card event, create dict with info and add to list 
-            team_cards = [{'contestantName': requests.get(f"http://api.performfeeds.com/soccerdata/team/6bxvue6su4ev1690mzy62a41t/?_rt=b&_fmt=json&ctst={{}}"
-                                                           .format(card["contestantId"])
-                    )
-                    .json()["contestant"][0]["name"],
-                    'contestantId': card["contestantId"],
-                    'periodId': card["periodId"],
-                    'timeMin': card["timeMin"],
-                    'playerId': card["playerId"],
-                    'playerName': card["playerName"],
-                    'cardType': card["type"],
+            # For every card event, create dict with info and add to list
+            team_cards = [
+                {
+                    "contestantName": requests.get(
+                        f"http://api.performfeeds.com/soccerdata/team/6bxvue6su4ev1690mzy62a41t/?_rt=b&_fmt=json&ctst={{}}".format(
+                            card["contestantId"]
+                        )
+                    ).json()["contestant"][0]["name"],
+                    "contestantId": card["contestantId"],
+                    "periodId": card["periodId"],
+                    "timeMin": card["timeMin"],
+                    "playerId": card["playerId"],
+                    "playerName": card["playerName"],
+                    "cardType": card["type"],
                 }
                 for card in matchstats
             ]
         except:
-            team_cards = [] # If there are no cards available 
+            team_cards = []  # If there are no cards available
         all_team_cards.append(team_cards)
 
-    # Add list to dataframe 
-    df['card_events'] = all_team_cards
+    # Add list to dataframe
+    df["card_events"] = all_team_cards
     return df
 
 
 def get_matchstats_goals(df: pd.DataFrame) -> pd.DataFrame:
     """Currenty assistPlayerName is not supported, since this does not occur in every goal"""
-    
-    # Container for new column 
+
+    # Container for new column
     all_team_goals = []
     print("Get Goal Events..\n")
 
@@ -110,86 +117,102 @@ def get_matchstats_goals(df: pd.DataFrame) -> pd.DataFrame:
         try:
             matchstats = (
                 requests.get(
-                    f"http://api.performfeeds.com/soccerdata/matchstats/6bxvue6su4ev1690mzy62a41t/?_rt=b&_fmt=json&fx={{}}".format(df['id'][match])
+                    f"http://api.performfeeds.com/soccerdata/matchstats/6bxvue6su4ev1690mzy62a41t/?_rt=b&_fmt=json&fx={{}}".format(
+                        df["id"][match]
+                    )
                 )
-
-                # Access goal information from live data 
+                # Access goal information from live data
                 .json()["liveData"]["goal"]
             )
 
-            # For every event, create dict with info and add to list 
+            # For every event, create dict with info and add to list
             team_goals = [
                 {
-                    'contestantName': requests.get(
+                    "contestantName": requests.get(
                         f"http://api.performfeeds.com/soccerdata/team/6bxvue6su4ev1690mzy62a41t/?_rt=b&_fmt=json&ctst={{}}".format(
-                            goal["contestantId"])
+                            goal["contestantId"]
+                        )
                     ).json()["contestant"][0]["name"],
-                    'contestantId': goal["contestantId"],
-                    'periodId': goal["periodId"],
-                    'timeMin': goal["timeMin"],
-                    'scorerId': goal["scorerId"],
-                    'scorerName' : goal["scorerName"]
+                    "contestantId": goal["contestantId"],
+                    "periodId": goal["periodId"],
+                    "timeMin": goal["timeMin"],
+                    "scorerId": goal["scorerId"],
+                    "scorerName": goal["scorerName"],
                 }
                 for goal in matchstats
             ]
         except:
-                team_goals = [] # If there are no goals available 
+            team_goals = []  # If there are no goals available
         all_team_goals.append(team_goals)
 
-    # Add list to dataframe 
-    df['goal_events'] = all_team_goals
+    # Add list to dataframe
+    df["goal_events"] = all_team_goals
     return df
 
-def get_matchstats_possession(df: pd.DataFrame) -> pd.DataFrame:
 
+def get_matchstats_possession(df: pd.DataFrame) -> pd.DataFrame:
     all_possessions_home = []
     all_possessions_away = []
     print("Get Possession Percentage..\n")
     for match in tqdm(df.index):
         try:
-            matchstats = (
-                    requests.get(
-                        f"http://api.performfeeds.com/soccerdata/matchstats/6bxvue6su4ev1690mzy62a41t/?_rt=b&_fmt=json&fx={{}}".format(df['id'][match])
-                    )
-
-                    .json()['liveData']['lineUp']
+            matchstats = requests.get(
+                f"http://api.performfeeds.com/soccerdata/matchstats/6bxvue6su4ev1690mzy62a41t/?_rt=b&_fmt=json&fx={{}}".format(
+                    df["id"][match]
                 )
-            possesion_home = str(next(item['value'] for item in matchstats[0]['stat'] if item["type"] == "possessionPercentage")+"%")
-            possession_away = str(next(item['value'] for item in matchstats[1]['stat'] if item["type"] == "possessionPercentage")+"%")
+            ).json()["liveData"]["lineUp"]
+            possession_home = str(
+                next(
+                    item["value"]
+                    for item in matchstats[0]["stat"]
+                    if item["type"] == "possessionPercentage"
+                )
+                + "%"
+            )
+            possession_away = str(
+                next(
+                    item["value"]
+                    for item in matchstats[1]["stat"]
+                    if item["type"] == "possessionPercentage"
+                )
+                + "%"
+            )
         except:
             possession_home = ""
             possession_away = ""
-        all_possessions_home.append(possesion_home)
+        all_possessions_home.append(possession_home)
         all_possessions_away.append(possession_away)
 
-    df['possession_home'] = all_possessions_home
-    df['possession_away'] = all_possessions_away
+    df["possession_home"] = all_possessions_home
+    df["possession_away"] = all_possessions_away
     return df
+
 
 def get_venue(df: pd.DataFrame) -> pd.DataFrame:
     """
-    Function to get venues for matches 
+    Function to get venues for matches
     """
 
-    # Container for new venues column 
+    # Container for new venues column
     all_venues = []
     print("Get venues..\n")
 
-    # Loop through match id's 
+    # Loop through match id's
     for match in tqdm(df.index):
         try:
+            # Enter match id in API call
+            response = requests.get(
+                f"http://api.performfeeds.com/soccerdata/matchstats/6bxvue6su4ev1690mzy62a41t/?_rt=b&_fmt=json&fx={{}}".format(
+                    df["id"][match]
+                )
+            ).json()
 
-            # Enter match id in API call 
-            response = requests.get(f'http://api.performfeeds.com/soccerdata/matchstats/6bxvue6su4ev1690mzy62a41t/?_rt=b&_fmt=json&fx={{}}'.format(
-                df['id'][match])
-                ).json()
-            
-            # Access venue information in json if available 
-            venue = response['matchInfo']['venue']['longName']
+            # Access venue information in json if available
+            venue = response["matchInfo"]["venue"]["longName"]
         except:
             venue = ""
         all_venues.append(venue)
 
-    # Add list to dataframe 
-    df['venue'] = all_venues
+    # Add list to dataframe
+    df["venue"] = all_venues
     return df
