@@ -7,3 +7,7 @@ openai_gpt3
 #ESPN_ids_data
 old
 all_competitions.ipynb
+cards.csv
+goals.csv
+merged_dicts.csv
+merged.xlsx
