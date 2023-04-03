@@ -31,18 +31,28 @@ def refactor_df(df_tournament: pd.DataFrame) -> pd.DataFrame:
     Returns:
         pd.DataFrame: returns a refactored Dataframe
     """
+    opta_team_abbreviations = ["NEC", "AJX", "ZWO"]
+    espn_team_abbreviations = ["N.E.C.", "AJA", "ZWO"]
     df_tournament["awayContestantCode"] = df_tournament[
         "awayContestantCode"
     ].str.replace("NEC", "N.E.C.", regex=True)
     df_tournament["homeContestantCode"] = df_tournament[
         "homeContestantCode"
     ].str.replace("NEC", "N.E.C.", regex=True)
+
     df_tournament["awayContestantCode"] = df_tournament[
         "awayContestantCode"
     ].str.replace("AJX", "AJA", regex=True)
     df_tournament["homeContestantCode"] = df_tournament[
         "homeContestantCode"
     ].str.replace("AJX", "AJA", regex=True)
+
+    df_tournament["awayContestantCode"] = df_tournament[
+        "awayContestantCode"
+    ].str.replace("ZWO", "PEC", regex=True)
+    df_tournament["homeContestantCode"] = df_tournament[
+        "homeContestantCode"
+    ].str.replace("ZWO", "PEC", regex=True)
     return df_tournament
 
 def merge(df_espn: pd.DataFrame, df_tournament: pd.DataFrame) -> pd.DataFrame:
