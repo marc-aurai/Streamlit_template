@@ -140,6 +140,32 @@ def get_matchstats_goals(df: pd.DataFrame) -> pd.DataFrame:
     df['goal_events'] = all_team_goals
     return df
 
+def get_matchstats_possession(df: pd.DataFrame) -> pd.DataFrame:
+
+    all_possessions_home = []
+    all_possessions_away = []
+    print("Get Possession Percentage..\n")
+    for match in tqdm(df.index):
+        try:
+            matchstats = (
+                    requests.get(
+                        f"http://api.performfeeds.com/soccerdata/matchstats/6bxvue6su4ev1690mzy62a41t/?_rt=b&_fmt=json&fx={{}}".format(df['id'][match])
+                    )
+
+                    .json()['liveData']['lineUp']
+                )
+            possesion_home = str(next(item['value'] for item in matchstats[0]['stat'] if item["type"] == "possessionPercentage")+"%")
+            possession_away = str(next(item['value'] for item in matchstats[1]['stat'] if item["type"] == "possessionPercentage")+"%")
+        except:
+            possession_home = ""
+            possession_away = ""
+        all_possessions_home.append(possesion_home)
+        all_possessions_away.append(possession_away)
+
+    df['possession_home'] = all_possessions_home
+    df['possession_away'] = all_possessions_away
+    return df
+
 def get_venue(df: pd.DataFrame) -> pd.DataFrame:
     """
     Function to get venues for matches 

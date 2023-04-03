@@ -5,6 +5,7 @@ from utils.opta_feeds import (
     get_matchstats_goals,
     get_tournamentschedule,
     get_venue,
+    get_matchstats_possession,
 )
 
 
@@ -71,7 +72,8 @@ if __name__ == "__main__":
     df_tournament = refactor_df(df_tournament)
     df_tournament.to_csv("./opta/data/competitions/complete_eredivisie.csv")
 
-    df_cards = get_matchstats_cards(df_tournament)
+    df_possession = get_matchstats_possession(df_tournament)
+    df_cards = get_matchstats_cards(df_possession)
     df_venues = get_venue(df_cards)
     df_goals = get_matchstats_goals(df_venues)
 
