@@ -2,12 +2,10 @@
 .vscode
 __pycache__
 
-#scraper_data
 openai_gpt3
-#ESPN_ids_data
 old
 all_competitions.ipynb
-cards.csv
-goals.csv
-merged_dicts.csv
-merged.xlsx
+complete_eredivisie.csv
+articles_5000_notna.csv
+articls_ereD_notna.csv
+atrticles_overig_notna.csv
