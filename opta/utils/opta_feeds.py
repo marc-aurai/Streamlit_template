@@ -22,7 +22,7 @@ def get_tournamentschedule(
             ],
             ignore_index=True,
         )
-        df_all_matches = pd.concat([df_all_matches, df_matches])
+        df_all_matches = pd.concat([df_all_matches, df_matches], ignore_index=True)
 
     return (
         response["competition"]["name"],

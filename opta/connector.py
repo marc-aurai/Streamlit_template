@@ -22,7 +22,28 @@ def get_espn_data(csv_name: str) -> pd.DataFrame:
     )
     return df_espn
 
+def refactor_df(df_tournament: pd.DataFrame) -> pd.DataFrame:
+    """ Club abbreviation Modifications. E.g. NEC -> N.E.C.
 
+    Args:
+        df_tournament (pd.DataFrame): Dataframe that includes all matches, from the selected competitions.
+
+    Returns:
+        pd.DataFrame: returns a refactored Dataframe
+    """
+    df_tournament["awayContestantCode"] = df_tournament[
+        "awayContestantCode"
+    ].str.replace("NEC", "N.E.C.", regex=True)
+    df_tournament["homeContestantCode"] = df_tournament[
+        "homeContestantCode"
+    ].str.replace("NEC", "N.E.C.", regex=True)
+    df_tournament["awayContestantCode"] = df_tournament[
+        "awayContestantCode"
+    ].str.replace("AJX", "AJA", regex=True)
+    df_tournament["homeContestantCode"] = df_tournament[
+        "homeContestantCode"
+    ].str.replace("AJX", "AJA", regex=True)
+    return df_tournament
 
 def merge(df_espn: pd.DataFrame, df_tournament: pd.DataFrame) -> pd.DataFrame:
     """ Merge different OPTA tables with each other. Furthermore, this function merges the scraped ESPN Data with OPTA data.
@@ -50,6 +71,9 @@ def merge(df_espn: pd.DataFrame, df_tournament: pd.DataFrame) -> pd.DataFrame:
 if __name__ == "__main__":
     df_espn = get_espn_data(csv_name="articles_eredivisie22_23")
     competition, table_kind, df_tournament = get_tournamentschedule()
+    df_tournament = refactor_df(df_tournament)
+    df_tournament.to_csv("./opta/data/competitions/complete_eredivisie.csv")
+
     df_cards = get_matchstats_cards(df_tournament)
     df_venues = get_venue(df_cards)
     df_goals = get_matchstats_goals(df_venues)

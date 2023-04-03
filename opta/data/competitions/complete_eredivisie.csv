@@ -1,0 +1,928 @@
+,id,date,homeContestantId,awayContestantId,homeContestantOfficialName,awayContestantOfficialName,homeContestantCode,awayContestantCode
+0,3xp5uvef2i0z40glz9qq7f85w,2022-08-05Z,4vd2t5schmvvufrfib7f2vjdf,89w5c6pw7vn0dxypi61tt0g4k,SC Heerenveen,Sparta Rotterdam,HEE,SPA
+1,3xtddwq4558vjrh84uh6vxj4k,2022-08-06Z,3ebril33e08ddzob4bhq8awsr,d0zdg647gvgc95xdtk1vpbkys,Fortuna Sittard,AFC Ajax,FOR,AJA
+2,3xvysgmver498fdhvugbuhd04,2022-08-06Z,ears40cp6opsgvhsy0dgyszpd,dqk062lu0vm8epvytbm6r4mmf,SC Cambuur Leeuwarden,SBV Excelsior,CAM,EXC
+3,3xyl0qt0lpr25p5onwmdqqal0,2022-08-06Z,24fvcruwqrqvqa3aonf8c3zuy,3t0vjqtxc8wpjzv82i3oi2ova,PSV Eindhoven,FC Emmen,PSV,EMM
+4,3y15kr81sa8wpz5j6fhvi3wno,2022-08-06Z,ed5nwjz5za3oyi20nxzgqivmx,ccpscwdcm65czscrun048ecn5,RKC Waalwijk,FC Utrecht,RKC,UTR
+5,3y3qaapqdnd30f78x51lue8t0,2022-08-07Z,cos9hxi16eitbcbthof7zrm4m,6g9qrm72224jrk6tkxxxi8a9n,FC Groningen,FC Volendam,GRO,VOL
+6,3y6drcw2sftzu0k89oilsvq50,2022-08-07Z,6hsriqr3ybvyg94w2k19oal50,20vymiy7bo8wkyxai3ew494fz,SBV Vitesse,Feyenoord Rotterdam,VIT,FEY
+7,3y8wuyp2w4ehm5ohlwe61sowk,2022-08-07Z,8iawijq7s9s6d85mjz8wdslki,4tic29sox7m39fy1ztgv0jsiq,Nijmegen Eendracht Combinatie,FC Twente,N.E.C.,TWE
+8,3ybnesj6sorgz9qu7d7tq1mhg,2022-08-07Z,3kfktv64h7kg7zryax1wktr5r,b79uipsy57y1jqpy07h4i5ovk,Alkmaar Zaanstreek,Go Ahead Eagles,AZ,GAE
+9,32s6daf0x5cxgbzvc686xjwus,2022-08-12Z,dqk062lu0vm8epvytbm6r4mmf,6hsriqr3ybvyg94w2k19oal50,SBV Excelsior,SBV Vitesse,EXC,VIT
+10,32y6epyv0js1swwxf8b9en76c,2022-08-13Z,b79uipsy57y1jqpy07h4i5ovk,24fvcruwqrqvqa3aonf8c3zuy,Go Ahead Eagles,PSV Eindhoven,GAE,PSV
+11,332uofr9kbcy9h3peznm1kvmc,2022-08-13Z,3t0vjqtxc8wpjzv82i3oi2ova,ed5nwjz5za3oyi20nxzgqivmx,FC Emmen,RKC Waalwijk,EMM,RKC
+12,337gvq9mccs8tve22wevlcems,2022-08-13Z,ccpscwdcm65czscrun048ecn5,ears40cp6opsgvhsy0dgyszpd,FC Utrecht,SC Cambuur Leeuwarden,UTR,CAM
+13,33bzuj02u3sr1x3cx4zzmmxp0,2022-08-13Z,20vymiy7bo8wkyxai3ew494fz,4vd2t5schmvvufrfib7f2vjdf,Feyenoord Rotterdam,SC Heerenveen,FEY,HEE
+14,33gniw0rooosckrkww1dyz47o,2022-08-14Z,6g9qrm72224jrk6tkxxxi8a9n,8iawijq7s9s6d85mjz8wdslki,FC Volendam,Nijmegen Eendracht Combinatie,VOL,N.E.C.
+15,33l8vsssln0orhqmpvg7v1gr8,2022-08-14Z,d0zdg647gvgc95xdtk1vpbkys,cos9hxi16eitbcbthof7zrm4m,AFC Ajax,FC Groningen,AJA,GRO
+16,33pt0nlqk12yeh1nq9hpriwwk,2022-08-14Z,4tic29sox7m39fy1ztgv0jsiq,3ebril33e08ddzob4bhq8awsr,FC Twente,Fortuna Sittard,TWE,FOR
+17,33ub0auf6xkgz0j98adtb6z2s,2022-08-14Z,89w5c6pw7vn0dxypi61tt0g4k,3kfktv64h7kg7zryax1wktr5r,Sparta Rotterdam,Alkmaar Zaanstreek,SPA,AZ
+18,33xoky94t0mcggyc3p1pdsh04,2022-08-20Z,6hsriqr3ybvyg94w2k19oal50,4vd2t5schmvvufrfib7f2vjdf,SBV Vitesse,SC Heerenveen,VIT,HEE
+19,348bc4ykckvq1t17r4gjem6tw,2022-08-20Z,3ebril33e08ddzob4bhq8awsr,ears40cp6opsgvhsy0dgyszpd,Fortuna Sittard,SC Cambuur Leeuwarden,FOR,CAM
+20,344thx5fxxiexmrx78uyu8s2c,2022-08-20Z,3t0vjqtxc8wpjzv82i3oi2ova,ccpscwdcm65czscrun048ecn5,FC Emmen,FC Utrecht,EMM,UTR
+21,3416dsrvjmox20ex7nmhfk4d0,2022-08-21Z,cos9hxi16eitbcbthof7zrm4m,b79uipsy57y1jqpy07h4i5ovk,FC Groningen,Go Ahead Eagles,GRO,GAE
+22,34c4f5oltw3hj7q4p7kbfpp1w,2022-08-21Z,89w5c6pw7vn0dxypi61tt0g4k,d0zdg647gvgc95xdtk1vpbkys,Sparta Rotterdam,AFC Ajax,SPA,AJA
+23,34jwem3yof4minplmdhnrujo4,2022-08-21Z,ed5nwjz5za3oyi20nxzgqivmx,20vymiy7bo8wkyxai3ew494fz,RKC Waalwijk,Feyenoord Rotterdam,RKC,FEY
+24,34w3f3wieu2sqnqgkwlw06yvo,2022-08-26Z,8iawijq7s9s6d85mjz8wdslki,cos9hxi16eitbcbthof7zrm4m,Nijmegen Eendracht Combinatie,FC Groningen,N.E.C.,GRO
+25,34zni74xmzowo7omt9jnj3q50,2022-08-27Z,b79uipsy57y1jqpy07h4i5ovk,89w5c6pw7vn0dxypi61tt0g4k,Go Ahead Eagles,Sparta Rotterdam,GAE,SPA
+26,3539b48nec1e1fi7xsvon8f84,2022-08-27Z,6hsriqr3ybvyg94w2k19oal50,ed5nwjz5za3oyi20nxzgqivmx,SBV Vitesse,RKC Waalwijk,VIT,RKC
+27,356s0tw6orvcksn7tm1tdkb2s,2022-08-27Z,20vymiy7bo8wkyxai3ew494fz,3t0vjqtxc8wpjzv82i3oi2ova,Feyenoord Rotterdam,FC Emmen,FEY,EMM
+28,35aw5krod2x8nuppmr0je8hsk,2022-08-27Z,4vd2t5schmvvufrfib7f2vjdf,3ebril33e08ddzob4bhq8awsr,SC Heerenveen,Fortuna Sittard,HEE,FOR
+29,35eh5o98s4rqy9b2j03ub0mqc,2022-08-28Z,ccpscwdcm65czscrun048ecn5,d0zdg647gvgc95xdtk1vpbkys,FC Utrecht,AFC Ajax,UTR,AJA
+30,35i0h02gy1trf2qdjkfxmcg0k,2022-08-28Z,dqk062lu0vm8epvytbm6r4mmf,24fvcruwqrqvqa3aonf8c3zuy,SBV Excelsior,PSV Eindhoven,EXC,PSV
+31,35ln32b4hl8hswyfnhj40rrx0,2022-08-28Z,6g9qrm72224jrk6tkxxxi8a9n,4tic29sox7m39fy1ztgv0jsiq,FC Volendam,FC Twente,VOL,TWE
+32,35p862cizmkbm49ryyhjsafpw,2022-08-28Z,ears40cp6opsgvhsy0dgyszpd,3kfktv64h7kg7zryax1wktr5r,SC Cambuur Leeuwarden,Alkmaar Zaanstreek,CAM,AZ
+33,34ov62khe15ixlk3x3esmd638,2022-08-31Z,24fvcruwqrqvqa3aonf8c3zuy,6g9qrm72224jrk6tkxxxi8a9n,PSV Eindhoven,FC Volendam,PSV,VOL
+34,34sl1m04nf2pjq1qrbgqwbkt0,2022-08-31Z,4tic29sox7m39fy1ztgv0jsiq,dqk062lu0vm8epvytbm6r4mmf,FC Twente,SBV Excelsior,TWE,EXC
+35,34ggu23r547e14zwb1vnb9qms,2022-09-01Z,3kfktv64h7kg7zryax1wktr5r,8iawijq7s9s6d85mjz8wdslki,Alkmaar Zaanstreek,Nijmegen Eendracht Combinatie,AZ,N.E.C.
+36,35splt3x71cp9b8qpfa6bexw4,2022-09-02Z,3ebril33e08ddzob4bhq8awsr,ccpscwdcm65czscrun048ecn5,Fortuna Sittard,FC Utrecht,FOR,UTR
+37,35wtbgqtw53y29u7uaoh95xjo,2022-09-03Z,d0zdg647gvgc95xdtk1vpbkys,ears40cp6opsgvhsy0dgyszpd,AFC Ajax,SC Cambuur Leeuwarden,AJA,CAM
+38,360mpijrk8jtevxmfkt11t2c4,2022-09-03Z,4tic29sox7m39fy1ztgv0jsiq,24fvcruwqrqvqa3aonf8c3zuy,FC Twente,PSV Eindhoven,TWE,PSV
+39,364fmyhpf2bl1492uspu9k4r8,2022-09-03Z,89w5c6pw7vn0dxypi61tt0g4k,6g9qrm72224jrk6tkxxxi8a9n,Sparta Rotterdam,FC Volendam,SPA,VOL
+40,368207nya9n0kjo03p65mwglw,2022-09-03Z,b79uipsy57y1jqpy07h4i5ovk,20vymiy7bo8wkyxai3ew494fz,Go Ahead Eagles,Feyenoord Rotterdam,GAE,FEY
+41,36buard1hzxmi306drvbxvaxg,2022-09-04Z,ed5nwjz5za3oyi20nxzgqivmx,dqk062lu0vm8epvytbm6r4mmf,RKC Waalwijk,SBV Excelsior,RKC,EXC
+42,36h1a2kvhl1ikyfrl5wqa3mdw,2022-09-04Z,3t0vjqtxc8wpjzv82i3oi2ova,3kfktv64h7kg7zryax1wktr5r,FC Emmen,Alkmaar Zaanstreek,EMM,AZ
+43,36kui0ee4orli1jb2ezm4hixg,2022-09-04Z,4vd2t5schmvvufrfib7f2vjdf,8iawijq7s9s6d85mjz8wdslki,SC Heerenveen,Nijmegen Eendracht Combinatie,HEE,N.E.C.
+44,36oi08t4lldsag88zh28j39jo,2022-09-04Z,cos9hxi16eitbcbthof7zrm4m,6hsriqr3ybvyg94w2k19oal50,FC Groningen,SBV Vitesse,GRO,VIT
+45,36s8vrtlzcuwid3w0nzaod444,2022-09-09Z,6g9qrm72224jrk6tkxxxi8a9n,b79uipsy57y1jqpy07h4i5ovk,FC Volendam,Go Ahead Eagles,VOL,GAE
+46,36w05t5wq4j7b0ijua3cj7nkk,2022-09-10Z,8iawijq7s9s6d85mjz8wdslki,3ebril33e08ddzob4bhq8awsr,Nijmegen Eendracht Combinatie,Fortuna Sittard,N.E.C.,FOR
+47,36zsxobqyguz22gjqmt6xma6s,2022-09-10Z,d0zdg647gvgc95xdtk1vpbkys,4vd2t5schmvvufrfib7f2vjdf,AFC Ajax,SC Heerenveen,AJA,HEE
+48,373g0y6w1bg3y5kcjsqwei1hw,2022-09-10Z,dqk062lu0vm8epvytbm6r4mmf,3t0vjqtxc8wpjzv82i3oi2ova,SBV Excelsior,FC Emmen,EXC,EMM
+49,37aw4kc4j0omgn651ke7ntfdg,2022-09-11Z,ccpscwdcm65czscrun048ecn5,6hsriqr3ybvyg94w2k19oal50,FC Utrecht,SBV Vitesse,UTR,VIT
+50,3773pmqvk05hns1qthkmogz6c,2022-09-11Z,24fvcruwqrqvqa3aonf8c3zuy,ed5nwjz5za3oyi20nxzgqivmx,PSV Eindhoven,RKC Waalwijk,PSV,RKC
+51,37eievw4ofi6w55u22nos5es4,2022-09-11Z,ears40cp6opsgvhsy0dgyszpd,cos9hxi16eitbcbthof7zrm4m,SC Cambuur Leeuwarden,FC Groningen,CAM,GRO
+52,37iecv1zgntszuiemdekf3dhw,2022-09-11Z,3kfktv64h7kg7zryax1wktr5r,4tic29sox7m39fy1ztgv0jsiq,Alkmaar Zaanstreek,FC Twente,AZ,TWE
+53,37m0rflh990le9uzuoalsjsb8,2022-09-11Z,20vymiy7bo8wkyxai3ew494fz,89w5c6pw7vn0dxypi61tt0g4k,Feyenoord Rotterdam,Sparta Rotterdam,FEY,SPA
+54,37pjwz5rd1isw004o55simeqc,2022-09-16Z,ccpscwdcm65czscrun048ecn5,8iawijq7s9s6d85mjz8wdslki,FC Utrecht,Nijmegen Eendracht Combinatie,UTR,N.E.C.
+55,37t68midhrf57r0dzpzo76ej8,2022-09-17Z,89w5c6pw7vn0dxypi61tt0g4k,cos9hxi16eitbcbthof7zrm4m,Sparta Rotterdam,FC Groningen,SPA,GRO
+56,37wmlkrog5fbj01zv75ur6c5w,2022-09-17Z,6hsriqr3ybvyg94w2k19oal50,6g9qrm72224jrk6tkxxxi8a9n,SBV Vitesse,FC Volendam,VIT,VOL
+57,380b0zmbdtrgof255d9wn8f84,2022-09-17Z,ed5nwjz5za3oyi20nxzgqivmx,ears40cp6opsgvhsy0dgyszpd,RKC Waalwijk,SC Cambuur Leeuwarden,RKC,CAM
+58,384076oqh55qx9g2wj9cnvc44,2022-09-17Z,3ebril33e08ddzob4bhq8awsr,dqk062lu0vm8epvytbm6r4mmf,Fortuna Sittard,SBV Excelsior,FOR,EXC
+59,388zw120360et4ii8lhurr21g,2022-09-18Z,b79uipsy57y1jqpy07h4i5ovk,3t0vjqtxc8wpjzv82i3oi2ova,Go Ahead Eagles,FC Emmen,GAE,EMM
+60,38cnwulaadpg51fcgni51gy6s,2022-09-18Z,24fvcruwqrqvqa3aonf8c3zuy,20vymiy7bo8wkyxai3ew494fz,PSV Eindhoven,Feyenoord Rotterdam,PSV,FEY
+61,38gbj6fsph0fg3fidsigfs1lg,2022-09-18Z,4vd2t5schmvvufrfib7f2vjdf,4tic29sox7m39fy1ztgv0jsiq,SC Heerenveen,FC Twente,HEE,TWE
+62,38k03ax2dar2x9xkiwbod7rx0,2022-09-18Z,3kfktv64h7kg7zryax1wktr5r,d0zdg647gvgc95xdtk1vpbkys,Alkmaar Zaanstreek,AFC Ajax,AZ,AJA
+63,38nnj6en7nd5shltxkijm3pjo,2022-10-01Z,ears40cp6opsgvhsy0dgyszpd,24fvcruwqrqvqa3aonf8c3zuy,SC Cambuur Leeuwarden,PSV Eindhoven,CAM,PSV
+64,392nb35rdk2ax45hztolve5g4,2022-10-01Z,cos9hxi16eitbcbthof7zrm4m,3kfktv64h7kg7zryax1wktr5r,FC Groningen,Alkmaar Zaanstreek,GRO,AZ
+65,38vkjy88v22eu4vhfbuk3hhjo,2022-10-01Z,d0zdg647gvgc95xdtk1vpbkys,b79uipsy57y1jqpy07h4i5ovk,AFC Ajax,Go Ahead Eagles,AJA,GAE
+66,38z2r0eqmm6q53un7yd9w3lzo,2022-10-01Z,4tic29sox7m39fy1ztgv0jsiq,6hsriqr3ybvyg94w2k19oal50,FC Twente,SBV Vitesse,TWE,VIT
+67,399qivnpx0jyvhj21294gmlg4,2022-10-02Z,3ebril33e08ddzob4bhq8awsr,6g9qrm72224jrk6tkxxxi8a9n,Fortuna Sittard,FC Volendam,FOR,VOL
+68,38rzjv61hxfbkzd0uqvxqta1g,2022-10-02Z,dqk062lu0vm8epvytbm6r4mmf,ccpscwdcm65czscrun048ecn5,SBV Excelsior,FC Utrecht,EXC,UTR
+69,39d8tv38cvvioy5f4jtn5d3x0,2022-10-02Z,8iawijq7s9s6d85mjz8wdslki,20vymiy7bo8wkyxai3ew494fz,Nijmegen Eendracht Combinatie,Feyenoord Rotterdam,N.E.C.,FEY
+70,39gr15dm4ywrnpnn2wtbk1vkk,2022-10-02Z,ed5nwjz5za3oyi20nxzgqivmx,89w5c6pw7vn0dxypi61tt0g4k,RKC Waalwijk,Sparta Rotterdam,RKC,SPA
+71,3969o2io0jn4nqprsb58e84d0,2022-10-02Z,3t0vjqtxc8wpjzv82i3oi2ova,4vd2t5schmvvufrfib7f2vjdf,FC Emmen,SC Heerenveen,EMM,HEE
+72,39kb63tn9wh5khs8dc8j25edw,2022-10-07Z,cos9hxi16eitbcbthof7zrm4m,ed5nwjz5za3oyi20nxzgqivmx,FC Groningen,RKC Waalwijk,GRO,RKC
+73,39nvp5vhfimtct5v9kd7022ok,2022-10-08Z,6g9qrm72224jrk6tkxxxi8a9n,d0zdg647gvgc95xdtk1vpbkys,FC Volendam,AFC Ajax,VOL,AJA
+74,39vgh9wbh179t7hrqirealj4k,2022-10-08Z,89w5c6pw7vn0dxypi61tt0g4k,3t0vjqtxc8wpjzv82i3oi2ova,Sparta Rotterdam,FC Emmen,SPA,EMM
+75,39rt5ku1ybpwpep0lmezy6gb8,2022-10-08Z,8iawijq7s9s6d85mjz8wdslki,dqk062lu0vm8epvytbm6r4mmf,Nijmegen Eendracht Combinatie,SBV Excelsior,N.E.C.,EXC
+76,3a4gioz9twnrp2f4xdw1niuj8,2022-10-09Z,b79uipsy57y1jqpy07h4i5ovk,ears40cp6opsgvhsy0dgyszpd,Go Ahead Eagles,SC Cambuur Leeuwarden,GAE,CAM
+77,3a81zkq9v29n8mzwur5bitzbo,2022-10-09Z,20vymiy7bo8wkyxai3ew494fz,4tic29sox7m39fy1ztgv0jsiq,Feyenoord Rotterdam,FC Twente,FEY,TWE
+78,3afcwkatmniy3x99jn4ce0e8k,2022-10-09Z,ccpscwdcm65czscrun048ecn5,3kfktv64h7kg7zryax1wktr5r,FC Utrecht,Alkmaar Zaanstreek,UTR,AZ
+79,3a0sc7go3sh3ql13qxpodn1uc,2022-10-09Z,4vd2t5schmvvufrfib7f2vjdf,24fvcruwqrqvqa3aonf8c3zuy,SC Heerenveen,PSV Eindhoven,HEE,PSV
+80,3abowowjp8bbk6s997imt0sno,2022-10-09Z,6hsriqr3ybvyg94w2k19oal50,3ebril33e08ddzob4bhq8awsr,SBV Vitesse,Fortuna Sittard,VIT,FOR
+81,3aj3u3n9k9fcq3a3iy317s5jo,2022-10-14Z,3t0vjqtxc8wpjzv82i3oi2ova,6g9qrm72224jrk6tkxxxi8a9n,FC Emmen,FC Volendam,EMM,VOL
+82,3ave9uvr2nfs5gupevmxwwufo,2022-10-15Z,3ebril33e08ddzob4bhq8awsr,ed5nwjz5za3oyi20nxzgqivmx,Fortuna Sittard,RKC Waalwijk,FOR,RKC
+83,3amv1yoj09simyezv2bwkls7o,2022-10-15Z,b79uipsy57y1jqpy07h4i5ovk,4vd2t5schmvvufrfib7f2vjdf,Go Ahead Eagles,SC Heerenveen,GAE,HEE
+84,3azjnzyaqr1hxyoonco31hvdg,2022-10-15Z,ears40cp6opsgvhsy0dgyszpd,6hsriqr3ybvyg94w2k19oal50,SC Cambuur Leeuwarden,SBV Vitesse,CAM,VIT
+85,3b3vhlqjmehmg8udvjbvf026s,2022-10-16Z,89w5c6pw7vn0dxypi61tt0g4k,8iawijq7s9s6d85mjz8wdslki,Sparta Rotterdam,Nijmegen Eendracht Combinatie,SPA,N.E.C.
+86,3b7rj5zl25n2kr1ki3f40yg44,2022-10-16Z,4tic29sox7m39fy1ztgv0jsiq,cos9hxi16eitbcbthof7zrm4m,FC Twente,FC Groningen,TWE,GRO
+87,3bbllftzcnmvib4tjlbpaltec,2022-10-16Z,24fvcruwqrqvqa3aonf8c3zuy,ccpscwdcm65czscrun048ecn5,PSV Eindhoven,FC Utrecht,PSV,UTR
+88,3bfawkulplyb9c36h9jm8qzh0,2022-10-16Z,3kfktv64h7kg7zryax1wktr5r,20vymiy7bo8wkyxai3ew494fz,Alkmaar Zaanstreek,Feyenoord Rotterdam,AZ,FEY
+89,3arj7ywfubvp7keqe0yqddses,2022-10-16Z,d0zdg647gvgc95xdtk1vpbkys,dqk062lu0vm8epvytbm6r4mmf,AFC Ajax,SBV Excelsior,AJA,EXC
+90,3biydly19e5m0n3zhsezy9yqc,2022-10-22Z,20vymiy7bo8wkyxai3ew494fz,3ebril33e08ddzob4bhq8awsr,Feyenoord Rotterdam,Fortuna Sittard,FEY,FOR
+91,3bmr5fefa1npmoqe3gm448vmc,2022-10-22Z,ed5nwjz5za3oyi20nxzgqivmx,d0zdg647gvgc95xdtk1vpbkys,RKC Waalwijk,AFC Ajax,RKC,AJA
+92,3bwj2s9l7wpsi672layvvozro,2022-10-22Z,6hsriqr3ybvyg94w2k19oal50,3t0vjqtxc8wpjzv82i3oi2ova,SBV Vitesse,FC Emmen,VIT,EMM
+93,3c4m9kowiq1ljkmtpk9uf0s9g,2022-10-23Z,dqk062lu0vm8epvytbm6r4mmf,3kfktv64h7kg7zryax1wktr5r,SBV Excelsior,Alkmaar Zaanstreek,EXC,AZ
+94,3bqnh9uijh1yfi9hxzj5avdw4,2022-10-23Z,ears40cp6opsgvhsy0dgyszpd,4tic29sox7m39fy1ztgv0jsiq,SC Cambuur Leeuwarden,FC Twente,CAM,TWE
+95,3c0uof2hor3k4bpxt85wlt5hw,2022-10-23Z,cos9hxi16eitbcbthof7zrm4m,24fvcruwqrqvqa3aonf8c3zuy,FC Groningen,PSV Eindhoven,GRO,PSV
+96,3ccb7tkoe9s326000fy8hqsyc,2022-10-23Z,8iawijq7s9s6d85mjz8wdslki,b79uipsy57y1jqpy07h4i5ovk,Nijmegen Eendracht Combinatie,Go Ahead Eagles,N.E.C.,GAE
+97,3cgd684s5i2u972bcpcet6exg,2022-10-23Z,ccpscwdcm65czscrun048ecn5,89w5c6pw7vn0dxypi61tt0g4k,FC Utrecht,Sparta Rotterdam,UTR,SPA
+98,3c8iagm9wwg8op8tuwy76r8k4,2022-10-23Z,6g9qrm72224jrk6tkxxxi8a9n,4vd2t5schmvvufrfib7f2vjdf,FC Volendam,SC Heerenveen,VOL,HEE
+99,3dcywqevzpw99am2nmcu3btp0,2022-10-29Z,4vd2t5schmvvufrfib7f2vjdf,ccpscwdcm65czscrun048ecn5,SC Heerenveen,FC Utrecht,HEE,UTR
+100,3dgss6o41vt7o6vl4vetw68t0,2022-10-29Z,89w5c6pw7vn0dxypi61tt0g4k,3ebril33e08ddzob4bhq8awsr,Sparta Rotterdam,Fortuna Sittard,SPA,FOR
+101,3d53h6161rki2xtnmmp1clt04,2022-10-29Z,b79uipsy57y1jqpy07h4i5ovk,dqk062lu0vm8epvytbm6r4mmf,Go Ahead Eagles,SBV Excelsior,GAE,EXC
+102,3csbalf3rukf3b6nno1lud6vo,2022-10-30Z,3t0vjqtxc8wpjzv82i3oi2ova,cos9hxi16eitbcbthof7zrm4m,FC Emmen,FC Groningen,EMM,GRO
+103,3cx2tmn3tidmt91w06litcwt0,2022-10-30Z,4tic29sox7m39fy1ztgv0jsiq,ed5nwjz5za3oyi20nxzgqivmx,FC Twente,RKC Waalwijk,TWE,RKC
+104,3d9209fvtbzbxl0mqt4sytfkk,2022-10-30Z,24fvcruwqrqvqa3aonf8c3zuy,8iawijq7s9s6d85mjz8wdslki,PSV Eindhoven,Nijmegen Eendracht Combinatie,PSV,N.E.C.
+105,3cobigej376l263oofdjlgmc4,2022-10-30Z,3kfktv64h7kg7zryax1wktr5r,6g9qrm72224jrk6tkxxxi8a9n,Alkmaar Zaanstreek,FC Volendam,AZ,VOL
+106,3ecqrxo9ce3yg1y0va0el75sk,2022-11-04Z,ears40cp6opsgvhsy0dgyszpd,8iawijq7s9s6d85mjz8wdslki,SC Cambuur Leeuwarden,Nijmegen Eendracht Combinatie,CAM,N.E.C.
+107,3egnzu8hix96tjohg2oegyr6c,2022-11-05Z,6hsriqr3ybvyg94w2k19oal50,89w5c6pw7vn0dxypi61tt0g4k,SBV Vitesse,Sparta Rotterdam,VIT,SPA
+108,3e5fdpu6glv4in6kzmzttefbo,2022-11-05Z,3ebril33e08ddzob4bhq8awsr,3t0vjqtxc8wpjzv82i3oi2ova,Fortuna Sittard,FC Emmen,FOR,EMM
+109,3dok9u4uozd2eryf59zj8e8es,2022-11-05Z,dqk062lu0vm8epvytbm6r4mmf,4vd2t5schmvvufrfib7f2vjdf,SBV Excelsior,SC Heerenveen,EXC,HEE
+110,3dxyr07sxxosyswa91tio9yc4,2022-11-06Z,ccpscwdcm65czscrun048ecn5,cos9hxi16eitbcbthof7zrm4m,FC Utrecht,FC Groningen,UTR,GRO
+111,3du0nosp92iuevuem0hqjbdw4,2022-11-06Z,4tic29sox7m39fy1ztgv0jsiq,b79uipsy57y1jqpy07h4i5ovk,FC Twente,Go Ahead Eagles,TWE,GAE
+112,3e1pdfx6d84li918n4zcduihg,2022-11-06Z,6g9qrm72224jrk6tkxxxi8a9n,20vymiy7bo8wkyxai3ew494fz,FC Volendam,Feyenoord Rotterdam,VOL,FEY
+113,3dkpg1m6xnj885hpj8597egic,2022-11-06Z,d0zdg647gvgc95xdtk1vpbkys,24fvcruwqrqvqa3aonf8c3zuy,AFC Ajax,PSV Eindhoven,AJA,PSV
+114,3e94gotz117tavoakhlpwcqok,2022-11-06Z,ed5nwjz5za3oyi20nxzgqivmx,3kfktv64h7kg7zryax1wktr5r,RKC Waalwijk,Alkmaar Zaanstreek,RKC,AZ
+115,3ck8vmrhbufi7j7pje22l7y8k,2022-11-09Z,d0zdg647gvgc95xdtk1vpbkys,6hsriqr3ybvyg94w2k19oal50,AFC Ajax,SBV Vitesse,AJA,VIT
+116,3d16s1fagassszlgjk1m9p82c,2022-11-10Z,20vymiy7bo8wkyxai3ew494fz,ears40cp6opsgvhsy0dgyszpd,Feyenoord Rotterdam,SC Cambuur Leeuwarden,FEY,CAM
+117,3ffrnldd55u6sx6vngslw213o,2022-11-11Z,89w5c6pw7vn0dxypi61tt0g4k,4tic29sox7m39fy1ztgv0jsiq,Sparta Rotterdam,FC Twente,SPA,TWE
+118,3erye62abv6v16otsku0pmpzo,2022-11-12Z,6g9qrm72224jrk6tkxxxi8a9n,ccpscwdcm65czscrun048ecn5,FC Volendam,FC Utrecht,VOL,UTR
+119,3eki2bz3azk7w9rchgzm2msyc,2022-11-12Z,3t0vjqtxc8wpjzv82i3oi2ova,d0zdg647gvgc95xdtk1vpbkys,FC Emmen,AFC Ajax,EMM,AJA
+120,3f7i5p9sa8hnuk1tu5q1nytqs,2022-11-12Z,24fvcruwqrqvqa3aonf8c3zuy,3kfktv64h7kg7zryax1wktr5r,PSV Eindhoven,Alkmaar Zaanstreek,PSV,AZ
+121,3f3n4fp0cu908ebztzvng60wk,2022-11-13Z,8iawijq7s9s6d85mjz8wdslki,ed5nwjz5za3oyi20nxzgqivmx,Nijmegen Eendracht Combinatie,RKC Waalwijk,N.E.C.,RKC
+122,3eo9pwv5k355xlmuodp245ul0,2022-11-13Z,cos9hxi16eitbcbthof7zrm4m,3ebril33e08ddzob4bhq8awsr,FC Groningen,Fortuna Sittard,GRO,FOR
+123,3fbjmrxryxju6tff8gyvbupzo,2022-11-13Z,4vd2t5schmvvufrfib7f2vjdf,ears40cp6opsgvhsy0dgyszpd,SC Heerenveen,SC Cambuur Leeuwarden,HEE,CAM
+124,3evzc6yl7a4wh3pi8r2kq58us,2022-11-13Z,20vymiy7bo8wkyxai3ew494fz,dqk062lu0vm8epvytbm6r4mmf,Feyenoord Rotterdam,SBV Excelsior,FEY,EXC
+125,3ezq0b1rol8afqqii6mxh5pn8,2022-11-13Z,b79uipsy57y1jqpy07h4i5ovk,6hsriqr3ybvyg94w2k19oal50,Go Ahead Eagles,SBV Vitesse,GAE,VIT
+126,3fjzm0lpj2i6e2oyl2cjm7qxg,2023-01-06Z,4tic29sox7m39fy1ztgv0jsiq,3t0vjqtxc8wpjzv82i3oi2ova,FC Twente,FC Emmen,TWE,EMM
+127,3fqce463ch1h61to42xnrx05w,2023-01-07Z,ed5nwjz5za3oyi20nxzgqivmx,4vd2t5schmvvufrfib7f2vjdf,RKC Waalwijk,SC Heerenveen,RKC,HEE
+128,3fuf3g2bwevdvj8jtdrex8l5g,2023-01-07Z,3kfktv64h7kg7zryax1wktr5r,6hsriqr3ybvyg94w2k19oal50,Alkmaar Zaanstreek,SBV Vitesse,AZ,VIT
+129,3fy6jt2kmryzq938l39esb2ms,2023-01-07Z,3ebril33e08ddzob4bhq8awsr,b79uipsy57y1jqpy07h4i5ovk,Fortuna Sittard,Go Ahead Eagles,FOR,GAE
+130,3g225p69h4qbvavenjesxzrbo,2023-01-07Z,24fvcruwqrqvqa3aonf8c3zuy,89w5c6pw7vn0dxypi61tt0g4k,PSV Eindhoven,Sparta Rotterdam,PSV,SPA
+131,3g61qc2bcwosvs00fhr1lthck,2023-01-08Z,ccpscwdcm65czscrun048ecn5,20vymiy7bo8wkyxai3ew494fz,FC Utrecht,Feyenoord Rotterdam,UTR,FEY
+132,3ga6svkk9y6d4ykeglio5maz8,2023-01-08Z,8iawijq7s9s6d85mjz8wdslki,d0zdg647gvgc95xdtk1vpbkys,Nijmegen Eendracht Combinatie,AFC Ajax,N.E.C.,AJA
+133,3geerrvesr3247aed09w85638,2023-01-08Z,ears40cp6opsgvhsy0dgyszpd,6g9qrm72224jrk6tkxxxi8a9n,SC Cambuur Leeuwarden,FC Volendam,CAM,VOL
+134,3giese7x6ve7jbgtac0254pas,2023-01-08Z,dqk062lu0vm8epvytbm6r4mmf,cos9hxi16eitbcbthof7zrm4m,SBV Excelsior,FC Groningen,EXC,GRO
+135,3gmoxub02e5uii3pbulrosw7o,2023-01-14Z,4vd2t5schmvvufrfib7f2vjdf,3kfktv64h7kg7zryax1wktr5r,SC Heerenveen,Alkmaar Zaanstreek,HEE,AZ
+136,3h27ywe593rd5069bv051ebdg,2023-01-14Z,6g9qrm72224jrk6tkxxxi8a9n,ed5nwjz5za3oyi20nxzgqivmx,FC Volendam,RKC Waalwijk,VOL,RKC
+137,3gue8cv27m5l15s75gw7wh34k,2023-01-14Z,89w5c6pw7vn0dxypi61tt0g4k,dqk062lu0vm8epvytbm6r4mmf,Sparta Rotterdam,SBV Excelsior,SPA,EXC
+138,3gya9bclxbsqdsvl8uco0v40k,2023-01-14Z,d0zdg647gvgc95xdtk1vpbkys,4tic29sox7m39fy1ztgv0jsiq,AFC Ajax,FC Twente,AJA,TWE
+139,3h62vhu252th1s6blxlr677ys,2023-01-15Z,6hsriqr3ybvyg94w2k19oal50,8iawijq7s9s6d85mjz8wdslki,SBV Vitesse,Nijmegen Eendracht Combinatie,VIT,N.E.C.
+140,3h9u62lctbd9xequ6jmug0il0,2023-01-15Z,3ebril33e08ddzob4bhq8awsr,24fvcruwqrqvqa3aonf8c3zuy,Fortuna Sittard,PSV Eindhoven,FOR,PSV
+141,3he1te6mowknfud1ixdx1z190,2023-01-15Z,b79uipsy57y1jqpy07h4i5ovk,ccpscwdcm65czscrun048ecn5,Go Ahead Eagles,FC Utrecht,GAE,UTR
+142,3gqi1kuha0cdlo5xvzktii32s,2023-01-15Z,cos9hxi16eitbcbthof7zrm4m,20vymiy7bo8wkyxai3ew494fz,FC Groningen,Feyenoord Rotterdam,GRO,FEY
+143,3hic8ciie6l8bbk1k0aql60pg,2023-01-15Z,3t0vjqtxc8wpjzv82i3oi2ova,ears40cp6opsgvhsy0dgyszpd,FC Emmen,SC Cambuur Leeuwarden,EMM,CAM
+144,3hnnrmlfj8bj1qyqwjefkxno4,2023-01-20Z,dqk062lu0vm8epvytbm6r4mmf,6g9qrm72224jrk6tkxxxi8a9n,SBV Excelsior,FC Volendam,EXC,VOL
+145,3hrf7e9jlh495usjgqebijpjo,2023-01-21Z,8iawijq7s9s6d85mjz8wdslki,3t0vjqtxc8wpjzv82i3oi2ova,Nijmegen Eendracht Combinatie,FC Emmen,N.E.C.,EMM
+146,3hva7armdsnvs0946ta9hspp0,2023-01-21Z,24fvcruwqrqvqa3aonf8c3zuy,6hsriqr3ybvyg94w2k19oal50,PSV Eindhoven,SBV Vitesse,PSV,VIT
+147,3hz1j61fvko7g4li3hhpni8es,2023-01-21Z,ears40cp6opsgvhsy0dgyszpd,89w5c6pw7vn0dxypi61tt0g4k,SC Cambuur Leeuwarden,Sparta Rotterdam,CAM,SPA
+148,3i6sb7janck9j99fq92k5ybys,2023-01-22Z,4vd2t5schmvvufrfib7f2vjdf,cos9hxi16eitbcbthof7zrm4m,SC Heerenveen,FC Groningen,HEE,GRO
+149,3ianz6yhf06tbbr30i6cwwff8,2023-01-22Z,4tic29sox7m39fy1ztgv0jsiq,ccpscwdcm65czscrun048ecn5,FC Twente,FC Utrecht,TWE,UTR
+150,3ieop80prrnnslz4t2os5t2c4,2023-01-22Z,20vymiy7bo8wkyxai3ew494fz,d0zdg647gvgc95xdtk1vpbkys,Feyenoord Rotterdam,AFC Ajax,FEY,AJA
+151,3iiinndy8gafxtg0nke061kwk,2023-01-22Z,3kfktv64h7kg7zryax1wktr5r,3ebril33e08ddzob4bhq8awsr,Alkmaar Zaanstreek,Fortuna Sittard,AZ,FOR
+152,3impas582zfs96ayal2detvdg,2023-01-24Z,3t0vjqtxc8wpjzv82i3oi2ova,24fvcruwqrqvqa3aonf8c3zuy,FC Emmen,PSV Eindhoven,EMM,PSV
+153,3iqx4qa6t6tm7lx2unis9sil0,2023-01-24Z,89w5c6pw7vn0dxypi61tt0g4k,ed5nwjz5za3oyi20nxzgqivmx,Sparta Rotterdam,RKC Waalwijk,SPA,RKC
+154,3iv1vacuqozyas3p53sq39gd0,2023-01-25Z,b79uipsy57y1jqpy07h4i5ovk,3kfktv64h7kg7zryax1wktr5r,Go Ahead Eagles,Alkmaar Zaanstreek,GAE,AZ
+155,3iz5qcssbdbchdy29gkg0tvro,2023-01-25Z,6hsriqr3ybvyg94w2k19oal50,4tic29sox7m39fy1ztgv0jsiq,SBV Vitesse,FC Twente,VIT,TWE
+156,3j358js574tsbwhp9c45m6as4,2023-01-25Z,3ebril33e08ddzob4bhq8awsr,4vd2t5schmvvufrfib7f2vjdf,Fortuna Sittard,SC Heerenveen,FOR,HEE
+157,3j6wug2pv95ffexpf2cqc7h1w,2023-01-25Z,ccpscwdcm65czscrun048ecn5,dqk062lu0vm8epvytbm6r4mmf,FC Utrecht,SBV Excelsior,UTR,EXC
+158,3jaqi0c4w2fy6y4o5quqefd3o,2023-01-25Z,20vymiy7bo8wkyxai3ew494fz,8iawijq7s9s6d85mjz8wdslki,Feyenoord Rotterdam,Nijmegen Eendracht Combinatie,FEY,N.E.C.
+159,3jelpk334bvy8sidz5moo2cyc,2023-01-26Z,cos9hxi16eitbcbthof7zrm4m,ears40cp6opsgvhsy0dgyszpd,FC Groningen,SC Cambuur Leeuwarden,GRO,CAM
+160,3jkare323syeqi01dz79f65uc,2023-01-26Z,d0zdg647gvgc95xdtk1vpbkys,6g9qrm72224jrk6tkxxxi8a9n,AFC Ajax,FC Volendam,AJA,VOL
+161,3js5uez5jvab3zmhft9b6fndg,2023-01-28Z,24fvcruwqrqvqa3aonf8c3zuy,b79uipsy57y1jqpy07h4i5ovk,PSV Eindhoven,Go Ahead Eagles,PSV,GAE
+162,3jodsuqwtb69jnawvt58a6ql0,2023-01-28Z,ed5nwjz5za3oyi20nxzgqivmx,3t0vjqtxc8wpjzv82i3oi2ova,RKC Waalwijk,FC Emmen,RKC,EMM
+163,3jvsipfz4tfk18zchqsqldkic,2023-01-28Z,8iawijq7s9s6d85mjz8wdslki,89w5c6pw7vn0dxypi61tt0g4k,Nijmegen Eendracht Combinatie,Sparta Rotterdam,N.E.C.,SPA
+164,3jzmgm8xrvlo5zg68kuaav6s4,2023-01-28Z,4vd2t5schmvvufrfib7f2vjdf,6hsriqr3ybvyg94w2k19oal50,SC Heerenveen,SBV Vitesse,HEE,VIT
+165,3k3c8ppr0t616c1ywl42b4bh0,2023-01-28Z,3kfktv64h7kg7zryax1wktr5r,ccpscwdcm65czscrun048ecn5,Alkmaar Zaanstreek,FC Utrecht,AZ,UTR
+166,3k73guco62o3ddi2jaaa8ecd0,2023-01-29Z,4tic29sox7m39fy1ztgv0jsiq,20vymiy7bo8wkyxai3ew494fz,FC Twente,Feyenoord Rotterdam,TWE,FEY
+167,3kaxuz5cdxb8lsmnwwbed8cgk,2023-01-29Z,dqk062lu0vm8epvytbm6r4mmf,d0zdg647gvgc95xdtk1vpbkys,SBV Excelsior,AFC Ajax,EXC,AJA
+168,3keqmxapzq2xlm4y2xy0oeh3o,2023-01-29Z,6g9qrm72224jrk6tkxxxi8a9n,cos9hxi16eitbcbthof7zrm4m,FC Volendam,FC Groningen,VOL,GRO
+169,3kiix9ybtqh5ghnb0ghxrkhsk,2023-01-29Z,ears40cp6opsgvhsy0dgyszpd,3ebril33e08ddzob4bhq8awsr,SC Cambuur Leeuwarden,Fortuna Sittard,CAM,FOR
+170,3i2tkok8efykvglhct32bbfh0,2023-02-01Z,ed5nwjz5za3oyi20nxzgqivmx,b79uipsy57y1jqpy07h4i5ovk,RKC Waalwijk,Go Ahead Eagles,RKC,GAE
+171,3kmektl3m9h8y85qawshuh89g,2023-02-03Z,3ebril33e08ddzob4bhq8awsr,89w5c6pw7vn0dxypi61tt0g4k,Fortuna Sittard,Sparta Rotterdam,FOR,SPA
+172,3kq3g6tsfh5ix5ifx9yrlfaxg,2023-02-04Z,6g9qrm72224jrk6tkxxxi8a9n,3kfktv64h7kg7zryax1wktr5r,FC Volendam,Alkmaar Zaanstreek,VOL,AZ
+173,3kttr2gmsfp4jo5y8ubgoles4,2023-02-04Z,3t0vjqtxc8wpjzv82i3oi2ova,6hsriqr3ybvyg94w2k19oal50,FC Emmen,SBV Vitesse,EMM,VIT
+174,3kxmpzqwbk83ifjn6uhjpzk7o,2023-02-04Z,ccpscwdcm65czscrun048ecn5,4vd2t5schmvvufrfib7f2vjdf,FC Utrecht,SC Heerenveen,UTR,HEE
+175,3l1nwu4yx8guu0gctphnbp0k4,2023-02-04Z,dqk062lu0vm8epvytbm6r4mmf,ed5nwjz5za3oyi20nxzgqivmx,SBV Excelsior,RKC Waalwijk,EXC,RKC
+176,3l5n4jgfjomowarcxdxmkgk5w,2023-02-05Z,ears40cp6opsgvhsy0dgyszpd,d0zdg647gvgc95xdtk1vpbkys,SC Cambuur Leeuwarden,AFC Ajax,CAM,AJA
+177,3l9glcounp2vcolz1ud4ij2ms,2023-02-05Z,20vymiy7bo8wkyxai3ew494fz,24fvcruwqrqvqa3aonf8c3zuy,Feyenoord Rotterdam,PSV Eindhoven,FEY,PSV
+178,3lfcoiy6whqz96hepvlbdyec4,2023-02-05Z,b79uipsy57y1jqpy07h4i5ovk,8iawijq7s9s6d85mjz8wdslki,Go Ahead Eagles,Nijmegen Eendracht Combinatie,GAE,N.E.C.
+179,3ljaq083bdz7f02440rcy00t0,2023-02-05Z,cos9hxi16eitbcbthof7zrm4m,4tic29sox7m39fy1ztgv0jsiq,FC Groningen,FC Twente,GRO,TWE
+180,3lrie7rjacmmmq5xob5y1egwk,2023-02-10Z,3kfktv64h7kg7zryax1wktr5r,dqk062lu0vm8epvytbm6r4mmf,Alkmaar Zaanstreek,SBV Excelsior,AZ,EXC
+181,3m3dwqcim693k9g7bu3ygk07o,2023-02-11Z,8iawijq7s9s6d85mjz8wdslki,ears40cp6opsgvhsy0dgyszpd,Nijmegen Eendracht Combinatie,SC Cambuur Leeuwarden,N.E.C.,CAM
+182,3m78wgvinkwvovs7ij6cma0b8,2023-02-11Z,24fvcruwqrqvqa3aonf8c3zuy,cos9hxi16eitbcbthof7zrm4m,PSV Eindhoven,FC Groningen,PSV,GRO
+183,3lvc5mi44za66lz9lzvbd17o4,2023-02-11Z,3t0vjqtxc8wpjzv82i3oi2ova,3ebril33e08ddzob4bhq8awsr,FC Emmen,Fortuna Sittard,EMM,FOR
+184,3mg2fsxn01zo67lf2jxla5xck,2023-02-12Z,89w5c6pw7vn0dxypi61tt0g4k,b79uipsy57y1jqpy07h4i5ovk,Sparta Rotterdam,Go Ahead Eagles,SPA,GAE
+185,3mbfwuxuqb0uev6fqrbqn4il0,2023-02-12Z,4vd2t5schmvvufrfib7f2vjdf,20vymiy7bo8wkyxai3ew494fz,SC Heerenveen,Feyenoord Rotterdam,HEE,FEY
+186,3mk35v29zmh28mipoarpxcduc,2023-02-12Z,6hsriqr3ybvyg94w2k19oal50,ccpscwdcm65czscrun048ecn5,SBV Vitesse,FC Utrecht,VIT,UTR
+187,3lnm4nw3uwlp27pkjzewxw5qs,2023-02-12Z,d0zdg647gvgc95xdtk1vpbkys,ed5nwjz5za3oyi20nxzgqivmx,AFC Ajax,RKC Waalwijk,AJA,RKC
+188,3lz3pvhadvyrg28gpk12fwavo,2023-02-12Z,4tic29sox7m39fy1ztgv0jsiq,6g9qrm72224jrk6tkxxxi8a9n,FC Twente,FC Volendam,TWE,VOL
+189,3ni3n6ouu9r0ep37zhmdvmxhw,2023-02-17Z,ed5nwjz5za3oyi20nxzgqivmx,3ebril33e08ddzob4bhq8awsr,RKC Waalwijk,Fortuna Sittard,RKC,FOR
+190,3n41m36tpplfkcky4ne508cno,2023-02-18Z,6g9qrm72224jrk6tkxxxi8a9n,6hsriqr3ybvyg94w2k19oal50,FC Volendam,SBV Vitesse,VOL,VIT
+191,3mvuf4c9wv4yg0242s5sdk5jo,2023-02-18Z,cos9hxi16eitbcbthof7zrm4m,3t0vjqtxc8wpjzv82i3oi2ova,FC Groningen,FC Emmen,GRO,EMM
+192,3n7yo9mx3q7y50fq4p8n3aec4,2023-02-18Z,20vymiy7bo8wkyxai3ew494fz,3kfktv64h7kg7zryax1wktr5r,Feyenoord Rotterdam,Alkmaar Zaanstreek,FEY,AZ
+193,3nm9ztcvdkcbwkmmen2c7qf4k,2023-02-19Z,ears40cp6opsgvhsy0dgyszpd,4vd2t5schmvvufrfib7f2vjdf,SC Cambuur Leeuwarden,SC Heerenveen,CAM,HEE
+194,3mzr3qt8qmneqqd5dva7ptrmc,2023-02-19Z,ccpscwdcm65czscrun048ecn5,24fvcruwqrqvqa3aonf8c3zuy,FC Utrecht,PSV Eindhoven,UTR,PSV
+195,3ndlbcrfb5g62uul8f103s74k,2023-02-19Z,b79uipsy57y1jqpy07h4i5ovk,4tic29sox7m39fy1ztgv0jsiq,Go Ahead Eagles,FC Twente,GAE,TWE
+196,3mo5843jko4u807e7kd9i6uj8,2023-02-19Z,d0zdg647gvgc95xdtk1vpbkys,89w5c6pw7vn0dxypi61tt0g4k,AFC Ajax,Sparta Rotterdam,AJA,SPA
+197,3ms07xeegkmu2rk8i4a3amdxw,2023-02-19Z,dqk062lu0vm8epvytbm6r4mmf,8iawijq7s9s6d85mjz8wdslki,SBV Excelsior,Nijmegen Eendracht Combinatie,EXC,N.E.C.
+198,3oiaplx1c5ubdohjdxe8zdd04,2023-02-24Z,89w5c6pw7vn0dxypi61tt0g4k,ccpscwdcm65czscrun048ecn5,Sparta Rotterdam,FC Utrecht,SPA,UTR
+199,3ny6xgw32kugw96ejr3ado8ic,2023-02-25Z,cos9hxi16eitbcbthof7zrm4m,dqk062lu0vm8epvytbm6r4mmf,FC Groningen,SBV Excelsior,GRO,EXC
+200,3odxl87zqrc7m2oqytikf8n4k,2023-02-25Z,4vd2t5schmvvufrfib7f2vjdf,ed5nwjz5za3oyi20nxzgqivmx,SC Heerenveen,RKC Waalwijk,HEE,RKC
+201,3nq59plm6gl0ucy4erld2zaj8,2023-02-25Z,3kfktv64h7kg7zryax1wktr5r,ears40cp6opsgvhsy0dgyszpd,Alkmaar Zaanstreek,SC Cambuur Leeuwarden,AZ,CAM
+202,3o68h3w1wo0aczxo1be5kfytw,2023-02-25Z,8iawijq7s9s6d85mjz8wdslki,6g9qrm72224jrk6tkxxxi8a9n,Nijmegen Eendracht Combinatie,FC Volendam,N.E.C.,VOL
+203,3o27spi6e8dd5wa2terj4jitw,2023-02-26Z,3ebril33e08ddzob4bhq8awsr,20vymiy7bo8wkyxai3ew494fz,Fortuna Sittard,Feyenoord Rotterdam,FOR,FEY
+204,3nu7al4tkiccshanca3rv613o,2023-02-26Z,3t0vjqtxc8wpjzv82i3oi2ova,b79uipsy57y1jqpy07h4i5ovk,FC Emmen,Go Ahead Eagles,EMM,GAE
+205,3ombygfdypwnkvzzt2dmzirdg,2023-02-26Z,6hsriqr3ybvyg94w2k19oal50,d0zdg647gvgc95xdtk1vpbkys,SBV Vitesse,AFC Ajax,VIT,AJA
+206,3oa1bftb8v6xcimfd35w5jrbo,2023-02-26Z,24fvcruwqrqvqa3aonf8c3zuy,4tic29sox7m39fy1ztgv0jsiq,PSV Eindhoven,FC Twente,PSV,TWE
+207,3p20o4g9vt1xm8j3drr63sxzo,2023-03-03Z,ccpscwdcm65czscrun048ecn5,3ebril33e08ddzob4bhq8awsr,FC Utrecht,Fortuna Sittard,UTR,FOR
+208,3pmmujddlbsxi37jugjoyktuc,2023-03-03Z,6hsriqr3ybvyg94w2k19oal50,3kfktv64h7kg7zryax1wktr5r,SBV Vitesse,Alkmaar Zaanstreek,VIT,AZ
+209,3p5tfxwnwgk18a5hzfya9ruvo,2023-03-04Z,6g9qrm72224jrk6tkxxxi8a9n,3t0vjqtxc8wpjzv82i3oi2ova,FC Volendam,FC Emmen,VOL,EMM
+210,3pbfhypu7sn4cwit12meocetw,2023-03-04Z,20vymiy7bo8wkyxai3ew494fz,cos9hxi16eitbcbthof7zrm4m,Feyenoord Rotterdam,FC Groningen,FEY,GRO
+211,3oy31boy3sig1b5fh9o0cwz6c,2023-03-04Z,4tic29sox7m39fy1ztgv0jsiq,4vd2t5schmvvufrfib7f2vjdf,FC Twente,SC Heerenveen,TWE,HEE
+212,3ou8elq2p6383n7b8jenj0nis,2023-03-05Z,dqk062lu0vm8epvytbm6r4mmf,89w5c6pw7vn0dxypi61tt0g4k,SBV Excelsior,Sparta Rotterdam,EXC,SPA
+213,3pf9zy7csf8zwat7rix8cn8d0,2023-03-05Z,ed5nwjz5za3oyi20nxzgqivmx,24fvcruwqrqvqa3aonf8c3zuy,RKC Waalwijk,PSV Eindhoven,RKC,PSV
+214,3oq6iggjm5jj15z1ngsfmdgd0,2023-03-05Z,d0zdg647gvgc95xdtk1vpbkys,8iawijq7s9s6d85mjz8wdslki,AFC Ajax,Nijmegen Eendracht Combinatie,AJA,N.E.C.
+215,3pj07q8vooevxcwxbb9jd9zpw,2023-03-05Z,ears40cp6opsgvhsy0dgyszpd,b79uipsy57y1jqpy07h4i5ovk,SC Cambuur Leeuwarden,Go Ahead Eagles,CAM,GAE
+216,3pu65ybsquwato6v76r91zdw4,2023-03-11Z,3t0vjqtxc8wpjzv82i3oi2ova,dqk062lu0vm8epvytbm6r4mmf,FC Emmen,SBV Excelsior,EMM,EXC
+217,3q1saw35qp5zk136y0vd6115g,2023-03-11Z,3ebril33e08ddzob4bhq8awsr,4tic29sox7m39fy1ztgv0jsiq,Fortuna Sittard,FC Twente,FOR,TWE
+218,3pqg9x6lroxa9kuywnazlhxqs,2023-03-11Z,3kfktv64h7kg7zryax1wktr5r,cos9hxi16eitbcbthof7zrm4m,Alkmaar Zaanstreek,FC Groningen,AZ,GRO
+219,3qmdapy54174z82yt8f5ar66s,2023-03-11Z,89w5c6pw7vn0dxypi61tt0g4k,6hsriqr3ybvyg94w2k19oal50,Sparta Rotterdam,SBV Vitesse,SPA,VIT
+220,3qa73odyjso2oejx9ifsvjj10,2023-03-12Z,8iawijq7s9s6d85mjz8wdslki,ccpscwdcm65czscrun048ecn5,Nijmegen Eendracht Combinatie,FC Utrecht,N.E.C.,UTR
+221,3qiazt6i0ois333dgtt9o6tck,2023-03-12Z,4vd2t5schmvvufrfib7f2vjdf,d0zdg647gvgc95xdtk1vpbkys,SC Heerenveen,AFC Ajax,HEE,AJA
+222,3qeavkgpt9rjjetni8cp3v2ms,2023-03-12Z,24fvcruwqrqvqa3aonf8c3zuy,ears40cp6opsgvhsy0dgyszpd,PSV Eindhoven,SC Cambuur Leeuwarden,PSV,CAM
+223,3pxxxpuuuk7o51hbtpdia191w,2023-03-12Z,20vymiy7bo8wkyxai3ew494fz,6g9qrm72224jrk6tkxxxi8a9n,Feyenoord Rotterdam,FC Volendam,FEY,VOL
+224,3res28ip6d7vd3qg50mogxno4,2023-03-17Z,6g9qrm72224jrk6tkxxxi8a9n,3ebril33e08ddzob4bhq8awsr,FC Volendam,Fortuna Sittard,VOL,FOR
+225,3rb088jsiak9zorqenhtyb8k4,2023-03-18Z,ccpscwdcm65czscrun048ecn5,b79uipsy57y1jqpy07h4i5ovk,FC Utrecht,Go Ahead Eagles,UTR,GAE
+226,3qxse99ao4tt7wnal54l36xhw,2023-03-18Z,3t0vjqtxc8wpjzv82i3oi2ova,89w5c6pw7vn0dxypi61tt0g4k,FC Emmen,Sparta Rotterdam,EMM,SPA
+227,3ripcv8bn1r5qlzf9z7ktsufo,2023-03-18Z,ed5nwjz5za3oyi20nxzgqivmx,8iawijq7s9s6d85mjz8wdslki,RKC Waalwijk,Nijmegen Eendracht Combinatie,RKC,N.E.C.
+228,3r1k5dqrw10mnnl9pgq05cnbo,2023-03-19Z,cos9hxi16eitbcbthof7zrm4m,4vd2t5schmvvufrfib7f2vjdf,FC Groningen,SC Heerenveen,GRO,HEE
+229,3qqb1ugtdpy297ud1dzaxh3pw,2023-03-19Z,d0zdg647gvgc95xdtk1vpbkys,20vymiy7bo8wkyxai3ew494fz,AFC Ajax,Feyenoord Rotterdam,AJA,FEY
+230,3qu3jed75l0hqtr6wljncxses,2023-03-19Z,dqk062lu0vm8epvytbm6r4mmf,ears40cp6opsgvhsy0dgyszpd,SBV Excelsior,SC Cambuur Leeuwarden,EXC,CAM
+231,3rmkjoy5m1moo2gdbi1x0s6xg,2023-03-19Z,6hsriqr3ybvyg94w2k19oal50,24fvcruwqrqvqa3aonf8c3zuy,SBV Vitesse,PSV Eindhoven,VIT,PSV
+232,3r7900aaeot600500r7ta3thw,2023-03-19Z,4tic29sox7m39fy1ztgv0jsiq,3kfktv64h7kg7zryax1wktr5r,FC Twente,Alkmaar Zaanstreek,TWE,AZ
+233,3rqet0paod7zapfv8tcend4b8,2023-04-01Z,3kfktv64h7kg7zryax1wktr5r,4vd2t5schmvvufrfib7f2vjdf,Alkmaar Zaanstreek,SC Heerenveen,AZ,HEE
+234,3ruc2qrojzhtif15kzz49vris,2023-04-01Z,dqk062lu0vm8epvytbm6r4mmf,4tic29sox7m39fy1ztgv0jsiq,SBV Excelsior,FC Twente,EXC,TWE
+235,3s8zwzy76xvfuhvrmayrznnkk,2023-04-01Z,8iawijq7s9s6d85mjz8wdslki,24fvcruwqrqvqa3aonf8c3zuy,Nijmegen Eendracht Combinatie,PSV Eindhoven,N.E.C.,PSV
+236,3sgj0ovw218808x3rufw5yolw,2023-04-01Z,ears40cp6opsgvhsy0dgyszpd,3t0vjqtxc8wpjzv82i3oi2ova,SC Cambuur Leeuwarden,FC Emmen,CAM,EMM
+237,3scoiwfuv4iqjigidyabpgopg,2023-04-01Z,ed5nwjz5za3oyi20nxzgqivmx,6hsriqr3ybvyg94w2k19oal50,RKC Waalwijk,SBV Vitesse,RKC,VIT
+238,3s5bchtbtljf98sz3qzq6q7f8,2023-04-02Z,b79uipsy57y1jqpy07h4i5ovk,d0zdg647gvgc95xdtk1vpbkys,Go Ahead Eagles,AFC Ajax,GAE,AJA
+239,3ry0h9tt0fzckjjepqecjt5w4,2023-04-02Z,ccpscwdcm65czscrun048ecn5,6g9qrm72224jrk6tkxxxi8a9n,FC Utrecht,FC Volendam,UTR,VOL
+240,3skdmiukgh74bztvpay33ocus,2023-04-02Z,89w5c6pw7vn0dxypi61tt0g4k,20vymiy7bo8wkyxai3ew494fz,Sparta Rotterdam,Feyenoord Rotterdam,SPA,FEY
+241,3s1pkhzw879ilp9f9hswn3y1g,2023-04-02Z,3ebril33e08ddzob4bhq8awsr,cos9hxi16eitbcbthof7zrm4m,Fortuna Sittard,FC Groningen,FOR,GRO
+242,3t2bl9rzeeibtlz17icg90v10,2023-04-07Z,cos9hxi16eitbcbthof7zrm4m,ccpscwdcm65czscrun048ecn5,FC Groningen,FC Utrecht,GRO,UTR
+243,3tl3imq9tewhxb8s5macmctg4,2023-04-08Z,6hsriqr3ybvyg94w2k19oal50,b79uipsy57y1jqpy07h4i5ovk,SBV Vitesse,Go Ahead Eagles,VIT,GAE
+244,3ss1em19x1msn0ep2u2aka2ac,2023-04-08Z,3kfktv64h7kg7zryax1wktr5r,89w5c6pw7vn0dxypi61tt0g4k,Alkmaar Zaanstreek,Sparta Rotterdam,AZ,SPA
+245,3tdk7soma2wlb37goqg7warkk,2023-04-08Z,24fvcruwqrqvqa3aonf8c3zuy,dqk062lu0vm8epvytbm6r4mmf,PSV Eindhoven,SBV Excelsior,PSV,EXC
+246,3th91rzvudh07i54doeoah6ok,2023-04-08Z,4vd2t5schmvvufrfib7f2vjdf,6g9qrm72224jrk6tkxxxi8a9n,SC Heerenveen,FC Volendam,HEE,VOL
+247,3t614vwuxv5dfzhdxfk4l711w,2023-04-09Z,4tic29sox7m39fy1ztgv0jsiq,ears40cp6opsgvhsy0dgyszpd,FC Twente,SC Cambuur Leeuwarden,TWE,CAM
+248,3svuk7sd1frlpencp1isd60pg,2023-04-09Z,3t0vjqtxc8wpjzv82i3oi2ova,8iawijq7s9s6d85mjz8wdslki,FC Emmen,Nijmegen Eendracht Combinatie,EMM,N.E.C.
+249,3so6qsld2lnfziiiulru2ac5w,2023-04-09Z,d0zdg647gvgc95xdtk1vpbkys,3ebril33e08ddzob4bhq8awsr,AFC Ajax,Fortuna Sittard,AJA,FOR
+250,3t9ryeldrs779n7u0ifk1yyvo,2023-04-09Z,20vymiy7bo8wkyxai3ew494fz,ed5nwjz5za3oyi20nxzgqivmx,Feyenoord Rotterdam,RKC Waalwijk,FEY,RKC
+251,3tsnaw2xunsbobm05tbagu0ic,2023-04-14Z,dqk062lu0vm8epvytbm6r4mmf,b79uipsy57y1jqpy07h4i5ovk,SBV Excelsior,Go Ahead Eagles,EXC,GAE
+252,3uc866xx1ud0abhpptge2k2z8,2023-04-15Z,ed5nwjz5za3oyi20nxzgqivmx,cos9hxi16eitbcbthof7zrm4m,RKC Waalwijk,FC Groningen,RKC,GRO
+253,3ul35xm2h7d5js6ig57k8wnbo,2023-04-15Z,89w5c6pw7vn0dxypi61tt0g4k,4vd2t5schmvvufrfib7f2vjdf,Sparta Rotterdam,SC Heerenveen,SPA,HEE
+254,3u7zr6payifr1adh9hy2vq5n8,2023-04-16Z,8iawijq7s9s6d85mjz8wdslki,6hsriqr3ybvyg94w2k19oal50,Nijmegen Eendracht Combinatie,SBV Vitesse,N.E.C.,VIT
+255,3twggtzuzuaj8en90mh86txqs,2023-04-16Z,ccpscwdcm65czscrun048ecn5,4tic29sox7m39fy1ztgv0jsiq,FC Utrecht,FC Twente,UTR,TWE
+256,3u07f77oo0m6a8axoujo48pas,2023-04-16Z,6g9qrm72224jrk6tkxxxi8a9n,24fvcruwqrqvqa3aonf8c3zuy,FC Volendam,PSV Eindhoven,VOL,PSV
+257,3u3wxmvze795y0ay5ktgvjytw,2023-04-16Z,3ebril33e08ddzob4bhq8awsr,3kfktv64h7kg7zryax1wktr5r,Fortuna Sittard,Alkmaar Zaanstreek,FOR,AZ
+258,3ug7v9n9fjzdtr9kwai3x93bo,2023-04-16Z,ears40cp6opsgvhsy0dgyszpd,20vymiy7bo8wkyxai3ew494fz,SC Cambuur Leeuwarden,Feyenoord Rotterdam,CAM,FEY
+259,3tosy7ci5ca4ooaybz5ehbb4k,2023-04-16Z,d0zdg647gvgc95xdtk1vpbkys,3t0vjqtxc8wpjzv82i3oi2ova,AFC Ajax,FC Emmen,AJA,EMM
+260,3q5q76vlticpimhio97amdtsk,2023-04-19Z,b79uipsy57y1jqpy07h4i5ovk,ed5nwjz5za3oyi20nxzgqivmx,Go Ahead Eagles,RKC Waalwijk,GAE,RKC
+261,3v30ssqhdxm6o14iyw81euntg,2023-04-21Z,6g9qrm72224jrk6tkxxxi8a9n,ears40cp6opsgvhsy0dgyszpd,FC Volendam,SC Cambuur Leeuwarden,VOL,CAM
+262,3vk3yu5e9tp284rbycut34tn8,2023-04-22Z,4vd2t5schmvvufrfib7f2vjdf,3t0vjqtxc8wpjzv82i3oi2ova,SC Heerenveen,FC Emmen,HEE,EMM
+263,3utbx4hejy3gnhi225bi96ivo,2023-04-22Z,cos9hxi16eitbcbthof7zrm4m,8iawijq7s9s6d85mjz8wdslki,FC Groningen,Nijmegen Eendracht Combinatie,GRO,N.E.C.
+264,3vntnpjkzv7trvgwg1r15pct0,2023-04-22Z,6hsriqr3ybvyg94w2k19oal50,dqk062lu0vm8epvytbm6r4mmf,SBV Vitesse,SBV Excelsior,VIT,EXC
+265,3uz87aqctwxolfep5hciz1q8k,2023-04-23Z,4tic29sox7m39fy1ztgv0jsiq,89w5c6pw7vn0dxypi61tt0g4k,FC Twente,Sparta Rotterdam,TWE,SPA
+266,3vb6er6mv1ljzqzxwjxfinx90,2023-04-23Z,b79uipsy57y1jqpy07h4i5ovk,3ebril33e08ddzob4bhq8awsr,Go Ahead Eagles,Fortuna Sittard,GAE,FOR
+267,3vg4eykjt2xbfss6xau86aj9w,2023-04-23Z,24fvcruwqrqvqa3aonf8c3zuy,d0zdg647gvgc95xdtk1vpbkys,PSV Eindhoven,AFC Ajax,PSV,AJA
+268,3v7b7bpb607qaff7bugau47pw,2023-04-23Z,20vymiy7bo8wkyxai3ew494fz,ccpscwdcm65czscrun048ecn5,Feyenoord Rotterdam,FC Utrecht,FEY,UTR
+269,3upb8ekqllw9iko8356gqc07o,2023-04-23Z,3kfktv64h7kg7zryax1wktr5r,ed5nwjz5za3oyi20nxzgqivmx,Alkmaar Zaanstreek,RKC Waalwijk,AZ,RKC
+270,3weu2kpyv103k7am5jjj65gr8,2023-05-05Z,ed5nwjz5za3oyi20nxzgqivmx,6g9qrm72224jrk6tkxxxi8a9n,RKC Waalwijk,FC Volendam,RKC,VOL
+271,3wmjmxwcdr7vzgv9d5wvkidqs,2023-05-06Z,89w5c6pw7vn0dxypi61tt0g4k,24fvcruwqrqvqa3aonf8c3zuy,Sparta Rotterdam,PSV Eindhoven,SPA,PSV
+272,3wb2280pkjwnjl6mnwp191a1g,2023-05-06Z,8iawijq7s9s6d85mjz8wdslki,4vd2t5schmvvufrfib7f2vjdf,Nijmegen Eendracht Combinatie,SC Heerenveen,N.E.C.,HEE
+273,3wilrg4jxo1ke0xzoifc3kqhg,2023-05-06Z,ears40cp6opsgvhsy0dgyszpd,ccpscwdcm65czscrun048ecn5,SC Cambuur Leeuwarden,FC Utrecht,CAM,UTR
+274,3vroniufvrptmmtqqlnuy4w7o,2023-05-06Z,d0zdg647gvgc95xdtk1vpbkys,3kfktv64h7kg7zryax1wktr5r,AFC Ajax,Alkmaar Zaanstreek,AJA,AZ
+275,3vzike95ftcmb67a0x82dc178,2023-05-07Z,3t0vjqtxc8wpjzv82i3oi2ova,4tic29sox7m39fy1ztgv0jsiq,FC Emmen,FC Twente,EMM,TWE
+276,3vvp7efhit8x209saao8aejv8,2023-05-07Z,dqk062lu0vm8epvytbm6r4mmf,20vymiy7bo8wkyxai3ew494fz,SBV Excelsior,Feyenoord Rotterdam,EXC,FEY
+277,3w762d07antmws1ak19osqnmc,2023-05-07Z,b79uipsy57y1jqpy07h4i5ovk,cos9hxi16eitbcbthof7zrm4m,Go Ahead Eagles,FC Groningen,GAE,GRO
+278,3w3d40udwozu6051npjdeqz2s,2023-05-07Z,3ebril33e08ddzob4bhq8awsr,6hsriqr3ybvyg94w2k19oal50,Fortuna Sittard,SBV Vitesse,FOR,VIT
+279,3x0ocnykaogavf1pqabxrhic4,2023-05-12Z,4tic29sox7m39fy1ztgv0jsiq,8iawijq7s9s6d85mjz8wdslki,FC Twente,Nijmegen Eendracht Combinatie,TWE,N.E.C.
+280,3x8bdpr6y9wcu30fnws335x5g,2023-05-13Z,6g9qrm72224jrk6tkxxxi8a9n,89w5c6pw7vn0dxypi61tt0g4k,FC Volendam,Sparta Rotterdam,VOL,SPA
+281,3xk2pjmvgo9vl70oeue6r27mc,2023-05-13Z,4vd2t5schmvvufrfib7f2vjdf,dqk062lu0vm8epvytbm6r4mmf,SC Heerenveen,SBV Excelsior,HEE,EXC
+282,3x4g8n70vsin1ygdll6pkc0lw,2023-05-13Z,ccpscwdcm65czscrun048ecn5,ed5nwjz5za3oyi20nxzgqivmx,FC Utrecht,RKC Waalwijk,UTR,RKC
+283,3xnyrcf5yvjoeqttit32j766s,2023-05-14Z,6hsriqr3ybvyg94w2k19oal50,ears40cp6opsgvhsy0dgyszpd,SBV Vitesse,SC Cambuur Leeuwarden,VIT,CAM
+284,3wq9wbri0hsv87dmu9vm9xh5g,2023-05-14Z,3kfktv64h7kg7zryax1wktr5r,3t0vjqtxc8wpjzv82i3oi2ova,Alkmaar Zaanstreek,FC Emmen,AZ,EMM
+285,3ww1780ko8et3buj4avaxbhg4,2023-05-14Z,cos9hxi16eitbcbthof7zrm4m,d0zdg647gvgc95xdtk1vpbkys,FC Groningen,AFC Ajax,GRO,AJA
+286,3xc7v3hm5gimvp4uwgfp4r47o,2023-05-14Z,20vymiy7bo8wkyxai3ew494fz,b79uipsy57y1jqpy07h4i5ovk,Feyenoord Rotterdam,Go Ahead Eagles,FEY,GAE
+287,3xg5fl8x1khe72cvr3868eyhg,2023-05-14Z,24fvcruwqrqvqa3aonf8c3zuy,3ebril33e08ddzob4bhq8awsr,PSV Eindhoven,Fortuna Sittard,PSV,FOR
+288,3xryv8z45hxigqay8su76ey38,2023-05-21Z,d0zdg647gvgc95xdtk1vpbkys,ccpscwdcm65czscrun048ecn5,AFC Ajax,FC Utrecht,AJA,UTR
+289,3xw7t7cu3rputglgw28z9oums,2023-05-21Z,3t0vjqtxc8wpjzv82i3oi2ova,20vymiy7bo8wkyxai3ew494fz,FC Emmen,Feyenoord Rotterdam,EMM,FEY
+290,3y0ty1j4tvhp6n7yg8316v578,2023-05-21Z,dqk062lu0vm8epvytbm6r4mmf,3ebril33e08ddzob4bhq8awsr,SBV Excelsior,Fortuna Sittard,EXC,FOR
+291,3y5b6lvyz2rmsgbbdhuon85qs,2023-05-21Z,b79uipsy57y1jqpy07h4i5ovk,6g9qrm72224jrk6tkxxxi8a9n,Go Ahead Eagles,FC Volendam,GAE,VOL
+292,3y99zlu4ustw7c9hc6yeym6tw,2023-05-21Z,8iawijq7s9s6d85mjz8wdslki,3kfktv64h7kg7zryax1wktr5r,Nijmegen Eendracht Combinatie,Alkmaar Zaanstreek,N.E.C.,AZ
+293,3yd7ug4zd5o8vwrd6zafpjrbo,2023-05-21Z,24fvcruwqrqvqa3aonf8c3zuy,4vd2t5schmvvufrfib7f2vjdf,PSV Eindhoven,SC Heerenveen,PSV,HEE
+294,3yh6ojzjqmi21vqhgujy954b8,2023-05-21Z,ed5nwjz5za3oyi20nxzgqivmx,4tic29sox7m39fy1ztgv0jsiq,RKC Waalwijk,FC Twente,RKC,TWE
+295,3yl3zv8iruduxe438um2qa7f8,2023-05-21Z,89w5c6pw7vn0dxypi61tt0g4k,ears40cp6opsgvhsy0dgyszpd,Sparta Rotterdam,SC Cambuur Leeuwarden,SPA,CAM
+296,3yp7mxmpawmcmqmdjrlbm6s5w,2023-05-21Z,6hsriqr3ybvyg94w2k19oal50,cos9hxi16eitbcbthof7zrm4m,SBV Vitesse,FC Groningen,VIT,GRO
+297,3yuzka4j3nhadljvtax289ous,2023-05-28Z,3kfktv64h7kg7zryax1wktr5r,24fvcruwqrqvqa3aonf8c3zuy,Alkmaar Zaanstreek,PSV Eindhoven,AZ,PSV
+298,3yyodzu4yowszu6c7ny61zpqs,2023-05-28Z,ears40cp6opsgvhsy0dgyszpd,ed5nwjz5za3oyi20nxzgqivmx,SC Cambuur Leeuwarden,RKC Waalwijk,CAM,RKC
+299,3z2gl107ufm3435adi32qlpg4,2023-05-28Z,20vymiy7bo8wkyxai3ew494fz,6hsriqr3ybvyg94w2k19oal50,Feyenoord Rotterdam,SBV Vitesse,FEY,VIT
+300,3z6f45hc8t1gjv1iauujr35lg,2023-05-28Z,3ebril33e08ddzob4bhq8awsr,8iawijq7s9s6d85mjz8wdslki,Fortuna Sittard,Nijmegen Eendracht Combinatie,FOR,N.E.C.
+301,3zafwj1d67azx37ca541llo2c,2023-05-28Z,cos9hxi16eitbcbthof7zrm4m,89w5c6pw7vn0dxypi61tt0g4k,FC Groningen,Sparta Rotterdam,GRO,SPA
+302,3zebmxaub2d19zkpjaoo0r8yc,2023-05-28Z,4vd2t5schmvvufrfib7f2vjdf,b79uipsy57y1jqpy07h4i5ovk,SC Heerenveen,Go Ahead Eagles,HEE,GAE
+303,3zi9iooageo95lt6ij3k25afo,2023-05-28Z,4tic29sox7m39fy1ztgv0jsiq,d0zdg647gvgc95xdtk1vpbkys,FC Twente,AFC Ajax,TWE,AJA
+304,3zmbqjk2aqsklakkdu7rum0ic,2023-05-28Z,ccpscwdcm65czscrun048ecn5,3t0vjqtxc8wpjzv82i3oi2ova,FC Utrecht,FC Emmen,UTR,EMM
+305,3zqh6wus094sx7jckbp5zpmok,2023-05-28Z,6g9qrm72224jrk6tkxxxi8a9n,dqk062lu0vm8epvytbm6r4mmf,FC Volendam,SBV Excelsior,VOL,EXC
+306,1yeir5a0onxamhbkbwensdf6c,2021-08-13Z,b79uipsy57y1jqpy07h4i5ovk,4vd2t5schmvvufrfib7f2vjdf,Go Ahead Eagles,SC Heerenveen,GAE,HEE
+307,1yl2og0an4momujbmszfvwzdg,2021-08-14Z,ed5nwjz5za3oyi20nxzgqivmx,3kfktv64h7kg7zryax1wktr5r,RKC Waalwijk,Alkmaar Zaanstreek,RKC,AZ
+308,1yqy5ym6bpurzicb18la7ymms,2021-08-14Z,dac758ef858jbq7pcb3gfwite,24fvcruwqrqvqa3aonf8c3zuy,Heracles Almelo,PSV Eindhoven,HER,PSV
+309,1yvf3dmhqwufdl872m1cboqac,2021-08-14Z,3ebril33e08ddzob4bhq8awsr,4tic29sox7m39fy1ztgv0jsiq,Fortuna Sittard,FC Twente,FOR,TWE
+310,1ze8obsjls11ca5nn7skpm3v8,2021-08-14Z,d0zdg647gvgc95xdtk1vpbkys,8iawijq7s9s6d85mjz8wdslki,AFC Ajax,Nijmegen Eendracht Combinatie,AJA,N.E.C.
+311,1zio1j7fszy9s9bqg4hpzugic,2021-08-15Z,ears40cp6opsgvhsy0dgyszpd,cos9hxi16eitbcbthof7zrm4m,SC Cambuur Leeuwarden,FC Groningen,CAM,GRO
+312,1zn68uz31lyew8z60hnvi8aok,2021-08-15Z,2uuh2bir8ktof0uxfo06lb4ox,6hsriqr3ybvyg94w2k19oal50,PEC Zwolle,SBV Vitesse,ZWO,VIT
+313,1zrnsckjwalp1zqxnxa5p5kwk,2021-08-15Z,ccpscwdcm65czscrun048ecn5,89w5c6pw7vn0dxypi61tt0g4k,FC Utrecht,Sparta Rotterdam,UTR,SPA
+314,1zwogkr5wnhzrs3knrqz6sdn8,2021-08-15Z,bk5ltsueqmeng29eovd8m2tml,20vymiy7bo8wkyxai3ew494fz,Willem II,Feyenoord Rotterdam,WIL,FEY
+315,200dklav68zfm7oarlswfcf10,2021-08-20Z,8iawijq7s9s6d85mjz8wdslki,2uuh2bir8ktof0uxfo06lb4ox,Nijmegen Eendracht Combinatie,PEC Zwolle,N.E.C.,ZWO
+316,2044ezrwhdvvj5wn04d5i91jo,2021-08-21Z,4vd2t5schmvvufrfib7f2vjdf,ed5nwjz5za3oyi20nxzgqivmx,SC Heerenveen,RKC Waalwijk,HEE,RKC
+317,207ie114eah1q7ib9euvf9zbo,2021-08-21Z,24fvcruwqrqvqa3aonf8c3zuy,ears40cp6opsgvhsy0dgyszpd,PSV Eindhoven,SC Cambuur Leeuwarden,PSV,CAM
+318,20b1g2a2p1zmx9to4h84t1puc,2021-08-21Z,89w5c6pw7vn0dxypi61tt0g4k,dac758ef858jbq7pcb3gfwite,Sparta Rotterdam,Heracles Almelo,SPA,HER
+319,20eg7nrgryjlfkvthb3kn0s9g,2021-08-21Z,cos9hxi16eitbcbthof7zrm4m,ccpscwdcm65czscrun048ecn5,FC Groningen,FC Utrecht,GRO,UTR
+320,20i2o45m27hsd41696o2ttus4,2021-08-22Z,4tic29sox7m39fy1ztgv0jsiq,d0zdg647gvgc95xdtk1vpbkys,FC Twente,AFC Ajax,TWE,AJA
+321,20lclfxtl3dezo5xregelfl78,2021-08-22Z,20vymiy7bo8wkyxai3ew494fz,b79uipsy57y1jqpy07h4i5ovk,Feyenoord Rotterdam,Go Ahead Eagles,FEY,GAE
+322,20p095xfs2dyvv4lrsqvmkavo,2021-08-22Z,6hsriqr3ybvyg94w2k19oal50,bk5ltsueqmeng29eovd8m2tml,SBV Vitesse,Willem II,VIT,WIL
+323,20w7shvoi603rg8vglwnpqs5w,2021-08-27Z,3ebril33e08ddzob4bhq8awsr,ed5nwjz5za3oyi20nxzgqivmx,Fortuna Sittard,RKC Waalwijk,FOR,RKC
+324,211i96xctu209umxmdnuialn8,2021-08-28Z,ears40cp6opsgvhsy0dgyszpd,4tic29sox7m39fy1ztgv0jsiq,SC Cambuur Leeuwarden,FC Twente,CAM,TWE
+325,214rt9ei4iz0hs8ejdz5hu49g,2021-08-28Z,b79uipsy57y1jqpy07h4i5ovk,89w5c6pw7vn0dxypi61tt0g4k,Go Ahead Eagles,Sparta Rotterdam,GAE,SPA
+326,217zyum1ipy132j6yifdqneac,2021-08-28Z,24fvcruwqrqvqa3aonf8c3zuy,cos9hxi16eitbcbthof7zrm4m,PSV Eindhoven,FC Groningen,PSV,GRO
+327,21bhy5hpu2pi4gbokxtlxu7f8,2021-08-28Z,bk5ltsueqmeng29eovd8m2tml,2uuh2bir8ktof0uxfo06lb4ox,Willem II,PEC Zwolle,WIL,ZWO
+328,21fieob5d2xepfzmdy0x781sk,2021-08-29Z,ccpscwdcm65czscrun048ecn5,20vymiy7bo8wkyxai3ew494fz,FC Utrecht,Feyenoord Rotterdam,UTR,FEY
+329,21jvmol5aqhb48f605pcoqxw4,2021-08-29Z,d0zdg647gvgc95xdtk1vpbkys,6hsriqr3ybvyg94w2k19oal50,AFC Ajax,SBV Vitesse,AJA,VIT
+330,21nfrduvsc47s3bgbobw6hzx0,2021-08-29Z,dac758ef858jbq7pcb3gfwite,8iawijq7s9s6d85mjz8wdslki,Heracles Almelo,Nijmegen Eendracht Combinatie,HER,N.E.C.
+331,21qltrercyqcnxv3uvjo6vv9w,2021-08-29Z,4vd2t5schmvvufrfib7f2vjdf,3kfktv64h7kg7zryax1wktr5r,SC Heerenveen,Alkmaar Zaanstreek,HEE,AZ
+332,21tx0hlpelriikasy9grcgems,2021-09-11Z,4tic29sox7m39fy1ztgv0jsiq,ccpscwdcm65czscrun048ecn5,FC Twente,FC Utrecht,TWE,UTR
+333,21xagxb0ja2f4ulokvw4u99g4,2021-09-11Z,2uuh2bir8ktof0uxfo06lb4ox,d0zdg647gvgc95xdtk1vpbkys,PEC Zwolle,AFC Ajax,ZWO,AJA
+334,22121ig0sz4evzngx1rbu8bh0,2021-09-11Z,ears40cp6opsgvhsy0dgyszpd,b79uipsy57y1jqpy07h4i5ovk,SC Cambuur Leeuwarden,Go Ahead Eagles,CAM,GAE
+335,2284oma95v2b57k79ndfp18gk,2021-09-11Z,3kfktv64h7kg7zryax1wktr5r,24fvcruwqrqvqa3aonf8c3zuy,Alkmaar Zaanstreek,PSV Eindhoven,AZ,PSV
+336,22bpdwdgcqe86y78crs8w8glw,2021-09-12Z,8iawijq7s9s6d85mjz8wdslki,bk5ltsueqmeng29eovd8m2tml,Nijmegen Eendracht Combinatie,Willem II,N.E.C.,WIL
+337,224ku2ikwselrw3ylq56mr310,2021-09-12Z,89w5c6pw7vn0dxypi61tt0g4k,3ebril33e08ddzob4bhq8awsr,Sparta Rotterdam,Fortuna Sittard,SPA,FOR
+338,22lhiezmjpwk2sa8ngp21lhqs,2021-09-12Z,cos9hxi16eitbcbthof7zrm4m,4vd2t5schmvvufrfib7f2vjdf,FC Groningen,SC Heerenveen,GRO,HEE
+339,22i75kls4fb8x1s4sunr354pg,2021-09-12Z,ed5nwjz5za3oyi20nxzgqivmx,6hsriqr3ybvyg94w2k19oal50,RKC Waalwijk,SBV Vitesse,RKC,VIT
+340,22p1zp8r7xra5w4n2zdqh6txw,2021-09-17Z,89w5c6pw7vn0dxypi61tt0g4k,8iawijq7s9s6d85mjz8wdslki,Sparta Rotterdam,Nijmegen Eendracht Combinatie,SPA,N.E.C.
+341,22stoqu3kgaazvg1b65fi72fo,2021-09-18Z,4vd2t5schmvvufrfib7f2vjdf,3ebril33e08ddzob4bhq8awsr,SC Heerenveen,Fortuna Sittard,HEE,FOR
+342,22y0tizrp7zfmnj04e7nmsgt0,2021-09-18Z,bk5ltsueqmeng29eovd8m2tml,cos9hxi16eitbcbthof7zrm4m,Willem II,FC Groningen,WIL,GRO
+343,231c67u3ltnnz5gc9xjvr94ic,2021-09-18Z,d0zdg647gvgc95xdtk1vpbkys,ears40cp6opsgvhsy0dgyszpd,AFC Ajax,SC Cambuur Leeuwarden,AJA,CAM
+344,234rjo845m5qmky7er99mgnpw,2021-09-18Z,ccpscwdcm65czscrun048ecn5,ed5nwjz5za3oyi20nxzgqivmx,FC Utrecht,RKC Waalwijk,UTR,RKC
+345,238ebzkjd7r9uz4wiqyaogd1w,2021-09-19Z,b79uipsy57y1jqpy07h4i5ovk,2uuh2bir8ktof0uxfo06lb4ox,Go Ahead Eagles,PEC Zwolle,GAE,ZWO
+346,23bwvr01um5kxpv5o2tz001zo,2021-09-19Z,24fvcruwqrqvqa3aonf8c3zuy,20vymiy7bo8wkyxai3ew494fz,PSV Eindhoven,Feyenoord Rotterdam,PSV,FEY
+347,23fa60st7nbbgub4q5mm12044,2021-09-19Z,6hsriqr3ybvyg94w2k19oal50,4tic29sox7m39fy1ztgv0jsiq,SBV Vitesse,FC Twente,VIT,TWE
+348,23ii61fxibg1pkrws8y7qkt1w,2021-09-19Z,dac758ef858jbq7pcb3gfwite,3kfktv64h7kg7zryax1wktr5r,Heracles Almelo,Alkmaar Zaanstreek,HER,AZ
+349,23m9q2qksmf4chky1qrorh6hg,2021-09-21Z,3ebril33e08ddzob4bhq8awsr,d0zdg647gvgc95xdtk1vpbkys,Fortuna Sittard,AFC Ajax,FOR,AJA
+350,23pr0sk8cxuf8qf7c0f2gbxg4,2021-09-21Z,ed5nwjz5za3oyi20nxzgqivmx,bk5ltsueqmeng29eovd8m2tml,RKC Waalwijk,Willem II,RKC,WIL
+351,23tcdnfmrg00h6657biqola1g,2021-09-22Z,b79uipsy57y1jqpy07h4i5ovk,24fvcruwqrqvqa3aonf8c3zuy,Go Ahead Eagles,PSV Eindhoven,GAE,PSV
+352,240ftr2rqhxftcz4hf9gubpxw,2021-09-22Z,8iawijq7s9s6d85mjz8wdslki,ccpscwdcm65czscrun048ecn5,Nijmegen Eendracht Combinatie,FC Utrecht,N.E.C.,UTR
+353,2474l5j5i2fb7xzp3k3t6pm38,2021-09-22Z,cos9hxi16eitbcbthof7zrm4m,6hsriqr3ybvyg94w2k19oal50,FC Groningen,SBV Vitesse,GRO,VIT
+354,243qh0kc3kmujt8ha7mespdsk,2021-09-22Z,20vymiy7bo8wkyxai3ew494fz,4vd2t5schmvvufrfib7f2vjdf,Feyenoord Rotterdam,SC Heerenveen,FEY,HEE
+355,24abgc9td2c05coojdfmuc45w,2021-09-22Z,2uuh2bir8ktof0uxfo06lb4ox,89w5c6pw7vn0dxypi61tt0g4k,PEC Zwolle,Sparta Rotterdam,ZWO,SPA
+356,23x1hou24vwae3wnyhu11d6ac,2021-09-23Z,ears40cp6opsgvhsy0dgyszpd,dac758ef858jbq7pcb3gfwite,SC Cambuur Leeuwarden,Heracles Almelo,CAM,HER
+357,24dl1xsqjqtvutnz9uixvyfis,2021-09-23Z,4tic29sox7m39fy1ztgv0jsiq,3kfktv64h7kg7zryax1wktr5r,FC Twente,Alkmaar Zaanstreek,TWE,AZ
+358,24k4xcod0jrvc32z16f965c0k,2021-09-25Z,bk5ltsueqmeng29eovd8m2tml,24fvcruwqrqvqa3aonf8c3zuy,Willem II,PSV Eindhoven,WIL,PSV
+359,24gz65jesqgk93g171urwo74k,2021-09-25Z,d0zdg647gvgc95xdtk1vpbkys,cos9hxi16eitbcbthof7zrm4m,AFC Ajax,FC Groningen,AJA,GRO
+360,24phozm3z6iy8dplfw7oea1w4,2021-09-25Z,6hsriqr3ybvyg94w2k19oal50,3ebril33e08ddzob4bhq8awsr,SBV Vitesse,Fortuna Sittard,VIT,FOR
+361,24vyna68w89d8ta2f6qe4pij8,2021-09-25Z,20vymiy7bo8wkyxai3ew494fz,8iawijq7s9s6d85mjz8wdslki,Feyenoord Rotterdam,Nijmegen Eendracht Combinatie,FEY,N.E.C.
+362,259fizth3qwyusdq8b1celq8k,2021-09-25Z,ccpscwdcm65czscrun048ecn5,2uuh2bir8ktof0uxfo06lb4ox,FC Utrecht,PEC Zwolle,UTR,ZWO
+363,24zdy9suc5wkns164ldvt7vv8,2021-09-26Z,89w5c6pw7vn0dxypi61tt0g4k,ears40cp6opsgvhsy0dgyszpd,Sparta Rotterdam,SC Cambuur Leeuwarden,SPA,CAM
+364,252x914nxt2jghldkzh8bb4es,2021-09-26Z,3kfktv64h7kg7zryax1wktr5r,b79uipsy57y1jqpy07h4i5ovk,Alkmaar Zaanstreek,Go Ahead Eagles,AZ,GAE
+365,2563dwq1s25sok4him4y6pxxw,2021-09-26Z,4vd2t5schmvvufrfib7f2vjdf,4tic29sox7m39fy1ztgv0jsiq,SC Heerenveen,FC Twente,HEE,TWE
+366,24sn6q011yta1gkkfaxfmm590,2021-09-26Z,dac758ef858jbq7pcb3gfwite,ed5nwjz5za3oyi20nxzgqivmx,Heracles Almelo,RKC Waalwijk,HER,RKC
+367,25cxqmp1yjj1chrfqxv5aie50,2021-10-01Z,cos9hxi16eitbcbthof7zrm4m,4tic29sox7m39fy1ztgv0jsiq,FC Groningen,FC Twente,GRO,TWE
+368,25gg978mkqpvfdwgbeo9h395g,2021-10-02Z,ed5nwjz5za3oyi20nxzgqivmx,b79uipsy57y1jqpy07h4i5ovk,RKC Waalwijk,Go Ahead Eagles,RKC,GAE
+369,25jqn6la4l39xc4rad7220ro4,2021-10-02Z,dac758ef858jbq7pcb3gfwite,bk5ltsueqmeng29eovd8m2tml,Heracles Almelo,Willem II,HER,WIL
+370,25nfe8aaz35tptn6qwyo76uc4,2021-10-02Z,2uuh2bir8ktof0uxfo06lb4ox,4vd2t5schmvvufrfib7f2vjdf,PEC Zwolle,SC Heerenveen,ZWO,HEE
+371,25rf0loz6hszbr2c0kcup045w,2021-10-02Z,3ebril33e08ddzob4bhq8awsr,8iawijq7s9s6d85mjz8wdslki,Fortuna Sittard,Nijmegen Eendracht Combinatie,FOR,N.E.C.
+372,25vek83izwn8v5t62pkrlhxqs,2021-10-03Z,d0zdg647gvgc95xdtk1vpbkys,ccpscwdcm65czscrun048ecn5,AFC Ajax,FC Utrecht,AJA,UTR
+373,25zdcqri7rv3dbzywrevagutw,2021-10-03Z,ears40cp6opsgvhsy0dgyszpd,3kfktv64h7kg7zryax1wktr5r,SC Cambuur Leeuwarden,Alkmaar Zaanstreek,CAM,AZ
+374,262nwz08wptl77ngpyh68ws2c,2021-10-03Z,6hsriqr3ybvyg94w2k19oal50,20vymiy7bo8wkyxai3ew494fz,SBV Vitesse,Feyenoord Rotterdam,VIT,FEY
+375,2664znpqsm5g12gedm0dhtus4,2021-10-03Z,24fvcruwqrqvqa3aonf8c3zuy,89w5c6pw7vn0dxypi61tt0g4k,PSV Eindhoven,Sparta Rotterdam,PSV,SPA
+376,269w27cvsflsuazlblxabph5g,2021-10-16Z,20vymiy7bo8wkyxai3ew494fz,ed5nwjz5za3oyi20nxzgqivmx,Feyenoord Rotterdam,RKC Waalwijk,FEY,RKC
+377,26dfgh7pq2d3gax0w8kwg5kb8,2021-10-16Z,4vd2t5schmvvufrfib7f2vjdf,d0zdg647gvgc95xdtk1vpbkys,SC Heerenveen,AFC Ajax,HEE,AJA
+378,26guc1nkoyxym3xyum0veoqhg,2021-10-16Z,b79uipsy57y1jqpy07h4i5ovk,dac758ef858jbq7pcb3gfwite,Go Ahead Eagles,Heracles Almelo,GAE,HER
+379,26md5bik2oos5ghx3nq6aftp0,2021-10-16Z,3ebril33e08ddzob4bhq8awsr,ears40cp6opsgvhsy0dgyszpd,Fortuna Sittard,SC Cambuur Leeuwarden,FOR,CAM
+380,26pskudcfxn8dejgsy4lmowt0,2021-10-16Z,24fvcruwqrqvqa3aonf8c3zuy,2uuh2bir8ktof0uxfo06lb4ox,PSV Eindhoven,PEC Zwolle,PSV,ZWO
+381,26t5pu9r1i44fa5vlr1o36ln8,2021-10-17Z,3kfktv64h7kg7zryax1wktr5r,ccpscwdcm65czscrun048ecn5,Alkmaar Zaanstreek,FC Utrecht,AZ,UTR
+382,26wqbkc67nmr1cnjfsftpn85w,2021-10-17Z,8iawijq7s9s6d85mjz8wdslki,6hsriqr3ybvyg94w2k19oal50,Nijmegen Eendracht Combinatie,SBV Vitesse,N.E.C.,VIT
+383,270f2mvx6044wcbrjogsz15p0,2021-10-17Z,89w5c6pw7vn0dxypi61tt0g4k,cos9hxi16eitbcbthof7zrm4m,Sparta Rotterdam,FC Groningen,SPA,GRO
+384,274afcwn7dzxmscev60j2b0no,2021-10-17Z,4tic29sox7m39fy1ztgv0jsiq,bk5ltsueqmeng29eovd8m2tml,FC Twente,Willem II,TWE,WIL
+385,277vbbgnzixos5uemhpr101sk,2021-10-22Z,bk5ltsueqmeng29eovd8m2tml,3ebril33e08ddzob4bhq8awsr,Willem II,Fortuna Sittard,WIL,FOR
+386,27jndcv1kbvlfytw4ew5q6mms,2021-10-23Z,ccpscwdcm65czscrun048ecn5,4vd2t5schmvvufrfib7f2vjdf,FC Utrecht,SC Heerenveen,UTR,HEE
+387,27c6lv9jixnyvh3qqpaxh2wic,2021-10-23Z,2uuh2bir8ktof0uxfo06lb4ox,dac758ef858jbq7pcb3gfwite,PEC Zwolle,Heracles Almelo,ZWO,HER
+388,27ndc0j1vazm7fho7x5iwu9zo,2021-10-23Z,ed5nwjz5za3oyi20nxzgqivmx,89w5c6pw7vn0dxypi61tt0g4k,RKC Waalwijk,Sparta Rotterdam,RKC,SPA
+389,27fu4qxjem0f24ombsgqbmr6c,2021-10-24Z,4tic29sox7m39fy1ztgv0jsiq,8iawijq7s9s6d85mjz8wdslki,FC Twente,Nijmegen Eendracht Combinatie,TWE,N.E.C.
+390,27rtz2kgmbw9720sxgxct6pzo,2021-10-24Z,ears40cp6opsgvhsy0dgyszpd,20vymiy7bo8wkyxai3ew494fz,SC Cambuur Leeuwarden,Feyenoord Rotterdam,CAM,FEY
+391,280gezwfw0x0p2wjntbxvpkb8,2021-10-24Z,6hsriqr3ybvyg94w2k19oal50,b79uipsy57y1jqpy07h4i5ovk,SBV Vitesse,Go Ahead Eagles,VIT,GAE
+392,283qqp3snt4izz5088texmt5g,2021-10-24Z,d0zdg647gvgc95xdtk1vpbkys,24fvcruwqrqvqa3aonf8c3zuy,AFC Ajax,PSV Eindhoven,AJA,PSV
+393,27wqultbcna4aomdphlkye2hg,2021-10-24Z,cos9hxi16eitbcbthof7zrm4m,3kfktv64h7kg7zryax1wktr5r,FC Groningen,Alkmaar Zaanstreek,GRO,AZ
+394,28nbddq61ewlblhy3yekg0qhg,2021-10-30Z,24fvcruwqrqvqa3aonf8c3zuy,4tic29sox7m39fy1ztgv0jsiq,PSV Eindhoven,FC Twente,PSV,TWE
+395,28as6r8rljbafp81c846a4rh0,2021-10-30Z,dac758ef858jbq7pcb3gfwite,d0zdg647gvgc95xdtk1vpbkys,Heracles Almelo,AFC Ajax,HER,AJA
+396,28jqu352tcmku8icqbo9bxhjo,2021-10-30Z,4vd2t5schmvvufrfib7f2vjdf,6hsriqr3ybvyg94w2k19oal50,SC Heerenveen,SBV Vitesse,HEE,VIT
+397,2878m7n4eyk2f9pma0nonyeqc,2021-10-30Z,3kfktv64h7kg7zryax1wktr5r,2uuh2bir8ktof0uxfo06lb4ox,Alkmaar Zaanstreek,PEC Zwolle,AZ,ZWO
+398,28r3cpq8qka4cioppy2ebr21g,2021-10-31Z,89w5c6pw7vn0dxypi61tt0g4k,20vymiy7bo8wkyxai3ew494fz,Sparta Rotterdam,Feyenoord Rotterdam,SPA,FEY
+399,28ue85gbf4jzkdy61e3pfdjbo,2021-10-31Z,8iawijq7s9s6d85mjz8wdslki,cos9hxi16eitbcbthof7zrm4m,Nijmegen Eendracht Combinatie,FC Groningen,N.E.C.,GRO
+400,28xxpjjieci4bq1qvayqgiv4k,2021-10-31Z,ccpscwdcm65czscrun048ecn5,bk5ltsueqmeng29eovd8m2tml,FC Utrecht,Willem II,UTR,WIL
+401,291kxs7kuof8shvribe9z4qhg,2021-10-31Z,ed5nwjz5za3oyi20nxzgqivmx,ears40cp6opsgvhsy0dgyszpd,RKC Waalwijk,SC Cambuur Leeuwarden,RKC,CAM
+402,28ecu8guo7bq73ml5grakqtxw,2021-10-31Z,b79uipsy57y1jqpy07h4i5ovk,3ebril33e08ddzob4bhq8awsr,Go Ahead Eagles,Fortuna Sittard,GAE,FOR
+403,295915pi260s49n3lbfkmd990,2021-11-05Z,4tic29sox7m39fy1ztgv0jsiq,dac758ef858jbq7pcb3gfwite,FC Twente,Heracles Almelo,TWE,HER
+404,29jinq2l49n5fp7s5i5s3e8lw,2021-11-06Z,8iawijq7s9s6d85mjz8wdslki,4vd2t5schmvvufrfib7f2vjdf,Nijmegen Eendracht Combinatie,SC Heerenveen,N.E.C.,HEE
+405,29fvvhxdt338yp4th1fv8800k,2021-11-06Z,bk5ltsueqmeng29eovd8m2tml,89w5c6pw7vn0dxypi61tt0g4k,Willem II,Sparta Rotterdam,WIL,SPA
+406,298t80uwslremnq92nsm21ams,2021-11-06Z,2uuh2bir8ktof0uxfo06lb4ox,ears40cp6opsgvhsy0dgyszpd,PEC Zwolle,SC Cambuur Leeuwarden,ZWO,CAM
+407,29ud5q3lodao6vo0pkq8n26tw,2021-11-07Z,cos9hxi16eitbcbthof7zrm4m,ed5nwjz5za3oyi20nxzgqivmx,FC Groningen,RKC Waalwijk,GRO,RKC
+408,29qxv4zc1snnyhng0yhxy9e6s,2021-11-07Z,3ebril33e08ddzob4bhq8awsr,24fvcruwqrqvqa3aonf8c3zuy,Fortuna Sittard,PSV Eindhoven,FOR,PSV
+409,29n03oiiaa51pfmwq1aoohgk4,2021-11-07Z,6hsriqr3ybvyg94w2k19oal50,ccpscwdcm65czscrun048ecn5,SBV Vitesse,FC Utrecht,VIT,UTR
+410,29xw2zl3zddnvx2z3cqx6wmxg,2021-11-07Z,20vymiy7bo8wkyxai3ew494fz,3kfktv64h7kg7zryax1wktr5r,Feyenoord Rotterdam,Alkmaar Zaanstreek,FEY,AZ
+411,29cb7c5y5vqapaln0rbitc178,2021-11-07Z,d0zdg647gvgc95xdtk1vpbkys,b79uipsy57y1jqpy07h4i5ovk,AFC Ajax,Go Ahead Eagles,AJA,GAE
+412,2a1qnthnddfrruovmo9gxec5w,2021-11-20Z,24fvcruwqrqvqa3aonf8c3zuy,6hsriqr3ybvyg94w2k19oal50,PSV Eindhoven,SBV Vitesse,PSV,VIT
+413,2a8s52ik6au07fd5bimsev4es,2021-11-20Z,89w5c6pw7vn0dxypi61tt0g4k,4tic29sox7m39fy1ztgv0jsiq,Sparta Rotterdam,FC Twente,SPA,TWE
+414,2a5dkqmfttl20qneokhizsbv8,2021-11-20Z,3kfktv64h7kg7zryax1wktr5r,8iawijq7s9s6d85mjz8wdslki,Alkmaar Zaanstreek,Nijmegen Eendracht Combinatie,AZ,N.E.C.
+415,2acakl69jhgstv9yevy8rccno,2021-11-20Z,dac758ef858jbq7pcb3gfwite,3ebril33e08ddzob4bhq8awsr,Heracles Almelo,Fortuna Sittard,HER,FOR
+416,2b06xrk7a43v125wfc240l6vo,2021-11-21Z,b79uipsy57y1jqpy07h4i5ovk,cos9hxi16eitbcbthof7zrm4m,Go Ahead Eagles,FC Groningen,GAE,GRO
+417,2b3yguxitl78ef2jx1jcmt8gk,2021-11-21Z,20vymiy7bo8wkyxai3ew494fz,2uuh2bir8ktof0uxfo06lb4ox,Feyenoord Rotterdam,PEC Zwolle,FEY,ZWO
+418,2b7p8z99cnxs4bb1r12a6plas,2021-11-21Z,4vd2t5schmvvufrfib7f2vjdf,bk5ltsueqmeng29eovd8m2tml,SC Heerenveen,Willem II,HEE,WIL
+419,2awodlu1ibb2ad8kf1tkzdvys,2021-11-21Z,ed5nwjz5za3oyi20nxzgqivmx,d0zdg647gvgc95xdtk1vpbkys,RKC Waalwijk,AFC Ajax,RKC,AJA
+420,2bbqws3iubfgp7v74848uj09g,2021-11-21Z,ears40cp6opsgvhsy0dgyszpd,ccpscwdcm65czscrun048ecn5,SC Cambuur Leeuwarden,FC Utrecht,CAM,UTR
+421,2bfqcsziya8h6koisfv47wh78,2021-11-26Z,8iawijq7s9s6d85mjz8wdslki,ears40cp6opsgvhsy0dgyszpd,Nijmegen Eendracht Combinatie,SC Cambuur Leeuwarden,N.E.C.,CAM
+422,2bno50pj80xjr5asqwadtx4ic,2021-11-27Z,3ebril33e08ddzob4bhq8awsr,cos9hxi16eitbcbthof7zrm4m,Fortuna Sittard,FC Groningen,FOR,GRO
+423,2bjkxaxwugiw3g1a8zqkbc6c4,2021-11-27Z,2uuh2bir8ktof0uxfo06lb4ox,ed5nwjz5za3oyi20nxzgqivmx,PEC Zwolle,RKC Waalwijk,ZWO,RKC
+424,2brivap6nd624hea8pke8k1sk,2021-11-27Z,bk5ltsueqmeng29eovd8m2tml,b79uipsy57y1jqpy07h4i5ovk,Willem II,Go Ahead Eagles,WIL,GAE
+425,2bvg8n4uc9vzgr2vm5xiiewic,2021-11-28Z,89w5c6pw7vn0dxypi61tt0g4k,d0zdg647gvgc95xdtk1vpbkys,Sparta Rotterdam,AFC Ajax,SPA,AJA
+426,2bze04ge7mtfsb97kfe4wep04,2021-11-28Z,4tic29sox7m39fy1ztgv0jsiq,20vymiy7bo8wkyxai3ew494fz,FC Twente,Feyenoord Rotterdam,TWE,FEY
+427,2c3e89zu1fkht838i7rtsqwb8,2021-11-28Z,ccpscwdcm65czscrun048ecn5,dac758ef858jbq7pcb3gfwite,FC Utrecht,Heracles Almelo,UTR,HER
+428,2c7gtfgr9q9oramlxqr41lmhg,2021-11-28Z,4vd2t5schmvvufrfib7f2vjdf,24fvcruwqrqvqa3aonf8c3zuy,SC Heerenveen,PSV Eindhoven,HEE,PSV
+429,2cb8h3k1f8w9k0luk6fo9y4us,2021-11-28Z,6hsriqr3ybvyg94w2k19oal50,3kfktv64h7kg7zryax1wktr5r,SBV Vitesse,Alkmaar Zaanstreek,VIT,AZ
+430,22f4ck6y9dr3fl8ix369n90k4,2021-12-01Z,20vymiy7bo8wkyxai3ew494fz,dac758ef858jbq7pcb3gfwite,Feyenoord Rotterdam,Heracles Almelo,FEY,HER
+431,20shs56tkafd0x2p091qnhc0k,2021-12-02Z,3kfktv64h7kg7zryax1wktr5r,3ebril33e08ddzob4bhq8awsr,Alkmaar Zaanstreek,Fortuna Sittard,AZ,FOR
+432,2cwsbqp6j19s55ryk5taqtfkk,2021-12-02Z,d0zdg647gvgc95xdtk1vpbkys,bk5ltsueqmeng29eovd8m2tml,AFC Ajax,Willem II,AJA,WIL
+433,2cqdahw5nwr2r03pw8was2gwk,2021-12-03Z,cos9hxi16eitbcbthof7zrm4m,2uuh2bir8ktof0uxfo06lb4ox,FC Groningen,PEC Zwolle,GRO,ZWO
+434,2cimgmgs54izsei26f81yre38,2021-12-04Z,24fvcruwqrqvqa3aonf8c3zuy,ccpscwdcm65czscrun048ecn5,PSV Eindhoven,FC Utrecht,PSV,UTR
+435,2cmgiqjs7o8nr206uddfoxq1g,2021-12-04Z,ears40cp6opsgvhsy0dgyszpd,6hsriqr3ybvyg94w2k19oal50,SC Cambuur Leeuwarden,SBV Vitesse,CAM,VIT
+436,2cerzeagzj3uh5d46v8w1g07o,2021-12-04Z,dac758ef858jbq7pcb3gfwite,4vd2t5schmvvufrfib7f2vjdf,Heracles Almelo,SC Heerenveen,HER,HEE
+437,2dnvvv5h3o7trz7llc9pry0ic,2021-12-05Z,ed5nwjz5za3oyi20nxzgqivmx,8iawijq7s9s6d85mjz8wdslki,RKC Waalwijk,Nijmegen Eendracht Combinatie,RKC,N.E.C.
+438,2djyzarkhwnk68yz36086k6xg,2021-12-05Z,3kfktv64h7kg7zryax1wktr5r,89w5c6pw7vn0dxypi61tt0g4k,Alkmaar Zaanstreek,Sparta Rotterdam,AZ,SPA
+439,2ds2ik4bz2qpt03b8k4ucoxzo,2021-12-05Z,b79uipsy57y1jqpy07h4i5ovk,4tic29sox7m39fy1ztgv0jsiq,Go Ahead Eagles,FC Twente,GAE,TWE
+440,2dg9u2h799jt9gn7r4mdotgr8,2021-12-05Z,20vymiy7bo8wkyxai3ew494fz,3ebril33e08ddzob4bhq8awsr,Feyenoord Rotterdam,Fortuna Sittard,FEY,FOR
+441,2dvsy3gobj9g3ndoyjlmyr0no,2021-12-10Z,bk5ltsueqmeng29eovd8m2tml,ears40cp6opsgvhsy0dgyszpd,Willem II,SC Cambuur Leeuwarden,WIL,CAM
+442,2e88rx1vkc1ni0b62gfwkhx5g,2021-12-11Z,ccpscwdcm65czscrun048ecn5,b79uipsy57y1jqpy07h4i5ovk,FC Utrecht,Go Ahead Eagles,UTR,GAE
+443,2e3nj4s18df36vcl2qah2eqz8,2021-12-11Z,4vd2t5schmvvufrfib7f2vjdf,89w5c6pw7vn0dxypi61tt0g4k,SC Heerenveen,Sparta Rotterdam,HEE,SPA
+444,2ec2idv4o4thsc848ct1hgc2c,2021-12-11Z,2uuh2bir8ktof0uxfo06lb4ox,3ebril33e08ddzob4bhq8awsr,PEC Zwolle,Fortuna Sittard,ZWO,FOR
+445,2dzongtac3zuy8ae67x92gro4,2021-12-12Z,4tic29sox7m39fy1ztgv0jsiq,ed5nwjz5za3oyi20nxzgqivmx,FC Twente,RKC Waalwijk,TWE,RKC
+446,2eg3w04xagbfhkmz4s50bj0us,2021-12-12Z,cos9hxi16eitbcbthof7zrm4m,20vymiy7bo8wkyxai3ew494fz,FC Groningen,Feyenoord Rotterdam,GRO,FEY
+447,2eo2oqfek48ipnq7pj7qnpxqs,2021-12-12Z,6hsriqr3ybvyg94w2k19oal50,dac758ef858jbq7pcb3gfwite,SBV Vitesse,Heracles Almelo,VIT,HER
+448,2ek6l6233h9hpixaap57nblsk,2021-12-12Z,d0zdg647gvgc95xdtk1vpbkys,3kfktv64h7kg7zryax1wktr5r,AFC Ajax,Alkmaar Zaanstreek,AJA,AZ
+449,2es2gi7ql68enzbcmzunl8pw4,2021-12-12Z,8iawijq7s9s6d85mjz8wdslki,24fvcruwqrqvqa3aonf8c3zuy,Nijmegen Eendracht Combinatie,PSV Eindhoven,N.E.C.,PSV
+450,2evrs3vi13l4rueq7t56bn3tg,2021-12-18Z,3ebril33e08ddzob4bhq8awsr,ccpscwdcm65czscrun048ecn5,Fortuna Sittard,FC Utrecht,FOR,UTR
+451,2ezyw9n5357wk1ehj6nhz6xhw,2021-12-18Z,89w5c6pw7vn0dxypi61tt0g4k,6hsriqr3ybvyg94w2k19oal50,Sparta Rotterdam,SBV Vitesse,SPA,VIT
+452,2f43qwq7wwvm4ltfi1qg89ams,2021-12-18Z,3kfktv64h7kg7zryax1wktr5r,bk5ltsueqmeng29eovd8m2tml,Alkmaar Zaanstreek,Willem II,AZ,WIL
+453,2f7xajixqgd6v0tqs14b4atxw,2021-12-18Z,dac758ef858jbq7pcb3gfwite,cos9hxi16eitbcbthof7zrm4m,Heracles Almelo,FC Groningen,HER,GRO
+454,2fbk426nv6dm4ioksk0kvdams,2021-12-18Z,2uuh2bir8ktof0uxfo06lb4ox,4tic29sox7m39fy1ztgv0jsiq,PEC Zwolle,FC Twente,ZWO,TWE
+455,2fifc6l6i2k5xmk1rg9vo8sgk,2021-12-19Z,ears40cp6opsgvhsy0dgyszpd,4vd2t5schmvvufrfib7f2vjdf,SC Cambuur Leeuwarden,SC Heerenveen,CAM,HEE
+456,2fm58ek6bztv1r6b8pt22h3is,2021-12-19Z,20vymiy7bo8wkyxai3ew494fz,d0zdg647gvgc95xdtk1vpbkys,Feyenoord Rotterdam,AFC Ajax,FEY,AJA
+457,2fpnqdzat1biwntvri6elnhn8,2021-12-19Z,b79uipsy57y1jqpy07h4i5ovk,8iawijq7s9s6d85mjz8wdslki,Go Ahead Eagles,Nijmegen Eendracht Combinatie,GAE,N.E.C.
+458,2ftgu5l6ngilkyld4th5tmi38,2021-12-19Z,ed5nwjz5za3oyi20nxzgqivmx,24fvcruwqrqvqa3aonf8c3zuy,RKC Waalwijk,PSV Eindhoven,RKC,PSV
+459,2fx92dn7eefcp25jviomn7bpw,2021-12-21Z,6hsriqr3ybvyg94w2k19oal50,2uuh2bir8ktof0uxfo06lb4ox,SBV Vitesse,PEC Zwolle,VIT,ZWO
+460,2g0xc7pqplbhzas8mtlppwyz8,2021-12-21Z,3kfktv64h7kg7zryax1wktr5r,cos9hxi16eitbcbthof7zrm4m,Alkmaar Zaanstreek,FC Groningen,AZ,GRO
+461,2gbkhy8raw00rr6a7inxep4pg,2021-12-22Z,4vd2t5schmvvufrfib7f2vjdf,20vymiy7bo8wkyxai3ew494fz,SC Heerenveen,Feyenoord Rotterdam,HEE,FEY
+462,2gjof28podcojqut5mroacj6c,2021-12-22Z,bk5ltsueqmeng29eovd8m2tml,8iawijq7s9s6d85mjz8wdslki,Willem II,Nijmegen Eendracht Combinatie,WIL,N.E.C.
+463,2g4hllrdthy2wf0n5xo24ttec,2021-12-22Z,dac758ef858jbq7pcb3gfwite,ears40cp6opsgvhsy0dgyszpd,Heracles Almelo,SC Cambuur Leeuwarden,HER,CAM
+464,2gfnhn3wizwxvoxx8n5wredck,2021-12-22Z,ccpscwdcm65czscrun048ecn5,4tic29sox7m39fy1ztgv0jsiq,FC Utrecht,FC Twente,UTR,TWE
+465,2gqzbqi5j0nezuhd99amcmu50,2021-12-22Z,d0zdg647gvgc95xdtk1vpbkys,3ebril33e08ddzob4bhq8awsr,AFC Ajax,Fortuna Sittard,AJA,FOR
+466,2gngrluee0v5ua9a25dsppct0,2021-12-23Z,24fvcruwqrqvqa3aonf8c3zuy,b79uipsy57y1jqpy07h4i5ovk,PSV Eindhoven,Go Ahead Eagles,PSV,GAE
+467,2g7xb873omgcr9n72avpe24no,2021-12-23Z,89w5c6pw7vn0dxypi61tt0g4k,ed5nwjz5za3oyi20nxzgqivmx,Sparta Rotterdam,RKC Waalwijk,SPA,RKC
+468,2gv0hefnbew4ctvqmxcudhdzo,2022-01-14Z,2uuh2bir8ktof0uxfo06lb4ox,bk5ltsueqmeng29eovd8m2tml,PEC Zwolle,Willem II,ZWO,WIL
+469,2h3i21kxyq4ci1gbsujzmazv8,2022-01-15Z,8iawijq7s9s6d85mjz8wdslki,dac758ef858jbq7pcb3gfwite,Nijmegen Eendracht Combinatie,Heracles Almelo,N.E.C.,HER
+470,2gyz7vhkto2fczonjur9pmm1g,2022-01-15Z,20vymiy7bo8wkyxai3ew494fz,6hsriqr3ybvyg94w2k19oal50,Feyenoord Rotterdam,SBV Vitesse,FEY,VIT
+471,2hoabq3mxnp0b4mkoj56xpfys,2022-01-15Z,4tic29sox7m39fy1ztgv0jsiq,4vd2t5schmvvufrfib7f2vjdf,FC Twente,SC Heerenveen,TWE,HEE
+472,2h77kliv84tiic9bia4lypjpw,2022-01-15Z,b79uipsy57y1jqpy07h4i5ovk,ed5nwjz5za3oyi20nxzgqivmx,Go Ahead Eagles,RKC Waalwijk,GAE,RKC
+473,2hgjkufbe9zvmpumtgb75ycr8,2022-01-16Z,ccpscwdcm65czscrun048ecn5,d0zdg647gvgc95xdtk1vpbkys,FC Utrecht,AFC Ajax,UTR,AJA
+474,2haxmxwn4z0f38ycf8u4vb0gk,2022-01-16Z,cos9hxi16eitbcbthof7zrm4m,24fvcruwqrqvqa3aonf8c3zuy,FC Groningen,PSV Eindhoven,GRO,PSV
+475,2hk7hylseqswlb3vqjoavkjdg,2022-01-16Z,ears40cp6opsgvhsy0dgyszpd,89w5c6pw7vn0dxypi61tt0g4k,SC Cambuur Leeuwarden,Sparta Rotterdam,CAM,SPA
+476,2hrrd7x6ycte54u9rblu1nor8,2022-01-16Z,3ebril33e08ddzob4bhq8awsr,3kfktv64h7kg7zryax1wktr5r,Fortuna Sittard,Alkmaar Zaanstreek,FOR,AZ
+477,2hz6z900q6vujxj1c8b4n2w44,2022-01-22Z,6hsriqr3ybvyg94w2k19oal50,cos9hxi16eitbcbthof7zrm4m,SBV Vitesse,FC Groningen,VIT,GRO
+478,2i3evw0aks1hemezhgaeatces,2022-01-22Z,3kfktv64h7kg7zryax1wktr5r,ears40cp6opsgvhsy0dgyszpd,Alkmaar Zaanstreek,SC Cambuur Leeuwarden,AZ,CAM
+479,2i76vv1y5qjkb5y8lmz2cftas,2022-01-22Z,4vd2t5schmvvufrfib7f2vjdf,2uuh2bir8ktof0uxfo06lb4ox,SC Heerenveen,PEC Zwolle,HEE,ZWO
+480,2iqmygyywkugnylzf6bs6b28k,2022-01-22Z,bk5ltsueqmeng29eovd8m2tml,4tic29sox7m39fy1ztgv0jsiq,Willem II,FC Twente,WIL,TWE
+481,2iub1prwix6elyhfxsxkocd90,2022-01-23Z,8iawijq7s9s6d85mjz8wdslki,20vymiy7bo8wkyxai3ew494fz,Nijmegen Eendracht Combinatie,Feyenoord Rotterdam,N.E.C.,FEY
+482,2iy2hegh7pj7haqy8b0op6x3o,2022-01-23Z,dac758ef858jbq7pcb3gfwite,b79uipsy57y1jqpy07h4i5ovk,Heracles Almelo,Go Ahead Eagles,HER,GAE
+483,2j2gfhci3ns6wdqevarksqx3o,2022-01-23Z,24fvcruwqrqvqa3aonf8c3zuy,d0zdg647gvgc95xdtk1vpbkys,PSV Eindhoven,AFC Ajax,PSV,AJA
+484,2j64n3m8fd58ogb709d3f1wk4,2022-01-23Z,89w5c6pw7vn0dxypi61tt0g4k,ccpscwdcm65czscrun048ecn5,Sparta Rotterdam,FC Utrecht,SPA,UTR
+485,2hv65q1tmbmst8k3wxfglzaqc,2022-01-23Z,ed5nwjz5za3oyi20nxzgqivmx,3ebril33e08ddzob4bhq8awsr,RKC Waalwijk,Fortuna Sittard,RKC,FOR
+486,2j9o75q0f4gc9jisrzhm4r6l0,2022-02-05Z,ccpscwdcm65czscrun048ecn5,ears40cp6opsgvhsy0dgyszpd,FC Utrecht,SC Cambuur Leeuwarden,UTR,CAM
+487,2jde50l1mc5o6h8yzqyxm1n9w,2022-02-05Z,3ebril33e08ddzob4bhq8awsr,4vd2t5schmvvufrfib7f2vjdf,Fortuna Sittard,SC Heerenveen,FOR,HEE
+488,2jh4juqztdirf8sdl6rh9nxg4,2022-02-05Z,2uuh2bir8ktof0uxfo06lb4ox,8iawijq7s9s6d85mjz8wdslki,PEC Zwolle,Nijmegen Eendracht Combinatie,ZWO,N.E.C.
+489,2jl0lcv7zin4dhl2le7b32o7o,2022-02-05Z,24fvcruwqrqvqa3aonf8c3zuy,3kfktv64h7kg7zryax1wktr5r,PSV Eindhoven,Alkmaar Zaanstreek,PSV,AZ
+490,2jookvoau89xea6lbjyw6udjo,2022-02-05Z,4tic29sox7m39fy1ztgv0jsiq,6hsriqr3ybvyg94w2k19oal50,FC Twente,SBV Vitesse,TWE,VIT
+491,2js04y5uhipmwapv9u9s18mqc,2022-02-06Z,20vymiy7bo8wkyxai3ew494fz,89w5c6pw7vn0dxypi61tt0g4k,Feyenoord Rotterdam,Sparta Rotterdam,FEY,SPA
+492,2jxn175myy7oq4csyolgu3aj8,2022-02-06Z,cos9hxi16eitbcbthof7zrm4m,b79uipsy57y1jqpy07h4i5ovk,FC Groningen,Go Ahead Eagles,GRO,GAE
+493,2k16r7wsto5ut321sk54ioowk,2022-02-06Z,bk5ltsueqmeng29eovd8m2tml,ed5nwjz5za3oyi20nxzgqivmx,Willem II,RKC Waalwijk,WIL,RKC
+494,2k4z844k4ualv701o2hly3c44,2022-02-06Z,d0zdg647gvgc95xdtk1vpbkys,dac758ef858jbq7pcb3gfwite,AFC Ajax,Heracles Almelo,AJA,HER
+495,2kl5670ley1nyp4k1p1ko26ms,2022-02-11Z,dac758ef858jbq7pcb3gfwite,ccpscwdcm65czscrun048ecn5,Heracles Almelo,FC Utrecht,HER,UTR
+496,2kcpqeud0etdczhwtv5pau2hg,2022-02-12Z,cos9hxi16eitbcbthof7zrm4m,3ebril33e08ddzob4bhq8awsr,FC Groningen,Fortuna Sittard,GRO,FOR
+497,2ks8fqvwdvmul0yg7yxe7i1as,2022-02-12Z,ears40cp6opsgvhsy0dgyszpd,2uuh2bir8ktof0uxfo06lb4ox,SC Cambuur Leeuwarden,PEC Zwolle,CAM,ZWO
+498,2l46kascc0tegjtpjtn5wdpg4,2022-02-12Z,6hsriqr3ybvyg94w2k19oal50,24fvcruwqrqvqa3aonf8c3zuy,SBV Vitesse,PSV Eindhoven,VIT,PSV
+499,2kgo3ba4dj2hjc4qkbn120ys4,2022-02-13Z,b79uipsy57y1jqpy07h4i5ovk,3kfktv64h7kg7zryax1wktr5r,Go Ahead Eagles,Alkmaar Zaanstreek,GAE,AZ
+500,2l05aor3rgymikmc7y9rv6wpg,2022-02-13Z,89w5c6pw7vn0dxypi61tt0g4k,bk5ltsueqmeng29eovd8m2tml,Sparta Rotterdam,Willem II,SPA,WIL
+501,2kokqufpdmm8q8hfydp1lif4k,2022-02-13Z,ed5nwjz5za3oyi20nxzgqivmx,20vymiy7bo8wkyxai3ew494fz,RKC Waalwijk,Feyenoord Rotterdam,RKC,FEY
+502,2kwepcirs02yoyfftd51tpr10,2022-02-13Z,4vd2t5schmvvufrfib7f2vjdf,8iawijq7s9s6d85mjz8wdslki,SC Heerenveen,Nijmegen Eendracht Combinatie,HEE,N.E.C.
+503,2k8vi3sejexzq1fms71vpn09g,2022-02-13Z,d0zdg647gvgc95xdtk1vpbkys,4tic29sox7m39fy1ztgv0jsiq,AFC Ajax,FC Twente,AJA,TWE
+504,2lqkvv9kezm4ehhnuaialu904,2022-02-19Z,8iawijq7s9s6d85mjz8wdslki,ed5nwjz5za3oyi20nxzgqivmx,Nijmegen Eendracht Combinatie,RKC Waalwijk,N.E.C.,RKC
+505,2m3m0tgqy885dxbs26adfyyhg,2022-02-19Z,bk5ltsueqmeng29eovd8m2tml,d0zdg647gvgc95xdtk1vpbkys,Willem II,AFC Ajax,WIL,AJA
+506,2l7y4q5ydrl98sadifr5cvq50,2022-02-19Z,3kfktv64h7kg7zryax1wktr5r,dac758ef858jbq7pcb3gfwite,Alkmaar Zaanstreek,Heracles Almelo,AZ,HER
+507,2lwa38c6t9awmd16har3xurys,2022-02-20Z,2uuh2bir8ktof0uxfo06lb4ox,cos9hxi16eitbcbthof7zrm4m,PEC Zwolle,FC Groningen,ZWO,GRO
+508,2lbholfxirlo9u7m3fsr4u590,2022-02-20Z,4tic29sox7m39fy1ztgv0jsiq,b79uipsy57y1jqpy07h4i5ovk,FC Twente,Go Ahead Eagles,TWE,GAE
+509,2liqfam83xj7wqbtrysat9nv8,2022-02-20Z,20vymiy7bo8wkyxai3ew494fz,ears40cp6opsgvhsy0dgyszpd,Feyenoord Rotterdam,SC Cambuur Leeuwarden,FEY,CAM
+510,2lf1b5swb3zlpry4fffjzmc5w,2022-02-20Z,ccpscwdcm65czscrun048ecn5,6hsriqr3ybvyg94w2k19oal50,FC Utrecht,SBV Vitesse,UTR,VIT
+511,2lzvjtf4icrcamliawrbufoyc,2022-02-20Z,24fvcruwqrqvqa3aonf8c3zuy,4vd2t5schmvvufrfib7f2vjdf,PSV Eindhoven,SC Heerenveen,PSV,HEE
+512,2mll5ukjdbi1y9lpw9m32l0yc,2022-02-25Z,ed5nwjz5za3oyi20nxzgqivmx,4tic29sox7m39fy1ztgv0jsiq,RKC Waalwijk,FC Twente,RKC,TWE
+513,2mi19fl97gw2lpz269we143ys,2022-02-26Z,dac758ef858jbq7pcb3gfwite,2uuh2bir8ktof0uxfo06lb4ox,Heracles Almelo,PEC Zwolle,HER,ZWO
+514,2majxqej4eddq6002qk1dy044,2022-02-26Z,cos9hxi16eitbcbthof7zrm4m,bk5ltsueqmeng29eovd8m2tml,FC Groningen,Willem II,GRO,WIL
+515,2mp1bh3rbo64rmwffieof51jo,2022-02-26Z,ears40cp6opsgvhsy0dgyszpd,3ebril33e08ddzob4bhq8awsr,SC Cambuur Leeuwarden,Fortuna Sittard,CAM,FOR
+516,2m6yqf156m1j95dtra9aapb10,2022-02-27Z,3kfktv64h7kg7zryax1wktr5r,20vymiy7bo8wkyxai3ew494fz,Alkmaar Zaanstreek,Feyenoord Rotterdam,AZ,FEY
+517,2n008eufv6h9wsnmiotui0lck,2022-02-27Z,6hsriqr3ybvyg94w2k19oal50,8iawijq7s9s6d85mjz8wdslki,SBV Vitesse,Nijmegen Eendracht Combinatie,VIT,N.E.C.
+518,2mw6i2q6ciz108mjx5w7q9e6s,2022-02-27Z,89w5c6pw7vn0dxypi61tt0g4k,24fvcruwqrqvqa3aonf8c3zuy,Sparta Rotterdam,PSV Eindhoven,SPA,PSV
+519,2me5ak7iw3ifdh1p4vc07xj4k,2022-02-27Z,b79uipsy57y1jqpy07h4i5ovk,d0zdg647gvgc95xdtk1vpbkys,Go Ahead Eagles,AFC Ajax,GAE,AJA
+520,2msj50dj5s6xdt13ccj0v8jys,2022-02-27Z,4vd2t5schmvvufrfib7f2vjdf,ccpscwdcm65czscrun048ecn5,SC Heerenveen,FC Utrecht,HEE,UTR
+521,2nyljea7tmh5ws0q9oz4lw1sk,2022-03-05Z,bk5ltsueqmeng29eovd8m2tml,4vd2t5schmvvufrfib7f2vjdf,Willem II,SC Heerenveen,WIL,HEE
+522,2nhxovyezqo7a37ob5qml51xw,2022-03-05Z,b79uipsy57y1jqpy07h4i5ovk,ccpscwdcm65czscrun048ecn5,Go Ahead Eagles,FC Utrecht,GAE,UTR
+523,2nagqblg2og8y0fheai4uvwus,2022-03-05Z,20vymiy7bo8wkyxai3ew494fz,cos9hxi16eitbcbthof7zrm4m,Feyenoord Rotterdam,FC Groningen,FEY,GRO
+524,2noybwl13m1rhu2v6ye1e9rmc,2022-03-06Z,24fvcruwqrqvqa3aonf8c3zuy,dac758ef858jbq7pcb3gfwite,PSV Eindhoven,Heracles Almelo,PSV,HER
+525,2n6vm36c0pozikqrd40r00o44,2022-03-06Z,4tic29sox7m39fy1ztgv0jsiq,ears40cp6opsgvhsy0dgyszpd,FC Twente,SC Cambuur Leeuwarden,TWE,CAM
+526,2n3fw1dk8droen7vsm4jmuxas,2022-03-06Z,d0zdg647gvgc95xdtk1vpbkys,ed5nwjz5za3oyi20nxzgqivmx,AFC Ajax,RKC Waalwijk,AJA,RKC
+527,2nlar3sakibnobgj3a5q21gyc,2022-03-06Z,8iawijq7s9s6d85mjz8wdslki,3kfktv64h7kg7zryax1wktr5r,Nijmegen Eendracht Combinatie,Alkmaar Zaanstreek,N.E.C.,AZ
+528,2ne415xlqz3jjnfl6xhezg4k4,2022-03-06Z,3ebril33e08ddzob4bhq8awsr,2uuh2bir8ktof0uxfo06lb4ox,Fortuna Sittard,PEC Zwolle,FOR,ZWO
+529,2ot1ptvsb6k79bo91hb5hgrv8,2022-03-11Z,ears40cp6opsgvhsy0dgyszpd,d0zdg647gvgc95xdtk1vpbkys,SC Cambuur Leeuwarden,AFC Ajax,CAM,AJA
+530,2owuddaa1uojbb8im6k001fro,2022-03-12Z,89w5c6pw7vn0dxypi61tt0g4k,b79uipsy57y1jqpy07h4i5ovk,Sparta Rotterdam,Go Ahead Eagles,SPA,GAE
+531,2o5w61iwhxgkxhjo49gy3up78,2022-03-12Z,cos9hxi16eitbcbthof7zrm4m,8iawijq7s9s6d85mjz8wdslki,FC Groningen,Nijmegen Eendracht Combinatie,GRO,N.E.C.
+532,2op52g7w39olm2thrrucsno5w,2022-03-12Z,ed5nwjz5za3oyi20nxzgqivmx,4vd2t5schmvvufrfib7f2vjdf,RKC Waalwijk,SC Heerenveen,RKC,HEE
+533,2odt7n7vvwl2esg6axwpovhg4,2022-03-13Z,3ebril33e08ddzob4bhq8awsr,bk5ltsueqmeng29eovd8m2tml,Fortuna Sittard,Willem II,FOR,WIL
+534,2oa4e0a4vczriouk0fq1huzv8,2022-03-13Z,ccpscwdcm65czscrun048ecn5,24fvcruwqrqvqa3aonf8c3zuy,FC Utrecht,PSV Eindhoven,UTR,PSV
+535,2ohh1y1qpsyelz368cdsqklxw,2022-03-13Z,dac758ef858jbq7pcb3gfwite,6hsriqr3ybvyg94w2k19oal50,Heracles Almelo,SBV Vitesse,HER,VIT
+536,2ol5vaj3x8zz5e7skxdr8wufo,2022-03-13Z,2uuh2bir8ktof0uxfo06lb4ox,20vymiy7bo8wkyxai3ew494fz,PEC Zwolle,Feyenoord Rotterdam,ZWO,FEY
+537,2o28ft2ezerhntindrlunl3x0,2022-03-13Z,3kfktv64h7kg7zryax1wktr5r,4tic29sox7m39fy1ztgv0jsiq,Alkmaar Zaanstreek,FC Twente,AZ,TWE
+538,2por4kvi3s9ssivucvjx7r3mc,2022-03-18Z,4vd2t5schmvvufrfib7f2vjdf,dac758ef858jbq7pcb3gfwite,SC Heerenveen,Heracles Almelo,HEE,HER
+539,2pcfkyaxhfq5v9263yjhpkbv8,2022-03-19Z,b79uipsy57y1jqpy07h4i5ovk,ears40cp6opsgvhsy0dgyszpd,Go Ahead Eagles,SC Cambuur Leeuwarden,GAE,CAM
+540,2p4k31us0rt4u7ev7x9axcd1w,2022-03-19Z,4tic29sox7m39fy1ztgv0jsiq,2uuh2bir8ktof0uxfo06lb4ox,FC Twente,PEC Zwolle,TWE,ZWO
+541,2pgg89031378tw896j2o7beok,2022-03-19Z,8iawijq7s9s6d85mjz8wdslki,89w5c6pw7vn0dxypi61tt0g4k,Nijmegen Eendracht Combinatie,Sparta Rotterdam,N.E.C.,SPA
+542,2p8mxlq8liwidas9pzdk4qivo,2022-03-20Z,ccpscwdcm65czscrun048ecn5,cos9hxi16eitbcbthof7zrm4m,FC Utrecht,FC Groningen,UTR,GRO
+543,2p0rkx9b5o8y5v3hmpdvel4wk,2022-03-20Z,d0zdg647gvgc95xdtk1vpbkys,20vymiy7bo8wkyxai3ew494fz,AFC Ajax,Feyenoord Rotterdam,AJA,FEY
+544,2pkirkbszeypdvagd5w7v96vo,2022-03-20Z,24fvcruwqrqvqa3aonf8c3zuy,3ebril33e08ddzob4bhq8awsr,PSV Eindhoven,Fortuna Sittard,PSV,FOR
+545,2puy19k0jczm6vcm8giaz4jdg,2022-03-20Z,6hsriqr3ybvyg94w2k19oal50,ed5nwjz5za3oyi20nxzgqivmx,SBV Vitesse,RKC Waalwijk,VIT,RKC
+546,2pz6d6ucqvcaebjeei78xl0d0,2022-03-20Z,bk5ltsueqmeng29eovd8m2tml,3kfktv64h7kg7zryax1wktr5r,Willem II,Alkmaar Zaanstreek,WIL,AZ
+547,2q6xrtwztok2au662nqoe347o,2022-04-02Z,cos9hxi16eitbcbthof7zrm4m,d0zdg647gvgc95xdtk1vpbkys,FC Groningen,AFC Ajax,GRO,AJA
+548,2qb3ffiw3ul1um8o00k79r7ys,2022-04-02Z,4tic29sox7m39fy1ztgv0jsiq,24fvcruwqrqvqa3aonf8c3zuy,FC Twente,PSV Eindhoven,TWE,PSV
+549,2q2xkov228x7qzpwuohb92tck,2022-04-02Z,3kfktv64h7kg7zryax1wktr5r,6hsriqr3ybvyg94w2k19oal50,Alkmaar Zaanstreek,SBV Vitesse,AZ,VIT
+550,2qq3reyk7bpydwlx1vzjhuv4k,2022-04-02Z,ed5nwjz5za3oyi20nxzgqivmx,ccpscwdcm65czscrun048ecn5,RKC Waalwijk,FC Utrecht,RKC,UTR
+551,2qeozkexap92fxewwviqh0rv8,2022-04-02Z,20vymiy7bo8wkyxai3ew494fz,bk5ltsueqmeng29eovd8m2tml,Feyenoord Rotterdam,Willem II,FEY,WIL
+552,2qm4r033f59ypqt4bfj3s7g9g,2022-04-03Z,2uuh2bir8ktof0uxfo06lb4ox,b79uipsy57y1jqpy07h4i5ovk,PEC Zwolle,Go Ahead Eagles,ZWO,GAE
+553,2qi47ocerhtselltuekgf0h78,2022-04-03Z,3ebril33e08ddzob4bhq8awsr,dac758ef858jbq7pcb3gfwite,Fortuna Sittard,Heracles Almelo,FOR,HER
+554,2qy4mhywx6k5an470gv9kkcus,2022-04-03Z,89w5c6pw7vn0dxypi61tt0g4k,4vd2t5schmvvufrfib7f2vjdf,Sparta Rotterdam,SC Heerenveen,SPA,HEE
+555,2qtuct40xg0zv5nuwzpc1tp90,2022-04-03Z,ears40cp6opsgvhsy0dgyszpd,8iawijq7s9s6d85mjz8wdslki,SC Cambuur Leeuwarden,Nijmegen Eendracht Combinatie,CAM,N.E.C.
+556,2r9posi6x842q31nutvta3thw,2022-04-08Z,b79uipsy57y1jqpy07h4i5ovk,bk5ltsueqmeng29eovd8m2tml,Go Ahead Eagles,Willem II,GAE,WIL
+557,2r60xe7z00gpennqu0a2npul0,2022-04-09Z,ccpscwdcm65czscrun048ecn5,3ebril33e08ddzob4bhq8awsr,FC Utrecht,Fortuna Sittard,UTR,FOR
+558,2r1sknhm3uw7ssx0apm25qas4,2022-04-09Z,d0zdg647gvgc95xdtk1vpbkys,89w5c6pw7vn0dxypi61tt0g4k,AFC Ajax,Sparta Rotterdam,AJA,SPA
+559,2rhol9fkjejff916pjzruq87o,2022-04-09Z,8iawijq7s9s6d85mjz8wdslki,4tic29sox7m39fy1ztgv0jsiq,Nijmegen Eendracht Combinatie,FC Twente,N.E.C.,TWE
+560,2rt13n7ryegmt8ieykm9zkjdg,2022-04-10Z,4vd2t5schmvvufrfib7f2vjdf,cos9hxi16eitbcbthof7zrm4m,SC Heerenveen,FC Groningen,HEE,GRO
+561,2rpdoezgitktc9q37xil6mpsk,2022-04-10Z,24fvcruwqrqvqa3aonf8c3zuy,ed5nwjz5za3oyi20nxzgqivmx,PSV Eindhoven,RKC Waalwijk,PSV,RKC
+562,2rz7tdeg1j8asiq4jp87uvuhg,2022-04-10Z,6hsriqr3ybvyg94w2k19oal50,ears40cp6opsgvhsy0dgyszpd,SBV Vitesse,SC Cambuur Leeuwarden,VIT,CAM
+563,2rdt1ycxc4p4v6srb873gtzpw,2022-04-10Z,dac758ef858jbq7pcb3gfwite,20vymiy7bo8wkyxai3ew494fz,Heracles Almelo,Feyenoord Rotterdam,HER,FEY
+564,2rlmfd9xqklvy6jegs9hyw7x0,2022-04-10Z,2uuh2bir8ktof0uxfo06lb4ox,3kfktv64h7kg7zryax1wktr5r,PEC Zwolle,Alkmaar Zaanstreek,ZWO,AZ
+565,2lmffd9v4c0aosn03flebjf2s,2022-04-16Z,3ebril33e08ddzob4bhq8awsr,89w5c6pw7vn0dxypi61tt0g4k,Fortuna Sittard,Sparta Rotterdam,FOR,SPA
+566,2nuxcb04dgs76fiwk25yufw2c,2022-04-19Z,6hsriqr3ybvyg94w2k19oal50,89w5c6pw7vn0dxypi61tt0g4k,SBV Vitesse,Sparta Rotterdam,VIT,SPA
+567,2saaalqhj2khemp86banivdw4,2022-04-22Z,4tic29sox7m39fy1ztgv0jsiq,89w5c6pw7vn0dxypi61tt0g4k,FC Twente,Sparta Rotterdam,TWE,SPA
+568,2sme1t5ueeavydqvl9j0tfl78,2022-04-23Z,8iawijq7s9s6d85mjz8wdslki,d0zdg647gvgc95xdtk1vpbkys,Nijmegen Eendracht Combinatie,AFC Ajax,N.E.C.,AJA
+569,2s33uwl2uhd7bw82d2zr2ketw,2022-04-23Z,3kfktv64h7kg7zryax1wktr5r,4vd2t5schmvvufrfib7f2vjdf,Alkmaar Zaanstreek,SC Heerenveen,AZ,HEE
+570,2sqb1nr6snxu6za7w3th51nh0,2022-04-23Z,ed5nwjz5za3oyi20nxzgqivmx,2uuh2bir8ktof0uxfo06lb4ox,RKC Waalwijk,PEC Zwolle,RKC,ZWO
+571,2su1a1rvxx7qij164wuwxaql0,2022-04-23Z,ears40cp6opsgvhsy0dgyszpd,24fvcruwqrqvqa3aonf8c3zuy,SC Cambuur Leeuwarden,PSV Eindhoven,CAM,PSV
+572,2sxsf09bay3kwlg31t8nfdudw,2022-04-24Z,bk5ltsueqmeng29eovd8m2tml,6hsriqr3ybvyg94w2k19oal50,Willem II,SBV Vitesse,WIL,VIT
+573,2s6v1bcf8zzphczyzlb200s2c,2022-04-24Z,cos9hxi16eitbcbthof7zrm4m,dac758ef858jbq7pcb3gfwite,FC Groningen,Heracles Almelo,GRO,HER
+574,2sed36zfro28oh910xw0a7cpg,2022-04-24Z,20vymiy7bo8wkyxai3ew494fz,ccpscwdcm65czscrun048ecn5,Feyenoord Rotterdam,FC Utrecht,FEY,UTR
+575,2sia0zyqgbnnf2ehenqs8zpxw,2022-04-24Z,3ebril33e08ddzob4bhq8awsr,b79uipsy57y1jqpy07h4i5ovk,Fortuna Sittard,Go Ahead Eagles,FOR,GAE
+576,2t5qf1ubcfdzy9qf4hkhzhdlg,2022-04-29Z,ccpscwdcm65czscrun048ecn5,8iawijq7s9s6d85mjz8wdslki,FC Utrecht,Nijmegen Eendracht Combinatie,UTR,N.E.C.
+577,2t1v9pgt1q9odcbplqzfm5444,2022-04-30Z,d0zdg647gvgc95xdtk1vpbkys,2uuh2bir8ktof0uxfo06lb4ox,AFC Ajax,PEC Zwolle,AJA,ZWO
+578,2thzww6f2uwkv005jr0oke590,2022-04-30Z,dac758ef858jbq7pcb3gfwite,4tic29sox7m39fy1ztgv0jsiq,Heracles Almelo,FC Twente,HER,TWE
+579,2u0jqn57c3z9r2i9n5ejf2vbo,2022-04-30Z,89w5c6pw7vn0dxypi61tt0g4k,3kfktv64h7kg7zryax1wktr5r,Sparta Rotterdam,Alkmaar Zaanstreek,SPA,AZ
+580,2tu4o5bfc6806suas0rkitfkk,2022-05-01Z,4vd2t5schmvvufrfib7f2vjdf,ears40cp6opsgvhsy0dgyszpd,SC Heerenveen,SC Cambuur Leeuwarden,HEE,CAM
+581,2tdxdugctsa0l795np4hgwr9w,2022-05-01Z,b79uipsy57y1jqpy07h4i5ovk,6hsriqr3ybvyg94w2k19oal50,Go Ahead Eagles,SBV Vitesse,GAE,VIT
+582,2tm4jvsxxq27h8yi9g5a90jys,2022-05-01Z,24fvcruwqrqvqa3aonf8c3zuy,bk5ltsueqmeng29eovd8m2tml,PSV Eindhoven,Willem II,PSV,WIL
+583,2t9vbudpd3y0c49bxi99mcsno,2022-05-01Z,3ebril33e08ddzob4bhq8awsr,20vymiy7bo8wkyxai3ew494fz,Fortuna Sittard,Feyenoord Rotterdam,FOR,FEY
+584,2tq86nqqnoqytwzsmfxtg8vmc,2022-05-01Z,ed5nwjz5za3oyi20nxzgqivmx,cos9hxi16eitbcbthof7zrm4m,RKC Waalwijk,FC Groningen,RKC,GRO
+585,2urebpwe4t69xbp241drk5dzo,2022-05-06Z,ears40cp6opsgvhsy0dgyszpd,ed5nwjz5za3oyi20nxzgqivmx,SC Cambuur Leeuwarden,RKC Waalwijk,CAM,RKC
+586,2uctltzl75i3ttf135auyvbis,2022-05-07Z,4tic29sox7m39fy1ztgv0jsiq,3ebril33e08ddzob4bhq8awsr,FC Twente,Fortuna Sittard,TWE,FOR
+587,2unhjs5kvqklele273wo3dpn8,2022-05-07Z,2uuh2bir8ktof0uxfo06lb4ox,ccpscwdcm65czscrun048ecn5,PEC Zwolle,FC Utrecht,ZWO,UTR
+588,2uzj5cvb1bwx5g9eledf79250,2022-05-07Z,bk5ltsueqmeng29eovd8m2tml,dac758ef858jbq7pcb3gfwite,Willem II,Heracles Almelo,WIL,HER
+589,2u911djdcayctes7spvdoo3ys,2022-05-07Z,cos9hxi16eitbcbthof7zrm4m,89w5c6pw7vn0dxypi61tt0g4k,FC Groningen,Sparta Rotterdam,GRO,SPA
+590,2ujwkb2jrm1ifxiubjn6ibtw4,2022-05-08Z,8iawijq7s9s6d85mjz8wdslki,b79uipsy57y1jqpy07h4i5ovk,Nijmegen Eendracht Combinatie,Go Ahead Eagles,N.E.C.,GAE
+591,2u4li9lwjqf51tizk0ei83a50,2022-05-08Z,3kfktv64h7kg7zryax1wktr5r,d0zdg647gvgc95xdtk1vpbkys,Alkmaar Zaanstreek,AFC Ajax,AZ,AJA
+592,2uvd6ciwuv2gme7onedaojlzo,2022-05-08Z,6hsriqr3ybvyg94w2k19oal50,4vd2t5schmvvufrfib7f2vjdf,SBV Vitesse,SC Heerenveen,VIT,HEE
+593,2ug6pboy0ksygnteptpahi2hg,2022-05-08Z,20vymiy7bo8wkyxai3ew494fz,24fvcruwqrqvqa3aonf8c3zuy,Feyenoord Rotterdam,PSV Eindhoven,FEY,PSV
+594,2v3m87gkzr8n13zc0nj7f1afo,2022-05-11Z,d0zdg647gvgc95xdtk1vpbkys,4vd2t5schmvvufrfib7f2vjdf,AFC Ajax,SC Heerenveen,AJA,HEE
+595,2v816qcwk3h4w6ydbx5gw3zf8,2022-05-11Z,ears40cp6opsgvhsy0dgyszpd,bk5ltsueqmeng29eovd8m2tml,SC Cambuur Leeuwarden,Willem II,CAM,WIL
+596,2vcy4ndn0t9xziqf9nytb8zro,2022-05-11Z,3ebril33e08ddzob4bhq8awsr,6hsriqr3ybvyg94w2k19oal50,Fortuna Sittard,SBV Vitesse,FOR,VIT
+597,2vh93waa581ietqma9jj59uz8,2022-05-11Z,b79uipsy57y1jqpy07h4i5ovk,20vymiy7bo8wkyxai3ew494fz,Go Ahead Eagles,Feyenoord Rotterdam,GAE,FEY
+598,2vl42jjx9rqvc8o0nan5wyfbo,2022-05-11Z,24fvcruwqrqvqa3aonf8c3zuy,8iawijq7s9s6d85mjz8wdslki,PSV Eindhoven,Nijmegen Eendracht Combinatie,PSV,N.E.C.
+599,2vp7ndpxrf8ui61i0765scetw,2022-05-11Z,ed5nwjz5za3oyi20nxzgqivmx,dac758ef858jbq7pcb3gfwite,RKC Waalwijk,Heracles Almelo,RKC,HER
+600,2vsz80cppuisvovfh7hqqp7v8,2022-05-11Z,89w5c6pw7vn0dxypi61tt0g4k,2uuh2bir8ktof0uxfo06lb4ox,Sparta Rotterdam,PEC Zwolle,SPA,ZWO
+601,2vws6pj38g4u6nq29h6v60q38,2022-05-11Z,4tic29sox7m39fy1ztgv0jsiq,cos9hxi16eitbcbthof7zrm4m,FC Twente,FC Groningen,TWE,GRO
+602,2w0f71zo4gtthfy30302ny3o4,2022-05-11Z,ccpscwdcm65czscrun048ecn5,3kfktv64h7kg7zryax1wktr5r,FC Utrecht,Alkmaar Zaanstreek,UTR,AZ
+603,2w6egt3uj34rm1wk51e8u7y1g,2022-05-15Z,3kfktv64h7kg7zryax1wktr5r,ed5nwjz5za3oyi20nxzgqivmx,Alkmaar Zaanstreek,RKC Waalwijk,AZ,RKC
+604,2wa9w3q95mq6w8e1sz6056bro,2022-05-15Z,20vymiy7bo8wkyxai3ew494fz,4tic29sox7m39fy1ztgv0jsiq,Feyenoord Rotterdam,FC Twente,FEY,TWE
+605,2webomu6ybfics2gim45oja50,2022-05-15Z,cos9hxi16eitbcbthof7zrm4m,ears40cp6opsgvhsy0dgyszpd,FC Groningen,SC Cambuur Leeuwarden,GRO,CAM
+606,2wi9nelqny2t2gqzu3kbln7dg,2022-05-15Z,dac758ef858jbq7pcb3gfwite,89w5c6pw7vn0dxypi61tt0g4k,Heracles Almelo,Sparta Rotterdam,HER,SPA
+607,2wlwlcv2rn5fcapn3b3q9izo4,2022-05-15Z,4vd2t5schmvvufrfib7f2vjdf,b79uipsy57y1jqpy07h4i5ovk,SC Heerenveen,Go Ahead Eagles,HEE,GAE
+608,2xf7c609874c4ck5jbblmtkb8,2022-05-15Z,8iawijq7s9s6d85mjz8wdslki,3ebril33e08ddzob4bhq8awsr,Nijmegen Eendracht Combinatie,Fortuna Sittard,N.E.C.,FOR
+609,2xj5crhn5vhy6vmys0stkqi38,2022-05-15Z,2uuh2bir8ktof0uxfo06lb4ox,24fvcruwqrqvqa3aonf8c3zuy,PEC Zwolle,PSV Eindhoven,ZWO,PSV
+610,2xmrf96njjq659ylob5pqzllg,2022-05-15Z,6hsriqr3ybvyg94w2k19oal50,d0zdg647gvgc95xdtk1vpbkys,SBV Vitesse,AFC Ajax,VIT,AJA
+611,2xqash9w91r06g9kk4ayfs00k,2022-05-15Z,bk5ltsueqmeng29eovd8m2tml,ccpscwdcm65czscrun048ecn5,Willem II,FC Utrecht,WIL,UTR
+612,6sgx8nv418nxfwxeiazp003kk,2022-05-19Z,4vd2t5schmvvufrfib7f2vjdf,3kfktv64h7kg7zryax1wktr5r,SC Heerenveen,Alkmaar Zaanstreek,HEE,AZ
+613,6sovid8mlgvpu5tis9bit1hxw,2022-05-19Z,ccpscwdcm65czscrun048ecn5,6hsriqr3ybvyg94w2k19oal50,FC Utrecht,SBV Vitesse,UTR,VIT
+614,6sldy85pkuneadzfs49t1fggk,2022-05-22Z,3kfktv64h7kg7zryax1wktr5r,4vd2t5schmvvufrfib7f2vjdf,Alkmaar Zaanstreek,SC Heerenveen,AZ,HEE
+615,6ss5f860if4cl99thhywic1sk,2022-05-22Z,6hsriqr3ybvyg94w2k19oal50,ccpscwdcm65czscrun048ecn5,SBV Vitesse,FC Utrecht,VIT,UTR
+616,6sh21ykk82ulpa3zyjhn1vqqc,2022-05-26Z,6hsriqr3ybvyg94w2k19oal50,3kfktv64h7kg7zryax1wktr5r,SBV Vitesse,Alkmaar Zaanstreek,VIT,AZ
+617,8sccx05502wf9nlwrqscnoefo,2022-05-29Z,3kfktv64h7kg7zryax1wktr5r,6hsriqr3ybvyg94w2k19oal50,Alkmaar Zaanstreek,SBV Vitesse,AZ,VIT
+618,cbszrvluzpie0mo88fjzb1tgq,2020-09-12Z,4vd2t5schmvvufrfib7f2vjdf,bk5ltsueqmeng29eovd8m2tml,SC Heerenveen,Willem II,HEE,WIL
+619,cbz0ni283fq7ynm7zowki3fca,2020-09-12Z,2uuh2bir8ktof0uxfo06lb4ox,20vymiy7bo8wkyxai3ew494fz,PEC Zwolle,Feyenoord Rotterdam,ZWO,FEY
+620,cc551ukekh699pm5c2o19sh2i,2020-09-12Z,4tic29sox7m39fy1ztgv0jsiq,3ebril33e08ddzob4bhq8awsr,FC Twente,Fortuna Sittard,TWE,FOR
+621,ccb7rq9zneky53zx2czootdnu,2020-09-13Z,3t0vjqtxc8wpjzv82i3oi2ova,cv5ftekuejf0ryxvd5h2my47r,FC Emmen,VVV Venlo,EMM,VVV
+622,cchgjl2n67cs593lvkxnokmei,2020-09-13Z,dac758ef858jbq7pcb3gfwite,e8hiwrw6ocxm5iht6sp7jiv19,Heracles Almelo,HFC ADO Den Haag,HER,ADO
+623,ccnh8l6zy9zv5wl4kzn8wo2ga,2020-09-13Z,89w5c6pw7vn0dxypi61tt0g4k,d0zdg647gvgc95xdtk1vpbkys,Sparta Rotterdam,AFC Ajax,SPA,AJA
+624,cct8pkkrj5wre1w3bpf8e3g4q,2020-09-13Z,cos9hxi16eitbcbthof7zrm4m,24fvcruwqrqvqa3aonf8c3zuy,FC Groningen,PSV Eindhoven,GRO,PSV
+625,ccz4d21plodmr7q5y4ijz36ga,2020-09-13Z,ed5nwjz5za3oyi20nxzgqivmx,6hsriqr3ybvyg94w2k19oal50,RKC Waalwijk,SBV Vitesse,RKC,VIT
+626,cd3y5xwfdfxlnufcpx4xzmd0q,2020-09-18Z,cv5ftekuejf0ryxvd5h2my47r,ccpscwdcm65czscrun048ecn5,VVV Venlo,FC Utrecht,VVV,UTR
+627,cdacc3dd64zutdyf2owks4fai,2020-09-19Z,3kfktv64h7kg7zryax1wktr5r,2uuh2bir8ktof0uxfo06lb4ox,Alkmaar Zaanstreek,PEC Zwolle,AZ,ZWO
+628,cdf7lmdd38lj7755i74jhatt6,2020-09-19Z,6hsriqr3ybvyg94w2k19oal50,89w5c6pw7vn0dxypi61tt0g4k,SBV Vitesse,Sparta Rotterdam,VIT,SPA
+629,ce7vxcd98z5s4vq81pyymc1uy,2020-09-19Z,24fvcruwqrqvqa3aonf8c3zuy,3t0vjqtxc8wpjzv82i3oi2ova,PSV Eindhoven,FC Emmen,PSV,EMM
+630,cdoui3udqb7ntfubl2y81lca2,2020-09-19Z,3ebril33e08ddzob4bhq8awsr,4vd2t5schmvvufrfib7f2vjdf,Fortuna Sittard,SC Heerenveen,FOR,HEE
+631,cdttto1v0aov867nolgc96zje,2020-09-20Z,e8hiwrw6ocxm5iht6sp7jiv19,cos9hxi16eitbcbthof7zrm4m,HFC ADO Den Haag,FC Groningen,ADO,GRO
+632,cdyip0fbhgp8nfrn4s3c18iui,2020-09-20Z,20vymiy7bo8wkyxai3ew494fz,4tic29sox7m39fy1ztgv0jsiq,Feyenoord Rotterdam,FC Twente,FEY,TWE
+633,ce38l1k08ff6qdglwh9on1ai2,2020-09-20Z,bk5ltsueqmeng29eovd8m2tml,dac758ef858jbq7pcb3gfwite,Willem II,Heracles Almelo,WIL,HER
+634,cdk1i7d7isfsyiyhf4brrvr6y,2020-09-20Z,d0zdg647gvgc95xdtk1vpbkys,ed5nwjz5za3oyi20nxzgqivmx,AFC Ajax,RKC Waalwijk,AJA,RKC
+635,ceclk8hdts0qeccwvmvcjztd6,2020-09-25Z,4tic29sox7m39fy1ztgv0jsiq,cos9hxi16eitbcbthof7zrm4m,FC Twente,FC Groningen,TWE,GRO
+636,ceh4oo4r7mibntu5v3au76fe2,2020-09-26Z,2uuh2bir8ktof0uxfo06lb4ox,89w5c6pw7vn0dxypi61tt0g4k,PEC Zwolle,Sparta Rotterdam,ZWO,SPA
+637,celxnmgx5csrqka63fips5pwq,2020-09-26Z,3ebril33e08ddzob4bhq8awsr,3kfktv64h7kg7zryax1wktr5r,Fortuna Sittard,Alkmaar Zaanstreek,FOR,AZ
+638,ceqmw3vtbhpl7xkgw4bwr66p6,2020-09-26Z,4vd2t5schmvvufrfib7f2vjdf,cv5ftekuejf0ryxvd5h2my47r,SC Heerenveen,VVV Venlo,HEE,VVV
+639,cev1obr8h4bwktptqsr926tt6,2020-09-26Z,d0zdg647gvgc95xdtk1vpbkys,6hsriqr3ybvyg94w2k19oal50,AFC Ajax,SBV Vitesse,AJA,VIT
+640,cezqq5k15u1q12ayimjedxch6,2020-09-27Z,20vymiy7bo8wkyxai3ew494fz,e8hiwrw6ocxm5iht6sp7jiv19,Feyenoord Rotterdam,HFC ADO Den Haag,FEY,ADO
+641,cf4al417j129mfe8ubz9vactm,2020-09-27Z,ccpscwdcm65czscrun048ecn5,ed5nwjz5za3oyi20nxzgqivmx,FC Utrecht,RKC Waalwijk,UTR,RKC
+642,cf8y4l0tumgj2jd343d9slylm,2020-09-27Z,dac758ef858jbq7pcb3gfwite,24fvcruwqrqvqa3aonf8c3zuy,Heracles Almelo,PSV Eindhoven,HER,PSV
+643,cfdgmixoeqh5twlkz70bipx7u,2020-09-27Z,3t0vjqtxc8wpjzv82i3oi2ova,bk5ltsueqmeng29eovd8m2tml,FC Emmen,Willem II,EMM,WIL
+644,cfjnbdbu0ne7pwbeevxfrwjmy,2020-10-02Z,ccpscwdcm65czscrun048ecn5,4vd2t5schmvvufrfib7f2vjdf,FC Utrecht,SC Heerenveen,UTR,HEE
+645,cfo5tkmnr1y18tbneqfhsexre,2020-10-03Z,6hsriqr3ybvyg94w2k19oal50,dac758ef858jbq7pcb3gfwite,SBV Vitesse,Heracles Almelo,VIT,HER
+646,cfxbr9ymx1v7kcby2sr0lotwq,2020-10-03Z,cv5ftekuejf0ryxvd5h2my47r,e8hiwrw6ocxm5iht6sp7jiv19,VVV Venlo,HFC ADO Den Haag,VVV,ADO
+647,cg1vz1ygjb7x9zzazwuo72p2i,2020-10-03Z,4tic29sox7m39fy1ztgv0jsiq,3t0vjqtxc8wpjzv82i3oi2ova,FC Twente,FC Emmen,TWE,EMM
+648,cg6xeyd1phmop4r2s0y1pgz1m,2020-10-04Z,cos9hxi16eitbcbthof7zrm4m,d0zdg647gvgc95xdtk1vpbkys,FC Groningen,AFC Ajax,GRO,AJA
+649,cgd1kabz2jvm1v15l5spo69nu,2020-10-04Z,89w5c6pw7vn0dxypi61tt0g4k,3kfktv64h7kg7zryax1wktr5r,Sparta Rotterdam,Alkmaar Zaanstreek,SPA,AZ
+650,cgi9vv0lz5ee97pio3dmaq5wq,2020-10-04Z,bk5ltsueqmeng29eovd8m2tml,20vymiy7bo8wkyxai3ew494fz,Willem II,Feyenoord Rotterdam,WIL,FEY
+651,cgnabbewgxtn8chprxlmflqwa,2020-10-04Z,24fvcruwqrqvqa3aonf8c3zuy,3ebril33e08ddzob4bhq8awsr,PSV Eindhoven,Fortuna Sittard,PSV,FOR
+652,ch62zroefkmtc18lmgsngcodm,2020-10-17Z,dac758ef858jbq7pcb3gfwite,ed5nwjz5za3oyi20nxzgqivmx,Heracles Almelo,RKC Waalwijk,HER,RKC
+653,chbgd1evukf2pnrvnfy23n7u2,2020-10-17Z,3kfktv64h7kg7zryax1wktr5r,cv5ftekuejf0ryxvd5h2my47r,Alkmaar Zaanstreek,VVV Venlo,AZ,VVV
+654,ch09imy7c24hw5hlslek4pg8a,2020-10-17Z,bk5ltsueqmeng29eovd8m2tml,4tic29sox7m39fy1ztgv0jsiq,Willem II,FC Twente,WIL,TWE
+655,chgf1rq0a11x4l3vdzyah28ve,2020-10-18Z,20vymiy7bo8wkyxai3ew494fz,89w5c6pw7vn0dxypi61tt0g4k,Feyenoord Rotterdam,Sparta Rotterdam,FEY,SPA
+656,cgspiksy5vnv965khcsqqf6ui,2020-10-18Z,d0zdg647gvgc95xdtk1vpbkys,4vd2t5schmvvufrfib7f2vjdf,AFC Ajax,SC Heerenveen,AJA,HEE
+657,chlbcl11o09rfazxida27ia22,2020-10-18Z,e8hiwrw6ocxm5iht6sp7jiv19,6hsriqr3ybvyg94w2k19oal50,HFC ADO Den Haag,SBV Vitesse,ADO,VIT
+658,chuihioekyn1lqkufxxi6s12i,2020-10-18Z,cos9hxi16eitbcbthof7zrm4m,ccpscwdcm65czscrun048ecn5,FC Groningen,FC Utrecht,GRO,UTR
+659,ci0zvacepov6iyqims8t5odbe,2020-10-18Z,2uuh2bir8ktof0uxfo06lb4ox,24fvcruwqrqvqa3aonf8c3zuy,PEC Zwolle,PSV Eindhoven,ZWO,PSV
+660,chpxkjndynu5ggc0hndvbfrze,2020-10-18Z,3t0vjqtxc8wpjzv82i3oi2ova,3ebril33e08ddzob4bhq8awsr,FC Emmen,Fortuna Sittard,EMM,FOR
+661,cfsmhxtmwi4bkt8zxukpeti0a,2020-10-21Z,ed5nwjz5za3oyi20nxzgqivmx,2uuh2bir8ktof0uxfo06lb4ox,RKC Waalwijk,PEC Zwolle,RKC,ZWO
+662,ci5pa080z05ob0d3y1gty3be2,2020-10-24Z,cv5ftekuejf0ryxvd5h2my47r,d0zdg647gvgc95xdtk1vpbkys,VVV Venlo,AFC Ajax,VVV,AJA
+663,ciaip5wuwn40xjujbnh9493l6,2020-10-24Z,ccpscwdcm65czscrun048ecn5,4tic29sox7m39fy1ztgv0jsiq,FC Utrecht,FC Twente,UTR,TWE
+664,cj1rh11x83ejha70mpu31ry3u,2020-10-24Z,2uuh2bir8ktof0uxfo06lb4ox,bk5ltsueqmeng29eovd8m2tml,PEC Zwolle,Willem II,ZWO,WIL
+665,ciju77k1kyem54c4v3yclxfmy,2020-10-24Z,4vd2t5schmvvufrfib7f2vjdf,3t0vjqtxc8wpjzv82i3oi2ova,SC Heerenveen,FC Emmen,HEE,EMM
+666,cisnqb2wuzd1xejdxq3y3ms16,2020-10-25Z,3ebril33e08ddzob4bhq8awsr,cos9hxi16eitbcbthof7zrm4m,Fortuna Sittard,FC Groningen,FOR,GRO
+667,cix92lvrixky1tv71otn82stm,2020-10-25Z,6hsriqr3ybvyg94w2k19oal50,24fvcruwqrqvqa3aonf8c3zuy,SBV Vitesse,PSV Eindhoven,VIT,PSV
+668,cj6f7rf4r5i3qdytgivx3xv1m,2020-10-25Z,89w5c6pw7vn0dxypi61tt0g4k,dac758ef858jbq7pcb3gfwite,Sparta Rotterdam,Heracles Almelo,SPA,HER
+669,cio5hvev4mld2bv026s0d1lyi,2020-10-25Z,ed5nwjz5za3oyi20nxzgqivmx,20vymiy7bo8wkyxai3ew494fz,RKC Waalwijk,Feyenoord Rotterdam,RKC,FEY
+670,cifbaw0d8zge6sghryjtbfzvu,2020-10-25Z,e8hiwrw6ocxm5iht6sp7jiv19,3kfktv64h7kg7zryax1wktr5r,HFC ADO Den Haag,Alkmaar Zaanstreek,ADO,AZ
+671,cjtg71pm0fpiubhvnft4p3tre,2020-10-31Z,4tic29sox7m39fy1ztgv0jsiq,2uuh2bir8ktof0uxfo06lb4ox,FC Twente,PEC Zwolle,TWE,ZWO
+672,cjeklpe64q75jlf992o5lzcdm,2020-10-31Z,d0zdg647gvgc95xdtk1vpbkys,3ebril33e08ddzob4bhq8awsr,AFC Ajax,Fortuna Sittard,AJA,FOR
+673,cjkqh3jykgp3ien99yge216qy,2020-10-31Z,cos9hxi16eitbcbthof7zrm4m,cv5ftekuejf0ryxvd5h2my47r,FC Groningen,VVV Venlo,GRO,VVV
+674,ckvr2gxypy5zdpgqng7hyqhre,2020-10-31Z,bk5ltsueqmeng29eovd8m2tml,6hsriqr3ybvyg94w2k19oal50,Willem II,SBV Vitesse,WIL,VIT
+675,ck7y8j64697sk0msbs66kvzoq,2020-11-01Z,dac758ef858jbq7pcb3gfwite,ccpscwdcm65czscrun048ecn5,Heracles Almelo,FC Utrecht,HER,UTR
+676,ckkaqkkatawtgj51niqznvotm,2020-11-01Z,89w5c6pw7vn0dxypi61tt0g4k,4vd2t5schmvvufrfib7f2vjdf,Sparta Rotterdam,SC Heerenveen,SPA,HEE
+677,ckqvd2r4tq9sxs16b9wflhkdm,2020-11-01Z,3t0vjqtxc8wpjzv82i3oi2ova,20vymiy7bo8wkyxai3ew494fz,FC Emmen,Feyenoord Rotterdam,EMM,FEY
+678,ckfj8tutl6k4j31on2dfks6zu,2020-11-01Z,24fvcruwqrqvqa3aonf8c3zuy,e8hiwrw6ocxm5iht6sp7jiv19,PSV Eindhoven,HFC ADO Den Haag,PSV,ADO
+679,ck18zznf6ws0up7uyf9eip8q2,2020-11-01Z,3kfktv64h7kg7zryax1wktr5r,ed5nwjz5za3oyi20nxzgqivmx,Alkmaar Zaanstreek,RKC Waalwijk,AZ,RKC
+680,cl0ccwbiy5tw0a2ojidetxsa2,2020-11-06Z,3ebril33e08ddzob4bhq8awsr,2uuh2bir8ktof0uxfo06lb4ox,Fortuna Sittard,PEC Zwolle,FOR,ZWO
+681,cl61wdqeg2p7akfandlrbjdka,2020-11-07Z,e8hiwrw6ocxm5iht6sp7jiv19,4tic29sox7m39fy1ztgv0jsiq,HFC ADO Den Haag,FC Twente,ADO,TWE
+682,clb5iodi9zah9d2acvur1nwq2,2020-11-07Z,cv5ftekuejf0ryxvd5h2my47r,dac758ef858jbq7pcb3gfwite,VVV Venlo,Heracles Almelo,VVV,HER
+683,cm2ylnhb4ouc7985rrykxzasq,2020-11-07Z,ed5nwjz5za3oyi20nxzgqivmx,89w5c6pw7vn0dxypi61tt0g4k,RKC Waalwijk,Sparta Rotterdam,RKC,SPA
+684,clsu7xndecbpn71jpa6x6t6y2,2020-11-08Z,ccpscwdcm65czscrun048ecn5,d0zdg647gvgc95xdtk1vpbkys,FC Utrecht,AFC Ajax,UTR,AJA
+685,clo3bkkbz92py5mjc6doij1wq,2020-11-08Z,6hsriqr3ybvyg94w2k19oal50,3t0vjqtxc8wpjzv82i3oi2ova,SBV Vitesse,FC Emmen,VIT,EMM
+686,cm7tchq6d5448x0d5353145m2,2020-11-08Z,20vymiy7bo8wkyxai3ew494fz,cos9hxi16eitbcbthof7zrm4m,Feyenoord Rotterdam,FC Groningen,FEY,GRO
+687,clhqkm6ftcx810rh3cce9cwve,2020-11-08Z,4vd2t5schmvvufrfib7f2vjdf,3kfktv64h7kg7zryax1wktr5r,SC Heerenveen,Alkmaar Zaanstreek,HEE,AZ
+688,cly32llgsy6ld9uyv78hf47l6,2020-11-08Z,24fvcruwqrqvqa3aonf8c3zuy,bk5ltsueqmeng29eovd8m2tml,PSV Eindhoven,Willem II,PSV,WIL
+689,cmi17bkm7cu5fpaspjmue3eju,2020-11-21Z,bk5ltsueqmeng29eovd8m2tml,cv5ftekuejf0ryxvd5h2my47r,Willem II,VVV Venlo,WIL,VVV
+690,cn271nk1p6gymvfujzzl6u2ju,2020-11-21Z,cos9hxi16eitbcbthof7zrm4m,6hsriqr3ybvyg94w2k19oal50,FC Groningen,SBV Vitesse,GRO,VIT
+691,cmsah3jhk0564lkdkv4mk42ne,2020-11-21Z,2uuh2bir8ktof0uxfo06lb4ox,ccpscwdcm65czscrun048ecn5,PEC Zwolle,FC Utrecht,ZWO,UTR
+692,cmcqsil9wb5cz18y96mgoy7hm,2020-11-22Z,d0zdg647gvgc95xdtk1vpbkys,dac758ef858jbq7pcb3gfwite,AFC Ajax,Heracles Almelo,AJA,HER
+693,cmx8p57rbp9p303l1i2opxi0a,2020-11-22Z,89w5c6pw7vn0dxypi61tt0g4k,e8hiwrw6ocxm5iht6sp7jiv19,Sparta Rotterdam,HFC ADO Den Haag,SPA,ADO
+694,cnat9q6b3ahjlahqis887263u,2020-11-22Z,3ebril33e08ddzob4bhq8awsr,20vymiy7bo8wkyxai3ew494fz,Fortuna Sittard,Feyenoord Rotterdam,FOR,FEY
+695,cng6berut5d2guubo28stofoq,2020-11-22Z,4tic29sox7m39fy1ztgv0jsiq,24fvcruwqrqvqa3aonf8c3zuy,FC Twente,PSV Eindhoven,TWE,PSV
+696,cnl2spxlglhrtsuffquenxdnu,2020-11-22Z,ed5nwjz5za3oyi20nxzgqivmx,4vd2t5schmvvufrfib7f2vjdf,RKC Waalwijk,SC Heerenveen,RKC,HEE
+697,cmn1iv592r9kxliou6xq6yiy2,2020-11-22Z,3kfktv64h7kg7zryax1wktr5r,3t0vjqtxc8wpjzv82i3oi2ova,Alkmaar Zaanstreek,FC Emmen,AZ,EMM
+698,cnrurqsq35r8ip121sargrii2,2020-11-27Z,4tic29sox7m39fy1ztgv0jsiq,ed5nwjz5za3oyi20nxzgqivmx,FC Twente,RKC Waalwijk,TWE,RKC
+699,co4nnee1cur141zzz25oxx6y2,2020-11-28Z,3t0vjqtxc8wpjzv82i3oi2ova,d0zdg647gvgc95xdtk1vpbkys,FC Emmen,AFC Ajax,EMM,AJA
+700,cnzfc2gc1nyb4dh1jd8rrlu22,2020-11-28Z,e8hiwrw6ocxm5iht6sp7jiv19,4vd2t5schmvvufrfib7f2vjdf,HFC ADO Den Haag,SC Heerenveen,ADO,HEE
+701,coeg78500lv8f5jmxx1ji83my,2020-11-28Z,cv5ftekuejf0ryxvd5h2my47r,2uuh2bir8ktof0uxfo06lb4ox,VVV Venlo,PEC Zwolle,VVV,ZWO
+702,cojfwx8dh1jyt6epm8n5tyooa,2020-11-29Z,6hsriqr3ybvyg94w2k19oal50,3ebril33e08ddzob4bhq8awsr,SBV Vitesse,Fortuna Sittard,VIT,FOR
+703,cooyljlje7xd70v8mpapgvrsa,2020-11-29Z,cos9hxi16eitbcbthof7zrm4m,bk5ltsueqmeng29eovd8m2tml,FC Groningen,Willem II,GRO,WIL
+704,cowqtpgpyqsr88h7nor4368a2,2020-11-29Z,20vymiy7bo8wkyxai3ew494fz,ccpscwdcm65czscrun048ecn5,Feyenoord Rotterdam,FC Utrecht,FEY,UTR
+705,co9lsrmd23b67gca67pkv2qne,2020-11-29Z,dac758ef858jbq7pcb3gfwite,3kfktv64h7kg7zryax1wktr5r,Heracles Almelo,Alkmaar Zaanstreek,HER,AZ
+706,cp40v7twffej87h7i5clmk296,2020-11-29Z,24fvcruwqrqvqa3aonf8c3zuy,89w5c6pw7vn0dxypi61tt0g4k,PSV Eindhoven,Sparta Rotterdam,PSV,SPA
+707,cpsmj3p8rg3hu6sj6tr800pre,2020-12-04Z,89w5c6pw7vn0dxypi61tt0g4k,3t0vjqtxc8wpjzv82i3oi2ova,Sparta Rotterdam,FC Emmen,SPA,EMM
+708,cpgkwa6g004bfugwr5mu8ouwa,2020-12-05Z,ed5nwjz5za3oyi20nxzgqivmx,cv5ftekuejf0ryxvd5h2my47r,RKC Waalwijk,VVV Venlo,RKC,VVV
+709,cqkmz6tgweupqc9srio2p0sq2,2020-12-05Z,3ebril33e08ddzob4bhq8awsr,bk5ltsueqmeng29eovd8m2tml,Fortuna Sittard,Willem II,FOR,WIL
+710,cpxl5uj4qwpvxd54mlz6t5ox6,2020-12-05Z,d0zdg647gvgc95xdtk1vpbkys,4tic29sox7m39fy1ztgv0jsiq,AFC Ajax,FC Twente,AJA,TWE
+711,cpa8yqqtuiroc4uyy4ce4bpm2,2020-12-05Z,2uuh2bir8ktof0uxfo06lb4ox,6hsriqr3ybvyg94w2k19oal50,PEC Zwolle,SBV Vitesse,ZWO,VIT
+712,cqcxu4cisj1dp32vwe535htuy,2020-12-06Z,20vymiy7bo8wkyxai3ew494fz,dac758ef858jbq7pcb3gfwite,Feyenoord Rotterdam,Heracles Almelo,FEY,HER
+713,cpn6uxcrv98b6f9dvwymlh27e,2020-12-06Z,3kfktv64h7kg7zryax1wktr5r,cos9hxi16eitbcbthof7zrm4m,Alkmaar Zaanstreek,FC Groningen,AZ,GRO
+714,cq4ygo486iy9o3a4nzpwejlnu,2020-12-06Z,ccpscwdcm65czscrun048ecn5,e8hiwrw6ocxm5iht6sp7jiv19,FC Utrecht,HFC ADO Den Haag,UTR,ADO
+715,cqszt5s4p5fv1uuigr95elf8q,2020-12-06Z,4vd2t5schmvvufrfib7f2vjdf,24fvcruwqrqvqa3aonf8c3zuy,SC Heerenveen,PSV Eindhoven,HEE,PSV
+716,cr149xb9lyeyi1zqw6zyf6k4q,2020-12-11Z,dac758ef858jbq7pcb3gfwite,3ebril33e08ddzob4bhq8awsr,Heracles Almelo,Fortuna Sittard,HER,FOR
+717,crre708ktrdngyv4vnuneu2ju,2020-12-12Z,cos9hxi16eitbcbthof7zrm4m,ed5nwjz5za3oyi20nxzgqivmx,FC Groningen,RKC Waalwijk,GRO,RKC
+718,crg09zuqc8fqiol02vqjjwewa,2020-12-12Z,3t0vjqtxc8wpjzv82i3oi2ova,e8hiwrw6ocxm5iht6sp7jiv19,FC Emmen,HFC ADO Den Haag,EMM,ADO
+719,crly1jhrjrhuktfernd3b4ga2,2020-12-12Z,d0zdg647gvgc95xdtk1vpbkys,2uuh2bir8ktof0uxfo06lb4ox,AFC Ajax,PEC Zwolle,AJA,ZWO
+720,cs2726d1d1fglat4k4xfow19m,2020-12-13Z,6hsriqr3ybvyg94w2k19oal50,4vd2t5schmvvufrfib7f2vjdf,SBV Vitesse,SC Heerenveen,VIT,HEE
+721,cs7v59l8tzku4pd1tdaj84woa,2020-12-13Z,cv5ftekuejf0ryxvd5h2my47r,20vymiy7bo8wkyxai3ew494fz,VVV Venlo,Feyenoord Rotterdam,VVV,FEY
+722,csdrf7xzme3txha2wswxlzfje,2020-12-13Z,bk5ltsueqmeng29eovd8m2tml,89w5c6pw7vn0dxypi61tt0g4k,Willem II,Sparta Rotterdam,WIL,SPA
+723,crwgzb0n122lwzb09izdmt3sa,2020-12-13Z,24fvcruwqrqvqa3aonf8c3zuy,ccpscwdcm65czscrun048ecn5,PSV Eindhoven,FC Utrecht,PSV,UTR
+724,cr932vhyd6n9vb2lguhb3e5ii,2020-12-13Z,4tic29sox7m39fy1ztgv0jsiq,3kfktv64h7kg7zryax1wktr5r,FC Twente,Alkmaar Zaanstreek,TWE,AZ
+725,csk8yxmc175wspb1oagcplzze,2020-12-18Z,2uuh2bir8ktof0uxfo06lb4ox,3t0vjqtxc8wpjzv82i3oi2ova,PEC Zwolle,FC Emmen,ZWO,EMM
+726,cspdiwew1niz2h3i78533px0q,2020-12-19Z,89w5c6pw7vn0dxypi61tt0g4k,cos9hxi16eitbcbthof7zrm4m,Sparta Rotterdam,FC Groningen,SPA,GRO
+727,csuk8oqvmlksp6cmxjocm9jsa,2020-12-19Z,cv5ftekuejf0ryxvd5h2my47r,4tic29sox7m39fy1ztgv0jsiq,VVV Venlo,FC Twente,VVV,TWE
+728,ct0qs0hqvn2xw93hgq1wundka,2020-12-19Z,ed5nwjz5za3oyi20nxzgqivmx,24fvcruwqrqvqa3aonf8c3zuy,RKC Waalwijk,PSV Eindhoven,RKC,PSV
+729,ct8p6rveprocmktk01uow8cq2,2020-12-19Z,ccpscwdcm65czscrun048ecn5,3ebril33e08ddzob4bhq8awsr,FC Utrecht,Fortuna Sittard,UTR,FOR
+730,ctdsgt9lbx7smk84ihmb1in3e,2020-12-20Z,6hsriqr3ybvyg94w2k19oal50,20vymiy7bo8wkyxai3ew494fz,SBV Vitesse,Feyenoord Rotterdam,VIT,FEY
+731,ctjco9ar85jqvzzetzsy55tnu,2020-12-20Z,e8hiwrw6ocxm5iht6sp7jiv19,d0zdg647gvgc95xdtk1vpbkys,HFC ADO Den Haag,AFC Ajax,ADO,AJA
+732,cto79k9aiulhov6ata8vdbzoq,2020-12-20Z,4vd2t5schmvvufrfib7f2vjdf,dac758ef858jbq7pcb3gfwite,SC Heerenveen,Heracles Almelo,HEE,HER
+733,ctuqamgzrdgmlrz8iv4ge3jai,2020-12-20Z,3kfktv64h7kg7zryax1wktr5r,bk5ltsueqmeng29eovd8m2tml,Alkmaar Zaanstreek,Willem II,AZ,WIL
+734,ctzwfc2aeb5we03wvfesqlzsa,2020-12-22Z,3ebril33e08ddzob4bhq8awsr,ed5nwjz5za3oyi20nxzgqivmx,Fortuna Sittard,RKC Waalwijk,FOR,RKC
+735,cu7gq7e89pjer0uttymrkf78q,2020-12-22Z,3t0vjqtxc8wpjzv82i3oi2ova,ccpscwdcm65czscrun048ecn5,FC Emmen,FC Utrecht,EMM,UTR
+736,cuchyo0sfl5ludm66z42kc8kq,2020-12-22Z,24fvcruwqrqvqa3aonf8c3zuy,cv5ftekuejf0ryxvd5h2my47r,PSV Eindhoven,VVV Venlo,PSV,VVV
+737,cujmj5clt9h76b4trvwnjtox6,2020-12-22Z,4tic29sox7m39fy1ztgv0jsiq,89w5c6pw7vn0dxypi61tt0g4k,FC Twente,Sparta Rotterdam,TWE,SPA
+738,cuov21rbpwc2vjk371v5dti7e,2020-12-23Z,3kfktv64h7kg7zryax1wktr5r,6hsriqr3ybvyg94w2k19oal50,Alkmaar Zaanstreek,SBV Vitesse,AZ,VIT
+739,cuu1xuntwggcnr5wg1emdqxre,2020-12-23Z,bk5ltsueqmeng29eovd8m2tml,d0zdg647gvgc95xdtk1vpbkys,Willem II,AFC Ajax,WIL,AJA
+740,cuzbhzo52a3q4vyw9dy70knze,2020-12-23Z,cos9hxi16eitbcbthof7zrm4m,dac758ef858jbq7pcb3gfwite,FC Groningen,Heracles Almelo,GRO,HER
+741,cv4touztiof7xidttlu662kiy,2020-12-23Z,e8hiwrw6ocxm5iht6sp7jiv19,2uuh2bir8ktof0uxfo06lb4ox,HFC ADO Den Haag,PEC Zwolle,ADO,ZWO
+742,cva2nzlxj2cu920b1dukpgqcq,2020-12-23Z,20vymiy7bo8wkyxai3ew494fz,4vd2t5schmvvufrfib7f2vjdf,Feyenoord Rotterdam,SC Heerenveen,FEY,HEE
+743,cblk23ogcebym4jq7pr4755ka,2020-12-27Z,ccpscwdcm65czscrun048ecn5,3kfktv64h7kg7zryax1wktr5r,FC Utrecht,Alkmaar Zaanstreek,UTR,AZ
+744,cw8fbeuygd9dhw4mcljp7108a,2021-01-09Z,ed5nwjz5za3oyi20nxzgqivmx,e8hiwrw6ocxm5iht6sp7jiv19,RKC Waalwijk,HFC ADO Den Haag,RKC,ADO
+745,cvf6xetgjjxx2yp37lui8i3je,2021-01-09Z,3t0vjqtxc8wpjzv82i3oi2ova,4tic29sox7m39fy1ztgv0jsiq,FC Emmen,FC Twente,EMM,TWE
+746,cvkhs96e3lerlwns9utvpas8a,2021-01-09Z,dac758ef858jbq7pcb3gfwite,6hsriqr3ybvyg94w2k19oal50,Heracles Almelo,SBV Vitesse,HER,VIT
+747,cvprxtawr6dsxtx9vee5pbm96,2021-01-09Z,2uuh2bir8ktof0uxfo06lb4ox,3kfktv64h7kg7zryax1wktr5r,PEC Zwolle,Alkmaar Zaanstreek,ZWO,AZ
+748,cvzcstmvwbbqg35uk21bv69uy,2021-01-09Z,ccpscwdcm65czscrun048ecn5,cos9hxi16eitbcbthof7zrm4m,FC Utrecht,FC Groningen,UTR,GRO
+749,cwh1kw9d78snlbrcw59io8m7e,2021-01-10Z,89w5c6pw7vn0dxypi61tt0g4k,20vymiy7bo8wkyxai3ew494fz,Sparta Rotterdam,Feyenoord Rotterdam,SPA,FEY
+750,cwq7bdx7dgu78vaaaufxl3wx6,2021-01-10Z,4vd2t5schmvvufrfib7f2vjdf,3ebril33e08ddzob4bhq8awsr,SC Heerenveen,Fortuna Sittard,HEE,FOR
+751,cwxapprmv4govuk148qo8j0q2,2021-01-10Z,cv5ftekuejf0ryxvd5h2my47r,bk5ltsueqmeng29eovd8m2tml,VVV Venlo,Willem II,VVV,WIL
+752,cx6g2d7n6yg5felo1w2mzzlgq,2021-01-10Z,d0zdg647gvgc95xdtk1vpbkys,24fvcruwqrqvqa3aonf8c3zuy,AFC Ajax,PSV Eindhoven,AJA,PSV
+753,cxfv1y8dwcd6is3erfye7ei5m,2021-01-12Z,6hsriqr3ybvyg94w2k19oal50,ccpscwdcm65czscrun048ecn5,SBV Vitesse,FC Utrecht,VIT,UTR
+754,cxn3e2iosyv1df77piyutlrai,2021-01-12Z,dac758ef858jbq7pcb3gfwite,3t0vjqtxc8wpjzv82i3oi2ova,Heracles Almelo,FC Emmen,HER,EMM
+755,cxumw1ob0ji2g48ihr603eu0a,2021-01-13Z,24fvcruwqrqvqa3aonf8c3zuy,3kfktv64h7kg7zryax1wktr5r,PSV Eindhoven,Alkmaar Zaanstreek,PSV,AZ
+756,cy1ypxg1yrjaucviro231fazu,2021-01-13Z,3ebril33e08ddzob4bhq8awsr,89w5c6pw7vn0dxypi61tt0g4k,Fortuna Sittard,Sparta Rotterdam,FOR,SPA
+757,cy7brz9uc7srsqpxyq3szfcyy,2021-01-13Z,e8hiwrw6ocxm5iht6sp7jiv19,cv5ftekuejf0ryxvd5h2my47r,HFC ADO Den Haag,VVV Venlo,ADO,VVV
+758,cyg1osifp9409p6g1arj1op62,2021-01-13Z,20vymiy7bo8wkyxai3ew494fz,2uuh2bir8ktof0uxfo06lb4ox,Feyenoord Rotterdam,PEC Zwolle,FEY,ZWO
+759,cymrrr1jpg9f895d8lesfwewa,2021-01-14Z,4vd2t5schmvvufrfib7f2vjdf,ed5nwjz5za3oyi20nxzgqivmx,SC Heerenveen,RKC Waalwijk,HEE,RKC
+760,cywpn8im9dbmg4plmd6iio0h6,2021-01-14Z,4tic29sox7m39fy1ztgv0jsiq,d0zdg647gvgc95xdtk1vpbkys,FC Twente,AFC Ajax,TWE,AJA
+761,cz5q0oyacfiq5mvs0edx4ew6i,2021-01-14Z,bk5ltsueqmeng29eovd8m2tml,cos9hxi16eitbcbthof7zrm4m,Willem II,FC Groningen,WIL,GRO
+762,czfjumxf98r8ak3o6h9svaaga,2021-01-16Z,3t0vjqtxc8wpjzv82i3oi2ova,6hsriqr3ybvyg94w2k19oal50,FC Emmen,SBV Vitesse,EMM,VIT
+763,d10210oghfl7wqcn8tzahib8q,2021-01-16Z,89w5c6pw7vn0dxypi61tt0g4k,24fvcruwqrqvqa3aonf8c3zuy,Sparta Rotterdam,PSV Eindhoven,SPA,PSV
+764,czpxkkzo585azo1lam58nv52i,2021-01-16Z,ccpscwdcm65czscrun048ecn5,dac758ef858jbq7pcb3gfwite,FC Utrecht,Heracles Almelo,UTR,HER
+765,d08yi4tjzoobertu3745ts9yi,2021-01-16Z,2uuh2bir8ktof0uxfo06lb4ox,3ebril33e08ddzob4bhq8awsr,PEC Zwolle,Fortuna Sittard,ZWO,FOR
+766,d00jzlfpuhsruygc0nzh0m44q,2021-01-16Z,3kfktv64h7kg7zryax1wktr5r,e8hiwrw6ocxm5iht6sp7jiv19,Alkmaar Zaanstreek,HFC ADO Den Haag,AZ,ADO
+767,d0ifk4ozevjjd253sxgbk9ene,2021-01-17Z,ed5nwjz5za3oyi20nxzgqivmx,bk5ltsueqmeng29eovd8m2tml,RKC Waalwijk,Willem II,RKC,WIL
+768,d0quw0gx8xzfisacd8jr5kzmy,2021-01-17Z,cos9hxi16eitbcbthof7zrm4m,4tic29sox7m39fy1ztgv0jsiq,FC Groningen,FC Twente,GRO,TWE
+769,d1g8yig8soegfagm3f39zi25m,2021-01-17Z,cv5ftekuejf0ryxvd5h2my47r,4vd2t5schmvvufrfib7f2vjdf,VVV Venlo,SC Heerenveen,VVV,HEE
+770,d18rowdc3y59o4nl1umznjecq,2021-01-17Z,d0zdg647gvgc95xdtk1vpbkys,20vymiy7bo8wkyxai3ew494fz,AFC Ajax,Feyenoord Rotterdam,AJA,FEY
+771,d1uia0o116s6adxk78h0apld6,2021-01-22Z,bk5ltsueqmeng29eovd8m2tml,2uuh2bir8ktof0uxfo06lb4ox,Willem II,PEC Zwolle,WIL,ZWO
+772,d1m7w5v7ojc01d8c90oxucqcq,2021-01-23Z,e8hiwrw6ocxm5iht6sp7jiv19,3t0vjqtxc8wpjzv82i3oi2ova,HFC ADO Den Haag,FC Emmen,ADO,EMM
+773,d221tig22tsntd9sh9bh2hje2,2021-01-23Z,6hsriqr3ybvyg94w2k19oal50,cos9hxi16eitbcbthof7zrm4m,SBV Vitesse,FC Groningen,VIT,GRO
+774,d299uo7n47ax0bghq6399sqju,2021-01-23Z,24fvcruwqrqvqa3aonf8c3zuy,ed5nwjz5za3oyi20nxzgqivmx,PSV Eindhoven,RKC Waalwijk,PSV,RKC
+775,d2eig338cduc30y3vfmdixffu,2021-01-23Z,dac758ef858jbq7pcb3gfwite,4vd2t5schmvvufrfib7f2vjdf,Heracles Almelo,SC Heerenveen,HER,HEE
+776,d2lpa33lyc4zml1ksuubwwcbu,2021-01-24Z,3ebril33e08ddzob4bhq8awsr,d0zdg647gvgc95xdtk1vpbkys,Fortuna Sittard,AFC Ajax,FOR,AJA
+777,d2r6dncxc37m2sj3efg6sis16,2021-01-24Z,4tic29sox7m39fy1ztgv0jsiq,cv5ftekuejf0ryxvd5h2my47r,FC Twente,VVV Venlo,TWE,VVV
+778,d2wdq78ryzh00evmpirl2nf56,2021-01-24Z,ccpscwdcm65czscrun048ecn5,89w5c6pw7vn0dxypi61tt0g4k,FC Utrecht,Sparta Rotterdam,UTR,SPA
+779,d31kymerhxfcbmo91ir8oqx62,2021-01-24Z,20vymiy7bo8wkyxai3ew494fz,3kfktv64h7kg7zryax1wktr5r,Feyenoord Rotterdam,Alkmaar Zaanstreek,FEY,AZ
+780,d36mce7rl1cmzzhumti5xk02y,2021-01-26Z,2uuh2bir8ktof0uxfo06lb4ox,dac758ef858jbq7pcb3gfwite,PEC Zwolle,Heracles Almelo,ZWO,HER
+781,d3dvtj8bs3d7pzntdwlbjeezu,2021-01-26Z,3t0vjqtxc8wpjzv82i3oi2ova,24fvcruwqrqvqa3aonf8c3zuy,FC Emmen,PSV Eindhoven,EMM,PSV
+782,d3isl4dfq9508mge7pydo9ilm,2021-01-26Z,cos9hxi16eitbcbthof7zrm4m,e8hiwrw6ocxm5iht6sp7jiv19,FC Groningen,HFC ADO Den Haag,GRO,ADO
+783,d3nw4sperb6zioaya3gly9t9m,2021-01-27Z,3kfktv64h7kg7zryax1wktr5r,ccpscwdcm65czscrun048ecn5,Alkmaar Zaanstreek,FC Utrecht,AZ,UTR
+784,d3tx4f6ndug9pbwzg2pfo5ch6,2021-01-27Z,ed5nwjz5za3oyi20nxzgqivmx,3ebril33e08ddzob4bhq8awsr,RKC Waalwijk,Fortuna Sittard,RKC,FOR
+785,d413i403il89dt8yb6ypfyesq,2021-01-27Z,cv5ftekuejf0ryxvd5h2my47r,6hsriqr3ybvyg94w2k19oal50,VVV Venlo,SBV Vitesse,VVV,VIT
+786,d48pabnpoqt49w8e1zghwump6,2021-01-27Z,4vd2t5schmvvufrfib7f2vjdf,20vymiy7bo8wkyxai3ew494fz,SC Heerenveen,Feyenoord Rotterdam,HEE,FEY
+787,d4dwlgz3hu5il4jiy5d201q3u,2021-01-28Z,89w5c6pw7vn0dxypi61tt0g4k,4tic29sox7m39fy1ztgv0jsiq,Sparta Rotterdam,FC Twente,SPA,TWE
+788,d4j9po1ij8pku5ygtiy91svai,2021-01-28Z,d0zdg647gvgc95xdtk1vpbkys,bk5ltsueqmeng29eovd8m2tml,AFC Ajax,Willem II,AJA,WIL
+789,d4orrj2hxfh4fpv1f1w076wru,2021-01-30Z,dac758ef858jbq7pcb3gfwite,cos9hxi16eitbcbthof7zrm4m,Heracles Almelo,FC Groningen,HER,GRO
+790,d4wgxg1vcritgib5glprois16,2021-01-30Z,ccpscwdcm65czscrun048ecn5,2uuh2bir8ktof0uxfo06lb4ox,FC Utrecht,PEC Zwolle,UTR,ZWO
+791,d560aam5ii1l1ar8zr41nrcdm,2021-01-30Z,3ebril33e08ddzob4bhq8awsr,cv5ftekuejf0ryxvd5h2my47r,Fortuna Sittard,VVV Venlo,FOR,VVV
+792,d5egmnw5pooy9eo7d6j8kzdd6,2021-01-30Z,6hsriqr3ybvyg94w2k19oal50,ed5nwjz5za3oyi20nxzgqivmx,SBV Vitesse,RKC Waalwijk,VIT,RKC
+793,d5mfbaqv15x8yug7xuo9xgxgq,2021-01-31Z,4tic29sox7m39fy1ztgv0jsiq,4vd2t5schmvvufrfib7f2vjdf,FC Twente,SC Heerenveen,TWE,HEE
+794,d5rtxdrmtr5vcjszibiobbsyy,2021-01-31Z,20vymiy7bo8wkyxai3ew494fz,24fvcruwqrqvqa3aonf8c3zuy,Feyenoord Rotterdam,PSV Eindhoven,FEY,PSV
+795,d5zka2ulyztswnrlhwqfqi8oa,2021-01-31Z,bk5ltsueqmeng29eovd8m2tml,3t0vjqtxc8wpjzv82i3oi2ova,Willem II,FC Emmen,WIL,EMM
+796,d67azg4779r6nes210zgacfai,2021-01-31Z,3kfktv64h7kg7zryax1wktr5r,d0zdg647gvgc95xdtk1vpbkys,Alkmaar Zaanstreek,AFC Ajax,AZ,AJA
+797,d6f32oo831ijqbfyd0eetaiqy,2021-01-31Z,e8hiwrw6ocxm5iht6sp7jiv19,89w5c6pw7vn0dxypi61tt0g4k,HFC ADO Den Haag,Sparta Rotterdam,ADO,SPA
+798,d6qr1c7s7t3beg2h8igwblzl6,2021-02-05Z,3ebril33e08ddzob4bhq8awsr,dac758ef858jbq7pcb3gfwite,Fortuna Sittard,Heracles Almelo,FOR,HER
+799,d73n1j1vxpoepwqkpl24qshnu,2021-02-06Z,2uuh2bir8ktof0uxfo06lb4ox,ed5nwjz5za3oyi20nxzgqivmx,PEC Zwolle,RKC Waalwijk,ZWO,RKC
+800,d78nfpd0nvujxstst18gjvrze,2021-02-06Z,3t0vjqtxc8wpjzv82i3oi2ova,3kfktv64h7kg7zryax1wktr5r,FC Emmen,Alkmaar Zaanstreek,EMM,AZ
+801,d6yp5uw5wznw2u8ropw9qwley,2021-02-06Z,24fvcruwqrqvqa3aonf8c3zuy,4tic29sox7m39fy1ztgv0jsiq,PSV Eindhoven,FC Twente,PSV,TWE
+802,d7djf5fbuagvvmis1lu0lo7sa,2021-02-06Z,4vd2t5schmvvufrfib7f2vjdf,6hsriqr3ybvyg94w2k19oal50,SC Heerenveen,SBV Vitesse,HEE,VIT
+803,d98rf561k2h7mc7ylvj7rbh4a,2021-02-12Z,ed5nwjz5za3oyi20nxzgqivmx,3t0vjqtxc8wpjzv82i3oi2ova,RKC Waalwijk,FC Emmen,RKC,EMM
+804,d8jqsy0vpi8zv6u1cmqyk04fe,2021-02-13Z,cos9hxi16eitbcbthof7zrm4m,2uuh2bir8ktof0uxfo06lb4ox,FC Groningen,PEC Zwolle,GRO,ZWO
+805,d9f6milj12itzwievbowihk6i,2021-02-13Z,89w5c6pw7vn0dxypi61tt0g4k,3ebril33e08ddzob4bhq8awsr,Sparta Rotterdam,Fortuna Sittard,SPA,FOR
+806,d891kym95bi4pcr1b51w5oqqy,2021-02-13Z,e8hiwrw6ocxm5iht6sp7jiv19,24fvcruwqrqvqa3aonf8c3zuy,HFC ADO Den Haag,PSV Eindhoven,ADO,PSV
+807,d91av76u09wwow8bkaq71ociy,2021-02-13Z,dac758ef858jbq7pcb3gfwite,d0zdg647gvgc95xdtk1vpbkys,Heracles Almelo,AFC Ajax,HER,AJA
+808,d8eao2m73mo2pnf7g4ridqxre,2021-02-14Z,3kfktv64h7kg7zryax1wktr5r,4vd2t5schmvvufrfib7f2vjdf,Alkmaar Zaanstreek,SC Heerenveen,AZ,HEE
+809,d8p5txgfmjhkyydgen2v31c2y,2021-02-14Z,ccpscwdcm65czscrun048ecn5,cv5ftekuejf0ryxvd5h2my47r,FC Utrecht,VVV Venlo,UTR,VVV
+810,d8udu24hh2kn39twhx34e83my,2021-02-14Z,20vymiy7bo8wkyxai3ew494fz,bk5ltsueqmeng29eovd8m2tml,Feyenoord Rotterdam,Willem II,FEY,WIL
+811,d9m57o7tej14gysttlxmrmqga,2021-02-14Z,6hsriqr3ybvyg94w2k19oal50,4tic29sox7m39fy1ztgv0jsiq,SBV Vitesse,FC Twente,VIT,TWE
+812,dav7d0woowjx29jh5og6b2jje,2021-02-19Z,bk5ltsueqmeng29eovd8m2tml,ccpscwdcm65czscrun048ecn5,Willem II,FC Utrecht,WIL,UTR
+813,d9vsacvgz0eoa4llg1s3gzxwq,2021-02-20Z,3t0vjqtxc8wpjzv82i3oi2ova,2uuh2bir8ktof0uxfo06lb4ox,FC Emmen,PEC Zwolle,EMM,ZWO
+814,daptkk3ctem939t3jek7jvg4q,2021-02-20Z,cv5ftekuejf0ryxvd5h2my47r,3kfktv64h7kg7zryax1wktr5r,VVV Venlo,Alkmaar Zaanstreek,VVV,AZ
+815,da5j81w9rd2t09dynuuiq4nl6,2021-02-20Z,3ebril33e08ddzob4bhq8awsr,e8hiwrw6ocxm5iht6sp7jiv19,Fortuna Sittard,HFC ADO Den Haag,FOR,ADO
+816,da0rf32eyqlm4y2annaxnopka,2021-02-21Z,4tic29sox7m39fy1ztgv0jsiq,20vymiy7bo8wkyxai3ew494fz,FC Twente,Feyenoord Rotterdam,TWE,FEY
+817,daf51bi587hp1h9g7md77d5yi,2021-02-21Z,ed5nwjz5za3oyi20nxzgqivmx,dac758ef858jbq7pcb3gfwite,RKC Waalwijk,Heracles Almelo,RKC,HER
+818,dakbb5nrgkt3dapgrkwl52ru2,2021-02-21Z,4vd2t5schmvvufrfib7f2vjdf,cos9hxi16eitbcbthof7zrm4m,SC Heerenveen,FC Groningen,HEE,GRO
+819,daaaipex1w7r4vcdthg4ryt0q,2021-02-21Z,24fvcruwqrqvqa3aonf8c3zuy,6hsriqr3ybvyg94w2k19oal50,PSV Eindhoven,SBV Vitesse,PSV,VIT
+820,d9qzofb470yhwz2xbiflhwaju,2021-02-21Z,d0zdg647gvgc95xdtk1vpbkys,89w5c6pw7vn0dxypi61tt0g4k,AFC Ajax,Sparta Rotterdam,AJA,SPA
+821,d7yk1a2ca4gvbvz1g6xtv2puy,2021-02-24Z,bk5ltsueqmeng29eovd8m2tml,e8hiwrw6ocxm5iht6sp7jiv19,Willem II,HFC ADO Den Haag,WIL,ADO
+822,d7lioh5fvaunsub2gqzsyn9m2,2021-02-24Z,cos9hxi16eitbcbthof7zrm4m,20vymiy7bo8wkyxai3ew494fz,FC Groningen,Feyenoord Rotterdam,GRO,FEY
+823,dbrtghefdbz3kfj6mdjvug0ve,2021-02-26Z,2uuh2bir8ktof0uxfo06lb4ox,4vd2t5schmvvufrfib7f2vjdf,PEC Zwolle,SC Heerenveen,ZWO,HEE
+824,dbgd5lpy20fumy4pi3a1kz33e,2021-02-27Z,ccpscwdcm65czscrun048ecn5,3t0vjqtxc8wpjzv82i3oi2ova,FC Utrecht,FC Emmen,UTR,EMM
+825,db0gcvrlhinq0tm6b6gj76bfu,2021-02-27Z,e8hiwrw6ocxm5iht6sp7jiv19,ed5nwjz5za3oyi20nxzgqivmx,HFC ADO Den Haag,RKC Waalwijk,ADO,RKC
+826,dcc8uacpnddj5rm5l0h7z9une,2021-02-27Z,6hsriqr3ybvyg94w2k19oal50,cv5ftekuejf0ryxvd5h2my47r,SBV Vitesse,VVV Venlo,VIT,VVV
+827,dblldvzgn5a8osywmirn78rxm,2021-02-27Z,dac758ef858jbq7pcb3gfwite,4tic29sox7m39fy1ztgv0jsiq,Heracles Almelo,FC Twente,HER,TWE
+828,dc4x0za1sdu1y9dp13w84jx4a,2021-02-28Z,89w5c6pw7vn0dxypi61tt0g4k,bk5ltsueqmeng29eovd8m2tml,Sparta Rotterdam,Willem II,SPA,WIL
+829,dbax1piocqcvupuyce0vhq0kq,2021-02-28Z,cos9hxi16eitbcbthof7zrm4m,3ebril33e08ddzob4bhq8awsr,FC Groningen,Fortuna Sittard,GRO,FOR
+830,dbx5g6ijgw2th7fgy8sehcvai,2021-02-28Z,24fvcruwqrqvqa3aonf8c3zuy,d0zdg647gvgc95xdtk1vpbkys,PSV Eindhoven,AFC Ajax,PSV,AJA
+831,db5q0t497jn141n1p6k2av97u,2021-02-28Z,3kfktv64h7kg7zryax1wktr5r,20vymiy7bo8wkyxai3ew494fz,Alkmaar Zaanstreek,Feyenoord Rotterdam,AZ,FEY
+832,dcr8hpl33nl3mf6yy2f2t9ai2,2021-03-05Z,3t0vjqtxc8wpjzv82i3oi2ova,89w5c6pw7vn0dxypi61tt0g4k,FC Emmen,Sparta Rotterdam,EMM,SPA
+833,dd475ddiwhnt3e6pbkim3dap6,2021-03-06Z,20vymiy7bo8wkyxai3ew494fz,cv5ftekuejf0ryxvd5h2my47r,Feyenoord Rotterdam,VVV Venlo,FEY,VVV
+834,dcylz1g8unxrgmiwyfkb2k1gq,2021-03-06Z,4tic29sox7m39fy1ztgv0jsiq,bk5ltsueqmeng29eovd8m2tml,FC Twente,Willem II,TWE,WIL
+835,ddriex2bmlap7jkx9hy5f97qi,2021-03-06Z,4vd2t5schmvvufrfib7f2vjdf,e8hiwrw6ocxm5iht6sp7jiv19,SC Heerenveen,HFC ADO Den Haag,HEE,ADO
+836,ddleuneq5m6wo1ceig7q2h5yi,2021-03-06Z,ed5nwjz5za3oyi20nxzgqivmx,ccpscwdcm65czscrun048ecn5,RKC Waalwijk,FC Utrecht,RKC,UTR
+837,dcko8s83rbr0hm0dmm92qnpey,2021-03-07Z,d0zdg647gvgc95xdtk1vpbkys,cos9hxi16eitbcbthof7zrm4m,AFC Ajax,FC Groningen,AJA,GRO
+838,ddan7z1rk116lz1nmdbig1gmi,2021-03-07Z,3ebril33e08ddzob4bhq8awsr,24fvcruwqrqvqa3aonf8c3zuy,Fortuna Sittard,PSV Eindhoven,FOR,PSV
+839,ddg60em0595coevuutsdo1m5m,2021-03-07Z,dac758ef858jbq7pcb3gfwite,2uuh2bir8ktof0uxfo06lb4ox,Heracles Almelo,PEC Zwolle,HER,ZWO
+840,ddx5nuvrrxvbrvw1zdi46xilm,2021-03-07Z,6hsriqr3ybvyg94w2k19oal50,3kfktv64h7kg7zryax1wktr5r,SBV Vitesse,Alkmaar Zaanstreek,VIT,AZ
+841,d8440z81s2neczmjx64nxeiju,2021-03-09Z,cv5ftekuejf0ryxvd5h2my47r,89w5c6pw7vn0dxypi61tt0g4k,VVV Venlo,Sparta Rotterdam,VVV,SPA
+842,dfki7kn0cf6u93yy2fql3b1be,2021-03-13Z,bk5ltsueqmeng29eovd8m2tml,4vd2t5schmvvufrfib7f2vjdf,Willem II,SC Heerenveen,WIL,HEE
+843,de3p3p8mloo92c2nxskdrs416,2021-03-13Z,e8hiwrw6ocxm5iht6sp7jiv19,dac758ef858jbq7pcb3gfwite,HFC ADO Den Haag,Heracles Almelo,ADO,HER
+844,de91sertdhj6dbti9y8b0yg6i,2021-03-13Z,3kfktv64h7kg7zryax1wktr5r,4tic29sox7m39fy1ztgv0jsiq,Alkmaar Zaanstreek,FC Twente,AZ,TWE
+845,deeom706r26cyopojdi3n3y3u,2021-03-13Z,cos9hxi16eitbcbthof7zrm4m,3t0vjqtxc8wpjzv82i3oi2ova,FC Groningen,FC Emmen,GRO,EMM
+846,df6799l2pw7ycaozw76vwrc6i,2021-03-13Z,89w5c6pw7vn0dxypi61tt0g4k,ed5nwjz5za3oyi20nxzgqivmx,Sparta Rotterdam,RKC Waalwijk,SPA,RKC
+847,dfcwjfcrhna8ajlhijus7ucmi,2021-03-14Z,cv5ftekuejf0ryxvd5h2my47r,3ebril33e08ddzob4bhq8awsr,VVV Venlo,Fortuna Sittard,VVV,FOR
+848,demvppvwjga0h9cof0ya02v6y,2021-03-14Z,ccpscwdcm65czscrun048ecn5,6hsriqr3ybvyg94w2k19oal50,FC Utrecht,SBV Vitesse,UTR,VIT
+849,deydalyamj2sxapbti20f4xnu,2021-03-14Z,24fvcruwqrqvqa3aonf8c3zuy,20vymiy7bo8wkyxai3ew494fz,PSV Eindhoven,Feyenoord Rotterdam,PSV,FEY
+850,desivdplf9dnxcwji2jmbkw2y,2021-03-14Z,2uuh2bir8ktof0uxfo06lb4ox,d0zdg647gvgc95xdtk1vpbkys,PEC Zwolle,AFC Ajax,ZWO,AJA
+851,dgr85vlfqr3rxrztijjx446lm,2021-03-19Z,4vd2t5schmvvufrfib7f2vjdf,4tic29sox7m39fy1ztgv0jsiq,SC Heerenveen,FC Twente,HEE,TWE
+852,dg6rrnp9f4qdhkmiot2x01hey,2021-03-20Z,3ebril33e08ddzob4bhq8awsr,ccpscwdcm65czscrun048ecn5,Fortuna Sittard,FC Utrecht,FOR,UTR
+853,dg1w02kcn9pxlzaudmpnalr3e,2021-03-20Z,20vymiy7bo8wkyxai3ew494fz,3t0vjqtxc8wpjzv82i3oi2ova,Feyenoord Rotterdam,FC Emmen,FEY,EMM
+854,dgm3qap1hkz8jbzkxlzledvfu,2021-03-20Z,ed5nwjz5za3oyi20nxzgqivmx,cos9hxi16eitbcbthof7zrm4m,RKC Waalwijk,FC Groningen,RKC,GRO
+855,dgh15kdzvqcfsvg0j7wfu3alm,2021-03-21Z,2uuh2bir8ktof0uxfo06lb4ox,cv5ftekuejf0ryxvd5h2my47r,PEC Zwolle,VVV Venlo,ZWO,VVV
+856,dfwzfyhcv6cyivrdxxcpcjofe,2021-03-21Z,3kfktv64h7kg7zryax1wktr5r,24fvcruwqrqvqa3aonf8c3zuy,Alkmaar Zaanstreek,PSV Eindhoven,AZ,PSV
+857,dgw8r0trvafhlzf0847dddizu,2021-03-21Z,6hsriqr3ybvyg94w2k19oal50,bk5ltsueqmeng29eovd8m2tml,SBV Vitesse,Willem II,VIT,WIL
+858,dgblrl1cwsof21520qyiteane,2021-03-21Z,dac758ef858jbq7pcb3gfwite,89w5c6pw7vn0dxypi61tt0g4k,Heracles Almelo,Sparta Rotterdam,HER,SPA
+859,dfs3jw92fm2d0kjr97vwrwvhm,2021-03-21Z,d0zdg647gvgc95xdtk1vpbkys,e8hiwrw6ocxm5iht6sp7jiv19,AFC Ajax,HFC ADO Den Haag,AJA,ADO
+860,di6pqsdnvjg2fb3wye1742tm2,2021-04-03Z,cv5ftekuejf0ryxvd5h2my47r,cos9hxi16eitbcbthof7zrm4m,VVV Venlo,FC Groningen,VVV,GRO
+861,dhbyarwxbeipxi8yjzoa6moa2,2021-04-03Z,4tic29sox7m39fy1ztgv0jsiq,6hsriqr3ybvyg94w2k19oal50,FC Twente,SBV Vitesse,TWE,VIT
+862,dienkv3lj3hpghd5t2vkf89re,2021-04-03Z,bk5ltsueqmeng29eovd8m2tml,3kfktv64h7kg7zryax1wktr5r,Willem II,Alkmaar Zaanstreek,WIL,AZ
+863,dhzupnyr9tfmnn9neskq5n7fu,2021-04-03Z,89w5c6pw7vn0dxypi61tt0g4k,2uuh2bir8ktof0uxfo06lb4ox,Sparta Rotterdam,PEC Zwolle,SPA,ZWO
+864,dhgxd4jo3owfb92mrp4cdfqsq,2021-04-04Z,20vymiy7bo8wkyxai3ew494fz,3ebril33e08ddzob4bhq8awsr,Feyenoord Rotterdam,Fortuna Sittard,FEY,FOR
+865,dh1c9l1nvn47mbp5thhh54j1m,2021-04-04Z,e8hiwrw6ocxm5iht6sp7jiv19,ccpscwdcm65czscrun048ecn5,HFC ADO Den Haag,FC Utrecht,ADO,UTR
+866,dhlugcquhn0bzkwxxq7b1gsq2,2021-04-04Z,24fvcruwqrqvqa3aonf8c3zuy,dac758ef858jbq7pcb3gfwite,PSV Eindhoven,Heracles Almelo,PSV,HER
+867,dh6fochu9v9kzbojij2xvwe3u,2021-04-04Z,3t0vjqtxc8wpjzv82i3oi2ova,ed5nwjz5za3oyi20nxzgqivmx,FC Emmen,RKC Waalwijk,EMM,RKC
+868,dhuaoaulrrsx8lsze541lzfje,2021-04-04Z,4vd2t5schmvvufrfib7f2vjdf,d0zdg647gvgc95xdtk1vpbkys,SC Heerenveen,AFC Ajax,HEE,AJA
+869,djszcp2w0yuuw8b4zdmex1pwq,2021-04-09Z,6hsriqr3ybvyg94w2k19oal50,e8hiwrw6ocxm5iht6sp7jiv19,SBV Vitesse,HFC ADO Den Haag,VIT,ADO
+870,djbfvp22h1mrfs8s0iubz1lka,2021-04-10Z,dac758ef858jbq7pcb3gfwite,bk5ltsueqmeng29eovd8m2tml,Heracles Almelo,Willem II,HER,WIL
+871,dimc236oq3ch0v4ylfscd8pyi,2021-04-10Z,3kfktv64h7kg7zryax1wktr5r,89w5c6pw7vn0dxypi61tt0g4k,Alkmaar Zaanstreek,Sparta Rotterdam,AZ,SPA
+872,dj63nwwnyf07szg4liwkdpega,2021-04-10Z,3ebril33e08ddzob4bhq8awsr,3t0vjqtxc8wpjzv82i3oi2ova,Fortuna Sittard,FC Emmen,FOR,EMM
+873,djha0cv0ki52xcs3bwek3b8fe,2021-04-10Z,2uuh2bir8ktof0uxfo06lb4ox,4tic29sox7m39fy1ztgv0jsiq,PEC Zwolle,FC Twente,ZWO,TWE
+874,dj0tckqvro330lfwypxq2hca2,2021-04-11Z,ccpscwdcm65czscrun048ecn5,20vymiy7bo8wkyxai3ew494fz,FC Utrecht,Feyenoord Rotterdam,UTR,FEY
+875,diufxkpys7gx1ash4q2mpxw8a,2021-04-11Z,cos9hxi16eitbcbthof7zrm4m,4vd2t5schmvvufrfib7f2vjdf,FC Groningen,SC Heerenveen,GRO,HEE
+876,djycmxs8ashwvws06ljiughgq,2021-04-11Z,cv5ftekuejf0ryxvd5h2my47r,24fvcruwqrqvqa3aonf8c3zuy,VVV Venlo,PSV Eindhoven,VVV,PSV
+877,djmvmdd09ngnktxsktfe4i4bu,2021-04-11Z,ed5nwjz5za3oyi20nxzgqivmx,d0zdg647gvgc95xdtk1vpbkys,RKC Waalwijk,AFC Ajax,RKC,AJA
+878,d7sfqfg4k6t1a8pzqjjlvkmlm,2021-04-22Z,d0zdg647gvgc95xdtk1vpbkys,ccpscwdcm65czscrun048ecn5,AFC Ajax,FC Utrecht,AJA,UTR
+879,dlytvp2ufuye88jnikzqo7wx6,2021-04-23Z,bk5ltsueqmeng29eovd8m2tml,ed5nwjz5za3oyi20nxzgqivmx,Willem II,RKC Waalwijk,WIL,RKC
+880,dldzveyags97q39mo5jxgi5wq,2021-04-24Z,4vd2t5schmvvufrfib7f2vjdf,2uuh2bir8ktof0uxfo06lb4ox,SC Heerenveen,PEC Zwolle,HEE,ZWO
+881,dl4tgif6ted1xkghmiik4vrsa,2021-04-24Z,24fvcruwqrqvqa3aonf8c3zuy,cos9hxi16eitbcbthof7zrm4m,PSV Eindhoven,FC Groningen,PSV,GRO
+882,dlnwnkpyd69f1oa3lruif8ei2,2021-04-24Z,89w5c6pw7vn0dxypi61tt0g4k,cv5ftekuejf0ryxvd5h2my47r,Sparta Rotterdam,VVV Venlo,SPA,VVV
+883,dkka7p3rbho1f9dx2id9gafsa,2021-04-25Z,3t0vjqtxc8wpjzv82i3oi2ova,dac758ef858jbq7pcb3gfwite,FC Emmen,Heracles Almelo,EMM,HER
+884,dk5ztrm4hjw2b1hg5he8hc4fe,2021-04-25Z,e8hiwrw6ocxm5iht6sp7jiv19,3ebril33e08ddzob4bhq8awsr,HFC ADO Den Haag,Fortuna Sittard,ADO,FOR
+885,dkd9yioz20ckbi00nrkaskg2y,2021-04-25Z,d0zdg647gvgc95xdtk1vpbkys,3kfktv64h7kg7zryax1wktr5r,AFC Ajax,Alkmaar Zaanstreek,AJA,AZ
+886,dkpo25m05y7v8mn55e3u1tjsa,2021-04-25Z,4tic29sox7m39fy1ztgv0jsiq,ccpscwdcm65czscrun048ecn5,FC Twente,FC Utrecht,TWE,UTR
+887,dkwzao6od2ctfpop3mka54ley,2021-04-25Z,20vymiy7bo8wkyxai3ew494fz,6hsriqr3ybvyg94w2k19oal50,Feyenoord Rotterdam,SBV Vitesse,FEY,VIT
+888,dn98jw4fz9cntaqetdw6dk38q,2021-05-01Z,dac758ef858jbq7pcb3gfwite,cv5ftekuejf0ryxvd5h2my47r,Heracles Almelo,VVV Venlo,HER,VVV
+889,dn0mjcp40trzgoc4v2b2consa,2021-05-01Z,3ebril33e08ddzob4bhq8awsr,4tic29sox7m39fy1ztgv0jsiq,Fortuna Sittard,FC Twente,FOR,TWE
+890,dnjcerfut0992axdg4v5z7m22,2021-05-01Z,ed5nwjz5za3oyi20nxzgqivmx,3kfktv64h7kg7zryax1wktr5r,RKC Waalwijk,Alkmaar Zaanstreek,RKC,AZ
+891,dno7voxskn18o4vubqb5ijgx6,2021-05-01Z,6hsriqr3ybvyg94w2k19oal50,2uuh2bir8ktof0uxfo06lb4ox,SBV Vitesse,PEC Zwolle,VIT,ZWO
+892,dmreipb4qimtpvvwlnofvfr6y,2021-05-01Z,ccpscwdcm65czscrun048ecn5,bk5ltsueqmeng29eovd8m2tml,FC Utrecht,Willem II,UTR,WIL
+893,dm404wtxdayd8b9j1upba79m2,2021-05-02Z,e8hiwrw6ocxm5iht6sp7jiv19,20vymiy7bo8wkyxai3ew494fz,HFC ADO Den Haag,Feyenoord Rotterdam,ADO,FEY
+894,dmb27hziaj8c9wu0976k83nmy,2021-05-02Z,d0zdg647gvgc95xdtk1vpbkys,3t0vjqtxc8wpjzv82i3oi2ova,AFC Ajax,FC Emmen,AJA,EMM
+895,dmjz2im2af59gfvsu73gntduy,2021-05-02Z,cos9hxi16eitbcbthof7zrm4m,89w5c6pw7vn0dxypi61tt0g4k,FC Groningen,Sparta Rotterdam,GRO,SPA
+896,dnek5xuj36oz64fruxd5st2lm,2021-05-02Z,24fvcruwqrqvqa3aonf8c3zuy,4vd2t5schmvvufrfib7f2vjdf,PSV Eindhoven,SC Heerenveen,PSV,HEE
+897,doy7j8utlqworyokcr9wmkyne,2021-05-07Z,89w5c6pw7vn0dxypi61tt0g4k,6hsriqr3ybvyg94w2k19oal50,Sparta Rotterdam,SBV Vitesse,SPA,VIT
+898,do6oqqei4jaefkr479vzyub8q,2021-05-08Z,4tic29sox7m39fy1ztgv0jsiq,dac758ef858jbq7pcb3gfwite,FC Twente,Heracles Almelo,TWE,HER
+899,dorxd1wwtinvk78yxp11lemi2,2021-05-08Z,4vd2t5schmvvufrfib7f2vjdf,ccpscwdcm65czscrun048ecn5,SC Heerenveen,FC Utrecht,HEE,UTR
+900,dntjscleh3sc5pmti66ovgm0a,2021-05-08Z,3kfktv64h7kg7zryax1wktr5r,3ebril33e08ddzob4bhq8awsr,Alkmaar Zaanstreek,Fortuna Sittard,AZ,FOR
+901,dp6www23ma1m01z68hmjgdn56,2021-05-08Z,cv5ftekuejf0ryxvd5h2my47r,ed5nwjz5za3oyi20nxzgqivmx,VVV Venlo,RKC Waalwijk,VVV,RKC
+902,do0vetv7ksn9bxi3bzuqzbmne,2021-05-09Z,3t0vjqtxc8wpjzv82i3oi2ova,cos9hxi16eitbcbthof7zrm4m,FC Emmen,FC Groningen,EMM,GRO
+903,doec9z8pr00isfa3qrzaq18bu,2021-05-09Z,20vymiy7bo8wkyxai3ew494fz,d0zdg647gvgc95xdtk1vpbkys,Feyenoord Rotterdam,AFC Ajax,FEY,AJA
+904,dok5ecl2v27ra9villd0q78tm,2021-05-09Z,2uuh2bir8ktof0uxfo06lb4ox,e8hiwrw6ocxm5iht6sp7jiv19,PEC Zwolle,HFC ADO Den Haag,ZWO,ADO
+905,dpeim04ebq8raoet7i3xuqiju,2021-05-09Z,bk5ltsueqmeng29eovd8m2tml,24fvcruwqrqvqa3aonf8c3zuy,Willem II,PSV Eindhoven,WIL,PSV
+906,dpjsnvyifdcbuepyb9cqoxgmi,2021-05-13Z,e8hiwrw6ocxm5iht6sp7jiv19,bk5ltsueqmeng29eovd8m2tml,HFC ADO Den Haag,Willem II,ADO,WIL
+907,dppu92vzpozztiapbb8srd7je,2021-05-13Z,d0zdg647gvgc95xdtk1vpbkys,cv5ftekuejf0ryxvd5h2my47r,AFC Ajax,VVV Venlo,AJA,VVV
+908,dpzqecu60wqghnesfggfdf5gq,2021-05-13Z,3t0vjqtxc8wpjzv82i3oi2ova,4vd2t5schmvvufrfib7f2vjdf,FC Emmen,SC Heerenveen,EMM,HEE
+909,dq88ycy2yplhea3sltmivrzai,2021-05-13Z,cos9hxi16eitbcbthof7zrm4m,3kfktv64h7kg7zryax1wktr5r,FC Groningen,Alkmaar Zaanstreek,GRO,AZ
+910,dqhe60b2ramp9e6iqm2lx6noq,2021-05-13Z,3ebril33e08ddzob4bhq8awsr,6hsriqr3ybvyg94w2k19oal50,Fortuna Sittard,SBV Vitesse,FOR,VIT
+911,dqq4dpi7o1p16j2qkc6x1oh9m,2021-05-13Z,dac758ef858jbq7pcb3gfwite,20vymiy7bo8wkyxai3ew494fz,Heracles Almelo,Feyenoord Rotterdam,HER,FEY
+912,dqvmxv7czfzoywq7ixvmdif6y,2021-05-13Z,24fvcruwqrqvqa3aonf8c3zuy,2uuh2bir8ktof0uxfo06lb4ox,PSV Eindhoven,PEC Zwolle,PSV,ZWO
+913,dr2i8lpbw83ty4unz4tccg6sq,2021-05-13Z,ed5nwjz5za3oyi20nxzgqivmx,4tic29sox7m39fy1ztgv0jsiq,RKC Waalwijk,FC Twente,RKC,TWE
+914,dr7q0gxniukstn7a4864bko6i,2021-05-13Z,89w5c6pw7vn0dxypi61tt0g4k,ccpscwdcm65czscrun048ecn5,Sparta Rotterdam,FC Utrecht,SPA,UTR
+915,drcxcvp5iod6c8l1j9xbwe63u,2021-05-16Z,3kfktv64h7kg7zryax1wktr5r,dac758ef858jbq7pcb3gfwite,Alkmaar Zaanstreek,Heracles Almelo,AZ,HER
+916,dri45lv2cdiklhsuntpry0416,2021-05-16Z,4tic29sox7m39fy1ztgv0jsiq,e8hiwrw6ocxm5iht6sp7jiv19,FC Twente,HFC ADO Den Haag,TWE,ADO
+917,drrihrfn05onftown2j73q06i,2021-05-16Z,ccpscwdcm65czscrun048ecn5,24fvcruwqrqvqa3aonf8c3zuy,FC Utrecht,PSV Eindhoven,UTR,PSV
+918,dryufhojs72wmeya3zmnb5bvu,2021-05-16Z,20vymiy7bo8wkyxai3ew494fz,ed5nwjz5za3oyi20nxzgqivmx,Feyenoord Rotterdam,RKC Waalwijk,FEY,RKC
+919,ds56fbwiamekh26et25fsomzu,2021-05-16Z,2uuh2bir8ktof0uxfo06lb4ox,cos9hxi16eitbcbthof7zrm4m,PEC Zwolle,FC Groningen,ZWO,GRO
+920,dsa8z4hwolrdgld1lhyp8cup6,2021-05-16Z,4vd2t5schmvvufrfib7f2vjdf,89w5c6pw7vn0dxypi61tt0g4k,SC Heerenveen,Sparta Rotterdam,HEE,SPA
+921,dsf9m5kwasuhnwkzunamayusq,2021-05-16Z,6hsriqr3ybvyg94w2k19oal50,d0zdg647gvgc95xdtk1vpbkys,SBV Vitesse,AFC Ajax,VIT,AJA
+922,dsk85uya3649bvsa505lu44mi,2021-05-16Z,cv5ftekuejf0ryxvd5h2my47r,3t0vjqtxc8wpjzv82i3oi2ova,VVV Venlo,FC Emmen,VVV,EMM
+923,dsp7iwaeihqykioelgunlaw6i,2021-05-16Z,bk5ltsueqmeng29eovd8m2tml,3ebril33e08ddzob4bhq8awsr,Willem II,Fortuna Sittard,WIL,FOR
+924,2q3t2ahwmycoya1lkhd9k4qac,2021-05-19Z,ccpscwdcm65czscrun048ecn5,cos9hxi16eitbcbthof7zrm4m,FC Utrecht,FC Groningen,UTR,GRO
+925,50sfsn81fwm0hmk7uho6skgt0,2021-05-19Z,20vymiy7bo8wkyxai3ew494fz,89w5c6pw7vn0dxypi61tt0g4k,Feyenoord Rotterdam,Sparta Rotterdam,FEY,SPA
+926,5e9f2c3f11bsx8qt099rjm2ok,2021-05-23Z,20vymiy7bo8wkyxai3ew494fz,ccpscwdcm65czscrun048ecn5,Feyenoord Rotterdam,FC Utrecht,FEY,UTR
