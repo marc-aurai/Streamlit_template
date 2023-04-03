@@ -16,7 +16,7 @@ def get_eredivisies(
     eredivisie = [
         (competition)
         for competition in competitions["competition"]
-        if competition["name"] == which_competition
+        #if competition["name"] == which_competition
     ]
     eredivisie_season = [
         [season["id"], season["name"], season["startDate"], season["endDate"]]
@@ -32,4 +32,4 @@ if __name__ == "__main__":
     df_competetion, which_competition = get_eredivisies(
         competitions=competitions, which_competition="Eredivisie"
     )
-    df_competetion.to_csv("./opta/data/competitions/{}.csv".format(which_competition), sep=";")
+    df_competetion.to_csv("./opta/data/competitions/{}.csv".format("all_competitions"), sep=";")

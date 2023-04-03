@@ -4,26 +4,30 @@ from tqdm import tqdm
 
 
 def get_tournamentschedule(
-    table_kind="tournamentschedule", competition_season_id="d1k1pqdg2yvw8e8my74yvrdw4"
+    table_kind="tournamentschedule", competitions=["d1k1pqdg2yvw8e8my74yvrdw4", "dp0vwa5cfgx2e733gg98gfhg4", "bp1sjjiswd4t3nw86vf6yq7hm"]
 ) -> tuple[str, str, pd.DataFrame]:
-    url = f"http://api.performfeeds.com/soccerdata/{{}}/6bxvue6su4ev1690mzy62a41t/{{}}?_rt=b&_fmt=json".format(
-        table_kind, competition_season_id
-    )
-    response = requests.get(url).json()
-    df_matches = pd.DataFrame()
-    df_matches = pd.concat(
-        [
-            pd.concat(
-                [df_matches, pd.DataFrame(response["matchDate"][matches]["match"])]
-            )
-            for matches in range(len(response["matchDate"]))
-        ],
-        ignore_index=True,
-    )
+    df_all_matches = pd.DataFrame() # From different competitions as well
+    for competition in competitions:
+        url = f"http://api.performfeeds.com/soccerdata/{{}}/6bxvue6su4ev1690mzy62a41t/{{}}?_rt=b&_fmt=json".format(
+            table_kind, competition
+        )
+        response = requests.get(url).json()
+        df_matches = pd.DataFrame()
+        df_matches = pd.concat(
+            [
+                pd.concat(
+                    [df_matches, pd.DataFrame(response["matchDate"][matches]["match"])]
+                )
+                for matches in range(len(response["matchDate"]))
+            ],
+            ignore_index=True,
+        )
+        df_all_matches = pd.concat([df_all_matches, df_matches])
+
     return (
         response["competition"]["name"],
         table_kind,
-        df_matches[
+        df_all_matches[
             [
                 "id",
                 "date",
