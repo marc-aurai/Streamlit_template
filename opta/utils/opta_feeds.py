@@ -2,15 +2,35 @@ import pandas as pd
 import requests
 from tqdm import tqdm
 
-
+# ID's van Eredivisie seizoenen volgorde 23/22/21
 def get_tournamentschedule(
     table_kind="tournamentschedule",
     competitions=[
         "d1k1pqdg2yvw8e8my74yvrdw4",
         "dp0vwa5cfgx2e733gg98gfhg4",
         "bp1sjjiswd4t3nw86vf6yq7hm",
-    ],  # ID's van Eredivisie seizoenen volgorde 23/22/21
-) -> tuple[str, str, pd.DataFrame]:
+    ],  
+) -> pd.DataFrame:
+    """ All scraped ESPN Articles correspondent to a particular competition. 
+    With the competition ID's from OPTA it is possible to get all matches from that competition, and thus all extra information from a match 
+    In order to merge the data from ESPN with OPTA the following data is needed; 
+    date, homeContestantCode and awayContestantCode. Since ESPN also includes date, home_abbrev (contestantcode) and away_abbrev (contestantcode).
+
+    Args:
+        table_kind (str, optional): Table from Statsperform to select. Defaults to "tournamentschedule".
+        competitions (list, optional): All competition ID's needed to concatenate the ESPN data with OPTA. Defaults to [ "d1k1pqdg2yvw8e8my74yvrdw4", "dp0vwa5cfgx2e733gg98gfhg4", "bp1sjjiswd4t3nw86vf6yq7hm", ]. \n
+        ID's that originates from Eredivisie seasons:  
+        1: 23/22
+        2: 22/21
+        3: 21/20
+
+    Returns:
+        pd.DataFrame: Returns a dataframe with OPTA data, that originates from the Table tournamentschedule with the corresponding competitions.
+        The Dataframe that is returned from this function includes the following columns from OPTA (tournamentschedule):
+        ['id'] ,['date'] ,['homeContestantId'] ,['awayContestantId'],
+        ['homeContestantOfficialName'], ['awayContestantOfficialName'], 
+        ['homeContestantCode'], ['awayContestantCode']
+    """
     df_all_matches = pd.DataFrame()  
 
     # Loop through different divisions
@@ -38,8 +58,6 @@ def get_tournamentschedule(
         df_all_matches = pd.concat([df_all_matches, df_matches], ignore_index=True)
 
     return (
-        response["competition"]["name"],
-        table_kind,
         # Return only selected columns from dataframe
         df_all_matches[
             [
@@ -57,9 +75,16 @@ def get_tournamentschedule(
 
 
 def get_matchstats_cards(df: pd.DataFrame) -> pd.DataFrame:
-    """
-    Function to get the stats on cards during a match
-    Loops through df containing match id's and performs API call to statsperform
+    """ This function returns the input dataframe with one extra collumn named ['card_events']. 
+    The column contains a list of dictionaries that represents all the cards with their corresponding information:
+    [contestantName, contestantId, periodId, timeMin, playerId, playerName, cardType].
+
+    Args:
+        df (pd.DataFrame): Minimum requirement: This function needs a dataframe as input that includes the ESPN data, 
+        concatenated with get_tournamentschedule().
+
+    Returns:
+        pd.DataFrame: Returns the original input dataframe with one extra collumn included, named ['card_events'].
     """
 
     # Create container for new column
@@ -106,7 +131,17 @@ def get_matchstats_cards(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def get_matchstats_goals(df: pd.DataFrame) -> pd.DataFrame:
-    """Currenty assistPlayerName is not supported, since this does not occur in every goal"""
+    """ This function returns the input dataframe with one extra collumn named ['goal_events']. 
+    The column contains a list of dictionaries that represents all the goals with their corresponding information:
+    [contestantName, contestantId, periodId, timeMin, scorerId, scorerName].
+
+    Args:
+        df (pd.DataFrame): Minimum requirement: This function needs a dataframe as input that includes the ESPN data, 
+        concatenated with get_tournamentschedule().
+
+    Returns:
+        pd.DataFrame: Returns the original input dataframe with one extra collumn included, named ['goal_events'].
+    """
 
     # Container for new column
     all_team_goals = []
@@ -151,6 +186,15 @@ def get_matchstats_goals(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def get_matchstats_possession(df: pd.DataFrame) -> pd.DataFrame:
+    """ This function returns the input dataframe with two extra collumns named ['possession_home'] and ['possession_away']. 
+    The column contains a string that represents the team's possession percentage.
+
+    Args:
+        df (pd.DataFrame): Minimum requirement: This function needs a dataframe as input that includes the ESPN data, concatenated with get_tournamentschedule().
+
+    Returns:
+        pd.DataFrame: Returns the original input dataframe with two extra collumns included, named ['possession_home'] and ['possession_away'].
+    """
     all_possessions_home = []
     all_possessions_away = []
     print("Get Possession Percentage..\n")
@@ -189,8 +233,14 @@ def get_matchstats_possession(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def get_venue(df: pd.DataFrame) -> pd.DataFrame:
-    """
-    Function to get venues for matches
+    """ This function returns the input dataframe with one extra collumn named ['venue']. 
+    The match's venue is listed in the column as a string.
+
+    Args:
+        df (pd.DataFrame): Minimum requirement: This function needs a dataframe as input that includes the ESPN data, concatenated with get_tournamentschedule().
+
+    Returns:
+        pd.DataFrame: Returns the original input dataframe with one extra collumn included, named ['venue'].
     """
 
     # Container for new venues column
