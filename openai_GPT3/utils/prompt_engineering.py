@@ -17,7 +17,7 @@ def date(df: pd.DataFrame) -> list:
         }
         for date in dates
     ]
-    print(dates)
+    #print(dates)
     return dates
 
 

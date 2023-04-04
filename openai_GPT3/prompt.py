@@ -12,7 +12,7 @@ from utils.prompt_engineering import (
 
 
 def get_data() -> pd.DataFrame:
-    return pd.read_csv("./opta/data/merged/merged.csv", sep=";")
+    return pd.read_csv("./opta/data/merged/merged.csv", sep=";").dropna()
 
 
 def select_features(df: pd.DataFrame) -> pd.DataFrame:
@@ -38,8 +38,13 @@ def select_features(df: pd.DataFrame) -> pd.DataFrame:
 if __name__ == "__main__":
     df = get_data()
     df_selection = select_features(df=df)
-    print(df_selection[:4])
-    dates = date(df_selection[:10])
-    competitions = competition(df_selection[:10])
-    final_scores = final_score(df_selection[:10])
-    print(final_scores)
+    dates = date(df_selection)
+    competitions = competition(df_selection)
+    final_scores = final_score(df_selection)
+    prompt_df = pd.DataFrame(
+        {
+            "dates": dates,
+            "competition": competitions,
+            "final_score": final_scores,
+        })
+    prompt_df.to_csv("./openai_GPT3/train_data/train.csv")
