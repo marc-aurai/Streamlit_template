@@ -2,6 +2,8 @@
 .vscode
 __pycache__
 
-openai_gpt3
 old
 all_competitions.ipynb
+prompt_engineering.ipynb
+chat.py
+.env

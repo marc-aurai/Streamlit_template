@@ -2,41 +2,43 @@ import pandas as pd
 import requests
 from tqdm import tqdm
 
+
 # ID's van Eredivisie seizoenen volgorde 23/22/21
 def get_tournamentschedule(
+    outletAuthKey: str,
     table_kind="tournamentschedule",
     competitions=[
         "d1k1pqdg2yvw8e8my74yvrdw4",
         "dp0vwa5cfgx2e733gg98gfhg4",
         "bp1sjjiswd4t3nw86vf6yq7hm",
-    ],  
+    ],
 ) -> pd.DataFrame:
-    """ All scraped ESPN Articles correspondent to a particular competition. 
-    With the competition ID's from OPTA it is possible to get all matches from that competition, and thus all extra information from a match 
-    In order to merge the data from ESPN with OPTA the following data is needed; 
+    """All scraped ESPN Articles correspondent to a particular competition.
+    With the competition ID's from OPTA it is possible to get all matches from that competition, and thus all extra information from a match
+    In order to merge the data from ESPN with OPTA the following data is needed;
     date, homeContestantCode and awayContestantCode. Since ESPN also includes date, home_abbrev (contestantcode) and away_abbrev (contestantcode).
 
     Args:
+        outletAuthKey (str): Statsperform Authorization Key e.g. (Eredivsie, Keuken Kampioen Divisie/KKD)
         table_kind (str, optional): Table from Statsperform to select. Defaults to "tournamentschedule".
         competitions (list, optional): All competition ID's needed to concatenate the ESPN data with OPTA. Defaults to [ "d1k1pqdg2yvw8e8my74yvrdw4", "dp0vwa5cfgx2e733gg98gfhg4", "bp1sjjiswd4t3nw86vf6yq7hm", ]. \n
-        ID's that originates from Eredivisie seasons:  
+        ID's that originates from Eredivisie seasons:
         1: 23/22
         2: 22/21
         3: 21/20
-
     Returns:
         pd.DataFrame: Returns a dataframe with OPTA data, that originates from the Table tournamentschedule with the corresponding competitions.
         The Dataframe that is returned from this function includes the following columns from OPTA (tournamentschedule):
         ['id'] ,['date'] ,['homeContestantId'] ,['awayContestantId'],
-        ['homeContestantOfficialName'], ['awayContestantOfficialName'], 
+        ['homeContestantOfficialName'], ['awayContestantOfficialName'],
         ['homeContestantCode'], ['awayContestantCode']
     """
-    df_all_matches = pd.DataFrame()  
+    df_all_matches = pd.DataFrame()
 
     # Loop through different divisions
     for competition in competitions:
-        url = f"http://api.performfeeds.com/soccerdata/{{}}/6bxvue6su4ev1690mzy62a41t/{{}}?_rt=b&_fmt=json".format(
-            table_kind, competition
+        url = f"http://api.performfeeds.com/soccerdata/{{}}/{{}}/{{}}?_rt=b&_fmt=json".format(
+            table_kind, outletAuthKey, competition
         )
         response = requests.get(url).json()
 
@@ -57,31 +59,30 @@ def get_tournamentschedule(
         # Concat all competitions together (seasons 23/22/21)
         df_all_matches = pd.concat([df_all_matches, df_matches], ignore_index=True)
 
-    return (
-        # Return only selected columns from dataframe
-        df_all_matches[
-            [
-                "id",
-                "date",
-                "homeContestantId",
-                "awayContestantId",
-                "homeContestantOfficialName",
-                "awayContestantOfficialName",
-                "homeContestantCode",
-                "awayContestantCode",
-            ]
-        ],
-    )
+    return df_all_matches[
+        [
+            "id",
+            "date",
+            "homeContestantId",
+            "awayContestantId",
+            "homeContestantOfficialName",
+            "awayContestantOfficialName",
+            "homeContestantCode",
+            "awayContestantCode",
+        ]
+    ]
+    # Return only selected columns from dataframe
 
 
-def get_matchstats_cards(df: pd.DataFrame) -> pd.DataFrame:
-    """ This function returns the input dataframe with one extra collumn named ['card_events']. 
+def get_matchstats_cards(df: pd.DataFrame, outletAuthKey: str) -> pd.DataFrame:
+    """This function returns the input dataframe with one extra collumn named ['card_events'].
     The column contains a list of dictionaries that represents all the cards with their corresponding information:
     [contestantName, contestantId, periodId, timeMin, playerId, playerName, cardType].
 
     Args:
-        df (pd.DataFrame): Minimum requirement: This function needs a dataframe as input that includes the ESPN data, 
+        df (pd.DataFrame): Minimum requirement: This function needs a dataframe as input that includes the ESPN data,
         concatenated with get_tournamentschedule().
+        outletAuthKey (str): Statsperform Authorization Key e.g. (Eredivsie, Keuken Kampioen Divisie/KKD)
 
     Returns:
         pd.DataFrame: Returns the original input dataframe with one extra collumn included, named ['card_events'].
@@ -96,7 +97,7 @@ def get_matchstats_cards(df: pd.DataFrame) -> pd.DataFrame:
         try:
             matchstats = (
                 requests.get(
-                    f"http://api.performfeeds.com/soccerdata/matchstats/6bxvue6su4ev1690mzy62a41t/?_rt=b&_fmt=json&fx={{}}".format(
+                    f"http://api.performfeeds.com/soccerdata/matchstats/{{}}/?_rt=b&_fmt=json&fx={{}}".format(
                         df["id"][match]
                     )
                 )
@@ -108,8 +109,8 @@ def get_matchstats_cards(df: pd.DataFrame) -> pd.DataFrame:
             team_cards = [
                 {
                     "contestantName": requests.get(
-                        f"http://api.performfeeds.com/soccerdata/team/6bxvue6su4ev1690mzy62a41t/?_rt=b&_fmt=json&ctst={{}}".format(
-                            card["contestantId"]
+                        f"http://api.performfeeds.com/soccerdata/team/{{}}/?_rt=b&_fmt=json&ctst={{}}".format(
+                            outletAuthKey, card["contestantId"]
                         )
                     ).json()["contestant"][0]["name"],
                     "contestantId": card["contestantId"],
@@ -130,14 +131,15 @@ def get_matchstats_cards(df: pd.DataFrame) -> pd.DataFrame:
     return df
 
 
-def get_matchstats_goals(df: pd.DataFrame) -> pd.DataFrame:
-    """ This function returns the input dataframe with one extra collumn named ['goal_events']. 
+def get_matchstats_goals(df: pd.DataFrame, outletAuthKey: str) -> pd.DataFrame:
+    """This function returns the input dataframe with one extra collumn named ['goal_events'].
     The column contains a list of dictionaries that represents all the goals with their corresponding information:
     [contestantName, contestantId, periodId, timeMin, scorerId, scorerName].
 
     Args:
-        df (pd.DataFrame): Minimum requirement: This function needs a dataframe as input that includes the ESPN data, 
+        df (pd.DataFrame): Minimum requirement: This function needs a dataframe as input that includes the ESPN data,
         concatenated with get_tournamentschedule().
+        outletAuthKey (str): Statsperform Authorization Key e.g. (Eredivsie, Keuken Kampioen Divisie/KKD)
 
     Returns:
         pd.DataFrame: Returns the original input dataframe with one extra collumn included, named ['goal_events'].
@@ -152,8 +154,8 @@ def get_matchstats_goals(df: pd.DataFrame) -> pd.DataFrame:
         try:
             matchstats = (
                 requests.get(
-                    f"http://api.performfeeds.com/soccerdata/matchstats/6bxvue6su4ev1690mzy62a41t/?_rt=b&_fmt=json&fx={{}}".format(
-                        df["id"][match]
+                    f"http://api.performfeeds.com/soccerdata/matchstats/{{}}/?_rt=b&_fmt=json&fx={{}}".format(
+                        outletAuthKey, df["id"][match]
                     )
                 )
                 # Access goal information from live data
@@ -164,8 +166,8 @@ def get_matchstats_goals(df: pd.DataFrame) -> pd.DataFrame:
             team_goals = [
                 {
                     "contestantName": requests.get(
-                        f"http://api.performfeeds.com/soccerdata/team/6bxvue6su4ev1690mzy62a41t/?_rt=b&_fmt=json&ctst={{}}".format(
-                            goal["contestantId"]
+                        f"http://api.performfeeds.com/soccerdata/team/{{}}/?_rt=b&_fmt=json&ctst={{}}".format(
+                            outletAuthKey, goal["contestantId"]
                         )
                     ).json()["contestant"][0]["name"],
                     "contestantId": goal["contestantId"],
@@ -185,13 +187,13 @@ def get_matchstats_goals(df: pd.DataFrame) -> pd.DataFrame:
     return df
 
 
-def get_matchstats_possession(df: pd.DataFrame) -> pd.DataFrame:
-    """ This function returns the input dataframe with two extra collumns named ['possession_home'] and ['possession_away']. 
+def get_matchstats_possession(df: pd.DataFrame, outletAuthKey: str) -> pd.DataFrame:
+    """This function returns the input dataframe with two extra collumns named ['possession_home'] and ['possession_away'].
     The column contains a string that represents the team's possession percentage.
 
     Args:
         df (pd.DataFrame): Minimum requirement: This function needs a dataframe as input that includes the ESPN data, concatenated with get_tournamentschedule().
-
+        outletAuthKey (str): Statsperform Authorization Key e.g. (Eredivsie, Keuken Kampioen Divisie/KKD)
     Returns:
         pd.DataFrame: Returns the original input dataframe with two extra collumns included, named ['possession_home'] and ['possession_away'].
     """
@@ -201,8 +203,8 @@ def get_matchstats_possession(df: pd.DataFrame) -> pd.DataFrame:
     for match in tqdm(df.index):
         try:
             matchstats = requests.get(
-                f"http://api.performfeeds.com/soccerdata/matchstats/6bxvue6su4ev1690mzy62a41t/?_rt=b&_fmt=json&fx={{}}".format(
-                    df["id"][match]
+                f"http://api.performfeeds.com/soccerdata/matchstats/{{}}/?_rt=b&_fmt=json&fx={{}}".format(
+                    outletAuthKey, df["id"][match]
                 )
             ).json()["liveData"]["lineUp"]
             possession_home = str(
@@ -232,13 +234,13 @@ def get_matchstats_possession(df: pd.DataFrame) -> pd.DataFrame:
     return df
 
 
-def get_venue(df: pd.DataFrame) -> pd.DataFrame:
-    """ This function returns the input dataframe with one extra collumn named ['venue']. 
+def get_venue(df: pd.DataFrame, outletAuthKey: str) -> pd.DataFrame:
+    """This function returns the input dataframe with one extra collumn named ['venue'].
     The match's venue is listed in the column as a string.
 
     Args:
         df (pd.DataFrame): Minimum requirement: This function needs a dataframe as input that includes the ESPN data, concatenated with get_tournamentschedule().
-
+        outletAuthKey (str): Statsperform Authorization Key e.g. (Eredivsie, Keuken Kampioen Divisie/KKD)
     Returns:
         pd.DataFrame: Returns the original input dataframe with one extra collumn included, named ['venue'].
     """
@@ -252,8 +254,8 @@ def get_venue(df: pd.DataFrame) -> pd.DataFrame:
         try:
             # Enter match id in API call
             response = requests.get(
-                f"http://api.performfeeds.com/soccerdata/matchstats/6bxvue6su4ev1690mzy62a41t/?_rt=b&_fmt=json&fx={{}}".format(
-                    df["id"][match]
+                f"http://api.performfeeds.com/soccerdata/matchstats/{{}}/?_rt=b&_fmt=json&fx={{}}".format(
+                    outletAuthKey, df["id"][match]
                 )
             ).json()
 

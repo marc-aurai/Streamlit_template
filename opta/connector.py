@@ -1,15 +1,22 @@
+import os
+
 import pandas as pd
+from dotenv import load_dotenv
 from utils.opta_feeds import (
     get_matchstats_cards,
     get_matchstats_goals,
+    get_matchstats_possession,
     get_tournamentschedule,
     get_venue,
-    get_matchstats_possession,
 )
+
+load_dotenv()
+outletAuthKey_ereD = os.getenv("outletAuthKey_ereD")
+outletAuthKey_KKD = os.getenv("outletAuthKey_KKD")
 
 
 def get_espn_data(csv_name: str) -> pd.DataFrame:
-    """ Loads the scraped ESPN data from: /espn_scraper/scraper_data as a pandas dataframe
+    """Loads the scraped ESPN data from: /espn_scraper/scraper_data as a pandas dataframe
 
     Args:
         csv_name (str): Name of the scraped ESPN dataset you want to load
@@ -20,11 +27,15 @@ def get_espn_data(csv_name: str) -> pd.DataFrame:
     df_espn = pd.read_csv(
         "./espn_scraper/scraper_data/{}.csv".format(csv_name), sep=";"
     )
-    return df_espn
+    return df_espn.dropna()
 
 
-def refactor_df(df_tournament: pd.DataFrame) -> pd.DataFrame:
-    """ Club abbreviation Modifications. E.g. NEC -> N.E.C.
+def refactor_df(
+    df_tournament: pd.DataFrame,
+    opta_team_abbreviations: list,
+    espn_team_abbreviations: list,
+) -> pd.DataFrame:
+    """Club abbreviation Modifications. E.g. NEC -> N.E.C.
 
     Args:
         df_tournament (pd.DataFrame): Dataframe that includes all matches, from the selected competitions.
@@ -32,8 +43,6 @@ def refactor_df(df_tournament: pd.DataFrame) -> pd.DataFrame:
     Returns:
         pd.DataFrame: Returns a refactored Dataframe
     """
-    opta_team_abbreviations = ["NEC", "AJX", "ZWO"]
-    espn_team_abbreviations = ["N.E.C.", "AJA", "PEC"]
     for opta_abbr, espn_abbr in zip(opta_team_abbreviations, espn_team_abbreviations):
         df_tournament["awayContestantCode"] = df_tournament[
             "awayContestantCode"
@@ -45,7 +54,7 @@ def refactor_df(df_tournament: pd.DataFrame) -> pd.DataFrame:
 
 
 def merge(df_espn: pd.DataFrame, df_tournament: pd.DataFrame) -> pd.DataFrame:
-    """ Merge different OPTA tables with each other. 
+    """Merge different OPTA tables with each other.
     Furthermore, this function merges the scraped ESPN Data with OPTA data.
 
     Args:
@@ -68,15 +77,102 @@ def merge(df_espn: pd.DataFrame, df_tournament: pd.DataFrame) -> pd.DataFrame:
     return df_merged
 
 
-if __name__ == "__main__":
-    df_espn = get_espn_data(csv_name="articles_eredivisie")
-    
-    df_tournament = get_tournamentschedule()
-    df_tournament = refactor_df(df_tournament)
-    df_possession = get_matchstats_possession(df_tournament)
-    df_cards = get_matchstats_cards(df_possession)
-    df_venues = get_venue(df_cards)
-    df_goals = get_matchstats_goals(df_venues)
+def eredivisie() -> pd.DataFrame:
+    """Concatenates the ESPN scraped data (Eredivisie articles)
+    with the right matches and its data from OPTA Tables.
 
-    df_merged = merge(df_espn, df_goals)
+    Returns:
+        pd.DataFrame: Returns a dataframe with ESPN and OPTA concatenated.
+    """
+    print("Eredivisie.. \n")
+    df_espn = get_espn_data(csv_name="articles_eredivisie")
+
+    df_tournament = get_tournamentschedule(
+        outletAuthKey=outletAuthKey_ereD,
+        competitions=[
+            "d1k1pqdg2yvw8e8my74yvrdw4",
+            "dp0vwa5cfgx2e733gg98gfhg4",
+            "bp1sjjiswd4t3nw86vf6yq7hm",
+        ],
+    )
+
+    df_tournament = refactor_df(
+        df_tournament,
+        opta_team_abbreviations=[
+            "NEC",
+            "AJX",
+            "ZWO",
+        ],
+        espn_team_abbreviations=["N.E.C.", "AJA", "PEC"],
+    )
+    df_possession = get_matchstats_possession(
+        df_tournament, outletAuthKey=outletAuthKey_ereD
+    )
+    df_cards = get_matchstats_cards(df_possession, outletAuthKey=outletAuthKey_ereD)
+    df_venues = get_venue(df_cards, outletAuthKey=outletAuthKey_ereD)
+    df_goals = get_matchstats_goals(df_venues, outletAuthKey=outletAuthKey_ereD)
+
+    df_merged = merge(df_espn, df_goals).dropna()
+    df_merged.to_csv("./opta/data/merged/merged_ereD.csv", sep=";", index=False)
+    return df_merged
+
+
+def KKD() -> pd.DataFrame:
+    """Concatenates the ESPN scraped data (Keuken Kampioen Divisie articles)
+    with the right matches and its data from OPTA Tables.
+
+    Returns:
+        pd.DataFrame: Returns a dataframe with ESPN and OPTA concatenated.
+    """
+    print("Keuken Kampioen Divisie.. \n")
+    df_espn = get_espn_data(csv_name="articles_KKD")
+
+    df_tournament = get_tournamentschedule(
+        outletAuthKey=outletAuthKey_KKD,
+        competitions=[
+            "1w03tfpd5nc6woo8j2nc9239w",
+            "8arv967ero2aknwkin9m3zsic",
+            "55a24w8bxnmf1o3vlhw9qh562",
+        ],
+    )
+
+    df_tournament = refactor_df(
+        df_tournament,
+        opta_team_abbreviations=[
+            "NEC",
+            "AJX",
+            "ZWO",
+            "UT2",
+            "OSS",
+            "PSV",
+            "AZ2",
+            "EHV",
+        ],
+        espn_team_abbreviations=[
+            "N.E.C.",
+            "JAJ",
+            "PEC",
+            "JUT",
+            "TOP",
+            "JPS",
+            "JAZ",
+            "EIN",
+        ],
+    )
+    df_possession = get_matchstats_possession(
+        df_tournament, outletAuthKey=outletAuthKey_KKD
+    )
+    df_cards = get_matchstats_cards(df_possession, outletAuthKey=outletAuthKey_KKD)
+    df_venues = get_venue(df_cards, outletAuthKey=outletAuthKey_KKD)
+    df_goals = get_matchstats_goals(df_venues, outletAuthKey=outletAuthKey_KKD)
+
+    df_merged = merge(df_espn, df_goals).dropna()
+    df_merged.to_csv("./opta/data/merged/merged_KKD.csv", sep=";", index=False)
+    return df_merged
+
+
+if __name__ == "__main__":
+    df_ereD = eredivisie()
+    df_KKD = KKD()
+    df_merged = pd.concat([df_ereD, df_KKD], ignore_index=True).dropna()
     df_merged.to_csv("./opta/data/merged/merged.csv", sep=";", index=False)
