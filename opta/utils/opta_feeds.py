@@ -98,7 +98,7 @@ def get_matchstats_cards(df: pd.DataFrame, outletAuthKey: str) -> pd.DataFrame:
             matchstats = (
                 requests.get(
                     f"http://api.performfeeds.com/soccerdata/matchstats/{{}}/?_rt=b&_fmt=json&fx={{}}".format(
-                        df["id"][match]
+                        outletAuthKey, df["id"][match]
                     )
                 )
                 # Access card information from live data

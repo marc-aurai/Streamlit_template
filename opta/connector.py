@@ -125,7 +125,7 @@ def KKD() -> pd.DataFrame:
         pd.DataFrame: Returns a dataframe with ESPN and OPTA concatenated.
     """
     print("Keuken Kampioen Divisie.. \n")
-    df_espn = get_espn_data(csv_name="articles_KKD")
+    df_espn = get_espn_data(csv_name="articles_KKD2")
 
     df_tournament = get_tournamentschedule(
         outletAuthKey=outletAuthKey_KKD,

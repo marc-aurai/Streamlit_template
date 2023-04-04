@@ -38,4 +38,8 @@ def select_features(df: pd.DataFrame) -> pd.DataFrame:
 if __name__ == "__main__":
     df = get_data()
     df_selection = select_features(df=df)
-    print(df_selection.columns)
+    print(df_selection[:4])
+    dates = date(df_selection[:10])
+    competitions = competition(df_selection[:10])
+    final_scores = final_score(df_selection[:10])
+    print(final_scores)
