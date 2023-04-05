@@ -84,5 +84,5 @@ if __name__ == "__main__":
         + prompt_df.card_events
         + "\n\n###\n\n" # stop sequence, tip from openAI
     )
-    openai_df["completion"] = prompt_df["completion"]
+    openai_df["completion"] = " "+prompt_df["completion"] # start your completion with a space, tip from openai
     openai_df.to_csv("./openai_GPT3/train_data/openai_train.csv", line_terminator="\n")
