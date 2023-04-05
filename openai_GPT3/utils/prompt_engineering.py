@@ -21,7 +21,7 @@ def date(df: pd.DataFrame) -> list:
 
 def home_vs_away(df: pd.DataFrame) -> list:
     home_versus_away = [
-        "Speelde " + str(home) + " thuis tegen " + str(away)
+        "speelde " + str(home) + " thuis tegen " + str(away)
         for home, away in zip(df["home_team"].to_list(), df["away_team"].to_list())
     ]
     return home_versus_away
@@ -89,5 +89,11 @@ def card_events(df: pd.DataFrame) -> list:
 
 
 # met article title
-def article_completion():
-    pass
+def article_completion(df: pd.DataFrame) -> list:
+    completion = [article_title + "\n\n" + article
+        for article_title, article in zip(
+            df['article_title'].to_list(),
+            df['article'].to_list(),
+            )
+    ]
+    return completion
