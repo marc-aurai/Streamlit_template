@@ -39,12 +39,24 @@ if __name__ == "__main__":
     df = get_data()
     df_selection = select_features(df=df)
     dates = date(df_selection)
-    competitions = competition(df_selection)
+    home_versus_away = home_vs_away(df_selection)
+    venue_names = venue(df_selection)
+    competition_names = competition(df_selection)
     final_scores = final_score(df_selection)
+    goals = goal_events(df_selection)
+    cards = card_events(df_selection)
     prompt_df = pd.DataFrame(
         {
             "dates": dates,
-            "competition": competitions,
+            "home_vs_away": home_versus_away,
+            "venue": venue_names,
+            "competition": competition_names,
             "final_score": final_scores,
-        })
+            "goal_events": goals,
+            "card_events": cards,
+        }
+    )
+    # Flatten list of goal and card events per match.
+    prompt_df['goal_events'] = [', '.join(map(str, l)) for l in prompt_df['goal_events']]
+    prompt_df['card_events'] = [', '.join(map(str, l)) for l in prompt_df['card_events']] 
     prompt_df.to_csv("./openai_GPT3/train_data/train.csv")
