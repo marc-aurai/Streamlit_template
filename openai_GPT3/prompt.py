@@ -8,6 +8,9 @@ from utils.prompt_engineering import (
     card_events,
     goal_events,
     article_completion,
+    possession,
+    trainer,
+    keeper,
 )
 
 
@@ -31,6 +34,12 @@ def select_features(df: pd.DataFrame) -> pd.DataFrame:
             "card_events",
             "venue",
             "goal_events",
+            "homeContestantId",
+            "awayContestantId",
+            "trainer_home",
+            "trainer_away",
+            "keeper_home",
+            "keeper_away",
         ]
     ]
 
@@ -46,6 +55,9 @@ if __name__ == "__main__":
     goals = goal_events(df_selection)
     cards = card_events(df_selection)
     completion = article_completion(df_selection)
+    possesion_stats = possession(df_selection)
+    trainers = trainer(df_selection)
+    keepers = keeper(df_selection)
     prompt_df = pd.DataFrame(
         {
             "dates": dates,
@@ -53,6 +65,9 @@ if __name__ == "__main__":
             "venue": venue_names,
             "competition": competition_names,
             "final_score": final_scores,
+            "possession": possesion_stats,
+            "trainers": trainers,
+            "keepers": keepers,
             "goal_events": goals,
             "card_events": cards,
             "completion": completion,
@@ -82,7 +97,13 @@ if __name__ == "__main__":
         + prompt_df.goal_events
         + ".\n"
         + prompt_df.card_events
-        + "\n\n###\n\n" # stop sequence, tip from openAI
+        + ".\n"
+        + prompt_df.possession
+        + ".\n"
+        + prompt_df.trainers
+        + ".\n"
+        + prompt_df.keepers
+        + ".\n\n###\n\n" # stop sequence, tip from openAI
     )
     openai_df["completion"] = " "+prompt_df["completion"] # start your completion with a space, tip from openai
     openai_df.to_csv("./openai_GPT3/train_data/openai_train.csv", line_terminator="\n")

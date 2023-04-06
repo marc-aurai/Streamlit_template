@@ -8,6 +8,8 @@ from utils.opta_feeds import (
     get_matchstats_possession,
     get_tournamentschedule,
     get_venue,
+    get_trainer,
+    get_keepers,
 )
 
 load_dotenv()
@@ -111,8 +113,10 @@ def eredivisie() -> pd.DataFrame:
     df_cards = get_matchstats_cards(df_possession, outletAuthKey=outletAuthKey_ereD)
     df_venues = get_venue(df_cards, outletAuthKey=outletAuthKey_ereD)
     df_goals = get_matchstats_goals(df_venues, outletAuthKey=outletAuthKey_ereD)
+    df_trainers = get_trainer(df_goals, outletAuthKey=outletAuthKey_ereD)
+    df_keepers = get_keepers(df_trainers, outletAuthKey=outletAuthKey_ereD)
 
-    df_merged = merge(df_espn, df_goals).dropna()
+    df_merged = merge(df_espn, df_keepers).dropna()
     df_merged.to_csv("./opta/data/merged/merged_ereD.csv", sep=";", index=False)
     return df_merged
 
@@ -165,8 +169,10 @@ def KKD() -> pd.DataFrame:
     df_cards = get_matchstats_cards(df_possession, outletAuthKey=outletAuthKey_KKD)
     df_venues = get_venue(df_cards, outletAuthKey=outletAuthKey_KKD)
     df_goals = get_matchstats_goals(df_venues, outletAuthKey=outletAuthKey_KKD)
+    df_trainers = get_trainer(df_goals, outletAuthKey=outletAuthKey_KKD)
+    df_keepers = get_keepers(df_trainers, outletAuthKey=outletAuthKey_KKD)
 
-    df_merged = merge(df_espn, df_goals).dropna()
+    df_merged = merge(df_espn, df_keepers).dropna()
     df_merged.to_csv("./opta/data/merged/merged_KKD.csv", sep=";", index=False)
     return df_merged
 
