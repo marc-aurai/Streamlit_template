@@ -168,7 +168,7 @@ def card_events(df: pd.DataFrame) -> list:
     for all_matches_all_cards in df['card_events'].tolist():
         cards_in_match = []
         for cards in ast.literal_eval(all_matches_all_cards):
-            kaart_type = "rode kaart" if cards['cardType'] == "RC" else "gele kaart"
+            kaart_type = "rode kaart" if cards['cardType'] == "RC" or cards['cardType'] == "Y2C" else "gele kaart"
             cards_in_match.append(str(cards['playerName'])+" van "+
                                   str(cards["contestantName"])+" kreeg in de "+
                                   str(cards["periodId"])+"e helft in minuut "+
