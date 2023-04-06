@@ -134,7 +134,7 @@ def goal_events(df: pd.DataFrame) -> list:
                                     str(goals["periodId"])+"e helft in minuut "+
                                     str(goals["timeMin"]))
             if goals['goalType'] == "PG":
-                goals_in_match.append(str(goals['scorerName'])+" scoorde een penalty voor "+
+                goals_in_match.append(str(goals['scorerName'])+" scoorde een strafschop voor "+
                                     str(goals["contestantName"])+" in de "+
                                     str(goals["periodId"])+"e helft in minuut "+
                                     str(goals["timeMin"]))
