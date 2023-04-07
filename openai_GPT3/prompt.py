@@ -14,8 +14,11 @@ from utils.prompt_engineering import (
 )
 
 
+training_name = "training_2"
+
+
 def get_data() -> pd.DataFrame:
-    return pd.read_csv("./opta/data/merged/merged.csv", sep=";").dropna()
+    return pd.read_csv("./opta/data/merged/merged_ereD.csv", sep=";").dropna()
 
 
 def select_features(df: pd.DataFrame) -> pd.DataFrame:
@@ -80,7 +83,11 @@ if __name__ == "__main__":
     prompt_df["card_events"] = [
         ", ".join(map(str, l)) for l in prompt_df["card_events"]
     ]
-    prompt_df.to_csv("./openai_GPT3/train_data/train.csv", line_terminator="\n")
+    prompt_df.to_csv(
+        "./openai_GPT3/train_data/{}/train.csv".format(training_name),
+        line_terminator="\n",
+        sep=";",
+    )
 
     openai_df = pd.DataFrame()
     openai_df["prompt"] = (
@@ -103,7 +110,13 @@ if __name__ == "__main__":
         + prompt_df.trainers
         + ".\n"
         + prompt_df.keepers
-        + ".\n\n###\n\n" # stop sequence, tip from openAI
+        + ".\n\n###\n\n"  # stop sequence, tip from openAI
     )
-    openai_df["completion"] = " "+prompt_df["completion"] # start your completion with a space, tip from openai
-    openai_df.to_csv("./openai_GPT3/train_data/openai_train.csv", line_terminator="\n")
+    openai_df["completion"] = (
+        " " + prompt_df["completion"]
+    )  # start your completion with a space, tip from openai
+    openai_df.to_csv(
+        "./openai_GPT3/train_data/{}/openai_train.csv".format(training_name),
+        line_terminator="\n",
+        sep=";",
+    )

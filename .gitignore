@@ -7,3 +7,7 @@ all_competitions.ipynb
 prompt_engineering.ipynb
 chat.py
 .env
+
+articles_eredivisie_ESPN_Style.csv
+articles_eredivisie_rewritten.csv
+training_2

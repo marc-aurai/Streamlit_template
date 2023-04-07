@@ -67,15 +67,17 @@ def merge(df_espn: pd.DataFrame, df_tournament: pd.DataFrame) -> pd.DataFrame:
         pd.DataFrame: Merged dataframe with ESPN data and OPTA Data
     """
     df_merged = pd.merge(
-        df_espn,
         df_tournament,
+        df_espn,
         how="left",
-        left_on=["date", "home_abbrev", "away_abbrev"],
-        right_on=["date", "homeContestantCode", "awayContestantCode"],
-    )
+        right_on=["date", "home_abbrev", "away_abbrev"],
+        left_on=["date", "homeContestantCode", "awayContestantCode"],
+    ).dropna()
     df_merged.drop(
         df_merged.filter(regex="Unname"), axis=1, inplace=True
     )  # Drop unnamed columns
+    df_merged['score_home'] = df_merged['score_home'].astype(int)
+    df_merged['score_away'] = df_merged['score_away'].astype(int)
     return df_merged
 
 
@@ -115,7 +117,7 @@ def eredivisie() -> pd.DataFrame:
     df_goals = get_matchstats_goals(df_venues, outletAuthKey=outletAuthKey_ereD)
     df_trainers = get_trainer(df_goals, outletAuthKey=outletAuthKey_ereD)
     df_keepers = get_keepers(df_trainers, outletAuthKey=outletAuthKey_ereD)
-
+    
     df_merged = merge(df_espn, df_keepers).dropna()
     df_merged.to_csv("./opta/data/merged/merged_ereD.csv", sep=";", index=False)
     return df_merged
