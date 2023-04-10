@@ -8,7 +8,7 @@ from PIL import Image
 from streamlit_chat import message as st_message
 
 from pages.utils_streamlit.st_login import check_password
-from openai_GPT3.chat import GPT_3, GPT_chat_completion
+from pages.utils_streamlit.chat import GPT_3, GPT_chat_completion
 
 if "message_history" not in st.session_state:
     st.session_state.message_history = []
