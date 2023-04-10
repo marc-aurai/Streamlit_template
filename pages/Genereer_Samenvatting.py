@@ -97,7 +97,7 @@ if check_password():
                         MAX_TOKENS=TOKENS,
                         TEMP=temperature_GPT,
                     )
-                _datetime = str(get_datetime() + "\n")
+                _datetime = get_datetime()
                 st.session_state.message_history.append(_datetime + generated_output)
                 for message_ in reversed(st.session_state.message_history):
                     st_message(

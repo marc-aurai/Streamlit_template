@@ -24,7 +24,7 @@ def GPT_3(prompt, model_engine, MAX_TOKENS, TEMP):
         stop=None,
         temperature=TEMP
     )
-    return completion.choices[0].text
+    return "\n" + str(completion.choices[0].text)
 
 def GPT_chat_completion(prompt, model_engine, MAX_TOKENS, TEMP):
     """_summary_
@@ -43,4 +43,4 @@ def GPT_chat_completion(prompt, model_engine, MAX_TOKENS, TEMP):
         max_tokens=MAX_TOKENS, 
         temperature=TEMP
     )
-    return completion.choices[0].message.content
+    return "\n" + str(completion.choices[0].message.content)
