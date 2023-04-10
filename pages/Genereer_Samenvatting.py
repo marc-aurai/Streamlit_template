@@ -81,14 +81,14 @@ if check_password():
     if submit:
         with st.spinner("Even een samenvatting aan het schrijven, momentje..."):
             if input_data != "..":
-                if openai_model == "gpt-3.5-turbo" or "gpt-4-0314":
+                if str(openai_model) == "gpt-3.5-turbo" or "gpt-4-0314":
                     generated_output = GPT_chat_completion(
                         prompt=input_data,
                         model_engine=openai_model,
                         MAX_TOKENS=TOKENS,
                         TEMP=temperature_GPT,
                     )
-                if openai_model == "curie:ft-southfields-2023-04-05-11-53-31" or "davinci:ft-southfields-2023-04-07-18-26-14":
+                if str(openai_model) == "curie:ft-southfields-2023-04-05-11-53-31" or "davinci:ft-southfields-2023-04-07-18-26-14":
                     generated_output = GPT_3(
                         prompt=input_data,
                         model_engine=openai_model,
