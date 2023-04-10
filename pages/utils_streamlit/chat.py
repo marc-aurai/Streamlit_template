@@ -1,7 +1,7 @@
 import openai
-import os
+import streamlit as st
 
-openai.api_key = os.environ['OPENAI_KEY']
+openai.api_key = st.secrets['OPENAI_KEY']
 
 def GPT_3(prompt, model_engine, MAX_TOKENS, TEMP):
     """
