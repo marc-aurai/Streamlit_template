@@ -43,6 +43,7 @@ def select_features(df: pd.DataFrame) -> pd.DataFrame:
             "trainer_away",
             "keeper_home",
             "keeper_away",
+            "type_article",
         ]
     ]
 
@@ -74,6 +75,7 @@ if __name__ == "__main__":
             "goal_events": goals,
             "card_events": cards,
             "completion": completion,
+            "type_article": df_selection.type_article.to_list()
         }
     )
     # Flatten list of goal and card events per match.
@@ -87,11 +89,13 @@ if __name__ == "__main__":
         "./openai_GPT3/train_data/{}/train.csv".format(training_name),
         line_terminator="\n",
         sep=";",
-    )
+    ) # Original dataframe
 
     openai_df = pd.DataFrame()
     openai_df["prompt"] = (
-        prompt_df.dates
+        prompt_df.type_article
+        + "\n"
+        + prompt_df.dates
         + " "
         + prompt_df.home_vs_away
         + " "
@@ -118,5 +122,4 @@ if __name__ == "__main__":
     openai_df.to_csv(
         "./openai_GPT3/train_data/{}/openai_train.csv".format(training_name),
         line_terminator="\n",
-        sep=";",
     )

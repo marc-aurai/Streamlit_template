@@ -89,7 +89,7 @@ def eredivisie() -> pd.DataFrame:
         pd.DataFrame: Returns a dataframe with ESPN and OPTA concatenated.
     """
     print("Eredivisie.. \n")
-    df_espn = get_espn_data(csv_name="articles_eredivisie")
+    df_espn = get_espn_data(csv_name="articles_eredivisie_ESPN_Style")
 
     df_tournament = get_tournamentschedule(
         outletAuthKey=outletAuthKey_ereD,
