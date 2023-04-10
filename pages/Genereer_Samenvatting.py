@@ -82,7 +82,6 @@ if check_password():
         with st.spinner("Even een samenvatting aan het schrijven, momentje..."):
             if input_data != "..":
                 if str(openai_model) in ("gpt-3.5-turbo", "gpt-4"):
-                    print("Chat model")
                     generated_output = GPT_chat_completion(
                         prompt=input_data,
                         model_engine=openai_model,
@@ -90,7 +89,6 @@ if check_password():
                         TEMP=temperature_GPT,
                     )
                 if str(openai_model) in ("curie:ft-southfields-2023-04-05-11-53-31", "davinci:ft-southfields-2023-04-07-18-26-14"):
-                    print("Finetuned model")
                     generated_output = GPT_3(
                         prompt=input_data,
                         model_engine=openai_model,
