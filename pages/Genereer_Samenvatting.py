@@ -65,7 +65,7 @@ if check_password():
         "Selecteer een model",
         (
             "gpt-3.5-turbo",
-            "gpt-4-0314",
+            "gpt-4",
             "curie:ft-southfields-2023-04-05-11-53-31",
             "davinci:ft-southfields-2023-04-07-18-26-14",
         ),
@@ -98,7 +98,7 @@ if check_password():
                         TEMP=temperature_GPT,
                     )
                 _datetime = get_datetime()
-                st.session_state.message_history.append(_datetime + generated_output)
+                st.session_state.message_history.append(_datetime+ "\n" + generated_output)
                 for message_ in reversed(st.session_state.message_history):
                     st_message(
                         message_,
