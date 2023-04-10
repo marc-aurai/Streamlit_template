@@ -26,20 +26,20 @@ def GPT_3(prompt, model_engine, MAX_TOKENS, TEMP):
     )
     return completion.choices[0].text
 
-def GPT_chat_completion(user_prompt, model_engine, MAX_TOKENS, TEMP):
+def GPT_chat_completion(prompt, model_engine, MAX_TOKENS, TEMP):
     """_summary_
 
     Args:
         prompt (_type_): _description_
         model_engine (_type_): _description_
     """
-    prompt = {
+    user_prompt = {
         "role": "user",
-        "content": user_prompt
+        "content": prompt
     }
     completion = openai.ChatCompletion.create(
         model=model_engine,
-        messages=[prompt],
+        messages=[user_prompt],
         max_tokens=MAX_TOKENS, 
         temperature=TEMP
     )
