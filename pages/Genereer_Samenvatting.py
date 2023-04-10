@@ -81,7 +81,7 @@ if check_password():
     if submit:
         with st.spinner("Even een samenvatting aan het schrijven, momentje..."):
             if input_data != "..":
-                if str(openai_model) in ("gpt-3.5-turbo", "gpt-4-0314"):
+                if str(openai_model) in ("gpt-3.5-turbo", "gpt-4"):
                     print("Chat model")
                     generated_output = GPT_chat_completion(
                         prompt=input_data,
