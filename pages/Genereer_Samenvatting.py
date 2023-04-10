@@ -98,7 +98,7 @@ if check_password():
                         TEMP=temperature_GPT,
                     )
                 _datetime = get_datetime()
-                st.session_state.message_history.append(_datetime+ "\n" + generated_output)
+                st.session_state.message_history.append(_datetime + generated_output)
                 for message_ in reversed(st.session_state.message_history):
                     st_message(
                         message_,
