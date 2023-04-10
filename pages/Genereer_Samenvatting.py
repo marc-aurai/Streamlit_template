@@ -53,7 +53,7 @@ if check_password():
     image = load_images()
     st.image(image)
 
-    st.write(""" # South-Fields Demo """)
+    st.write(""" # Southfields AI Tool """)
 
     TOKENS = st.sidebar.number_input(
         label="Maximum length (Tokens)", min_value=50, max_value=500, value=350
