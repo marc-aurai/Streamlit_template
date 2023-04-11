@@ -1,6 +1,7 @@
 import calendar
 import datetime
 import uuid
+import pandas as pd
 
 import pytz
 import streamlit as st
@@ -17,6 +18,12 @@ if "message_history" not in st.session_state:
 @st.cache_data(show_spinner="Een momentje...")
 def load_images():
     return Image.open("assets/image/southfields_logo.png")
+
+@st.cache_data(show_spinner="Een momentje...")
+def load_dataset():
+    df = pd.read_csv("./openai_GPT3/train_data/training_3/streamlit_prompt.csv", sep=",")
+    df = df.sort_values(by='date', ascending=False)
+    return df[:100]
 
 
 def streamlit_page_config():
@@ -51,6 +58,7 @@ if check_password():
     streamlit_page_config()
     st.sidebar.success("Genereer een samenvatting op deze demo pagina.")
     image = load_images()
+    df = load_dataset()
     st.image(image)
 
     st.write(""" # Southfields AI Tool """)
@@ -73,8 +81,15 @@ if check_password():
 
     st.sidebar.success("You selected: "+str(openai_model))
 
+    selected_match_date = st.selectbox("Selecteer wedstrijd datum: ", df.date.values.tolist())
+    matches_on_date = df.loc[df['date'] == selected_match_date]
+
+    selected_match = st.selectbox("Selecteer wedstrijd: ", matches_on_date.match.values.tolist())
+    matches_on_date = df.loc[df['match'] == selected_match]
+
+
     input_data = st.text_area(
-        label="Wedstrijd Data", value="..", height=200, max_chars=None
+        label="Wedstrijd Data", value=matches_on_date.prompt, height=200, max_chars=None
     )
     submit = st.button("Genereer")
 

@@ -14,7 +14,7 @@ from utils.prompt_engineering import (
 )
 
 
-training_name = "training_2"
+training_name = "training_3"
 
 
 def get_data() -> pd.DataFrame:
@@ -44,6 +44,8 @@ def select_features(df: pd.DataFrame) -> pd.DataFrame:
             "keeper_home",
             "keeper_away",
             "type_article",
+            "homeContestantOfficialName",
+            "awayContestantOfficialName",
         ]
     ]
 
@@ -86,15 +88,17 @@ if __name__ == "__main__":
         ", ".join(map(str, l)) for l in prompt_df["card_events"]
     ]
     prompt_df.to_csv(
-        "./openai_GPT3/train_data/{}/train.csv".format(training_name),
+        "./openai_GPT3/train_data/{}/streamlit.csv".format(training_name),
         line_terminator="\n",
         sep=";",
     ) # Original dataframe
 
     openai_df = pd.DataFrame()
+    openai_df["date"] = df_selection["date"]
+    openai_df["match"] = df_selection["homeContestantOfficialName"] + " vs "+ df_selection["awayContestantOfficialName"]
     openai_df["prompt"] = (
-        prompt_df.type_article
-        + "\n"
+        #prompt_df.type_article
+        "Geef de samenvatting een pakkende titel en schrijf een voetbal wedstrijd samenvatting inclusief paragrafen met de volgende informatie:\n"
         + prompt_df.dates
         + " "
         + prompt_df.home_vs_away
@@ -120,6 +124,6 @@ if __name__ == "__main__":
         " " + prompt_df["completion"]
     )  # start your completion with a space, tip from openai
     openai_df.to_csv(
-        "./openai_GPT3/train_data/{}/openai_train.csv".format(training_name),
+        "./openai_GPT3/train_data/{}/streamlit_prompt.csv".format(training_name),
         line_terminator="\n",
     )
