@@ -37,7 +37,7 @@ st.sidebar.image(image_aurai)
 
 st.markdown(
     """
-    Author: Marc Blomvliet (Aurai) \n
+    Auteur: Marc Blomvliet (Aurai) \n
     **👈 Selecteer een demo uit de sidebar** 
 """
 )

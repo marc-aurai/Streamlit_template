@@ -79,7 +79,7 @@ if check_password():
         ),
     )
 
-    st.sidebar.success("You selected: "+str(openai_model))
+    st.sidebar.success("Geselecteerd: "+str(openai_model))
 
     selected_match_date = st.selectbox("Selecteer wedstrijd datum: ", df.date.unique().tolist())
     matches_on_date = df.loc[df['date'] == selected_match_date]
