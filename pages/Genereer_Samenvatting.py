@@ -81,16 +81,16 @@ if check_password():
 
     st.sidebar.success("You selected: "+str(openai_model))
 
-    selected_match_date = st.selectbox("Selecteer wedstrijd datum: ", df.date.values.tolist())
+    selected_match_date = st.selectbox("Selecteer wedstrijd datum: ", df.date.unique().tolist())
     matches_on_date = df.loc[df['date'] == selected_match_date]
 
     selected_match = st.selectbox("Selecteer wedstrijd: ", matches_on_date.match.values.tolist())
-    matches_on_date = df.loc[df['match'] == selected_match]
+    input_data = df.loc[df['match'] == selected_match]
 
-
-    input_data = st.text_area(
-        label="Wedstrijd Data", value=matches_on_date.prompt, height=200, max_chars=None
-    )
+    st.text(str(input_data))
+    # input_data = st.text_area(
+    #     label="Wedstrijd Data", value=matches_on_date.prompt, height=200, max_chars=None
+    # )
     submit = st.button("Genereer")
 
     if submit:
