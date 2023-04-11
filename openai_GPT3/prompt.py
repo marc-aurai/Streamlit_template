@@ -77,7 +77,7 @@ if __name__ == "__main__":
             "goal_events": goals,
             "card_events": cards,
             "completion": completion,
-            "type_article": df_selection.type_article.to_list()
+            "type_article": df_selection.type_article.to_list(),
         }
     )
     # Flatten list of goal and card events per match.
@@ -91,13 +91,17 @@ if __name__ == "__main__":
         "./openai_GPT3/train_data/{}/streamlit.csv".format(training_name),
         line_terminator="\n",
         sep=";",
-    ) # Original dataframe
+    )  # Original dataframe
 
     openai_df = pd.DataFrame()
     openai_df["date"] = df_selection["date"]
-    openai_df["match"] = df_selection["homeContestantOfficialName"] + " vs "+ df_selection["awayContestantOfficialName"]
+    openai_df["match"] = (
+        df_selection["homeContestantOfficialName"]
+        + " vs "
+        + df_selection["awayContestantOfficialName"]
+    )
     openai_df["prompt"] = (
-        #prompt_df.type_article
+        # prompt_df.type_article
         "Geef de samenvatting een pakkende titel en schrijf een voetbal wedstrijd samenvatting inclusief paragrafen met de volgende informatie:\n"
         + prompt_df.dates
         + " "

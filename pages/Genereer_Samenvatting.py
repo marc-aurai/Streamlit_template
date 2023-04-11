@@ -1,15 +1,14 @@
 import calendar
 import datetime
-import uuid
-import pandas as pd
 
+import pandas as pd
 import pytz
 import streamlit as st
 from PIL import Image
 from streamlit_chat import message as st_message
 
-from pages.utils_streamlit.st_login import check_password
 from pages.utils_streamlit.chat import GPT_3, GPT_chat_completion
+from pages.utils_streamlit.st_login import check_password
 
 if "message_history" not in st.session_state:
     st.session_state.message_history = []
@@ -19,10 +18,13 @@ if "message_history" not in st.session_state:
 def load_images():
     return Image.open("assets/image/southfields_logo.png")
 
+
 @st.cache_data(show_spinner="Een momentje...")
 def load_dataset():
-    df = pd.read_csv("./openai_GPT3/train_data/training_3/streamlit_prompt.csv", sep=",")
-    df = df.sort_values(by='date', ascending=False)
+    df = pd.read_csv(
+        "./openai_GPT3/train_data/training_3/streamlit_prompt.csv", sep=","
+    )
+    df = df.sort_values(by="date", ascending=False)
     return df[:100]
 
 
@@ -73,19 +75,22 @@ if check_password():
         "Selecteer een model",
         (
             "gpt-3.5-turbo",
-            #"gpt-4",
             "curie:ft-southfields-2023-04-05-11-53-31",
             "davinci:ft-southfields-2023-04-07-18-26-14",
         ),
     )
 
-    st.sidebar.success("Geselecteerd: "+str(openai_model))
+    st.sidebar.success("Geselecteerd: " + str(openai_model))
 
-    selected_match_date = st.selectbox("Selecteer wedstrijd datum: ", df.date.unique().tolist())
-    matches_on_date = df.loc[df['date'] == selected_match_date]
+    selected_match_date = st.selectbox(
+        "Selecteer wedstrijd datum: ", df.date.unique().tolist()
+    )
+    matches_on_date = df.loc[df["date"] == selected_match_date]
 
-    selected_match = st.selectbox("Selecteer wedstrijd: ", matches_on_date.match.values.tolist())
-    match_prompt = df["prompt"].loc[df['match'] == selected_match].to_list()[0]
+    selected_match = st.selectbox(
+        "Selecteer wedstrijd: ", matches_on_date.match.values.tolist()
+    )
+    match_prompt = df["prompt"].loc[df["match"] == selected_match].to_list()[0]
 
     input_data = st.text_area(
         label="Wedstrijd Data", value=match_prompt, height=400, max_chars=None
@@ -102,7 +107,10 @@ if check_password():
                         MAX_TOKENS=TOKENS,
                         TEMP=temperature_GPT,
                     )
-                if str(openai_model) in ("curie:ft-southfields-2023-04-05-11-53-31", "davinci:ft-southfields-2023-04-07-18-26-14"):
+                if str(openai_model) in (
+                    "curie:ft-southfields-2023-04-05-11-53-31",
+                    "davinci:ft-southfields-2023-04-07-18-26-14",
+                ):
                     generated_output = GPT_3(
                         prompt=input_data,
                         model_engine=openai_model,
