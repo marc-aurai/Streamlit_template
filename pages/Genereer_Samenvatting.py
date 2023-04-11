@@ -88,7 +88,7 @@ if check_password():
     match_prompt = df["prompt"].loc[df['match'] == selected_match].to_list()[0]
 
     input_data = st.text_area(
-        label="Wedstrijd Data", value=match_prompt, height=200, max_chars=None
+        label="Wedstrijd Data", value=match_prompt, height=400, max_chars=None
     )
     submit = st.button("Genereer")
 
