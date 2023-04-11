@@ -85,12 +85,11 @@ if check_password():
     matches_on_date = df.loc[df['date'] == selected_match_date]
 
     selected_match = st.selectbox("Selecteer wedstrijd: ", matches_on_date.match.values.tolist())
-    input_data = df.loc[df['match'] == selected_match]
+    match_prompt = df["prompt"].loc[df['match'] == selected_match].to_list()[0]
 
-    st.text(str(input_data))
-    # input_data = st.text_area(
-    #     label="Wedstrijd Data", value=matches_on_date.prompt, height=200, max_chars=None
-    # )
+    input_data = st.text_area(
+        label="Wedstrijd Data", value=match_prompt, height=200, max_chars=None
+    )
     submit = st.button("Genereer")
 
     if submit:
