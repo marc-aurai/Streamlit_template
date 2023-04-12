@@ -5,5 +5,10 @@ __pycache__
 old
 all_competitions.ipynb
 prompt_engineering.ipynb
-chat.py
+#chat.py
 .env
+
+articles_eredivisie_ESPN_Style.csv
+articles_eredivisie_rewritten.csv
+training_2
+explore_data.ipynb

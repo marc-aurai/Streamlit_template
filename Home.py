@@ -30,14 +30,14 @@ image, image_aurai = load_images()
 st.image(image)
 
 
-st.write("# Welcome to South-Fields Demo!")
+st.write("# Welcome to Southfields AI Tool!")
 
 st.sidebar.success("Selecteer een demo hierboven.")
 st.sidebar.image(image_aurai)
 
 st.markdown(
     """
-    Author: Marc Blomvliet (Aurai) \n
+    Auteur: Marc Blomvliet (Aurai) \n
     **👈 Selecteer een demo uit de sidebar** 
 """
 )

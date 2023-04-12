@@ -8,11 +8,17 @@ from utils.prompt_engineering import (
     card_events,
     goal_events,
     article_completion,
+    possession,
+    trainer,
+    keeper,
 )
 
 
+training_name = "training_3"
+
+
 def get_data() -> pd.DataFrame:
-    return pd.read_csv("./opta/data/merged/merged.csv", sep=";")
+    return pd.read_csv("./opta/data/merged/merged_ereD.csv", sep=";").dropna()
 
 
 def select_features(df: pd.DataFrame) -> pd.DataFrame:
@@ -31,6 +37,15 @@ def select_features(df: pd.DataFrame) -> pd.DataFrame:
             "card_events",
             "venue",
             "goal_events",
+            "homeContestantId",
+            "awayContestantId",
+            "trainer_home",
+            "trainer_away",
+            "keeper_home",
+            "keeper_away",
+            "type_article",
+            "homeContestantOfficialName",
+            "awayContestantOfficialName",
         ]
     ]
 
@@ -38,4 +53,81 @@ def select_features(df: pd.DataFrame) -> pd.DataFrame:
 if __name__ == "__main__":
     df = get_data()
     df_selection = select_features(df=df)
-    print(df_selection.columns)
+    dates = date(df_selection)
+    home_versus_away = home_vs_away(df_selection)
+    venue_names = venue(df_selection)
+    competition_names = competition(df_selection)
+    final_scores = final_score(df_selection)
+    goals = goal_events(df_selection)
+    cards = card_events(df_selection)
+    completion = article_completion(df_selection)
+    possesion_stats = possession(df_selection)
+    trainers = trainer(df_selection)
+    keepers = keeper(df_selection)
+    prompt_df = pd.DataFrame(
+        {
+            "dates": dates,
+            "home_vs_away": home_versus_away,
+            "venue": venue_names,
+            "competition": competition_names,
+            "final_score": final_scores,
+            "possession": possesion_stats,
+            "trainers": trainers,
+            "keepers": keepers,
+            "goal_events": goals,
+            "card_events": cards,
+            "completion": completion,
+            "type_article": df_selection.type_article.to_list(),
+        }
+    )
+    # Flatten list of goal and card events per match.
+    prompt_df["goal_events"] = [
+        ", ".join(map(str, l)) for l in prompt_df["goal_events"]
+    ]
+    prompt_df["card_events"] = [
+        ", ".join(map(str, l)) for l in prompt_df["card_events"]
+    ]
+    prompt_df.to_csv(
+        "./openai_GPT3/train_data/{}/streamlit.csv".format(training_name),
+        line_terminator="\n",
+        sep=";",
+    )  # Original dataframe
+
+    openai_df = pd.DataFrame()
+    openai_df["date"] = df_selection["date"]
+    openai_df["match"] = (
+        df_selection["homeContestantOfficialName"]
+        + " vs "
+        + df_selection["awayContestantOfficialName"]
+    )
+    openai_df["prompt"] = (
+        # prompt_df.type_article
+        "Geef de samenvatting een pakkende titel en schrijf een voetbal wedstrijd samenvatting inclusief paragrafen met de volgende informatie:\n"
+        + prompt_df.dates
+        + " "
+        + prompt_df.home_vs_away
+        + " "
+        + prompt_df.venue
+        + ".\n"
+        + prompt_df.competition
+        + ".\n"
+        + prompt_df.final_score
+        + ".\n"
+        + prompt_df.goal_events
+        + ".\n"
+        + prompt_df.card_events
+        + ".\n"
+        + prompt_df.possession
+        + ".\n"
+        + prompt_df.trainers
+        + ".\n"
+        + prompt_df.keepers
+        + ".\n\n###\n\n"  # stop sequence, tip from openAI
+    )
+    openai_df["completion"] = (
+        " " + prompt_df["completion"]
+    )  # start your completion with a space, tip from openai
+    openai_df.to_csv(
+        "./openai_GPT3/train_data/{}/streamlit_prompt.csv".format(training_name),
+        line_terminator="\n",
+    )

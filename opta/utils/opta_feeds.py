@@ -98,7 +98,7 @@ def get_matchstats_cards(df: pd.DataFrame, outletAuthKey: str) -> pd.DataFrame:
             matchstats = (
                 requests.get(
                     f"http://api.performfeeds.com/soccerdata/matchstats/{{}}/?_rt=b&_fmt=json&fx={{}}".format(
-                        df["id"][match]
+                        outletAuthKey, df["id"][match]
                     )
                 )
                 # Access card information from live data
@@ -175,6 +175,7 @@ def get_matchstats_goals(df: pd.DataFrame, outletAuthKey: str) -> pd.DataFrame:
                     "timeMin": goal["timeMin"],
                     "scorerId": goal["scorerId"],
                     "scorerName": goal["scorerName"],
+                    "goalType": goal["type"],
                 }
                 for goal in matchstats
             ]
@@ -267,4 +268,99 @@ def get_venue(df: pd.DataFrame, outletAuthKey: str) -> pd.DataFrame:
 
     # Add list to dataframe
     df["venue"] = all_venues
+    return df
+
+
+def get_trainer(df: pd.DataFrame, outletAuthKey: str) -> pd.DataFrame:
+    """This function returns the input dataframe with two extra collumns named ['trainer_home'] and ['trainer_away'].
+    The match's trainers are listed in the column as a string.
+
+    Args:
+        df (pd.DataFrame): Minimum requirement: This function needs a dataframe as input that includes the ESPN data, concatenated with get_tournamentschedule().
+        outletAuthKey (str): Statsperform Authorization Key e.g. (Eredivsie, Keuken Kampioen Divisie/KKD)
+
+    Returns:
+        pd.DataFrame: Returns the original input dataframe with two extra collumns included, named ['trainer_home'] and ['trainer_away'].
+    """
+    trainers_home = []
+    trainers_away = []
+    print("Get Trainers..\n")
+
+    # Loop through match id's
+    for match in tqdm(df.index):
+        try:
+            # Enter match id in API call
+            response = requests.get(
+                f"http://api.performfeeds.com/soccerdata/matchstats/{{}}/?_rt=b&_fmt=json&fx={{}}".format(
+                    outletAuthKey, df["id"][match]
+                )
+            ).json()
+
+            # Access venue information in json if available
+            trainer_name_home = (
+                response["liveData"]["lineUp"][0]["teamOfficial"]["firstName"]
+                + " "
+                + response["liveData"]["lineUp"][0]["teamOfficial"]["lastName"]
+            )
+            trainer_name_away = (
+                response["liveData"]["lineUp"][1]["teamOfficial"]["firstName"]
+                + " "
+                + response["liveData"]["lineUp"][1]["teamOfficial"]["lastName"]
+            )
+        except:
+            trainer_name_home = ""
+            trainer_name_away = ""
+        trainers_home.append(trainer_name_home)
+        trainers_away.append(trainer_name_away)
+
+    # Add list to dataframe
+    df["trainer_home"] = trainers_home
+    df["trainer_away"] = trainers_away
+    return df
+
+
+def get_keepers(df: pd.DataFrame, outletAuthKey: str) -> pd.DataFrame:
+    """This function returns the input dataframe with two extra collumns named ['keeper_home'] and ['keeper_away'].
+    The match's keepers are listed in the column as a string.
+
+    Args:
+        df (pd.DataFrame): Minimum requirement: This function needs a dataframe as input that includes the ESPN data, concatenated with get_tournamentschedule().
+        outletAuthKey (str): Statsperform Authorization Key e.g. (Eredivsie, Keuken Kampioen Divisie/KKD)
+
+    Returns:
+        pd.DataFrame: Returns the original input dataframe with two extra collumns included, named ['keeper_home'] and ['keeper_away'].
+    """
+    keepers_home = []
+    keepers_away = []
+    print("Get Keepers..\n")
+
+    # Loop through match id's
+    for match in tqdm(df.index):
+        try:
+            # Enter match id in API call
+            response = requests.get(
+                f"http://api.performfeeds.com/soccerdata/matchstats/{{}}/?_rt=b&_fmt=json&fx={{}}".format(
+                    outletAuthKey, df["id"][match]
+                )
+            ).json()
+
+            # Access keeper information in json if available, next is used since it became a generator object.
+            keeper_name_home = next(
+                player['firstName']+" "+ player['lastName']
+                for player in response['liveData']['lineUp'][0]['player'] if player['position'] == 'Goalkeeper'
+            )
+            keeper_name_away = next(
+                player['firstName']+" "+ player['lastName']
+                for player in response['liveData']['lineUp'][1]['player'] if player['position'] == 'Goalkeeper'
+            )
+
+        except:
+            keeper_name_home = ""
+            keeper_name_away = ""
+        keepers_home.append(keeper_name_home)
+        keepers_away.append(keeper_name_away)
+
+    # Add list to dataframe
+    df["keeper_home"] = keepers_home
+    df["keeper_away"] = keepers_away
     return df

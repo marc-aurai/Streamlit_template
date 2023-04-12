@@ -31,7 +31,7 @@ def load_images():
 
 @st.cache_data(show_spinner="Een momentje...")
 def load_dataset():
-    df = pd.read_csv("./espn_scraper/scraper_data/articles_ereD_notna.csv", sep=";")
+    df = pd.read_csv("./opta/data/merged/merged.csv", sep=";")
     df["word_count"] = df["article"].apply(lambda x: len(x.split()))
     return df
 

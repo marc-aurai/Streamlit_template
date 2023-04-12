@@ -8,6 +8,8 @@ from utils.opta_feeds import (
     get_matchstats_possession,
     get_tournamentschedule,
     get_venue,
+    get_trainer,
+    get_keepers,
 )
 
 load_dotenv()
@@ -65,15 +67,17 @@ def merge(df_espn: pd.DataFrame, df_tournament: pd.DataFrame) -> pd.DataFrame:
         pd.DataFrame: Merged dataframe with ESPN data and OPTA Data
     """
     df_merged = pd.merge(
-        df_espn,
         df_tournament,
+        df_espn,
         how="left",
-        left_on=["date", "home_abbrev", "away_abbrev"],
-        right_on=["date", "homeContestantCode", "awayContestantCode"],
-    )
+        right_on=["date", "home_abbrev", "away_abbrev"],
+        left_on=["date", "homeContestantCode", "awayContestantCode"],
+    ).dropna()
     df_merged.drop(
         df_merged.filter(regex="Unname"), axis=1, inplace=True
     )  # Drop unnamed columns
+    df_merged['score_home'] = df_merged['score_home'].astype(int)
+    df_merged['score_away'] = df_merged['score_away'].astype(int)
     return df_merged
 
 
@@ -85,7 +89,7 @@ def eredivisie() -> pd.DataFrame:
         pd.DataFrame: Returns a dataframe with ESPN and OPTA concatenated.
     """
     print("Eredivisie.. \n")
-    df_espn = get_espn_data(csv_name="articles_eredivisie")
+    df_espn = get_espn_data(csv_name="articles_eredivisie_ESPN_Style")
 
     df_tournament = get_tournamentschedule(
         outletAuthKey=outletAuthKey_ereD,
@@ -111,8 +115,10 @@ def eredivisie() -> pd.DataFrame:
     df_cards = get_matchstats_cards(df_possession, outletAuthKey=outletAuthKey_ereD)
     df_venues = get_venue(df_cards, outletAuthKey=outletAuthKey_ereD)
     df_goals = get_matchstats_goals(df_venues, outletAuthKey=outletAuthKey_ereD)
-
-    df_merged = merge(df_espn, df_goals).dropna()
+    df_trainers = get_trainer(df_goals, outletAuthKey=outletAuthKey_ereD)
+    df_keepers = get_keepers(df_trainers, outletAuthKey=outletAuthKey_ereD)
+    
+    df_merged = merge(df_espn, df_keepers).dropna()
     df_merged.to_csv("./opta/data/merged/merged_ereD.csv", sep=";", index=False)
     return df_merged
 
@@ -125,7 +131,7 @@ def KKD() -> pd.DataFrame:
         pd.DataFrame: Returns a dataframe with ESPN and OPTA concatenated.
     """
     print("Keuken Kampioen Divisie.. \n")
-    df_espn = get_espn_data(csv_name="articles_KKD")
+    df_espn = get_espn_data(csv_name="articles_KKD2")
 
     df_tournament = get_tournamentschedule(
         outletAuthKey=outletAuthKey_KKD,
@@ -165,8 +171,10 @@ def KKD() -> pd.DataFrame:
     df_cards = get_matchstats_cards(df_possession, outletAuthKey=outletAuthKey_KKD)
     df_venues = get_venue(df_cards, outletAuthKey=outletAuthKey_KKD)
     df_goals = get_matchstats_goals(df_venues, outletAuthKey=outletAuthKey_KKD)
+    df_trainers = get_trainer(df_goals, outletAuthKey=outletAuthKey_KKD)
+    df_keepers = get_keepers(df_trainers, outletAuthKey=outletAuthKey_KKD)
 
-    df_merged = merge(df_espn, df_goals).dropna()
+    df_merged = merge(df_espn, df_keepers).dropna()
     df_merged.to_csv("./opta/data/merged/merged_KKD.csv", sep=";", index=False)
     return df_merged
 
