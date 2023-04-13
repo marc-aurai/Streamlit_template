@@ -16,3 +16,4 @@ train_data_spain.csv
 automated_opta_pipeline.csv
 automated_opta_pipeline_openai.csv
 date.py
+tournamentschedule.py
