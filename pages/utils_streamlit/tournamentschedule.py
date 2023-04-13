@@ -40,7 +40,7 @@ def get_tournamentschedule(
             table_kind, outletAuthKey, competition
         )
         response = requests.get(url).json()
-
+        print(response.keys())
         # Create dataframe for every competition
         df_matches = pd.DataFrame()
         df_matches = pd.concat(
