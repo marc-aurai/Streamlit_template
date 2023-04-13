@@ -75,7 +75,9 @@ def get_tournamentschedule(
     # Return only selected columns from dataframe
 
 
-def get_matchstats_cards(df: pd.DataFrame = None, outletAuthKey: str = None) -> pd.DataFrame:
+def get_matchstats_cards(
+    df: pd.DataFrame = None, outletAuthKey: str = None
+) -> pd.DataFrame:
     """This function returns the input dataframe with one extra collumn named ['card_events'].
     The column contains a list of dictionaries that represents all the cards with their corresponding information:
     [contestantName, contestantId, periodId, timeMin, playerId, playerName, cardType].
@@ -132,7 +134,9 @@ def get_matchstats_cards(df: pd.DataFrame = None, outletAuthKey: str = None) -> 
     return df
 
 
-def get_matchstats_goals(df: pd.DataFrame = None, outletAuthKey: str = None) -> pd.DataFrame:
+def get_matchstats_goals(
+    df: pd.DataFrame = None, outletAuthKey: str = None
+) -> pd.DataFrame:
     """This function returns the input dataframe with one extra collumn named ['goal_events'].
     The column contains a list of dictionaries that represents all the goals with their corresponding information:
     [contestantName, contestantId, periodId, timeMin, scorerId, scorerName].
@@ -189,7 +193,9 @@ def get_matchstats_goals(df: pd.DataFrame = None, outletAuthKey: str = None) -> 
     return df
 
 
-def get_matchstats_possession(df: pd.DataFrame = None, outletAuthKey: str = None) -> pd.DataFrame:
+def get_matchstats_possession(
+    df: pd.DataFrame = None, outletAuthKey: str = None
+) -> pd.DataFrame:
     """This function returns the input dataframe with two extra collumns named ['possession_home'] and ['possession_away'].
     The column contains a string that represents the team's possession percentage.
 
@@ -347,12 +353,14 @@ def get_keepers(df: pd.DataFrame = None, outletAuthKey: str = None) -> pd.DataFr
 
             # Access keeper information in json if available, next is used since it became a generator object.
             keeper_name_home = next(
-                player['firstName']+" "+ player['lastName']
-                for player in response['liveData']['lineUp'][0]['player'] if player['position'] == 'Goalkeeper'
+                player["firstName"] + " " + player["lastName"]
+                for player in response["liveData"]["lineUp"][0]["player"]
+                if player["position"] == "Goalkeeper"
             )
             keeper_name_away = next(
-                player['firstName']+" "+ player['lastName']
-                for player in response['liveData']['lineUp'][1]['player'] if player['position'] == 'Goalkeeper'
+                player["firstName"] + " " + player["lastName"]
+                for player in response["liveData"]["lineUp"][1]["player"]
+                if player["position"] == "Goalkeeper"
             )
 
         except:
@@ -365,7 +373,6 @@ def get_keepers(df: pd.DataFrame = None, outletAuthKey: str = None) -> pd.DataFr
     df["keeper_home"] = keepers_home
     df["keeper_away"] = keepers_away
     return df
-
 
 
 def get_score(df: pd.DataFrame = None, outletAuthKey: str = None) -> pd.DataFrame:
@@ -400,7 +407,7 @@ def get_score(df: pd.DataFrame = None, outletAuthKey: str = None) -> pd.DataFram
             score_home = matchstats["home"]
             score_away = matchstats["away"]
         except:
-            score_home = "" # If there is no score available
+            score_home = ""  # If there is no score available
             score_away = ""
         scores_home.append(score_home)
         scores_away.append(score_away)
@@ -411,20 +418,63 @@ def get_score(df: pd.DataFrame = None, outletAuthKey: str = None) -> pd.DataFram
     return df
 
 
-def get_cup(df: pd.DataFrame = None, outletAuthKey: str = None, competition: str = None,) -> pd.DataFrame:
+def get_cup(
+    df: pd.DataFrame = None,
+    outletAuthKey: str = None,
+    competition: str = None,
+) -> pd.DataFrame:
+    print("Get competitions..\n")
     cups = []
     for match in tqdm(df.index):
         try:
-            response = (
-                requests.get(
-                    f"http://api.performfeeds.com/soccerdata/tournamentschedule/{{}}/{{}}?_rt=b&_fmt=json".format(
-                        outletAuthKey, competition
-                    )  
-                ).json()["competition"]
-            )
+            response = requests.get(
+                f"http://api.performfeeds.com/soccerdata/tournamentschedule/{{}}/{{}}?_rt=b&_fmt=json".format(
+                    outletAuthKey, competition
+                )
+            ).json()["competition"]
             cup = response["name"]
         except:
             cup = ""
         cups.append(cup)
     df["cup"] = cups
+    return df
+
+
+def get_rankStatus(
+    df: pd.DataFrame = None,
+    outletAuthKey: str = None,
+    competition: str = None,
+) -> pd.DataFrame:
+    ranks_home = []
+    ranks_away = []
+    last_six_home = []
+    last_six_away = []
+    print("Get rankstatus..\n")
+    for match in tqdm(df.index):
+        try:
+            response = requests.get(
+                f"http://api.performfeeds.com/soccerdata/standings/{{}}/?_rt=b&_fmt=json&tmcl={{}}".format(
+                    outletAuthKey, competition
+                )
+            ).json()["stage"][0]["division"][0]["ranking"]
+            for team_rank in response:
+                if team_rank["contestantId"] == df["homeContestantId"][match]:
+                    rank_home = str(team_rank["rank"])
+                    six_home = str(team_rank["lastSix"])
+                if team_rank["contestantId"] == df["awayContestantId"][match]:
+                    rank_away = str(team_rank["rank"])
+                    six_away = str(team_rank["lastSix"])
+        except:
+            rank_home = ""
+            rank_away = ""
+            six_home = ""
+            six_away = ""
+        ranks_home.append(rank_home)
+        ranks_away.append(rank_away)
+        last_six_home.append(six_home)
+        last_six_away.append(six_away)
+    df["rank_home"] = ranks_home
+    df["rank_away"] = ranks_away
+    df["last_six_home"] = last_six_home
+    df["last_six_away"] = last_six_away
     return df

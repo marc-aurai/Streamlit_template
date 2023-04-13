@@ -33,6 +33,8 @@ def select_features(df: pd.DataFrame) -> pd.DataFrame:
             "keeper_away",
             "homeContestantOfficialName",
             "awayContestantOfficialName",
+            "last_six_home",
+            "last_six_away",
         ]
     ]
 
@@ -72,6 +74,8 @@ def prompt_engineering(df: pd.DataFrame):
 
     openai_df = pd.DataFrame()
     openai_df["date"] = df_selection["date"]
+    openai_df["last_six_home"] = df_selection["last_six_home"]
+    openai_df["last_six_away"] = df_selection["last_six_away"]
     openai_df["match"] = (
         df_selection["homeContestantOfficialName"]
         + " vs "

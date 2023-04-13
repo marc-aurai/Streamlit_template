@@ -9,6 +9,7 @@ from streamlit_chat import message as st_message
 
 from pages.utils_streamlit.chat import GPT_3, GPT_chat_completion
 from pages.utils_streamlit.st_login import check_password
+from pages.utils_streamlit.plot_winstreak import plot_winstreak
 
 if "message_history" not in st.session_state:
     st.session_state.message_history = []
@@ -91,6 +92,7 @@ if check_password():
         "Selecteer wedstrijd: ", matches_on_date.match.values.tolist()
     )
     match_prompt = df["prompt"].loc[df["match"] == selected_match].to_list()[0]
+    match_streak = df["last_six_home"].loc[df["match"] == selected_match].to_list()[0]
 
     input_data = st.text_area(
         label="Wedstrijd Data", value=match_prompt, height=400, max_chars=None
@@ -117,6 +119,10 @@ if check_password():
                         MAX_TOKENS=TOKENS,
                         TEMP=temperature_GPT,
                     )
+                try:
+                    st.pyplot(plot_winstreak(match_streak))
+                except:
+                    st.warning("Winstreak not available.")
                 _datetime = get_datetime()
                 st.session_state.message_history.append(_datetime + generated_output)
                 for message_ in reversed(st.session_state.message_history):
