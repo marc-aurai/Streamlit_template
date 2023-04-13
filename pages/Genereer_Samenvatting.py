@@ -119,10 +119,13 @@ if check_password():
                         MAX_TOKENS=TOKENS,
                         TEMP=temperature_GPT,
                     )
+                plot_col1, plot_col2, plot_col3 = st.columns(3)
                 try:
-                    st.pyplot(plot_winstreak(match_streak))
+                    with plot_col2:
+                        st.pyplot(plot_winstreak(match_streak))
                 except:
-                    st.warning("Winstreak not available.")
+                    with plot_col2:
+                        st.warning("Winstreak not available.")
                 _datetime = get_datetime()
                 st.session_state.message_history.append(_datetime + generated_output)
                 for message_ in reversed(st.session_state.message_history):
