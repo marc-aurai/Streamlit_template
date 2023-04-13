@@ -64,4 +64,4 @@ if __name__ == "__main__":
     df= get_rankStatus(df, outletAuthKey_ereD, competition="d1k1pqdg2yvw8e8my74yvrdw4")
     # df.to_csv("./pages/data/eredivisie_ranks.csv", sep=";", index=False)
     df_openai = prompt_engineering(df=df.dropna())
-    df_openai.to_csv("./pages/data/eredivisie_ranks.csv", line_terminator="\n")
+    df_openai.to_csv("./pages/data/eredivisie.csv", line_terminator="\n")
