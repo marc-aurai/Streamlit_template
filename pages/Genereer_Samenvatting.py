@@ -83,7 +83,7 @@ if check_password():
     )
 
     st.sidebar.success("Geselecteerd: " + str(openai_model))
-    dates = competition(outletAuthKey_ereD)
+    dates = competition(outletAuthKey_competition=str(outletAuthKey_ereD))
     selected_match_date = st.selectbox(
         "Selecteer wedstrijd datum: ", dates
     )
