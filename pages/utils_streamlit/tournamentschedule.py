@@ -33,7 +33,7 @@ def get_tournamentschedule(
         ['homeContestantCode'], ['awayContestantCode']
     """
     df_all_matches = pd.DataFrame()
-
+    print(outletAuthKey)
     # Loop through different divisions
     for competition in competitions:
         url = f"http://api.performfeeds.com/soccerdata/{{}}/{{}}/{{}}?_rt=b&_fmt=json".format(
