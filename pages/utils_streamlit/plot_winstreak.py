@@ -7,7 +7,7 @@ plt.rcParams["text.color"] = "#FFFFFF"
 
 
 def plot_winstreak(streak):
-    figure(figsize=(3, 1), dpi=100)
+    figure(figsize=(3, 1), dpi=40)
     x = [0, 1, 2, 3, 4, 5]
     y = [0, 0, 0, 0, 0, 0]
     color_list = [
