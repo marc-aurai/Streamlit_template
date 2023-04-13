@@ -144,8 +144,9 @@ def goal_events(df: pd.DataFrame) -> list:
                     free_goal_for_team = away_team
                 if goals['contestantId'] == away_id:
                     free_goal_for_team = home_team
-                goals_in_match.append(str(goals['scorerName'])+" scoorde een eigen doelpunt voor "+
-                                    str(free_goal_for_team)+" in de "+
+                goals_in_match.append(str(goals['scorerName'])+" scoorde een eigen doelpunt in het doel van  "+
+                                    #str(free_goal_for_team)+" in de "+
+                                    str(goals["contestantName"])+" in de "+
                                     str(goals["periodId"])+"e helft in minuut "+
                                     str(goals["timeMin"]))
         all_goals.append(goals_in_match) if goals_in_match else all_goals.append(["Beide partijen wisten niet te scoren"])
