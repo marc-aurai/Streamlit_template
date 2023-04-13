@@ -1,6 +1,7 @@
 import pandas as pd
 import requests
 from tqdm import tqdm
+import numpy as np
 
 
 # ID's van Eredivisie seizoenen volgorde 23/22/21
@@ -225,8 +226,8 @@ def get_matchstats_possession(df: pd.DataFrame = None, outletAuthKey: str = None
                 + "%"
             )
         except:
-            possession_home = ""
-            possession_away = ""
+            possession_home = np.nan
+            possession_away = np.nan
         all_possessions_home.append(possession_home)
         all_possessions_away.append(possession_away)
 

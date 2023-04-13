@@ -7,10 +7,8 @@ import streamlit as st
 from PIL import Image
 from streamlit_chat import message as st_message
 
-from pages.utils_streamlit.chat import GPT_3, GPT_chat_completion, competition
+from pages.utils_streamlit.chat import GPT_3, GPT_chat_completion
 from pages.utils_streamlit.st_login import check_password
-
-outletAuthKey_ereD = st.secrets['outletAuthKey_ereD']
 
 if "message_history" not in st.session_state:
     st.session_state.message_history = []
@@ -22,12 +20,12 @@ def load_images():
 
 
 @st.cache_data(show_spinner="Een momentje...")
-def load_dataset():
+def load_dataset(): # Elke dag bijvoorbeeld als job schedulen
     df = pd.read_csv(
-        "./openai_GPT3/train_data/training_3/streamlit_prompt.csv", sep=","
+        "./pages/data/eredivisie.csv", sep="," 
     )
     df = df.sort_values(by="date", ascending=False)
-    return df[:100]
+    return df
 
 
 def streamlit_page_config():
@@ -83,9 +81,9 @@ if check_password():
     )
 
     st.sidebar.success("Geselecteerd: " + str(openai_model))
-    dates = competition(outletAuthKey_ereD)
+
     selected_match_date = st.selectbox(
-        "Selecteer wedstrijd datum: ", dates
+        "Selecteer wedstrijd datum: ", df.date.unique().tolist()
     )
     matches_on_date = df.loc[df["date"] == selected_match_date]
 
