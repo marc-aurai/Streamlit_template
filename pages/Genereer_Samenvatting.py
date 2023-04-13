@@ -7,7 +7,7 @@ import streamlit as st
 from PIL import Image
 from streamlit_chat import message as st_message
 
-from pages.utils_streamlit.chat import GPT_3, GPT_chat_completion
+from pages.utils_streamlit.chat import GPT_3, GPT_chat_completion, competition
 from pages.utils_streamlit.st_login import check_password
 
 if "message_history" not in st.session_state:
@@ -81,9 +81,9 @@ if check_password():
     )
 
     st.sidebar.success("Geselecteerd: " + str(openai_model))
-
+    dates = competition()
     selected_match_date = st.selectbox(
-        "Selecteer wedstrijd datum: ", df.date.unique().tolist()
+        "Selecteer wedstrijd datum: ", dates
     )
     matches_on_date = df.loc[df["date"] == selected_match_date]
 

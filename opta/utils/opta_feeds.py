@@ -74,7 +74,7 @@ def get_tournamentschedule(
     # Return only selected columns from dataframe
 
 
-def get_matchstats_cards(df: pd.DataFrame, outletAuthKey: str) -> pd.DataFrame:
+def get_matchstats_cards(df: pd.DataFrame = None, outletAuthKey: str = None) -> pd.DataFrame:
     """This function returns the input dataframe with one extra collumn named ['card_events'].
     The column contains a list of dictionaries that represents all the cards with their corresponding information:
     [contestantName, contestantId, periodId, timeMin, playerId, playerName, cardType].
@@ -131,7 +131,7 @@ def get_matchstats_cards(df: pd.DataFrame, outletAuthKey: str) -> pd.DataFrame:
     return df
 
 
-def get_matchstats_goals(df: pd.DataFrame, outletAuthKey: str) -> pd.DataFrame:
+def get_matchstats_goals(df: pd.DataFrame = None, outletAuthKey: str = None) -> pd.DataFrame:
     """This function returns the input dataframe with one extra collumn named ['goal_events'].
     The column contains a list of dictionaries that represents all the goals with their corresponding information:
     [contestantName, contestantId, periodId, timeMin, scorerId, scorerName].
@@ -188,7 +188,7 @@ def get_matchstats_goals(df: pd.DataFrame, outletAuthKey: str) -> pd.DataFrame:
     return df
 
 
-def get_matchstats_possession(df: pd.DataFrame, outletAuthKey: str) -> pd.DataFrame:
+def get_matchstats_possession(df: pd.DataFrame = None, outletAuthKey: str = None) -> pd.DataFrame:
     """This function returns the input dataframe with two extra collumns named ['possession_home'] and ['possession_away'].
     The column contains a string that represents the team's possession percentage.
 
@@ -235,7 +235,7 @@ def get_matchstats_possession(df: pd.DataFrame, outletAuthKey: str) -> pd.DataFr
     return df
 
 
-def get_venue(df: pd.DataFrame, outletAuthKey: str) -> pd.DataFrame:
+def get_venue(df: pd.DataFrame = None, outletAuthKey: str = None) -> pd.DataFrame:
     """This function returns the input dataframe with one extra collumn named ['venue'].
     The match's venue is listed in the column as a string.
 
@@ -271,7 +271,7 @@ def get_venue(df: pd.DataFrame, outletAuthKey: str) -> pd.DataFrame:
     return df
 
 
-def get_trainer(df: pd.DataFrame, outletAuthKey: str) -> pd.DataFrame:
+def get_trainer(df: pd.DataFrame = None, outletAuthKey: str = None) -> pd.DataFrame:
     """This function returns the input dataframe with two extra collumns named ['trainer_home'] and ['trainer_away'].
     The match's trainers are listed in the column as a string.
 
@@ -319,7 +319,7 @@ def get_trainer(df: pd.DataFrame, outletAuthKey: str) -> pd.DataFrame:
     return df
 
 
-def get_keepers(df: pd.DataFrame, outletAuthKey: str) -> pd.DataFrame:
+def get_keepers(df: pd.DataFrame = None, outletAuthKey: str = None) -> pd.DataFrame:
     """This function returns the input dataframe with two extra collumns named ['keeper_home'] and ['keeper_away'].
     The match's keepers are listed in the column as a string.
 
@@ -363,4 +363,67 @@ def get_keepers(df: pd.DataFrame, outletAuthKey: str) -> pd.DataFrame:
     # Add list to dataframe
     df["keeper_home"] = keepers_home
     df["keeper_away"] = keepers_away
+    return df
+
+
+
+def get_score(df: pd.DataFrame = None, outletAuthKey: str = None) -> pd.DataFrame:
+    """This function returns the input dataframe with two extra collumns named ['score_home'] and ['score_away'].
+
+    Args:
+        df (pd.DataFrame): Minimum requirement: This function needs a dataframe as input that includes the ESPN data,
+        concatenated with get_tournamentschedule().
+        outletAuthKey (str): Statsperform Authorization Key e.g. (Eredivsie, Keuken Kampioen Divisie/KKD)
+
+    Returns:
+        pd.DataFrame: Returns the original input dataframe with two extra collumns included, named ['score_home'] and ['score_away'].
+    """
+
+    # Create container for new column
+    print("Get score..\n")
+    scores_home = []
+    scores_away = []
+    # Loop through df to get match id's
+    for match in tqdm(df.index):
+        try:
+            matchstats = (
+                requests.get(
+                    f"http://api.performfeeds.com/soccerdata/matchstats/{{}}/?_rt=b&_fmt=json&fx={{}}".format(
+                        outletAuthKey, df["id"][match]
+                    )
+                )
+                # Access card information from live data
+                .json()["liveData"]["matchDetails"]["scores"]["total"]
+            )
+            # For every card event, create dict with info and add to list
+            score_home = matchstats["home"]
+            score_away = matchstats["away"]
+        except:
+            score_home = "" # If there is no score available
+            score_away = ""
+        scores_home.append(score_home)
+        scores_away.append(score_away)
+
+    # Add list to dataframe
+    df["score_home"] = scores_home
+    df["score_away"] = scores_away
+    return df
+
+
+def get_cup(df: pd.DataFrame = None, outletAuthKey: str = None, competition: str = None,) -> pd.DataFrame:
+    cups = []
+    for match in tqdm(df.index):
+        try:
+            response = (
+                requests.get(
+                    f"http://api.performfeeds.com/soccerdata/tournamentschedule/{{}}/{{}}?_rt=b&_fmt=json".format(
+                        outletAuthKey, competition
+                    )  
+                ).json()["competition"]
+            )
+            cup = response["name"]
+        except:
+            cup = ""
+        cups.append(cup)
+    df["cup"] = cups
     return df
