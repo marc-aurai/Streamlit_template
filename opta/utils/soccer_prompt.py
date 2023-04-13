@@ -74,6 +74,8 @@ def prompt_engineering(df: pd.DataFrame):
 
     openai_df = pd.DataFrame()
     openai_df["date"] = df_selection["date"]
+    openai_df["home_team"] = df_selection["homeContestantOfficialName"]
+    openai_df["away_team"] = df_selection["awayContestantOfficialName"]
     openai_df["last_six_home"] = df_selection["last_six_home"]
     openai_df["last_six_away"] = df_selection["last_six_away"]
     openai_df["match"] = (

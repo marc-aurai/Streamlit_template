@@ -94,6 +94,9 @@ if check_password():
     match_prompt = df["prompt"].loc[df["match"] == selected_match].to_list()[0]
     match_streak_home = df["last_six_home"].loc[df["match"] == selected_match].to_list()[0]
     match_streak_away = df["last_six_away"].loc[df["match"] == selected_match].to_list()[0]
+    home_team = df["home_team"].loc[df["match"] == selected_match].to_list()[0]
+    away_team = df["away_team"].loc[df["match"] == selected_match].to_list()[0]
+
 
     input_data = st.text_area(
         label="Wedstrijd Data", value=match_prompt, height=400, max_chars=None
@@ -123,13 +126,13 @@ if check_password():
                 plot_col1, plot_col2, plot_col3 = st.columns(3)
                 try:
                     with plot_col1:
-                        st.pyplot(plot_winstreak(match_streak_home, title_plt="Thuisploeg\n"))
+                        st.pyplot(plot_winstreak(match_streak_home, title_plt=str(home_team)+"\n"))
                 except:
                     with plot_col1:
                         st.warning("Winstreak Home team not available.")
                 try:
                     with plot_col3:
-                        st.pyplot(plot_winstreak(match_streak_away, title_plt="Uitploeg\n"))
+                        st.pyplot(plot_winstreak(match_streak_away, title_plt=str(away_team)+"\n"))
                 except:
                     with plot_col3:
                         st.warning("Winstreak Away team not available.")

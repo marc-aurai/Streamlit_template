@@ -37,5 +37,4 @@ def plot_winstreak(streak: str, title_plt: str):
         plt.title(title_plt)
         plt.text(x_ + 0.03, y_ + 0.03, streak, fontsize=9, rotation=45)
     plt.axis("off")
-    # plt.show()
     return plt
