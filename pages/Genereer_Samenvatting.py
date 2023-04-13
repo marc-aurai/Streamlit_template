@@ -123,13 +123,13 @@ if check_password():
                 plot_col1, plot_col2, plot_col3 = st.columns(3)
                 try:
                     with plot_col1:
-                        st.pyplot(plot_winstreak(match_streak_home), title_plt="Thuisploeg")
+                        st.pyplot(plot_winstreak(match_streak_home, title_plt="Thuisploeg\n"))
                 except:
                     with plot_col1:
                         st.warning("Winstreak Home team not available.")
                 try:
                     with plot_col3:
-                        st.pyplot(plot_winstreak(match_streak_away, title_plt="Uitploeg"))
+                        st.pyplot(plot_winstreak(match_streak_away, title_plt="Uitploeg\n"))
                 except:
                     with plot_col3:
                         st.warning("Winstreak Away team not available.")
