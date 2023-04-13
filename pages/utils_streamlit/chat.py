@@ -3,7 +3,6 @@ import streamlit as st
 from opta.utils.opta_feeds import get_tournamentschedule
 
 openai.api_key = st.secrets['OPENAI_KEY']
-outletAuthKey_ereD = st.secrets['outletAuthKey_ereD']
 
 def GPT_3(prompt, model_engine, MAX_TOKENS, TEMP):
     """

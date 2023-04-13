@@ -10,6 +10,8 @@ from streamlit_chat import message as st_message
 from pages.utils_streamlit.chat import GPT_3, GPT_chat_completion, competition
 from pages.utils_streamlit.st_login import check_password
 
+outletAuthKey_ereD = st.secrets['outletAuthKey_ereD']
+
 if "message_history" not in st.session_state:
     st.session_state.message_history = []
 
@@ -81,7 +83,7 @@ if check_password():
     )
 
     st.sidebar.success("Geselecteerd: " + str(openai_model))
-    dates = competition()
+    dates = competition(outletAuthKey_ereD)
     selected_match_date = st.selectbox(
         "Selecteer wedstrijd datum: ", dates
     )
