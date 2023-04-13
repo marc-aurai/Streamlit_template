@@ -1,6 +1,5 @@
 import openai
 import streamlit as st
-from pages.utils_streamlit.tournamentschedule import get_tournamentschedule
 
 
 openai.api_key = st.secrets['OPENAI_KEY']
