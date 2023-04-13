@@ -1,6 +1,7 @@
 import openai
 import streamlit as st
-from opta.utils.opta_feeds import get_tournamentschedule
+from tournamentschedule import get_tournamentschedule
+
 
 openai.api_key = st.secrets['OPENAI_KEY']
 
