@@ -1,7 +1,6 @@
 import calendar
 import datetime
 import ast
-import time
 
 import pandas as pd
 import pytz
@@ -149,8 +148,33 @@ if check_password():
                         MAX_TOKENS=TOKENS,
                         TEMP=temperature_GPT,
                     )
+
+                    plot_col1, plot_col2, plot_col3 = st.columns(3)
+                    try:
+                        with plot_col1:
+                            st.pyplot(
+                                plot_winstreak(
+                                    match_streak_home, title_plt=str(home_team) + "\n"
+                                )
+                            )
+                    except:
+                        with plot_col1:
+                            st.warning("Winstreak Home team not available.")
+                    try:
+                        with plot_col3:
+                            st.pyplot(
+                                plot_winstreak(
+                                    match_streak_away, title_plt=str(away_team) + "\n"
+                                )
+                            )
+                    except:
+                        with plot_col3:
+                            st.warning("Winstreak Away team not available.")
+
                     chats = st.empty()
                     completion_chunks = []
+                    _datetime = get_datetime()
+                    completion_chunks.append(str(_datetime)+"\n")
                     for chunk in generated_output:
                         try:
                             completion_chunks.append(chunk.choices[0].delta.content)
@@ -158,8 +182,7 @@ if check_password():
                             completion_chunks.append("")
                         with chats.container():
                             st.write(
-                            " ".join(completion_chunks))
-                            #time.sleep(0.01)
+                            "".join(completion_chunks).strip())
 
                 if str(openai_model) in (
                     "curie:ft-southfields-2023-04-05-11-53-31",
@@ -172,37 +195,16 @@ if check_password():
                         TEMP=temperature_GPT,
                     )
 
-                plot_col1, plot_col2, plot_col3 = st.columns(3)
-                try:
-                    with plot_col1:
-                        st.pyplot(
-                            plot_winstreak(
-                                match_streak_home, title_plt=str(home_team) + "\n"
-                            )
-                        )
-                except:
-                    with plot_col1:
-                        st.warning("Winstreak Home team not available.")
-                try:
-                    with plot_col3:
-                        st.pyplot(
-                            plot_winstreak(
-                                match_streak_away, title_plt=str(away_team) + "\n"
-                            )
-                        )
-                except:
-                    with plot_col3:
-                        st.warning("Winstreak Away team not available.")
 
-                _datetime = get_datetime()
-                st.session_state.message_history.append(_datetime + generated_output)
-                for message_ in reversed(st.session_state.message_history):
-                    st_message(
-                        message_,
-                        avatar_style="bottts-neutral",
-                        seed="Aneka",
-                        is_user=False,
-                    )
+                # _datetime = get_datetime()
+                # st.session_state.message_history.append(_datetime + generated_output)
+                # for message_ in reversed(st.session_state.message_history):
+                #     st_message(
+                #         message_,
+                #         avatar_style="bottts-neutral",
+                #         seed="Aneka",
+                #         is_user=False,
+                #     )
 
     st.info(
         """Model temperature:\n - Hogere waarden zoals 0.8 zal de output meer random 
