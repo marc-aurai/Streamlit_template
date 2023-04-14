@@ -35,33 +35,30 @@ def select_features(df: pd.DataFrame) -> pd.DataFrame:
             "awayContestantOfficialName",
             "last_six_home",
             "last_six_away",
+            "rank_home",
+            "rank_away",
+            "rank_status_home",
+            "rank_status_away",
+            "home_injuries",
+            "away_injuries",
         ]
     ]
 
+
 def prompt_engineering(df: pd.DataFrame):
     df_selection = select_features(df=df)
-    dates = date(df_selection)
-    home_versus_away = home_vs_away(df_selection)
-    venue_names = venue(df_selection)
-    competition_names = competition(df_selection)
-    final_scores = final_score(df_selection)
-    goals = goal_events(df_selection)
-    cards = card_events(df_selection)
-    possesion_stats = possession(df_selection)
-    trainers = trainer(df_selection)
-    keepers = keeper(df_selection)
     prompt_df = pd.DataFrame(
         {
-            "dates": dates,
-            "home_vs_away": home_versus_away,
-            "venue": venue_names,
-            "competition": competition_names,
-            "final_score": final_scores,
-            "possession": possesion_stats,
-            "trainers": trainers,
-            "keepers": keepers,
-            "goal_events": goals,
-            "card_events": cards,
+            "dates": date(df_selection),
+            "home_vs_away": home_vs_away(df_selection),
+            "venue": venue(df_selection),
+            "competition": competition(df_selection),
+            "final_score": final_score(df_selection),
+            "possession": possession(df_selection),
+            "trainers": trainer(df_selection),
+            "keepers": keeper(df_selection),
+            "goal_events": goal_events(df_selection),
+            "card_events": card_events(df_selection),
         }
     )
     # Flatten list of goal and card events per match.
@@ -73,11 +70,21 @@ def prompt_engineering(df: pd.DataFrame):
     ]
 
     openai_df = pd.DataFrame()
-    openai_df["date"] = df_selection["date"]
+    openai_df = df_selection[
+        [
+            "date",
+            "last_six_home",
+            "last_six_away",
+            "rank_home",
+            "rank_away",
+            "rank_status_home",
+            "rank_status_away",
+            "home_injuries",
+            "away_injuries",
+        ]
+    ].copy()
     openai_df["home_team"] = df_selection["homeContestantOfficialName"]
     openai_df["away_team"] = df_selection["awayContestantOfficialName"]
-    openai_df["last_six_home"] = df_selection["last_six_home"]
-    openai_df["last_six_away"] = df_selection["last_six_away"]
     openai_df["match"] = (
         df_selection["homeContestantOfficialName"]
         + " vs "

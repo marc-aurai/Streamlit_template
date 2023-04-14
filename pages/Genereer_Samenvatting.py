@@ -23,7 +23,7 @@ def load_images():
 @st.cache_data(show_spinner="Een momentje...")
 def load_dataset(): # Elke dag bijvoorbeeld als job schedulen
     df = pd.read_csv(
-        "./pages/data/eredivisie.csv", sep="," 
+        "./pages/data/eredivisie_test.csv", sep="," 
     )
     df = df.sort_values(by="date", ascending=False)
     return df
@@ -63,9 +63,9 @@ if check_password():
     image = load_images()
     df = load_dataset()
     st.image(image)
-
     st.write(""" # Southfields AI Tool """)
 
+    # SIDEBAR
     TOKENS = st.sidebar.number_input(
         label="Maximum length (Tokens)", min_value=50, max_value=500, value=350
     )
@@ -80,17 +80,29 @@ if check_password():
             "davinci:ft-southfields-2023-04-07-18-26-14",
         ),
     )
-
     st.sidebar.success("Geselecteerd: " + str(openai_model))
 
-    selected_match_date = st.selectbox(
-        "Selecteer wedstrijd datum: ", df.date.unique().tolist()
-    )
+    # Main page
+    select1, select2 = st.columns(2)
+    with select1:
+        selected_match_date = st.selectbox(
+            "Selecteer wedstrijd datum: ", df.date.unique().tolist()
+        )
     matches_on_date = df.loc[df["date"] == selected_match_date]
+    with select2:
+        selected_match = st.selectbox(
+            "Selecteer wedstrijd: ", matches_on_date.match.values.tolist()
+        )
+    select3, select4 = st.columns(2)
+    with select3:
+        selected_home_injuries = st.multiselect(
+            "Selecteer thuisploeg blessures: ", matches_on_date.home_injuries.values.tolist()
+        )
+    with select4:
+        selected_away_injuries = st.multiselect(
+            "Selecteer uitploeg blessures: ", matches_on_date.away_injuries.values.tolist()
+        )
 
-    selected_match = st.selectbox(
-        "Selecteer wedstrijd: ", matches_on_date.match.values.tolist()
-    )
     match_prompt = df["prompt"].loc[df["match"] == selected_match].to_list()[0]
     match_streak_home = df["last_six_home"].loc[df["match"] == selected_match].to_list()[0]
     match_streak_away = df["last_six_away"].loc[df["match"] == selected_match].to_list()[0]

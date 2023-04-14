@@ -14,6 +14,7 @@ from utils.opta_feeds import (
     get_score,
     get_cup,
     get_rankStatus,
+    get_injuries,
 )
 
 load_dotenv()
@@ -42,8 +43,9 @@ if __name__ == "__main__":
         .pipe(get_matchstats_goals, outletAuthKey_ereD)
         .pipe(get_trainer, outletAuthKey_ereD)
         .pipe(get_keepers, outletAuthKey_ereD)
+        .pipe(get_injuries, outletAuthKey_ereD, competition="d1k1pqdg2yvw8e8my74yvrdw4")
         .pipe(get_rankStatus, outletAuthKey_ereD, competition="d1k1pqdg2yvw8e8my74yvrdw4").dropna()
         .pipe(prompt_engineering)
     )
 
-    df.to_csv("./pages/data/eredivisie.csv", line_terminator="\n")
+    df.to_csv("./pages/data/eredivisie_test.csv", line_terminator="\n")

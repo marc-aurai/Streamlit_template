@@ -445,10 +445,15 @@ def get_rankStatus(
     outletAuthKey: str = None,
     competition: str = None,
 ) -> pd.DataFrame:
-    ranks_home = []
-    ranks_away = []
-    last_six_home = []
-    last_six_away = []
+    (
+        ranks_home,
+        ranks_away,
+        last_six_home,
+        last_six_away,
+        rank_statussen_home,
+        rank_statussen_away,
+    ) = ([] for i in range(6))
+
     print("Get rankstatus..\n")
     for match in tqdm(df.index):
         try:
@@ -459,22 +464,92 @@ def get_rankStatus(
             ).json()["stage"][0]["division"][0]["ranking"]
             for team_rank in response:
                 if team_rank["contestantId"] == df["homeContestantId"][match]:
+                    try:
+                        rank_status_home = str(team_rank["rankStatus"])
+                    except:
+                        rank_status_home = ""
                     rank_home = str(team_rank["rank"])
                     six_home = str(team_rank["lastSix"])
                 if team_rank["contestantId"] == df["awayContestantId"][match]:
+                    try:
+                        rank_status_away = str(team_rank["rankStatus"])
+                    except:
+                        rank_status_away = ""
                     rank_away = str(team_rank["rank"])
                     six_away = str(team_rank["lastSix"])
         except:
-            rank_home = ""
-            rank_away = ""
-            six_home = ""
-            six_away = ""
+            (
+                rank_home,
+                rank_away,
+                six_home,
+                six_away,
+            ) = "", "", "", ""
         ranks_home.append(rank_home)
         ranks_away.append(rank_away)
         last_six_home.append(six_home)
         last_six_away.append(six_away)
-    df["rank_home"] = ranks_home
-    df["rank_away"] = ranks_away
-    df["last_six_home"] = last_six_home
-    df["last_six_away"] = last_six_away
+        rank_statussen_home.append(rank_status_home)
+        rank_statussen_away.append(rank_status_away)
+    (
+        df["rank_home"],
+        df["rank_away"],
+        df["last_six_home"],
+        df["last_six_away"],
+        df["rank_status_home"],
+        df["rank_status_away"],
+    ) = (
+        ranks_home,
+        ranks_away,
+        last_six_home,
+        last_six_away,
+        rank_statussen_home,
+        rank_statussen_away,
+    )
+    return df
+
+
+def get_injuries(
+    df: pd.DataFrame = None,
+    outletAuthKey: str = None,
+    competition: str = None,
+) -> pd.DataFrame:
+    print("Get injuries..\n")
+    home_injuries = []
+    away_injuries = []
+    for match in tqdm(df.index):
+        try:
+            home_response = requests.get(
+                f"http://api.performfeeds.com/soccerdata/injuries/{{}}/?_rt=b&_fmt=json&tmcl={{}}&ctst={{}}".format(
+                    outletAuthKey, competition, df["homeContestantId"][match]
+                )
+            ).json()["person"]
+            away_response = requests.get(
+                f"http://api.performfeeds.com/soccerdata/injuries/{{}}/?_rt=b&_fmt=json&tmcl={{}}&ctst={{}}".format(
+                    outletAuthKey, competition, df["awayContestantId"][match]
+                )
+            ).json()["person"]
+            home_injury = [
+                str(home_injury["matchName"])+" heeft nog steeds een "+str(home_injury["injury"][0]["type"])+" blessure."
+                if "endDate" not in injury_details else ""
+                for home_injury in home_response
+                for injury_details in home_injury["injury"]
+            ]
+            away_injury = [
+                str(away_injury["matchName"])+" heeft nog steeds een "+str(away_injury["injury"][0]["type"])+" blessure."
+                if "endDate" not in injury_details else ""
+                for away_injury in away_response
+                for injury_details in away_injury["injury"]
+            ]
+        except:
+            home_injury = ""
+            away_injury = ""
+        home_injuries.append(list(filter(None, home_injury)))
+        away_injuries.append(list(filter(None, away_injury)))
+    (
+        df["home_injuries"],
+        df["away_injuries"],
+    ) = (
+        home_injuries, # remove empty strings
+        away_injuries, # remove empty strings
+    )
     return df
