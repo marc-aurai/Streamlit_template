@@ -545,6 +545,8 @@ def get_injuries(
             away_injury = "None"
         home_injuries.append(list(set(home_injury)))
         away_injuries.append(list(set(away_injury)))
+    home_injuries = [home_injury for home_injury in home_injuries if home_injury != 'None']
+    away_injuries = [away_injury for away_injury in away_injuries if away_injury != 'None']
     (
         df["home_injuries"],
         df["away_injuries"],
