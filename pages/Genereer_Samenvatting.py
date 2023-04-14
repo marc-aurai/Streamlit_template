@@ -172,7 +172,7 @@ if check_password():
                     )
                     completion_chunks = []
                     for chunk in generated_output:
-                        completion_chunks.append(chunk.choices[0].delta)
+                        completion_chunks.append(chunk.choices[0].delta.content)
                         st_message(
                         " ".join(completion_chunks),
                         avatar_style="bottts-neutral",
