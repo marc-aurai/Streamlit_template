@@ -102,6 +102,7 @@ if check_password():
         selected_home_injuries = st.multiselect(
             "Selecteer {} blessures: ".format(select_match_injuries["home_team"].values[0]), options=injuries_home
         )
+        st.write(selected_home_injuries)
     with select4:
         injuries_away = ast.literal_eval(select_match_injuries.away_injuries.values[0])
         injuries_away = [injury for injury in injuries_away if injury != "None"]
@@ -109,6 +110,7 @@ if check_password():
         selected_away_injuries = st.multiselect(
             "Selecteer {} blessures: ".format(select_match_injuries["away_team"].values[0]), options=injuries_away
         )
+        st.write(selected_away_injuries)
 
     match_prompt = df["prompt"].loc[df["match"] == selected_match].to_list()[0]
     match_streak_home = df["last_six_home"].loc[df["match"] == selected_match].to_list()[0]
