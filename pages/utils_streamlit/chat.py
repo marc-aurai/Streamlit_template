@@ -45,13 +45,3 @@ def GPT_chat_completion(prompt, model_engine, MAX_TOKENS, TEMP):
         temperature=TEMP
     )
     return "\n" + str(completion.choices[0].message.content)
-
-
-def competition(outletAuthKey_competition: str):
-    df_tournament = get_tournamentschedule(
-        outletAuthKey=outletAuthKey_competition,
-        competitions=[
-            "d1k1pqdg2yvw8e8my74yvrdw4",  # Eredivisie 22/23
-        ],
-    )
-    return df_tournament.date.tolist()

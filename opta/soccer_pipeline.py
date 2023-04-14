@@ -30,38 +30,20 @@ def competition(outletAuthKey_competition: str):
     )
     return df_tournament
 
-def streamlit_request(date):
-    df_tournament = competition(
-        outletAuthKey_ereD
-    )  # Selecteer op datum vanuit streamlit
-    df_matches_on_date = df_tournament.loc[df_tournament["date"] == date]
-
-    df = get_cup(df_matches_on_date, outletAuthKey_ereD, competition="d1k1pqdg2yvw8e8my74yvrdw4")
-    df = get_score(df, outletAuthKey_ereD)
-    df = get_matchstats_possession(df, outletAuthKey_ereD)
-    df = get_matchstats_cards(df, outletAuthKey_ereD)
-    df = get_venue(df, outletAuthKey_ereD)
-    df = get_matchstats_goals(df, outletAuthKey_ereD)
-    df = get_trainer(df, outletAuthKey_ereD)
-    df = get_keepers(df, outletAuthKey_ereD)
-    df_openai = prompt_engineering(df=df)
-    return df_openai
 
 if __name__ == "__main__":
-    df_tournament = competition(
-        outletAuthKey_ereD
-    )  # Selecteer op datum vanuit streamlit
-    #df_matches_on_date = df_tournament.loc[df_tournament["date"] == "2023-03-19Z"]
+    df = (
+        competition(outletAuthKey_ereD)
+        .pipe(get_cup, outletAuthKey_ereD, competition="d1k1pqdg2yvw8e8my74yvrdw4")
+        .pipe(get_score,outletAuthKey_ereD)
+        .pipe(get_matchstats_possession, outletAuthKey_ereD)
+        .pipe(get_matchstats_cards, outletAuthKey_ereD)
+        .pipe(get_venue, outletAuthKey_ereD)
+        .pipe(get_matchstats_goals, outletAuthKey_ereD)
+        .pipe(get_trainer, outletAuthKey_ereD)
+        .pipe(get_keepers, outletAuthKey_ereD)
+        .pipe(get_rankStatus, outletAuthKey_ereD, competition="d1k1pqdg2yvw8e8my74yvrdw4").dropna()
+        .pipe(prompt_engineering)
+    )
 
-    df = get_cup(df_tournament, outletAuthKey_ereD, competition="d1k1pqdg2yvw8e8my74yvrdw4")
-    df = get_score(df, outletAuthKey_ereD)
-    df = get_matchstats_possession(df, outletAuthKey_ereD)
-    df = get_matchstats_cards(df, outletAuthKey_ereD)
-    df = get_venue(df, outletAuthKey_ereD)
-    df = get_matchstats_goals(df, outletAuthKey_ereD)
-    df = get_trainer(df, outletAuthKey_ereD)
-    df = get_keepers(df, outletAuthKey_ereD)
-    df= get_rankStatus(df, outletAuthKey_ereD, competition="d1k1pqdg2yvw8e8my74yvrdw4")
-    # df.to_csv("./pages/data/eredivisie_ranks.csv", sep=";", index=False)
-    df_openai = prompt_engineering(df=df.dropna())
-    df_openai.to_csv("./pages/data/eredivisie.csv", line_terminator="\n")
+    df.to_csv("./pages/data/eredivisie.csv", line_terminator="\n")
