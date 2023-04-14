@@ -172,7 +172,10 @@ if check_password():
                     )
                     completion_chunks = []
                     for chunk in generated_output:
-                        completion_chunks.append(chunk.choices[0].delta.content)
+                        try:
+                            completion_chunks.append(chunk.choices[0].delta.content)
+                        except:
+                            completion_chunks.append("")
                         st_message(
                         " ".join(completion_chunks),
                         avatar_style="bottts-neutral",
