@@ -22,7 +22,7 @@ def load_images():
 
 
 @st.cache_data(show_spinner="Een momentje...")
-def load_dataset():  # Elke dag bijvoorbeeld als job schedulen
+def load_dataset() -> pd.DataFrame:  # Elke dag bijvoorbeeld als job schedulen
     df = pd.read_csv("./pages/data/eredivisie_test.csv", sep=",")
     df = df.sort_values(by="date", ascending=False)
     return df

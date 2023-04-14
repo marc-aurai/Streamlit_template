@@ -22,7 +22,7 @@ outletAuthKey_ereD = os.getenv("outletAuthKey_ereD")
 outletAuthKey_KKD = os.getenv("outletAuthKey_KKD")
 
 
-def competition(outletAuthKey_competition: str):
+def competition(outletAuthKey_competition: str) -> pd.DataFrame:
     df_tournament = get_tournamentschedule(
         outletAuthKey=outletAuthKey_competition,
         competitions=[
