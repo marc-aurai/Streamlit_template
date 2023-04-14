@@ -142,24 +142,19 @@ if check_password():
         with st.spinner("Even een samenvatting aan het schrijven, momentje..."):
             if input_data != "..":
                 if str(openai_model) in ("gpt-3.5-turbo", "gpt-4"):
-                    generated_output = GPT_chat_completion(
+                    generated_output = GPT_chat_completion_streaming(
                         prompt=input_data,
                         model_engine=openai_model,
                         MAX_TOKENS=TOKENS,
                         TEMP=temperature_GPT,
                     )
-                    # completion_chunks = []
-                    # for chunk in generated_output:
-                    #     try:
-                    #         completion_chunks.append(chunk.choices[0].delta.content)
-                    #     except:
-                    #         completion_chunks.append("")
-                    #     st_message(
-                    #     " ".join(completion_chunks),
-                    #     avatar_style="bottts-neutral",
-                    #     seed="Aneka",
-                    #     is_user=False,
-                    # )
+                    completion_chunks = []
+                    for chunk in generated_output:
+                        try:
+                            completion_chunks.append(chunk.choices[0].delta.content)
+                        except:
+                            completion_chunks.append("")
+                        st.write(" ".join(completion_chunks))
 
                 if str(openai_model) in (
                     "curie:ft-southfields-2023-04-05-11-53-31",
