@@ -148,13 +148,20 @@ if check_password():
                         MAX_TOKENS=TOKENS,
                         TEMP=temperature_GPT,
                     )
+                    chats = st.empty()
                     completion_chunks = []
                     for chunk in generated_output:
                         try:
                             completion_chunks.append(chunk.choices[0].delta.content)
                         except:
                             completion_chunks.append("")
-                        st.write(" ".join(completion_chunks))
+                        with chats.container():
+                            st_message(
+                            " ".join(completion_chunks),
+                            avatar_style="bottts-neutral",
+                            seed="Aneka",
+                            is_user=False,
+                        )
 
                 if str(openai_model) in (
                     "curie:ft-southfields-2023-04-05-11-53-31",
