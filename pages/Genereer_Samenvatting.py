@@ -1,6 +1,7 @@
 import calendar
 import datetime
 import ast
+import time
 
 import pandas as pd
 import pytz
@@ -162,6 +163,7 @@ if check_password():
                             seed="Aneka",
                             is_user=False,
                         )
+                            time.sleep(0.2)
 
                 if str(openai_model) in (
                     "curie:ft-southfields-2023-04-05-11-53-31",
