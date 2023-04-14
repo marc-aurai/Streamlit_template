@@ -97,12 +97,17 @@ if check_password():
     select_match_injuries = df.loc[df["match"] == selected_match]
     select3, select4 = st.columns(2)
     with select3:
+        injuries_home = ast.literal_eval(select_match_injuries.home_injuries.values[0])
+        injuries_home = [injury for injury in injuries_home if injury != "None"]
         selected_home_injuries = st.multiselect(
-            "Selecteer {} blessures: ".format(select_match_injuries["home_team"].values[0]), options=ast.literal_eval(select_match_injuries.home_injuries.values[0])
+            "Selecteer {} blessures: ".format(select_match_injuries["home_team"].values[0]), options=injuries_home
         )
     with select4:
+        injuries_away = ast.literal_eval(select_match_injuries.away_injuries.values[0])
+        injuries_away = [injury for injury in injuries_away if injury != "None"]
+
         selected_away_injuries = st.multiselect(
-            "Selecteer {} blessures: ".format(select_match_injuries["away_team"].values[0]), options=ast.literal_eval(select_match_injuries.away_injuries.values[0])
+            "Selecteer {} blessures: ".format(select_match_injuries["away_team"].values[0]), options=injuries_away
         )
 
     match_prompt = df["prompt"].loc[df["match"] == selected_match].to_list()[0]
