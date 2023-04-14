@@ -94,6 +94,13 @@ if check_password():
         selected_match = st.selectbox(
             "Selecteer wedstrijd: ", matches_on_date.match.values.tolist()
         )
+
+    match_prompt = df["prompt"].loc[df["match"] == selected_match].to_list()[0]
+    match_streak_home = df["last_six_home"].loc[df["match"] == selected_match].to_list()[0]
+    match_streak_away = df["last_six_away"].loc[df["match"] == selected_match].to_list()[0]
+    home_team = df["home_team"].loc[df["match"] == selected_match].to_list()[0]
+    away_team = df["away_team"].loc[df["match"] == selected_match].to_list()[0]
+
     select_match_injuries = df.loc[df["match"] == selected_match]
     select3, select4 = st.columns(2)
     with select3:
@@ -103,6 +110,7 @@ if check_password():
             "Selecteer {} blessures: ".format(select_match_injuries["home_team"].values[0]), options=injuries_home
         )
         st.write(selected_home_injuries)
+        match_prompt.replace("competitie.\n","competitie.\n"+selected_home_injuries[0])
     with select4:
         injuries_away = ast.literal_eval(select_match_injuries.away_injuries.values[0])
         injuries_away = [injury for injury in injuries_away if injury != "None"]
@@ -111,13 +119,6 @@ if check_password():
             "Selecteer {} blessures: ".format(select_match_injuries["away_team"].values[0]), options=injuries_away
         )
         st.write(selected_away_injuries)
-
-    match_prompt = df["prompt"].loc[df["match"] == selected_match].to_list()[0]
-    match_streak_home = df["last_six_home"].loc[df["match"] == selected_match].to_list()[0]
-    match_streak_away = df["last_six_away"].loc[df["match"] == selected_match].to_list()[0]
-    home_team = df["home_team"].loc[df["match"] == selected_match].to_list()[0]
-    away_team = df["away_team"].loc[df["match"] == selected_match].to_list()[0]
-
 
     input_data = st.text_area(
         label="Wedstrijd Data", value=match_prompt, height=400, max_chars=None
