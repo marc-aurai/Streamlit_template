@@ -181,7 +181,7 @@ if check_password():
                         except:
                             completion_chunks.append("")
                         with chats.container():
-                            complete_stream_output = st.write(
+                            st.write(
                             "".join(completion_chunks).strip())
 
                 if str(openai_model) in (
@@ -197,7 +197,7 @@ if check_password():
 
 
                 #_datetime = get_datetime()
-                st.session_state.message_history.append(str(complete_stream_output))
+                st.session_state.message_history.append("".join(completion_chunks).strip())
                 for message_ in reversed(st.session_state.message_history):
                     st_message(
                         message_,
