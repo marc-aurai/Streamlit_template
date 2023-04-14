@@ -197,7 +197,7 @@ if check_password():
 
 
                 #_datetime = get_datetime()
-                st.session_state.message_history.append(complete_stream_output)
+                st.session_state.message_history.append(str(complete_stream_output))
                 for message_ in reversed(st.session_state.message_history):
                     st_message(
                         message_,
