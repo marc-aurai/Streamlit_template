@@ -95,7 +95,7 @@ if check_password():
             "Selecteer wedstrijd: ", matches_on_date.match.values.tolist()
         )
 
-    match_prompt = df["prompt"].loc[df["match"] == selected_match].to_list()[0]
+    match_prompt = str(df["prompt"].loc[df["match"] == selected_match].to_list()[0])
     match_streak_home = df["last_six_home"].loc[df["match"] == selected_match].to_list()[0]
     match_streak_away = df["last_six_away"].loc[df["match"] == selected_match].to_list()[0]
     home_team = df["home_team"].loc[df["match"] == selected_match].to_list()[0]
