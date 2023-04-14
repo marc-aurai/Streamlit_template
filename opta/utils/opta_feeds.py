@@ -530,28 +530,26 @@ def get_injuries(
             ).json()["person"]
             home_injury = [
                 str(home_injury["matchName"])+" heeft nog steeds een "+str(home_injury["injury"][0]["type"])+" blessure."
-                if "endDate" not in injury_details else "None"
                 for home_injury in home_response
                 for injury_details in home_injury["injury"]
+                if "endDate" not in injury_details 
             ]
             away_injury = [
                 str(away_injury["matchName"])+" heeft nog steeds een "+str(away_injury["injury"][0]["type"])+" blessure."
-                if "endDate" not in injury_details else "None"
                 for away_injury in away_response
                 for injury_details in away_injury["injury"]
+                if "endDate" not in injury_details 
             ]
         except:
             home_injury = "None"
             away_injury = "None"
         home_injuries.append(list(set(home_injury)))
         away_injuries.append(list(set(away_injury)))
-    home_injuries = [home_injury for home_injury in home_injuries if home_injury != 'None']
-    away_injuries = [away_injury for away_injury in away_injuries if away_injury != 'None']
     (
         df["home_injuries"],
         df["away_injuries"],
     ) = (
-        home_injuries, # remove empty strings
-        away_injuries, # remove empty strings
+        home_injuries, 
+        away_injuries, 
     )
     return df
