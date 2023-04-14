@@ -65,4 +65,4 @@ def GPT_chat_completion_streaming(prompt, model_engine, MAX_TOKENS, TEMP):
         temperature=TEMP,
         stream=True
     )
-    return str(completion.choices[0].delta.content)
+    return completion
