@@ -98,11 +98,11 @@ if check_password():
     select3, select4 = st.columns(2)
     with select3:
         selected_home_injuries = st.multiselect(
-            "Selecteer {} blessures: ".format(select_match_injuries["home_team"].values[0]), options=ast.literal_eval(select_match_injuries.home_injuries.values)
+            "Selecteer {} blessures: ".format(select_match_injuries["home_team"].values[0]), options=ast.literal_eval(select_match_injuries.home_injuries.values[0])
         )
     with select4:
         selected_away_injuries = st.multiselect(
-            "Selecteer {} blessures: ".format(select_match_injuries["away_team"].values[0]), options=ast.literal_eval(select_match_injuries.away_injuries.values)
+            "Selecteer {} blessures: ".format(select_match_injuries["away_team"].values[0]), options=ast.literal_eval(select_match_injuries.away_injuries.values[0])
         )
 
     match_prompt = df["prompt"].loc[df["match"] == selected_match].to_list()[0]
