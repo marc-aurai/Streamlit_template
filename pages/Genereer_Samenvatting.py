@@ -181,7 +181,7 @@ if check_password():
                         except:
                             completion_chunks.append("")
                         with chats.container():
-                            st.write(
+                            complete_stream_output = st.write(
                             "".join(completion_chunks).strip())
 
                 if str(openai_model) in (
@@ -196,15 +196,15 @@ if check_password():
                     )
 
 
-                # _datetime = get_datetime()
-                # st.session_state.message_history.append(_datetime + generated_output)
-                # for message_ in reversed(st.session_state.message_history):
-                #     st_message(
-                #         message_,
-                #         avatar_style="bottts-neutral",
-                #         seed="Aneka",
-                #         is_user=False,
-                #     )
+                #_datetime = get_datetime()
+                st.session_state.message_history.append(complete_stream_output)
+                for message_ in reversed(st.session_state.message_history):
+                    st_message(
+                        message_,
+                        avatar_style="bottts-neutral",
+                        seed="Aneka",
+                        is_user=False,
+                    )
 
     st.info(
         """Model temperature:\n - Hogere waarden zoals 0.8 zal de output meer random 
