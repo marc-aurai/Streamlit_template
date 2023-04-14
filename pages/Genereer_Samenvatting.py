@@ -159,7 +159,7 @@ if check_password():
                         with chats.container():
                             st.write(
                             " ".join(completion_chunks))
-                            time.sleep(0.2)
+                            #time.sleep(0.01)
 
                 if str(openai_model) in (
                     "curie:ft-southfields-2023-04-05-11-53-31",
