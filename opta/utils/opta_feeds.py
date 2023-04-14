@@ -543,8 +543,8 @@ def get_injuries(
         except:
             home_injury = "None"
             away_injury = "None"
-        home_injuries.append(list(filter(None, home_injury)))
-        away_injuries.append(list(filter(None, away_injury)))
+        home_injuries.append(list(set(home_injury)))
+        away_injuries.append(list(set(away_injury)))
     (
         df["home_injuries"],
         df["away_injuries"],
