@@ -174,7 +174,7 @@ if check_password():
                     chats = st.empty()
                     completion_chunks = []
                     _datetime = get_datetime()
-                    completion_chunks.append(str(_datetime)+"\n")
+                    completion_chunks.append(str(_datetime)+"\n\n")
                     for chunk in generated_output:
                         try:
                             completion_chunks.append(chunk.choices[0].delta.content)
