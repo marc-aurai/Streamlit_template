@@ -8,7 +8,7 @@ import streamlit as st
 from PIL import Image
 from streamlit_chat import message as st_message
 
-from pages.utils_streamlit.chat import GPT_3, GPT_chat_completion
+from pages.utils_streamlit.chat import GPT_3, GPT_chat_completion, GPT_chat_completion_streaming
 from pages.utils_streamlit.st_login import check_password
 from pages.utils_streamlit.plot_winstreak import plot_winstreak
 
@@ -141,23 +141,6 @@ if check_password():
     if submit:
         with st.spinner("Even een samenvatting aan het schrijven, momentje..."):
             if input_data != "..":
-                if str(openai_model) in ("gpt-3.5-turbo", "gpt-4"):
-                    generated_output = GPT_chat_completion(
-                        prompt=input_data,
-                        model_engine=openai_model,
-                        MAX_TOKENS=TOKENS,
-                        TEMP=temperature_GPT,
-                    )
-                if str(openai_model) in (
-                    "curie:ft-southfields-2023-04-05-11-53-31",
-                    "davinci:ft-southfields-2023-04-07-18-26-14",
-                ):
-                    generated_output = GPT_3(
-                        prompt=input_data,
-                        model_engine=openai_model,
-                        MAX_TOKENS=TOKENS,
-                        TEMP=temperature_GPT,
-                    )
                 plot_col1, plot_col2, plot_col3 = st.columns(3)
                 try:
                     with plot_col1:
@@ -179,6 +162,35 @@ if check_password():
                 except:
                     with plot_col3:
                         st.warning("Winstreak Away team not available.")
+
+                if str(openai_model) in ("gpt-3.5-turbo", "gpt-4"):
+                    generated_output = GPT_chat_completion_streaming(
+                        prompt=input_data,
+                        model_engine=openai_model,
+                        MAX_TOKENS=TOKENS,
+                        TEMP=temperature_GPT,
+                    )
+                    completion_chunks = []
+                    for chunk in generated_output:
+                        completion_chunks.append(chunk)
+                        st_message(
+                        completion_chunks,
+                        avatar_style="bottts-neutral",
+                        seed="Aneka",
+                        is_user=False,
+                    )
+
+                if str(openai_model) in (
+                    "curie:ft-southfields-2023-04-05-11-53-31",
+                    "davinci:ft-southfields-2023-04-07-18-26-14",
+                ):
+                    generated_output = GPT_3(
+                        prompt=input_data,
+                        model_engine=openai_model,
+                        MAX_TOKENS=TOKENS,
+                        TEMP=temperature_GPT,
+                    )
+                
                 _datetime = get_datetime()
                 st.session_state.message_history.append(_datetime + generated_output)
                 for message_ in reversed(st.session_state.message_history):

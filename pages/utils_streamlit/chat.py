@@ -45,3 +45,24 @@ def GPT_chat_completion(prompt, model_engine, MAX_TOKENS, TEMP):
         temperature=TEMP
     )
     return "\n" + str(completion.choices[0].message.content)
+
+
+def GPT_chat_completion_streaming(prompt, model_engine, MAX_TOKENS, TEMP):
+    """_summary_
+
+    Args:
+        prompt (_type_): _description_
+        model_engine (_type_): _description_
+    """
+    user_prompt = {
+        "role": "user",
+        "content": prompt
+    }
+    completion = openai.ChatCompletion.create(
+        model=model_engine,
+        messages=[user_prompt],
+        max_tokens=MAX_TOKENS, 
+        temperature=TEMP,
+        stream=True
+    )
+    return completion
