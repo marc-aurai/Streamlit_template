@@ -141,28 +141,6 @@ if check_password():
     if submit:
         with st.spinner("Even een samenvatting aan het schrijven, momentje..."):
             if input_data != "..":
-                plot_col1, plot_col2, plot_col3 = st.columns(3)
-                try:
-                    with plot_col1:
-                        st.pyplot(
-                            plot_winstreak(
-                                match_streak_home, title_plt=str(home_team) + "\n"
-                            )
-                        )
-                except:
-                    with plot_col1:
-                        st.warning("Winstreak Home team not available.")
-                try:
-                    with plot_col3:
-                        st.pyplot(
-                            plot_winstreak(
-                                match_streak_away, title_plt=str(away_team) + "\n"
-                            )
-                        )
-                except:
-                    with plot_col3:
-                        st.warning("Winstreak Away team not available.")
-
                 if str(openai_model) in ("gpt-3.5-turbo", "gpt-4"):
                     generated_output = GPT_chat_completion(
                         prompt=input_data,
@@ -193,7 +171,29 @@ if check_password():
                         MAX_TOKENS=TOKENS,
                         TEMP=temperature_GPT,
                     )
-                
+
+                plot_col1, plot_col2, plot_col3 = st.columns(3)
+                try:
+                    with plot_col1:
+                        st.pyplot(
+                            plot_winstreak(
+                                match_streak_home, title_plt=str(home_team) + "\n"
+                            )
+                        )
+                except:
+                    with plot_col1:
+                        st.warning("Winstreak Home team not available.")
+                try:
+                    with plot_col3:
+                        st.pyplot(
+                            plot_winstreak(
+                                match_streak_away, title_plt=str(away_team) + "\n"
+                            )
+                        )
+                except:
+                    with plot_col3:
+                        st.warning("Winstreak Away team not available.")
+
                 _datetime = get_datetime()
                 st.session_state.message_history.append(_datetime + generated_output)
                 for message_ in reversed(st.session_state.message_history):
