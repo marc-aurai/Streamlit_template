@@ -22,10 +22,8 @@ def load_images():
 
 
 @st.cache_data(show_spinner="Een momentje...")
-def load_dataset(): # Elke dag bijvoorbeeld als job schedulen
-    df = pd.read_csv(
-        "./pages/data/eredivisie_test.csv", sep="," 
-    )
+def load_dataset():  # Elke dag bijvoorbeeld als job schedulen
+    df = pd.read_csv("./pages/data/eredivisie_test.csv", sep=",")
     df = df.sort_values(by="date", ascending=False)
     return df
 
@@ -96,8 +94,12 @@ if check_password():
         )
 
     match_prompt = str(df["prompt"].loc[df["match"] == selected_match].to_list()[0])
-    match_streak_home = df["last_six_home"].loc[df["match"] == selected_match].to_list()[0]
-    match_streak_away = df["last_six_away"].loc[df["match"] == selected_match].to_list()[0]
+    match_streak_home = (
+        df["last_six_home"].loc[df["match"] == selected_match].to_list()[0]
+    )
+    match_streak_away = (
+        df["last_six_away"].loc[df["match"] == selected_match].to_list()[0]
+    )
     home_team = df["home_team"].loc[df["match"] == selected_match].to_list()[0]
     away_team = df["away_team"].loc[df["match"] == selected_match].to_list()[0]
 
@@ -107,19 +109,29 @@ if check_password():
         injuries_home = ast.literal_eval(select_match_injuries.home_injuries.values[0])
         injuries_home = [injury for injury in injuries_home if injury != "None"]
         selected_home_injuries = st.multiselect(
-            "Selecteer {} blessures: ".format(select_match_injuries["home_team"].values[0]), options=injuries_home
+            "Selecteer {} blessures: ".format(
+                select_match_injuries["home_team"].values[0]
+            ),
+            options=injuries_home,
         )
         if selected_home_injuries:
-            match_prompt = match_prompt.replace("competitie.","competitie.\n"+str("\n".join(selected_home_injuries)))
+            match_prompt = match_prompt.replace(
+                "competitie.", "competitie.\n" + str("\n".join(selected_home_injuries))
+            )
     with select4:
         injuries_away = ast.literal_eval(select_match_injuries.away_injuries.values[0])
         injuries_away = [injury for injury in injuries_away if injury != "None"]
 
         selected_away_injuries = st.multiselect(
-            "Selecteer {} blessures: ".format(select_match_injuries["away_team"].values[0]), options=injuries_away
+            "Selecteer {} blessures: ".format(
+                select_match_injuries["away_team"].values[0]
+            ),
+            options=injuries_away,
         )
         if selected_away_injuries:
-            match_prompt = match_prompt.replace("competitie.","competitie.\n"+str("\n".join(selected_away_injuries)))
+            match_prompt = match_prompt.replace(
+                "competitie.", "competitie.\n" + str("\n".join(selected_away_injuries))
+            )
 
     input_data = st.text_area(
         label="Wedstrijd Data", value=match_prompt, height=400, max_chars=None
@@ -149,13 +161,21 @@ if check_password():
                 plot_col1, plot_col2, plot_col3 = st.columns(3)
                 try:
                     with plot_col1:
-                        st.pyplot(plot_winstreak(match_streak_home, title_plt=str(home_team)+"\n"))
+                        st.pyplot(
+                            plot_winstreak(
+                                match_streak_home, title_plt=str(home_team) + "\n"
+                            )
+                        )
                 except:
                     with plot_col1:
                         st.warning("Winstreak Home team not available.")
                 try:
                     with plot_col3:
-                        st.pyplot(plot_winstreak(match_streak_away, title_plt=str(away_team)+"\n"))
+                        st.pyplot(
+                            plot_winstreak(
+                                match_streak_away, title_plt=str(away_team) + "\n"
+                            )
+                        )
                 except:
                     with plot_col3:
                         st.warning("Winstreak Away team not available.")

@@ -483,7 +483,12 @@ def get_rankStatus(
                 rank_away,
                 six_home,
                 six_away,
-            ) = "", "", "", ""
+            ) = (
+                "",
+                "",
+                "",
+                "",
+            )
         ranks_home.append(rank_home)
         ranks_away.append(rank_away)
         last_six_home.append(six_home)
@@ -529,16 +534,22 @@ def get_injuries(
                 )
             ).json()["person"]
             home_injury = [
-                str(home_injury["matchName"])+" van {} heeft een ".format(df["homeContestantOfficialName"][match])+str(home_injury["injury"][0]["type"])+" blessure."
+                str(home_injury["matchName"])
+                + " van {} heeft een ".format(df["homeContestantOfficialName"][match])
+                + str(home_injury["injury"][0]["type"])
+                + " blessure."
                 for home_injury in home_response
                 for injury_details in home_injury["injury"]
-                if "endDate" not in injury_details 
+                if "endDate" not in injury_details
             ]
             away_injury = [
-                str(away_injury["matchName"])+" van {} heeft een ".format(df["awayContestantOfficialName"][match])+str(away_injury["injury"][0]["type"])+" blessure."
+                str(away_injury["matchName"])
+                + " van {} heeft een ".format(df["awayContestantOfficialName"][match])
+                + str(away_injury["injury"][0]["type"])
+                + " blessure."
                 for away_injury in away_response
                 for injury_details in away_injury["injury"]
-                if "endDate" not in injury_details 
+                if "endDate" not in injury_details
             ]
         except:
             home_injury = "None"
@@ -549,7 +560,7 @@ def get_injuries(
         df["home_injuries"],
         df["away_injuries"],
     ) = (
-        home_injuries, 
-        away_injuries, 
+        home_injuries,
+        away_injuries,
     )
     return df

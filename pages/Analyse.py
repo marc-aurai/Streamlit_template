@@ -52,8 +52,8 @@ image = load_images()
 df = load_dataset()
 st.image(image)
 
-df_counted = df['cup'].value_counts()
-df_unqiue = df_counted[df_counted>10]
+df_counted = df["cup"].value_counts()
+df_unqiue = df_counted[df_counted > 10]
 
 st.write(""" # South-Fields Analyse """)
 selected_sport = st.sidebar.multiselect(
@@ -72,7 +72,7 @@ with st.spinner("Een momentje..."):
         fig = plt.figure(figsize=(16, 50))
         ax1 = fig.add_subplot(4, 1, 1)
         ax2 = fig.add_subplot(4, 1, 2)
-        #ax3 = fig.add_subplot(5, 1, 3)
+        # ax3 = fig.add_subplot(5, 1, 3)
         ax4 = fig.add_subplot(4, 1, 3)
         ax5 = fig.add_subplot(4, 1, 4)
         plt.subplots_adjust(hspace=0.5)

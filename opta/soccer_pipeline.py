@@ -36,7 +36,7 @@ if __name__ == "__main__":
     df = (
         competition(outletAuthKey_ereD)
         .pipe(get_cup, outletAuthKey_ereD, competition="d1k1pqdg2yvw8e8my74yvrdw4")
-        .pipe(get_score,outletAuthKey_ereD)
+        .pipe(get_score, outletAuthKey_ereD)
         .pipe(get_matchstats_possession, outletAuthKey_ereD)
         .pipe(get_matchstats_cards, outletAuthKey_ereD)
         .pipe(get_venue, outletAuthKey_ereD)
@@ -44,7 +44,10 @@ if __name__ == "__main__":
         .pipe(get_trainer, outletAuthKey_ereD)
         .pipe(get_keepers, outletAuthKey_ereD)
         .pipe(get_injuries, outletAuthKey_ereD, competition="d1k1pqdg2yvw8e8my74yvrdw4")
-        .pipe(get_rankStatus, outletAuthKey_ereD, competition="d1k1pqdg2yvw8e8my74yvrdw4").dropna()
+        .pipe(
+            get_rankStatus, outletAuthKey_ereD, competition="d1k1pqdg2yvw8e8my74yvrdw4"
+        )
+        .dropna()
         .pipe(prompt_engineering)
     )
 
