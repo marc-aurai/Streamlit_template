@@ -10,6 +10,8 @@ from utils.prompt_engineering import (
     possession,
     trainer,
     keeper,
+    rank_status_home,
+    rank_status_away,
 )
 
 
@@ -59,6 +61,8 @@ def prompt_engineering(df: pd.DataFrame):
             "keepers": keeper(df_selection),
             "goal_events": goal_events(df_selection),
             "card_events": card_events(df_selection),
+            "rank_status_home": rank_status_home(df_selection),
+            "rank_status_away": rank_status_away(df_selection),
         }
     )
     # Flatten list of goal and card events per match.
@@ -109,6 +113,8 @@ def prompt_engineering(df: pd.DataFrame):
         + ".\n"
         + prompt_df.possession.values
         + ".\n"
+        + prompt_df.rank_status_home.values
+        + prompt_df.rank_status_away.values
         + prompt_df.trainers.values
         + ".\n"
         + prompt_df.keepers.values

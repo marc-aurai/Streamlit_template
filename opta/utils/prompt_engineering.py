@@ -275,3 +275,30 @@ def article_completion(df: pd.DataFrame) -> list:
             )
     ]
     return completion
+
+def rank_status_home(df: pd.DataFrame) -> list:
+
+    rank_status = [
+        home_team+" staat op de "+rank_home+"e plaats en tevens op degradatie.\n" 
+        if status_home == "Relegation" else ""
+        for status_home, rank_home, home_team in zip(
+            df["rank_status_home"],
+            df["rank_home"],
+            df["homeContestantOfficialName"],
+        )
+    ]
+    return rank_status
+
+
+def rank_status_away(df: pd.DataFrame) -> list:
+
+    rank_status = [
+        away_team+" staat op de "+rank_away+"e plaats en tevens op degradatie.\n" 
+        if status_away == "Relegation" else ""
+        for status_away, rank_away, away_team in zip(
+            df["rank_status_away"],
+            df["rank_away"],
+            df["awayContestantOfficialName"],
+        )
+    ]
+    return rank_status
