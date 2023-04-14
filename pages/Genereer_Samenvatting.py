@@ -93,14 +93,15 @@ if check_password():
         selected_match = st.selectbox(
             "Selecteer wedstrijd: ", matches_on_date.match.values.tolist()
         )
+    select_match_injuries = df.loc[df["match"] == selected_match]
     select3, select4 = st.columns(2)
     with select3:
         selected_home_injuries = st.multiselect(
-            "Selecteer thuisploeg blessures: ", matches_on_date.home_injuries.values.tolist()
+            "Selecteer thuisploeg blessures: ", select_match_injuries.home_injuries.values.tolist()
         )
     with select4:
         selected_away_injuries = st.multiselect(
-            "Selecteer uitploeg blessures: ", matches_on_date.away_injuries.values.tolist()
+            "Selecteer uitploeg blessures: ", select_match_injuries.away_injuries.values.tolist()
         )
 
     match_prompt = df["prompt"].loc[df["match"] == selected_match].to_list()[0]
