@@ -110,7 +110,7 @@ if check_password():
             "Selecteer {} blessures: ".format(select_match_injuries["home_team"].values[0]), options=injuries_home
         )
         if selected_home_injuries:
-            match_prompt = match_prompt.replace("competitie.","competitie.\n"+str(" ".join(selected_home_injuries)))
+            match_prompt = match_prompt.replace("competitie.","competitie.\n"+str("\n".join(selected_home_injuries)))
     with select4:
         injuries_away = ast.literal_eval(select_match_injuries.away_injuries.values[0])
         injuries_away = [injury for injury in injuries_away if injury != "None"]
@@ -119,7 +119,7 @@ if check_password():
             "Selecteer {} blessures: ".format(select_match_injuries["away_team"].values[0]), options=injuries_away
         )
         if selected_away_injuries:
-            match_prompt = match_prompt.replace("competitie.","competitie.\n"+str(" ".join(selected_away_injuries)))
+            match_prompt = match_prompt.replace("competitie.","competitie.\n"+str("\n".join(selected_away_injuries)))
 
     input_data = st.text_area(
         label="Wedstrijd Data", value=match_prompt, height=400, max_chars=None
