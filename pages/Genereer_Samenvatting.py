@@ -110,7 +110,7 @@ if check_password():
             "Selecteer {} blessures: ".format(select_match_injuries["home_team"].values[0]), options=injuries_home
         )
         try:
-            match_prompt.replace("competitie.","competitie."+str(selected_home_injuries[0]))
+            match_prompt = match_prompt.replace("competitie.","competitie."+str(selected_home_injuries[0]))
         except:
             pass
     with select4:
