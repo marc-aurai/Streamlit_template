@@ -174,7 +174,7 @@ if check_password():
                     for chunk in generated_output:
                         completion_chunks.append(chunk.choices[0].delta)
                         st_message(
-                        completion_chunks,
+                        " ".join(completion_chunks),
                         avatar_style="bottts-neutral",
                         seed="Aneka",
                         is_user=False,
