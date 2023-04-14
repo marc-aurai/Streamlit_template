@@ -157,12 +157,8 @@ if check_password():
                         except:
                             completion_chunks.append("")
                         with chats.container():
-                            st_message(
-                            " ".join(completion_chunks),
-                            avatar_style="bottts-neutral",
-                            seed="Aneka",
-                            is_user=False,
-                        )
+                            st.write(
+                            " ".join(completion_chunks))
                             time.sleep(0.5)
 
                 if str(openai_model) in (
