@@ -85,7 +85,7 @@ def ST_select_trainers(match_prompt, select_trainers, select_match_injuries):
         if selected_trainers:
             options=select_match_injuries.trainers.values.tolist(),
             match_prompt = match_prompt.replace(
-                ".\n\n###\n\n", "\n" + str(" ".join(options)) + ".\n\n###\n\n"
+                ".\n\n###\n\n", "\n" + str(" ".join(str(options))) + ".\n\n###\n\n"
             )
         else: 
             pass
