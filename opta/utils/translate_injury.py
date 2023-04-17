@@ -1,6 +1,6 @@
 from googletrans import Translator
 
-translator = Translator()
+
 
 def translate_injury(injury):
     """
@@ -9,6 +9,8 @@ def translate_injury(injury):
     :param injury: string with injury in English
     :return: string with injury in Dutch
     """
+
+    translator = Translator()
     
     injuries = {"achilles tendon rupture": "gescheurde achillespees",
     "ankle/foot injury": "enkelblessure",
