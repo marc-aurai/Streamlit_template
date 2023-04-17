@@ -4,7 +4,6 @@ import matplotlib.pyplot as plt
 
 plt.rcParams["figure.facecolor"] = "#100c44"
 plt.rcParams["text.color"] = "#FFFFFF"
-plt.rcParams["figure.titlesize"] = 16
 
 
 def plot_winstreak(streak: str, title_plt: str):
@@ -35,7 +34,7 @@ def plot_winstreak(streak: str, title_plt: str):
     colors = itertools.cycle(color_list)
     for x_, y_, streak in zip(x, y, streak_list):
         plt.scatter(x_, y_, color=next(colors))
-        plt.title(title_plt)
+        plt.title(title_plt, fontsize=18)
         plt.text(x_ + 0.03, y_ + 0.03, streak, fontsize=9, rotation=45)
     plt.axis("off")
     return plt
