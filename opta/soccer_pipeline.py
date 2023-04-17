@@ -15,6 +15,7 @@ from utils.opta_feeds import (
     get_cup,
     get_rankStatus,
     get_injuries,
+    get_name
 )
 
 load_dotenv()

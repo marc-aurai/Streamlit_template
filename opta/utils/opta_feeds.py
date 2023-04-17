@@ -133,6 +133,24 @@ def get_matchstats_cards(
     df["card_events"] = all_team_cards
     return df
 
+def get_name(goal, outletAuthKey: str = None):
+    """
+    Helper function for get_matchstats_goals to get the 'correct' name for the scorer
+    takes in the goal event from match_stats goals and the same outletAuthKey
+    If no name is available, the scorername from the goal event is returned
+    """
+    data = requests.get(f"http://api.performfeeds.com/soccerdata/squads/{{}}?_rt=b&_fmt=json&ctst={{}}".format(
+        outletAuthKey, goal["contestantId"])).json()
+
+    try: 
+        for squad in data["squad"]:
+            for person in squad["person"]:
+                if person["id"] == goal['scorerId']:
+                    print(person['shortLastName'])
+                    return person["shortLastName"]
+    except:            
+        return goal['scorerName']
+
 
 def get_matchstats_goals(
     df: pd.DataFrame = None, outletAuthKey: str = None
@@ -179,7 +197,8 @@ def get_matchstats_goals(
                     "periodId": goal["periodId"],
                     "timeMin": goal["timeMin"],
                     "scorerId": goal["scorerId"],
-                    "scorerName": goal["scorerName"],
+                    "scorerName" : get_name(goal, outletAuthKey),
+                    # "scorerName": goal["scorerName"],
                     "goalType": goal["type"],
                 }
                 for goal in matchstats
