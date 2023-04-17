@@ -140,7 +140,7 @@ if check_password():
                 select_match_injuries["home_team"].values[0],
                 select_match_injuries["away_team"].values[0]
             ),
-            options=select_match_injuries.trainers.values[0],
+            options=ast.literal_eval(select_match_injuries.trainers.values[0]),
         )
         if selected_trainers:
             match_prompt = match_prompt.replace(
