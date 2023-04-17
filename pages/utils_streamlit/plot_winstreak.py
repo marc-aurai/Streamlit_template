@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 
 plt.rcParams["figure.facecolor"] = "#100c44"
 plt.rcParams["text.color"] = "#FFFFFF"
+plt.rcParams["figure.titlesize"] = 16
 
 
 def plot_winstreak(streak: str, title_plt: str):
