@@ -8,9 +8,21 @@ import streamlit as st
 from PIL import Image
 from streamlit_chat import message as st_message
 
-from pages.utils_streamlit.chat import GPT_3, GPT_chat_completion, GPT_chat_completion_streaming
-from pages.utils_streamlit.st_login import check_password
+from pages.utils_streamlit.chat import (
+    GPT_3,
+    GPT_chat_completion,
+    GPT_chat_completion_streaming,
+)
+from pages.utils_streamlit.login import check_password
 from pages.utils_streamlit.plot_winstreak import plot_winstreak
+from pages.utils_streamlit.selections import (
+    ST_select_match_date,
+    ST_select_match,
+    ST_get_data_match,
+    ST_select_injury_home,
+    ST_select_injury_away,
+    ST_select_trainers,
+)
 
 if "message_history" not in st.session_state:
     st.session_state.message_history = []
@@ -83,69 +95,15 @@ if check_password():
 
     # Main page
     select_date, select_match = st.columns(2)
-    with select_date:
-        selected_match_date = st.selectbox(
-            "Selecteer wedstrijd datum: ", df.date.unique().tolist()
-        )
-    matches_on_date = df.loc[df["date"] == selected_match_date]
-    with select_match:
-        selected_match = st.selectbox(
-            "Selecteer wedstrijd: ", matches_on_date.match.values.tolist()
-        )
-
-    match_prompt = str(df["prompt"].loc[df["match"] == selected_match].to_list()[0])
-    match_streak_home = (
-        df["last_six_home"].loc[df["match"] == selected_match].to_list()[0]
-    )
-    match_streak_away = (
-        df["last_six_away"].loc[df["match"] == selected_match].to_list()[0]
-    )
-    home_team = df["home_team"].loc[df["match"] == selected_match].to_list()[0]
-    away_team = df["away_team"].loc[df["match"] == selected_match].to_list()[0]
-    select_match_injuries = df.loc[df["match"] == selected_match]
-
+    matches_on_date = ST_select_match_date(df, select_date)
+    selected_match = ST_select_match(select_match, matches_on_date)
+    match_prompt, match_streak_home, match_streak_away, home_team, away_team, select_match_injuries = ST_get_data_match(df, selected_match)
     select_injury_home, select_injury_away = st.columns(2)
-    with select_injury_home:
-        injuries_home = ast.literal_eval(select_match_injuries.home_injuries.values[0])
-        injuries_home = [injury for injury in injuries_home if injury != "None"]
-        selected_home_injuries = st.multiselect(
-            "Selecteer {} blessures: ".format(
-                select_match_injuries["home_team"].values[0]
-            ),
-            options=injuries_home,
-        )
-        if selected_home_injuries:
-            match_prompt = match_prompt.replace(
-                "competitie.", "competitie.\n" + str("\n".join(selected_home_injuries))
-            )
-    with select_injury_away:
-        injuries_away = ast.literal_eval(select_match_injuries.away_injuries.values[0])
-        injuries_away = [injury for injury in injuries_away if injury != "None"]
-
-        selected_away_injuries = st.multiselect(
-            "Selecteer {} blessures: ".format(
-                select_match_injuries["away_team"].values[0]
-            ),
-            options=injuries_away,
-        )
-        if selected_away_injuries:
-            match_prompt = match_prompt.replace(
-                "competitie.", "competitie.\n" + str("\n".join(selected_away_injuries))
-            )
-
+    match_prompt = ST_select_injury_home(match_prompt, select_injury_home, select_match_injuries)
+    match_prompt = ST_select_injury_away(match_prompt, select_injury_away, select_match_injuries)
     select_trainers, select_optioneel = st.columns(2)
-    with select_trainers:
-        selected_trainers = st.multiselect(
-            "Selecteer trainers van:\n{} & {} ".format(
-                select_match_injuries["home_team"].values[0],
-                select_match_injuries["away_team"].values[0]
-            ),
-            options=select_match_injuries.trainers.values,
-        )
-        if selected_trainers:
-            match_prompt = match_prompt.replace(
-                ".\n\n###\n\n", "\n" + str(" ".join(selected_trainers)) + ".\n\n###\n\n"
-            )
+    match_prompt = ST_select_trainers(match_prompt, select_trainers, select_match_injuries)
+    
 
     input_data = st.text_area(
         label="Wedstrijd Data", value=match_prompt, height=400, max_chars=None
@@ -188,15 +146,14 @@ if check_password():
                     chats = st.empty()
                     completion_chunks = []
                     _datetime = get_datetime()
-                    completion_chunks.append(str(_datetime)+"\n\n")
+                    completion_chunks.append(str(_datetime) + "\n\n")
                     for chunk in generated_output:
                         try:
                             completion_chunks.append(chunk.choices[0].delta.content)
                         except:
                             completion_chunks.append("")
                         with chats.container():
-                            st.write(
-                            "".join(completion_chunks).strip())
+                            st.write("".join(completion_chunks).strip())
 
                 if str(openai_model) in (
                     "curie:ft-southfields-2023-04-05-11-53-31",
@@ -209,7 +166,9 @@ if check_password():
                         TEMP=temperature_GPT,
                     )
 
-                st.session_state.message_history.append("".join(completion_chunks).strip())
+                st.session_state.message_history.append(
+                    "".join(completion_chunks).strip()
+                )
                 for message_ in reversed(st.session_state.message_history):
                     st_message(
                         message_,
