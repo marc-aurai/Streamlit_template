@@ -24,6 +24,28 @@ def get_datetime() -> str:
     return created_at_formatted
 
 
+def generate_winstreak_plots(
+    match_streak_home, home_team, match_streak_away, away_team
+):
+    plot_col1, plot_col2, plot_col3 = st.columns(3)
+    try:
+        with plot_col1:
+            st.pyplot(
+                plot_winstreak(match_streak_home, title_plt=str(home_team) + "\n")
+            )
+    except:
+        with plot_col1:
+            st.warning("Winstreak Home team not available.")
+    try:
+        with plot_col3:
+            st.pyplot(
+                plot_winstreak(match_streak_away, title_plt=str(away_team) + "\n")
+            )
+    except:
+        with plot_col3:
+            st.warning("Winstreak Away team not available.")
+
+
 def generate_completion(
     openai_model,
     input_data,
@@ -42,23 +64,9 @@ def generate_completion(
             TEMP=temperature_GPT,
         )
 
-        plot_col1, plot_col2, plot_col3 = st.columns(3)
-        try:
-            with plot_col1:
-                st.pyplot(
-                    plot_winstreak(match_streak_home, title_plt=str(home_team) + "\n")
-                )
-        except:
-            with plot_col1:
-                st.warning("Winstreak Home team not available.")
-        try:
-            with plot_col3:
-                st.pyplot(
-                    plot_winstreak(match_streak_away, title_plt=str(away_team) + "\n")
-                )
-        except:
-            with plot_col3:
-                st.warning("Winstreak Away team not available.")
+        generate_winstreak_plots(
+            match_streak_home, home_team, match_streak_away, away_team
+        )
 
         chats = st.empty()
         completion_chunks = []
@@ -84,7 +92,9 @@ def generate_completion(
             MAX_TOKENS=TOKENS,
             TEMP=temperature_GPT,
         )
-
+        generate_winstreak_plots(
+            match_streak_home, home_team, match_streak_away, away_team
+        )
         st.session_state.message_history.append(generated_output)
 
     for message_ in reversed(st.session_state.message_history):
