@@ -95,7 +95,20 @@ def generate_completion(
         generate_winstreak_plots(
             match_streak_home, home_team, match_streak_away, away_team
         )
-        st.session_state.message_history.append(generated_output)
+        
+        chats = st.empty()
+        completion_chunks = []
+        _datetime = get_datetime()
+        completion_chunks.append(str(_datetime) + "\n\n")
+        for chunk in generated_output:
+            try:
+                completion_chunks.append(chunk.choices[0].delta.content)
+            except:
+                completion_chunks.append("")
+            with chats.container():
+                st.write("".join(completion_chunks).strip())
+
+        st.session_state.message_history.append("".join(completion_chunks).strip())
 
     for message_ in reversed(st.session_state.message_history):
         st_message(
