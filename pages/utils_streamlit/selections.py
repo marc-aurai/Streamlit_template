@@ -76,15 +76,17 @@ def ST_select_injury_away(match_prompt, select_injury_away, select_match_injurie
 
 def ST_select_trainers(match_prompt, select_trainers, select_match_injuries):
     with select_trainers:
-        selected_trainers = st.multiselect(
-            "Selecteer trainers van:\n{} & {} ".format(
-                select_match_injuries["home_team"].values[0],
-                select_match_injuries["away_team"].values[0]
-            ),
-            options=select_match_injuries.trainers.values,
+        selected_trainers = st.checkbox(value=False, 
+                                        key="Selecteer trainers van:\n{} & {} ".format(
+                                            select_match_injuries["home_team"].values[0],
+                                            select_match_injuries["away_team"].values[0]
+                                        )
         )
         if selected_trainers:
+            options=select_match_injuries.trainers.values,
             match_prompt = match_prompt.replace(
-                ".\n\n###\n\n", "\n" + str(" ".join(selected_trainers)) + ".\n\n###\n\n"
+                ".\n\n###\n\n", "\n" + str(" ".join(options)) + ".\n\n###\n\n"
             )
+        else: 
+            pass
     return match_prompt
