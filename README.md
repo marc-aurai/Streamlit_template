@@ -1,3 +1,5 @@
-# MVP - GPT3 - South-Fields/Aurai
+# MVP Project GPT3 - GPT3.5 
+South-Fields/Aurai
 
-Author: Marc Blomvliet - Aurai
+Documentatie:
+https://southfields-digital.github.io/GPT3_MVP/
