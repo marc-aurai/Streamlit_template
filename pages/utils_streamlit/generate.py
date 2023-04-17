@@ -102,7 +102,7 @@ def generate_completion(
         completion_chunks.append(str(_datetime) + "\n\n")
         for chunk in generated_output:
             try:
-                completion_chunks.append(chunk.choices[0].delta.content)
+                completion_chunks.append(chunk.choices[0])
             except:
                 completion_chunks.append("")
             with chats.container():
