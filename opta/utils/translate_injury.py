@@ -15,7 +15,7 @@ def translate_injury(injury):
     "foot injury": "voetblessure",
     "hamstring": "hamstringblessure",
     "illness": "ziek",
-    "knee Injury": "knieblessure",
+    "knee injury": "knieblessure",
     "knock": "knock blessure",
     "thigh muscle strain": "verrekte dijspier",
     "calf/shin injury": "scheen- of kuitblessure",
