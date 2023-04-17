@@ -5,14 +5,16 @@ import streamlit as st
 openai.api_key = st.secrets['OPENAI_KEY']
 
 def GPT_3(prompt, model_engine, MAX_TOKENS, TEMP):
-    """
-    max_tokens = Maximum of characters/tokens in the output (1000 tokens is about 750 words)
-    n = amount of answers
-    stop = Because we are define no stopping rules.
-    temperature = internal parameter for the language model we use.
+    """This function interacts with th OpenAI  API through HTTP request. 
+    The model will respond with a completion.
 
     Args:
-        prompt (str): Your question to the language model
+        prompt (str): The prompt that has been created by OPTA data, soccer_pipeline and the
+        creation of the user input.
+        model_engine (str): Name of the model that the user selected.
+        MAX_TOKENS (int): Maximum of characters/tokens in the output (1000 tokens is about 750 words)
+        TEMP (float) = internal parameter for the language model we use.
+        Creation of randomness (Higher value) or make the model more focused (Lower value).
 
     Returns:
         str: The response of GPT 3
@@ -29,11 +31,13 @@ def GPT_3(prompt, model_engine, MAX_TOKENS, TEMP):
     return completion
 
 def GPT_chat_completion(prompt, model_engine, MAX_TOKENS, TEMP):
-    """_summary_
+    """This function interacts with th OpenAI  API through HTTP request. 
+    The model will respond with a completion.
 
     Args:
-        prompt (_type_): _description_
-        model_engine (_type_): _description_
+        prompt (str): The prompt that has been created by OPTA data, soccer_pipeline and the
+        creation of the user input.
+        model_engine (str): Name of the model that the user selected.
     """
     user_prompt = {
         "role": "user",
@@ -49,11 +53,13 @@ def GPT_chat_completion(prompt, model_engine, MAX_TOKENS, TEMP):
 
 
 def GPT_chat_completion_streaming(prompt, model_engine, MAX_TOKENS, TEMP):
-    """_summary_
+    """This function interacts with th OpenAI  API through HTTP request. 
+    The model will respond with a completion.
 
     Args:
-        prompt (_type_): _description_
-        model_engine (_type_): _description_
+        prompt (str): The prompt that has been created by OPTA data, soccer_pipeline and the
+        creation of the user input.
+        model_engine (str): Name of the model that the user selected.
     """
     user_prompt = {
         "role": "user",
