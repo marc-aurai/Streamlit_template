@@ -136,11 +136,11 @@ if check_password():
     select_trainers, select_optioneel = st.columns(2)
     with select_trainers:
         selected_trainers = st.multiselect(
-            "Selecteer {} & {} Trainers: ".format(
+            "Selecteer trainers van:\n{} & {} ".format(
                 select_match_injuries["home_team"].values[0],
                 select_match_injuries["away_team"].values[0]
             ),
-            options=select_match_injuries.trainers.values,
+            options=select_match_injuries.trainers.values[0],
         )
         if selected_trainers:
             match_prompt = match_prompt.replace(
