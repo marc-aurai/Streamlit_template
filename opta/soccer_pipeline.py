@@ -51,4 +51,4 @@ if __name__ == "__main__":
         .pipe(prompt_engineering)
     )
 
-    df.to_csv("./pages/data/eredivisie_test.csv", line_terminator="\n")
+    df.to_csv("./pages/data/eredivisie.csv", line_terminator="\n")

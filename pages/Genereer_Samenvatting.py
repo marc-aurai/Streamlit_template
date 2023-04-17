@@ -23,7 +23,7 @@ def load_images():
 
 @st.cache_data(show_spinner="Een momentje...")
 def load_dataset() -> pd.DataFrame:  # Elke dag bijvoorbeeld als job schedulen
-    df = pd.read_csv("./pages/data/eredivisie_test.csv", sep=",")
+    df = pd.read_csv("./pages/data/eredivisie.csv", sep=",")
     df = df.sort_values(by="date", ascending=False)
     return df
 
@@ -82,13 +82,13 @@ if check_password():
     st.sidebar.success("Geselecteerd: " + str(openai_model))
 
     # Main page
-    select1, select2 = st.columns(2)
-    with select1:
+    select_date, select_match = st.columns(2)
+    with select_date:
         selected_match_date = st.selectbox(
             "Selecteer wedstrijd datum: ", df.date.unique().tolist()
         )
     matches_on_date = df.loc[df["date"] == selected_match_date]
-    with select2:
+    with select_match:
         selected_match = st.selectbox(
             "Selecteer wedstrijd: ", matches_on_date.match.values.tolist()
         )
@@ -102,10 +102,10 @@ if check_password():
     )
     home_team = df["home_team"].loc[df["match"] == selected_match].to_list()[0]
     away_team = df["away_team"].loc[df["match"] == selected_match].to_list()[0]
-
     select_match_injuries = df.loc[df["match"] == selected_match]
-    select3, select4 = st.columns(2)
-    with select3:
+
+    select_injury_home, select_injury_away = st.columns(2)
+    with select_injury_home:
         injuries_home = ast.literal_eval(select_match_injuries.home_injuries.values[0])
         injuries_home = [injury for injury in injuries_home if injury != "None"]
         selected_home_injuries = st.multiselect(
@@ -118,7 +118,7 @@ if check_password():
             match_prompt = match_prompt.replace(
                 "competitie.", "competitie.\n" + str("\n".join(selected_home_injuries))
             )
-    with select4:
+    with select_injury_away:
         injuries_away = ast.literal_eval(select_match_injuries.away_injuries.values[0])
         injuries_away = [injury for injury in injuries_away if injury != "None"]
 
@@ -131,6 +131,20 @@ if check_password():
         if selected_away_injuries:
             match_prompt = match_prompt.replace(
                 "competitie.", "competitie.\n" + str("\n".join(selected_away_injuries))
+            )
+
+    select_trainers, select_optioneel = st.columns(2)
+    with select_trainers:
+        selected_trainers = st.multiselect(
+            "Selecteer {} & {} Trainers: ".format(
+                select_match_injuries["home_team"].values[0],
+                select_match_injuries["away_team"].values[0]
+            ),
+            options=select_match_injuries.trainers.values,
+        )
+        if selected_trainers:
+            match_prompt = match_prompt.replace(
+                ".\n\n###\n\n", "\n" + str(selected_trainers) + ".\n\n###\n\n"
             )
 
     input_data = st.text_area(
@@ -195,8 +209,6 @@ if check_password():
                         TEMP=temperature_GPT,
                     )
 
-
-                #_datetime = get_datetime()
                 st.session_state.message_history.append("".join(completion_chunks).strip())
                 for message_ in reversed(st.session_state.message_history):
                     st_message(

@@ -89,6 +89,7 @@ def prompt_engineering(df: pd.DataFrame):
     ].copy()
     openai_df["home_team"] = df_selection["homeContestantOfficialName"]
     openai_df["away_team"] = df_selection["awayContestantOfficialName"]
+    openai_df["trainers"] = prompt_df["trainers"]
     openai_df["match"] = (
         df_selection["homeContestantOfficialName"]
         + " vs "
@@ -115,8 +116,6 @@ def prompt_engineering(df: pd.DataFrame):
         + ".\n"
         + prompt_df.rank_status_home.values
         + prompt_df.rank_status_away.values
-        + prompt_df.trainers.values
-        + ".\n"
         + prompt_df.keepers.values
         + ".\n\n###\n\n"  # stop sequence, tip from openAI
     )
