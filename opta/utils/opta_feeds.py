@@ -2,6 +2,7 @@ import pandas as pd
 import requests
 from tqdm import tqdm
 import numpy as np
+from googletrans import Translator
 
 
 # ID's van Eredivisie seizoenen volgorde 23/22/21
@@ -74,6 +75,22 @@ def get_tournamentschedule(
     ]
     # Return only selected columns from dataframe
 
+def get_name(goal, type = None, outletAuthKey: str = None):
+    """
+    Helper function for get_matchstats_goals to get the 'correct' name for the scorer or player
+    takes in the goal event from match_stats goals and the same outletAuthKey
+    If no name is available, the scorername from the goal event is returned
+    """
+    data = requests.get(f"http://api.performfeeds.com/soccerdata/squads/{{}}?_rt=b&_fmt=json&ctst={{}}".format(
+        outletAuthKey, goal["contestantId"])).json()
+
+    try: 
+        for squad in data["squad"]:
+            for person in squad["person"]:
+                if person["id"] == goal[type + "Id"]:
+                    return person["shortLastName"]
+    except:            
+        return goal[type + 'Name']
 
 def get_matchstats_cards(
     df: pd.DataFrame = None, outletAuthKey: str = None
@@ -120,7 +137,7 @@ def get_matchstats_cards(
                     "periodId": card["periodId"],
                     "timeMin": card["timeMin"],
                     "playerId": card["playerId"],
-                    "playerName": card["playerName"],
+                    "playerName" : get_name(card, "player", outletAuthKey),
                     "cardType": card["type"],
                 }
                 for card in matchstats
@@ -132,24 +149,6 @@ def get_matchstats_cards(
     # Add list to dataframe
     df["card_events"] = all_team_cards
     return df
-
-def get_name(goal, outletAuthKey: str = None):
-    """
-    Helper function for get_matchstats_goals to get the 'correct' name for the scorer
-    takes in the goal event from match_stats goals and the same outletAuthKey
-    If no name is available, the scorername from the goal event is returned
-    """
-    data = requests.get(f"http://api.performfeeds.com/soccerdata/squads/{{}}?_rt=b&_fmt=json&ctst={{}}".format(
-        outletAuthKey, goal["contestantId"])).json()
-
-    try: 
-        for squad in data["squad"]:
-            for person in squad["person"]:
-                if person["id"] == goal['scorerId']:
-                    print(person['shortLastName'])
-                    return person["shortLastName"]
-    except:            
-        return goal['scorerName']
 
 
 def get_matchstats_goals(
@@ -197,7 +196,7 @@ def get_matchstats_goals(
                     "periodId": goal["periodId"],
                     "timeMin": goal["timeMin"],
                     "scorerId": goal["scorerId"],
-                    "scorerName" : get_name(goal, outletAuthKey),
+                    "scorerName" : get_name(goal,"scorer", outletAuthKey),
                     # "scorerName": goal["scorerName"],
                     "goalType": goal["type"],
                 }
@@ -531,6 +530,44 @@ def get_rankStatus(
     )
     return df
 
+def translate_injury(injury):
+    """
+    Function that translates an injury from English to Dutch
+    From dictionary with injuries that often occur; else translation by google translate
+    :param injury: string with injury in English
+    :return: string with injury in Dutch
+    """
+
+    translator = Translator()
+    
+    injuries = {"achilles tendon rupture": "gescheurde achillespees",
+    "ankle/foot injury": "enkelblessure",
+    "foot injury": "voetblessure",
+    "hamstring": "hamstringblessure",
+    "illness": "ziek",
+    "knee injury": "knieblessure",
+    "knock": "knock blessure",
+    "thigh muscle strain": "verrekte dijspier",
+    "calf/shin injury": "scheen- of kuitblessure",
+    "groin strain": "verrekte lies",
+    "groin/pelvis injury": "liesblessure",
+    "neck injury": "nekblessure",
+    "mcl knee ligament injury": "knieligamentblessure",
+    "ankle ligaments": "enkelligamentblessure",
+    "arm injury": "armblessure",
+    "shoulder injury": "schouderblessure",
+    "concussion": "hersenschudding"}
+
+    try:
+        translation = injuries[injury.lower()]
+        return translation
+    
+    except (KeyError):
+        result = translator.translate(injury, src='en', dest='nl')
+        return result.text
+    
+
+
 
 def get_injuries(
     df: pd.DataFrame = None,
@@ -555,8 +592,8 @@ def get_injuries(
             home_injury = [
                 str(home_injury["matchName"])
                 + " van {} heeft een ".format(df["homeContestantOfficialName"][match])
-                + str(home_injury["injury"][0]["type"])
-                + " blessure."
+                + translate_injury(str(home_injury["injury"][0]["type"]))
+                # + " blessure."
                 for home_injury in home_response
                 for injury_details in home_injury["injury"]
                 if "endDate" not in injury_details
@@ -564,8 +601,8 @@ def get_injuries(
             away_injury = [
                 str(away_injury["matchName"])
                 + " van {} heeft een ".format(df["awayContestantOfficialName"][match])
-                + str(away_injury["injury"][0]["type"])
-                + " blessure."
+                + translate_injury(str(away_injury["injury"][0]["type"]))
+                # + " blessure."
                 for away_injury in away_response
                 for injury_details in away_injury["injury"]
                 if "endDate" not in injury_details

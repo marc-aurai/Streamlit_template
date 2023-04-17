@@ -2,6 +2,7 @@ import os
 
 import pandas as pd
 from dotenv import load_dotenv
+from googletrans import Translator
 from utils.soccer_prompt import prompt_engineering
 from utils.opta_feeds import (
     get_keepers,
@@ -20,7 +21,7 @@ from utils.opta_feeds import (
 
 load_dotenv()
 outletAuthKey_ereD = os.getenv("outletAuthKey_ereD")
-outletAuthKey_KKD = os.getenv("outletAuthKey_KKD")
+# outletAuthKey_KKD = os.getenv("outletAuthKey_KKD")
 
 
 def competition(outletAuthKey_competition: str) -> pd.DataFrame:
@@ -53,4 +54,4 @@ if __name__ == "__main__":
         .pipe(prompt_engineering)
     )
 
-    df.to_csv("./pages/data/eredivisie.csv", line_terminator="\n")
+    df.to_csv("../pages/data/eredivisie.csv", line_terminator="\n")
