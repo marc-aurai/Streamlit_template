@@ -65,10 +65,10 @@ def generate_completion(
     input_data: str,
     TOKENS: int,
     temperature_GPT: float,
-    match_streak_home,
-    home_team,
-    match_streak_away,
-    away_team,
+    match_streak_home: str,
+    home_team: str,
+    match_streak_away: str,
+    away_team: str,
 ):
     """This function will be called, when the button 'Genereer' has been pushed in the 
     Streamlit UI.

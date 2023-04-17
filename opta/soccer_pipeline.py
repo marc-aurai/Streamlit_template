@@ -33,9 +33,10 @@ def competition(outletAuthKey_competition: str) -> pd.DataFrame:
 
 
 if __name__ == "__main__":
+    competition_ID = "d1k1pqdg2yvw8e8my74yvrdw4"
     df = (
         competition(outletAuthKey_ereD)
-        .pipe(get_cup, outletAuthKey_ereD, competition="d1k1pqdg2yvw8e8my74yvrdw4")
+        .pipe(get_cup, outletAuthKey_ereD, competition=competition_ID)
         .pipe(get_score, outletAuthKey_ereD)
         .pipe(get_matchstats_possession, outletAuthKey_ereD)
         .pipe(get_matchstats_cards, outletAuthKey_ereD)
@@ -43,9 +44,9 @@ if __name__ == "__main__":
         .pipe(get_matchstats_goals, outletAuthKey_ereD)
         .pipe(get_trainer, outletAuthKey_ereD)
         .pipe(get_keepers, outletAuthKey_ereD)
-        .pipe(get_injuries, outletAuthKey_ereD, competition="d1k1pqdg2yvw8e8my74yvrdw4")
+        .pipe(get_injuries, outletAuthKey_ereD, competition=competition_ID)
         .pipe(
-            get_rankStatus, outletAuthKey_ereD, competition="d1k1pqdg2yvw8e8my74yvrdw4"
+            get_rankStatus, outletAuthKey_ereD, competition=competition_ID
         )
         .dropna()
         .pipe(prompt_engineering)
