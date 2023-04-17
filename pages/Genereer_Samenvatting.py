@@ -144,7 +144,7 @@ if check_password():
         )
         if selected_trainers:
             match_prompt = match_prompt.replace(
-                ".\n\n###\n\n", "\n" + str(selected_trainers) + ".\n\n###\n\n"
+                ".\n\n###\n\n", "\n" + str(" ".join(selected_trainers)) + ".\n\n###\n\n"
             )
 
     input_data = st.text_area(
