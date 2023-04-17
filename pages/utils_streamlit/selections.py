@@ -3,7 +3,18 @@ import pandas as pd
 import ast
 
 
-def ST_select_match_date(df: pd.DataFrame, select_date):
+def ST_select_match_date(df: pd.DataFrame, select_date) -> pd.DataFrame:
+    """Access a group of matches (or single match) on a particular match date.
+
+    Args:
+        df (pd.DataFrame): eredivisie.csv, which originate from (soccer_pipeline.py).
+        Includes all the necessary data from all played matches in Eredvisie 22/23.
+        select_date (st.column): A Streamlit container in the Streamlit UI.
+
+    Returns:
+        matches_on_date (pd.DataFrame): Returns a smaller dataframe,
+        which only returns the rows that occured on the date the user selected.
+    """
     with select_date:
         selected_match_date = st.selectbox(
             "Selecteer wedstrijd datum: ", df.date.unique().tolist()
@@ -12,7 +23,18 @@ def ST_select_match_date(df: pd.DataFrame, select_date):
     return matches_on_date
 
 
-def ST_select_match(select_match, matches_on_date):
+def ST_select_match(select_match, matches_on_date: pd.DataFrame) -> str:
+    """Access a specific match after you selected a specific match date.
+
+    Args:
+        select_match (st.column): A Streamlit container in the Streamlit UI.
+        matches_on_date (pd.DataFrame): A small dataframe which resulted from the function (ST_select_match_date).
+        It contains only the rows that occured on the date the user selected.
+
+    Returns:
+        selected_match (str): Returns a single match as a string,
+        which only returns the selected match by the user that occured on the date the user selected.
+    """
     with select_match:
         selected_match = st.selectbox(
             "Selecteer wedstrijd: ", matches_on_date.match.values.tolist()
@@ -20,7 +42,22 @@ def ST_select_match(select_match, matches_on_date):
     return selected_match
 
 
-def ST_get_data_match(df: pd.DataFrame, selected_match):
+def ST_get_data_match(
+    df: pd.DataFrame, selected_match: str
+) -> tuple[str, str, str, str, str, pd.DataFrame]:
+    """Get all the available data from a specific date and matchthat originates from OPTA and
+    processed by the soccer_pipeline.py script.
+
+    Args:
+        df (pd.DataFrame): A small dataframe which resulted from the function (ST_select_match).
+        It contains only one row that occured on the date the user selected and the specific match the user selected.
+        selected_match (st.column): A Streamlit container in the Streamlit UI.
+
+    Returns:
+        tuple[str, str, str, str, str, pd.DataFrame]: 1.Prompt 2.The winstreak of the home team
+        3.The winstreak of the away team 4.The name of the home team 5.The name of the away team
+        6.Returns a dataframe with a single row; which only returns the selected match by the user that occured on the date the user selected.
+    """
     match_prompt = str(df["prompt"].loc[df["match"] == selected_match].to_list()[0])
     match_streak_home = (
         df["last_six_home"].loc[df["match"] == selected_match].to_list()[0]
@@ -41,12 +78,29 @@ def ST_get_data_match(df: pd.DataFrame, selected_match):
     )
 
 
-def ST_select_injury_home(match_prompt, select_injury_home, select_match_injuries):
+def ST_select_injury_home(
+    match_prompt: str, select_injury_home, select_match_injuries: pd.DataFrame
+) -> str:
+    """This function adds players from the home team, that currently have injuries, to the prompt in the Streamlit Application.
+    It can be the case that the team has no injuries.
+
+    Args:
+        match_prompt (str): The prompt that originates from the pipeline (soccer_pipeline.py).
+        select_injury_home (st.column): A Streamlit container in the Streamlit UI.
+        select_match_injuries (pd.DataFrame): A dataframe with a single row;
+        which only returns the selected match by the user that occured on the date the user selected.
+
+    Returns:
+        str: The prompt that originates from the pipeline (soccer_pipeline.py) + potential
+        injuries that have been added by the user input (multiselect component in Streamlit).
+    """
     with select_injury_home:
         injuries_home = ast.literal_eval(select_match_injuries.home_injuries.values[0])
         injuries_home = [injury for injury in injuries_home if injury != "None"]
         selected_home_injuries = st.multiselect(
-            "Selecteer {} blessures: ".format(select_match_injuries["home_team"].values[0]),
+            "Selecteer {} blessures: ".format(
+                select_match_injuries["home_team"].values[0]
+            ),
             options=injuries_home,
         )
         if selected_home_injuries:
@@ -56,7 +110,22 @@ def ST_select_injury_home(match_prompt, select_injury_home, select_match_injurie
     return match_prompt
 
 
-def ST_select_injury_away(match_prompt, select_injury_away, select_match_injuries):
+def ST_select_injury_away(
+    match_prompt: str, select_injury_away, select_match_injuries: pd.DataFrame
+) -> str:
+    """This function adds players from the away team, that currently have injuries, to the prompt in the Streamlit Application.
+    It can be the case that the team has no injuries.
+
+    Args:
+        match_prompt (str): The prompt that originates from the pipeline (soccer_pipeline.py).
+        select_injury_away (st.column): A Streamlit container in the Streamlit UI.
+        select_match_injuries (pd.DataFrame): A dataframe with a single row;
+        which only returns the selected match by the user that occured on the date the user selected.
+
+    Returns:
+        str: The prompt that originates from the pipeline (soccer_pipeline.py) + potential
+        injuries that have been added by the user input (multiselect component in Streamlit).
+    """
     with select_injury_away:
         injuries_away = ast.literal_eval(select_match_injuries.away_injuries.values[0])
         injuries_away = [injury for injury in injuries_away if injury != "None"]
@@ -74,19 +143,35 @@ def ST_select_injury_away(match_prompt, select_injury_away, select_match_injurie
     return match_prompt
 
 
-def ST_select_trainers(match_prompt, select_trainers, select_match_injuries):
+def ST_select_trainers(
+    match_prompt: str, select_trainers, select_match_injuries: pd.DataFrame
+) -> str:
+    """This function adds both the trainers from the home- and away team, to the prompt in the Streamlit Application.
+
+    Args:
+        match_prompt (str): The prompt that originates from the pipeline (soccer_pipeline.py).
+        select_trainers (st.column): A Streamlit container in the Streamlit UI.
+        select_match_injuries (pd.DataFrame): A dataframe with a single row;
+        which only returns the selected match by the user that occured on the date the user selected.
+
+
+    Returns:
+        str: The prompt that originates from the pipeline (soccer_pipeline.py) + potential
+        injuries, trainers or other datapoints that have been added by the user input (multiselect component in Streamlit).
+    """
     with select_trainers:
-        selected_trainers = st.checkbox(value=False, 
-                                        label="Selecteer trainers van:\n{} & {} ".format(
-                                            select_match_injuries["home_team"].values[0],
-                                            select_match_injuries["away_team"].values[0]
-                                        )
+        selected_trainers = st.checkbox(
+            value=False,
+            label="Selecteer trainers van:\n{} & {} ".format(
+                select_match_injuries["home_team"].values[0],
+                select_match_injuries["away_team"].values[0],
+            ),
         )
         if selected_trainers:
-            options=list(select_match_injuries.trainers.values[0])
+            options = list(select_match_injuries.trainers.values[0])
             match_prompt = match_prompt.replace(
                 ".\n\n###\n\n", "\n" + str("".join(options)) + ".\n\n###\n\n"
             )
-        else: 
+        else:
             pass
     return match_prompt
