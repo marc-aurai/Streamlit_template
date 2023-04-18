@@ -57,6 +57,7 @@ Nadat je succesvol bent geautoriseerd heb je toegang tot de officiele 'genereer 
 Op deze pagina is het mogelijk om in de **sidebar** het model te selecteren (*gpt-3.5-turbo geadviseerd*). Daarnaast is het mogelijk om twee model parameters te veranderen: </br>
 - **Maximum Tokens**: Maximum of characters/tokens in the output (1000 tokens is about 750 words)</br>
 - **Model Temperature**: Creation of randomness (Higher value) or make the model more focused (Lower value).</br>
+<img src="/assets/model_parameters.png" width="25%" height="25%"/>
 
 In het 'hoofd gedeelte' van de pagina kan je een selectie doen op: </br>
 - Wedstrijd datum </br>
@@ -66,7 +67,7 @@ Meenemen in de prompt ja/nee:
 - De blessures van het **thuis** team (Op basis van de twee bovenstaande geselecteerde velden) </br>
 - De blessures van het **uit** team (Op basis van de twee bovenstaande geselecteerde velden) </br>
 - De trainersnamen </br>
+<img src="/assets/other_preferences.png" width="70%" height="70%"/>
 
-<img src="/assets/model_parameters.png" width="25%" height="25%"/>
 
 ### Analyse page
