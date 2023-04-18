@@ -10,7 +10,7 @@ Om een beter beeld te krijgen hoe de GIT Repository is opgebouwd, verdeel ik het
 - OpenAI GPT3 Trainings Pipeline */openai_GPT3*
 - Streamlit Web Application */pages* + */.streamlit* + File *Home.py*
 
-Om een gefinetuned model voor zowel Curie als Davinci te realiseren waren de gescrapede ESPN wedstrijdsamenvattingen van essentieel belang. Aangezien er twee 'Main components' nodig zijn om een eigen model te trainen: </br>
+Om een gefinetuned model voor zowel Curie als Davinci te realiseren waren de ESPN wedstrijdsamenvattingen (web scraped) van essentieel belang. Aangezien er twee 'Main components' nodig zijn om een eigen model te trainen: </br>
 1. Play by Play data (OPTA) als input (Prompt), dit wordt gebruikt als input voor het model om te kunnen begrijpen wat het nodig heeft om een wedstrijdsamenvatting te kunnen schrijven.  </br>
 2. Historische wedstrijdsamenvattingen (Completion), dit wordt gebruikt zodat het model begrijpt wat het ongeveer moet gaan genereren/schrijven aan de hand van de Input data. </br>
 
