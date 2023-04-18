@@ -1,7 +1,7 @@
-# Introductie - Project GPT3 - GPT3.5
+# Introductie 
 *Author: Marc Blomvliet - Aurai* </br>
-Dit project is gestart als MVP.
-Het doel van het project is om middels van play by play data, afkomstig van OPTA, Voetbal wedstrijdsamenvattingen te genereren.
+Dit project is gestart als MVP voor Southfields (Project GPT3 - GPT3.5).
+Het doel van het project is om middels van play by play data, afkomstig van OPTA, voetbal wedstrijdsamenvattingen te genereren met een Language model.
 
 ## Bouwstenen
 Om een beter beeld te krijgen hoe de GIT Repository is opgebouwd, verdeel ik het in hoofdzakelijk 4 componenten. </br>
@@ -32,7 +32,18 @@ Om iedereen te laten testen met het Language model met diverse wedstrijden, is e
 # ESPN Website Scraper 
 De wedstrijd samenvattingen van ESPN staan niet in een grijpbare Database van bijvoorbeeld een cloudprovider zoals: AWS, Azure of GCloud. Daarom is er een webscraper gebouwd om alle Eredivisie en Keuken kampioen divisie wedstrijdsamenvattingen op te halen.
 
-# OPTA (API) Interaction
+# OPTA (API) - Data to Prompt Pipeline
+De Pipeline is opegebouwd in File: *soccer_pipeline.py*. Het idee is dat deze Pipeline wordt getriggerd op bepaalde momenten zoals: </br>
+- Eens per dag </br>
+- Manuele Trigger bij een redactielid </br>
+- Zodra een wedstrijd is afgelopen (Meer geavanceerd) </br>
+
+Dit proces zou in de toekomst in een Cloud job scheduler kunnen worden geimplementeerd om geautomatiseerd data transformatie workflows uit te voeren. </br>
+
+De pipeline is opgebouwd als volgt: </br>
+<img src="assets/opta_prompt_pipeline/opta_pipeline_flowdiagram.png" width="65%" height="65%"/>
+
+# OpenAI GPT3 - Trainings Pipeline
 
 # Streamlit Application
 **Introductie Streamlit:** </br>
@@ -57,7 +68,7 @@ Nadat je succesvol bent geautoriseerd heb je toegang tot de officiele 'genereer 
 Op deze pagina is het mogelijk om in de **sidebar** het model te selecteren (*gpt-3.5-turbo geadviseerd*). Daarnaast is het mogelijk om twee model parameters te veranderen: </br>
 - **Maximum Tokens**: Maximum of characters/tokens in the output (1000 tokens is about 750 words)</br>
 - **Model Temperature**: Creation of randomness (Higher value) or make the model more focused (Lower value).</br>
-<img src="assets/model_parameters.png" width="25%" height="25%"/>
+<img src="assets/streamlit_app/model_parameters.png" width="25%" height="25%"/>
 
 In het 'hoofd gedeelte' van de pagina kan je een selectie doen op: </br>
 - Wedstrijd datum </br>
@@ -67,18 +78,18 @@ Meenemen in de prompt ja/nee:
 - De blessures van het **thuis** team (Op basis van de twee bovenstaande geselecteerde velden) </br>
 - De blessures van het **uit** team (Op basis van de twee bovenstaande geselecteerde velden) </br>
 - De trainersnamen </br>
-<img src="assets/other_preferences.png" width="70%" height="70%"/>
+<img src="assets/streamlit_app/other_preferences.png" width="70%" height="70%"/>
 
 #### Genereer Samenvatting
 Het textveld veranderd interactief, door de handelingen van de user. Zo word er dus voor elke wedstrijd een unieke prompt gecreeërd in het textveld onder 'Wedstrijd data'. </br>
 In de background wordt alle OPTA data van de geselecteerde wedstrijd opgehaald en geprocessed in een 'natural language' format, dit process word ook wel een pipeline genoemd. </br>
 Het is zelfs ook nog mogelijk om in het textveld handmatig extra data/text mee te geven als input voor het model. </br>
 Zodra de user de gewenste prompt voor zich heeft, hoeft de user enkel de '**Genereer**' button te activeren. </br>
-<img src="assets/example_generate.gif" width="80%" height="80%"/>
+<img src="assets/streamlit_app/example_generate.gif" width="80%" height="80%"/>
 
 ### Analyse page
 Op deze pagina is het mogelijk om analyse uit te voeren door middel van interactieve plots. </br>
 Voor nu is het enkel gebaseerd op Eredivisie data, en is het puur ter illustratie en geneert het interessante user insights. </br>
-<img src="assets/words_SF.png" width="45%" height="45%"/>
-<img src="assets/trigrams_SF.png" width="47.5%" height="51%"/>
+<img src="assets/streamlit_app/words_SF.png" width="45%" height="45%"/>
+<img src="assets/streamlit_app/trigrams_SF.png" width="47.5%" height="51%"/>
 
