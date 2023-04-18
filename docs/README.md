@@ -40,13 +40,33 @@ Voor dit project heb ik gebruik gemaakt van Streamlit, een open-source Python li
 Het is erg gebruiksvriendelijk voor zowel de user als de developer. Het is fijn in gebruik om snel een 'fancy' maar met name 'praktische' custom  web applicatie mee te bouwen. Zelf vind ik het erg fijn om te gebruiken voor machine learning demos/toepassingen.
 
 ## Constructie
-Om iedereen te laten testen met het Language model met diverse wedstrijden, is er een applicatie gebouwd in Streamlit. De applicatie bestaat uit 3 pagina's: </br>
+Om iedereen te laten testen met het Language model met diverse wedstrijden, is er een applicatie gebouwd in Streamlit. De applicatie is opgebouwd met het Streamlit multipage principe. Bestaande uit 3 pagina's: </br>
 1. **Home page**: Introductie pagina van de Web App. </br>
 2. **Genereer Samenvatting page**: Hier kan men met diverse wedstrijden testen en zelf diverse prompts creeëren door middel van de fijne User Interface. </br>
 3. **Analyse Page**: Hier zijn diverse insights te vinden over de data die is gebruikt (Eredivisie). </br>
 
 ### Home page
-
+De home pagina is puur ter introductie van de Applicatie, niet meer en minder.
 ### Genereer samenvatting page
+#### Security
+Deze pagina is beveiligd door middel van een gebruikersnaam en wachtwoord. </br>
+De reden hiervoor is dat onbevoegde mensen dan niet zomaar gebruik kunnen maken van de OpenAI API key van Southfields. Dit voorkomt random kosten/verbuik in API calls. </br>
+
+#### Parameters 
+Nadat je succesvol bent geautoriseerd heb je toegang tot de officiele 'genereer samenvatting page'. </br>
+Op deze pagina is het mogelijk om in de **sidebar** het model te selecteren (*gpt-3.5-turbo geadviseerd*). Daarnaast is het mogelijk om twee model parameters te veranderen: </br>
+- **Maximum Tokens**: Maximum of characters/tokens in the output (1000 tokens is about 750 words)</br>
+- **Model Temperature**: Creation of randomness (Higher value) or make the model more focused (Lower value).</br>
+
+In het 'hoofd gedeelte' van de pagina kan je een selectie doen op: </br>
+- Wedstrijd datum </br>
+- Wedstrijd die op de geselecteerde datum heeft plaats gevonden </br>
+
+Meenemen in de prompt ja/nee: 
+- De blessures van het **thuis** team (Op basis van de twee bovenstaande geselecteerde velden) </br>
+- De blessures van het **uit** team (Op basis van de twee bovenstaande geselecteerde velden) </br>
+- De trainersnamen </br>
+
+<img src="/assets/model_parameters.png" width="25%" height="25%"/>
 
 ### Analyse page

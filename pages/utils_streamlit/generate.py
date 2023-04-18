@@ -42,14 +42,14 @@ def generate_winstreak_plots(
         away_team (str): Away team name
     """
     plot_col1, plot_col2, plot_col3 = st.columns(3)
-    try:
-        with plot_col1:
-            st.pyplot(
-                plot_winstreak(match_streak_home, title_plt=str(home_team) + "\n")
-            )
-    except:
-        with plot_col1:
-            st.warning("Winstreak Home team not available.")
+    # try:
+    with plot_col1:
+        st.pyplot(
+            plot_winstreak(match_streak_home, title_plt=str(home_team) + "\n")
+        )
+    # except:
+    #     with plot_col1:
+    #         st.warning("Winstreak Home team not available.")
     try:
         with plot_col3:
             st.pyplot(
