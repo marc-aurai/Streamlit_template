@@ -69,5 +69,11 @@ Meenemen in de prompt ja/nee:
 - De trainersnamen </br>
 <img src="assets/other_preferences.png" width="70%" height="70%"/>
 
+#### Genereer Samenvatting
+Het textveld veranderd interactief, door de handelingen van de user. Zo word er dus voor elke wedstrijd een unieke prompt gecreeërd in het textveld onder 'Wedstrijd data'. </br>
+In de background wordt alle OPTA data van de geselecteerde wedstrijd opgehaald en geprocessed in een 'natural language' format, dit process word ook wel een pipeline genoemd. </br>
+Het is zelfs ook nog mogelijk om in het textveld handmatig extra data/text mee te geven als input voor het model. </br>
+Zodra de user de gewenste prompt voor zich heeft, hoeft de user enkel de '**Genereer**' button te activeren. </br>
+<img src="assets/example_generate.gif" width="80%" height="80%"/>
 
 ### Analyse page
