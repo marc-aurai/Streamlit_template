@@ -2,7 +2,7 @@ import requests
 import json
 from selenium import webdriver
 from tqdm import tqdm
-from utils.get_metadata import (create_dataframe, format_data, get_content,
+from utils.elements import (create_dataframe, format_data, get_content,
                                 get_game_details, get_score, get_teams,
                                 get_title)
 
