@@ -43,7 +43,59 @@ Dit proces zou in de toekomst in een Cloud job scheduler kunnen worden geimpleme
 De pipeline is opgebouwd als volgt: </br>
 <img src="assets/opta_prompt_pipeline/opta_pipeline_flowdiagram.png" width="65%" height="65%"/>
 
-# OpenAI GPT3 - Trainings Pipeline
+Zoals je ziet heeft de Pipeline 1 Parameter nodig om te starten *competitie ID*. </br>
+Dit betekent dat de pipeline universeel werkt voor elke competitie. </br>
+De eerste stap in de pipeline is: </br>
+**get_tournamentschedule()** Deze functie vergaart het volgende:
+- id (Wedstrijd ID's)
+- date (Datum)
+- homeContestantId (Thuisploeg ID)
+- awayContestantId (Uitploeg ID)
+- homeContestantOfficialName (Thuisploegnaam)
+- awayContestantOfficialName (Uitploegnaam)
+
+**get_cup()** Deze functie vergaart het volgende:
+- cup (Naam van de competitie als *string*)
+
+**get_score()** Deze functie vergaart het volgende:
+- score_home (Doelsaldo thuisploeg)
+- score_away (Doelsaldo uitploeg)
+
+**get_matchstats_possession()** Deze functie vergaart het volgende:
+- possession_home (Balbezit thuisploeg, uitgedrukt in %)
+- possession_away (Balbezit uitploeg, uitgedrukt in %)
+
+**get_matchstats_cards()** Deze functie vergaart het volgende:
+- card_events (Als *dictionary*)
+    - contestantName (Team naam)
+    - contestantId (ID van team)
+    - periodId (Helft nummer -> 1 of 2)
+    - timeMin (In welke minuut het event heeft plaats gevonden)
+    - playerId (ID van speler)
+    - playerName (Spelers naam)
+    - cardType (Kaart type die de speler heeft gekregen -> geel, tweede geel of rood)
+
+**get_venue()** Deze functie vergaart het volgende:
+
+**get_matchstats_goals()** Deze functie vergaart het volgende:
+
+**get_trainer()** Deze functie vergaart het volgende:
+ 
+**get_keepers()** Deze functie vergaart het volgende:
+
+**get_injuries()** Deze functie vergaart het volgende:
+
+**get_rankStatus()** Deze functie vergaart het volgende:
+
+**prompt_engineering()** Deze functie vergaart het volgende:
+
+**Om de pipeline succesvol uit te voeren, is er een .env file nodig onder folder /opta met de OPTA authorisatie key voor de bijbehorende competitie.**
+
+In het onderstaande voorbeeld zie je hoe een authorisatie key word opgehaald uit de environment file (*.env*) om een API call naar OPTA succesvol te kunnnen uitvoeren. </br>
+Voorbeeld authorisatie key: </br>
+*outletAuthKey_ereD = os.getenv("outletAuthKey_ereD")*
+
+# OpenAI GPT3 - Trainings Pipeline 
 
 # Streamlit Application
 **Introductie Streamlit:** </br>
