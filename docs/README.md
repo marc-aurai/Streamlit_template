@@ -46,7 +46,7 @@ Om iedereen te laten testen met het Language model met diverse wedstrijden, is e
 3. **Analyse Page**: Hier zijn diverse insights te vinden over de data die is gebruikt (Eredivisie). </br>
 
 ### Home page
-De home pagina is puur ter introductie van de Applicatie, niet meer en minder.
+De home pagina is puur ter introductie van de Applicatie, niets meer en minder.
 ### Genereer samenvatting page
 #### Security
 Deze pagina is beveiligd door middel van een gebruikersnaam en wachtwoord. </br>
@@ -77,3 +77,8 @@ Zodra de user de gewenste prompt voor zich heeft, hoeft de user enkel de '**Gene
 <img src="assets/example_generate.gif" width="80%" height="80%"/>
 
 ### Analyse page
+Op deze pagina is het mogelijk om analyse uit te voeren door middel van interactieve plots. </br>
+Voor nu is het enkel gebaseerd op Eredivisie data, en is het puur ter illustratie en geneert het interessante user insights. </br>
+<img src="assets/words_SF.png" width="45%" height="45%"/>
+<img src="assets/trigrams_SF.png" width="47.5%" height="51%"/>
+
