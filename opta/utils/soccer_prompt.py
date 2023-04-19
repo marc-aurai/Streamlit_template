@@ -116,7 +116,7 @@ def prompt_engineering(df: pd.DataFrame):
         + ".\n"
         + prompt_df.rank_status_home.values
         + prompt_df.rank_status_away.values
-        + prompt_df.keepers.values
+        # + prompt_df.keepers.values
         + ".\n\n###\n\n"  # stop sequence, tip from openAI
     )
     return openai_df

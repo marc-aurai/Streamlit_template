@@ -236,7 +236,7 @@ def ST_select_rank_away(
         if selected_trainers:
             options = str(select_match_injuries.rank_away.values[0])
             match_prompt = match_prompt.replace(
-                ".\n\n###\n\n", "\n"+ str(select_match_injuries["away_team"].values[0]) + " staat nu op de " + str("".join(options)) + "e plaats.\n\n###\n\n"
+                "\n\n###\n\n", "\n"+ str(select_match_injuries["away_team"].values[0]) + " staat nu op de " + str("".join(options)) + "e plaats.\n\n###\n\n"
             )
         else:
             pass
