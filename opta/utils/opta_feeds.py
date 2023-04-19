@@ -567,8 +567,6 @@ def translate_injury(injury):
         return result.text
     
 
-
-
 def get_injuries(
     df: pd.DataFrame = None,
     outletAuthKey: str = None,
@@ -619,4 +617,65 @@ def get_injuries(
         home_injuries,
         away_injuries,
     )
+    return df
+
+
+def get_formations(
+    df: pd.DataFrame = None,
+    outletAuthKey: str = None,
+) -> pd.DataFrame:
+
+    # Create container for new column
+    formations_home = []
+    formations_away = []
+    print("Get formations..\n")
+
+    # Loop through df to get match id's
+    for match in tqdm(df.index):
+        try:
+            matchstats_formations = (
+                requests.get(
+                    f"http://api.performfeeds.com/soccerdata/matchstats/{{}}/?_rt=b&_fmt=json&fx={{}}".format(
+                        outletAuthKey, df["id"][match]
+                    )
+                )
+                # Access card information from live data
+                .json()["liveData"]["lineUp"]
+            )
+            
+            formation_home = []
+            for player_formation in matchstats_formations[0]["player"]:
+                if player_formation["position"] != "Substitute":
+                    formation_player = {}
+                    formation_player["playerName"] = player_formation["lastName"]
+                    formation_player["position"] = player_formation["position"]
+                    for stat in player_formation["stat"]:
+                        if stat["type"] == "totalPass":
+                            formation_player["totalPass"] = stat["value"]
+                        if stat["type"] == "accuratePass":
+                            formation_player["accuratePass"] = stat["value"]
+                    formation_home.append(formation_player)
+
+            formation_away = []
+            for player_formation in matchstats_formations[1]["player"]:
+                if player_formation["position"] != "Substitute":
+                    formation_player = {}
+                    formation_player["playerName"] = player_formation["lastName"]
+                    formation_player["position"] = player_formation["position"]
+                    for stat in player_formation["stat"]:
+                        if stat["type"] == "totalPass":
+                            formation_player["totalPass"] = stat["value"]
+                        if stat["type"] == "accuratePass":
+                            formation_player["accuratePass"] = stat["value"]
+                    formation_away.append(formation_player)
+
+        except:
+            formation_home = []  
+            formation_away = []
+        formations_home.append(formation_home)
+        formations_away.append(formation_away)
+
+    # Add list to dataframe
+    df["formation_home"] = formations_home
+    df["formation_away"] = formations_away
     return df

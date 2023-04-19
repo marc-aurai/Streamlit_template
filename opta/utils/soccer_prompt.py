@@ -43,6 +43,8 @@ def select_features(df: pd.DataFrame) -> pd.DataFrame:
             "rank_status_away",
             "home_injuries",
             "away_injuries",
+            "formation_home",
+            "formation_away",
         ]
     ]
 
@@ -85,6 +87,8 @@ def prompt_engineering(df: pd.DataFrame):
             "rank_status_away",
             "home_injuries",
             "away_injuries",
+            "formation_home",
+            "formation_away",
         ]
     ].copy()
     openai_df["home_team"] = df_selection["homeContestantOfficialName"]
@@ -117,6 +121,6 @@ def prompt_engineering(df: pd.DataFrame):
         + prompt_df.rank_status_home.values
         + prompt_df.rank_status_away.values
         # + prompt_df.keepers.values
-        + ".\n\n###\n\n"  # stop sequence, tip from openAI
+        + "\n\n###\n\n"  # stop sequence, tip from openAI
     )
     return openai_df

@@ -12,6 +12,8 @@ from pages.utils_streamlit.selections import (
     ST_select_trainers,
     ST_select_rank_home,
     ST_select_rank_away,
+    ST_select_formation_home,
+    ST_select_formation_away,
 )
 from pages.utils_streamlit.generate import generate_completion, generate_winstreak_plots
 
@@ -26,8 +28,9 @@ def load_images():
 
 @st.cache_data(show_spinner="Een momentje...")
 def load_dataset() -> pd.DataFrame:  # Elke dag bijvoorbeeld als job schedulen
-    df = pd.read_csv("./pages/data/eredivisie_test.csv", sep=",")
+    df = pd.read_csv("./pages/data/eredivisie_test2.csv", sep=",")
     df = df.sort_values(by="date", ascending=False)
+    df['date'] = df['date'].str.replace('Z', '')
     return df
 
 
@@ -91,16 +94,25 @@ if check_password():
     match_prompt = ST_select_injury_away(
         match_prompt, select_injury_away, select_match_injuries
     )
-    select_trainers, select_rank_home = st.columns(2)
-    match_prompt = ST_select_trainers(
-        match_prompt, select_trainers, select_match_injuries
-    )
+    select_rank_home, select_trainers = st.columns(2)
     match_prompt = ST_select_rank_home(
         match_prompt, select_rank_home, select_match_injuries
     )
-    select_optioneel, select_rank_away = st.columns(2)
+    match_prompt = ST_select_trainers(
+        match_prompt, select_trainers, select_match_injuries
+    )
+
+    select_rank_away, select_optioneel = st.columns(2)
     match_prompt = ST_select_rank_away(
         match_prompt, select_rank_away, select_match_injuries
+    )
+    select_formations_home, select_formations_away = st.columns(2)
+    
+    match_prompt = ST_select_formation_home(
+        match_prompt, select_formations_home, select_match_injuries
+    )
+    match_prompt = ST_select_formation_away(
+        match_prompt, select_formations_away, select_match_injuries
     )
 
     input_data = st.text_area(

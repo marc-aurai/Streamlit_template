@@ -1,6 +1,8 @@
 import streamlit as st
 import pandas as pd
 import ast
+from st_aggrid import AgGrid, GridUpdateMode, JsCode
+from st_aggrid.grid_options_builder import GridOptionsBuilder
 
 
 def ST_select_match_date(df: pd.DataFrame, select_date) -> pd.DataFrame:
@@ -17,7 +19,7 @@ def ST_select_match_date(df: pd.DataFrame, select_date) -> pd.DataFrame:
     """
     with select_date:
         selected_match_date = st.selectbox(
-            "Selecteer wedstrijd datum: ", df.date.unique().tolist()
+            "Wedstrijd datum: ", df.date.unique().tolist()
         )
     matches_on_date = df.loc[df["date"] == selected_match_date]
     return matches_on_date
@@ -37,7 +39,7 @@ def ST_select_match(select_match, matches_on_date: pd.DataFrame) -> str:
     """
     with select_match:
         selected_match = st.selectbox(
-            "Selecteer wedstrijd: ", matches_on_date.match.values.tolist()
+            "Wedstrijd: ", matches_on_date.match.values.tolist()
         )
     return selected_match
 
@@ -98,7 +100,7 @@ def ST_select_injury_home(
         injuries_home = ast.literal_eval(select_match_injuries.home_injuries.values[0])
         injuries_home = [injury for injury in injuries_home if injury != "None"]
         selected_home_injuries = st.multiselect(
-            "Selecteer {} blessures: ".format(
+            "{} blessures: ".format(
                 select_match_injuries["home_team"].values[0]
             ),
             options=injuries_home,
@@ -131,7 +133,7 @@ def ST_select_injury_away(
         injuries_away = [injury for injury in injuries_away if injury != "None"]
 
         selected_away_injuries = st.multiselect(
-            "Selecteer {} blessures: ".format(
+            "{} blessures: ".format(
                 select_match_injuries["away_team"].values[0]
             ),
             options=injuries_away,
@@ -162,7 +164,7 @@ def ST_select_trainers(
     with select_trainers:
         selected_trainers = st.checkbox(
             value=False,
-            label="Selecteer trainers van:\n{} & {} ".format(
+            label="Trainers van:\n{} & {} ".format(
                 select_match_injuries["home_team"].values[0],
                 select_match_injuries["away_team"].values[0],
             ),
@@ -170,7 +172,7 @@ def ST_select_trainers(
         if selected_trainers:
             options = list(select_match_injuries.trainers.values[0])
             match_prompt = match_prompt.replace(
-                ".\n\n###\n\n", "\n" + str("".join(options)) + ".\n\n###\n\n"
+                "\n\n###\n\n", "\n" + str("".join(options)) + ".\n\n###\n\n"
             )
         else:
             pass
@@ -196,14 +198,14 @@ def ST_select_rank_home(
     with select_rank_home:
         selected_trainers = st.checkbox(
             value=False,
-            label="Selecteer rank van:\n{}".format(
+            label="Rank van:\n{}".format(
                 select_match_injuries["home_team"].values[0],
             ),
         )
         if selected_trainers:
             options = str(select_match_injuries.rank_home.values[0])
             match_prompt = match_prompt.replace(
-                ".\n\n###\n\n", "\n"+ str(select_match_injuries["home_team"].values[0]) + " staat nu op de " + str("".join(options)) + "e plaats.\n\n###\n\n"
+                "\n\n###\n\n", "\n"+ str(select_match_injuries["home_team"].values[0]) + " staat nu op de " + str("".join(options)) + "e plaats.\n\n###\n\n"
             )
         else:
             pass
@@ -229,7 +231,7 @@ def ST_select_rank_away(
     with select_rank_away:
         selected_trainers = st.checkbox(
             value=False,
-            label="Selecteer rank van:\n{}".format(
+            label="Rank van:\n{}".format(
                 select_match_injuries["away_team"].values[0],
             ),
         )
@@ -240,4 +242,85 @@ def ST_select_rank_away(
             )
         else:
             pass
+    return match_prompt
+
+
+def ST_select_formation_home(
+    match_prompt: str, select_formations_home, select_match_injuries: pd.DataFrame
+) -> str:
+    with select_formations_home:
+        selected_formations = st.checkbox(
+            value=False,
+            label="Opstelling van:\n{}".format(
+                select_match_injuries["home_team"].values[0],
+            ),
+        )
+        if selected_formations:
+            formation_home = ast.literal_eval(select_match_injuries.formation_home.values[0])
+            df = pd.DataFrame(formation_home)
+            gd = GridOptionsBuilder.from_dataframe(df[["playerName", "position"]])
+            gd.configure_pagination(enabled=True)
+            gd.configure_selection(selection_mode='single', use_checkbox=True)
+            gridOptions = gd.build()
+
+            grid_table = AgGrid(df[["playerName", "position"]],
+                   gridOptions=gridOptions,
+                   enable_enterprise_modules=True,
+                   fit_columns_on_grid_load=True,
+                   theme="balham",
+                   update_mode=GridUpdateMode.MODEL_CHANGED,
+                   allow_unsafe_jscode=True,
+            )
+            try:
+                #dict_keys(['data', 'selected_rows', 'column_state', 'excel_blob'])
+                df_selected = pd.DataFrame(grid_table["selected_rows"])
+                selected_player = df.loc[df["playerName"] == str(df_selected["playerName"].values[0])]
+            except:
+                pass
+        else:
+            pass
+    try:
+        st.write(selected_player[["playerName","position","accuratePass","totalPass"]])
+    except:pass
+    return match_prompt
+
+
+def ST_select_formation_away(
+    match_prompt: str, select_formations_away, select_match_injuries: pd.DataFrame
+) -> str:
+    with select_formations_away:
+        selected_formations = st.checkbox(
+            value=False,
+            label="Opstelling van:\n{}".format(
+                select_match_injuries["away_team"].values[0],
+            ),
+        )
+        if selected_formations:
+            formation_away = ast.literal_eval(select_match_injuries.formation_away.values[0])
+            df = pd.DataFrame(formation_away)
+            gd = GridOptionsBuilder.from_dataframe(df[["playerName", "position"]])
+            gd.configure_pagination(enabled=True)
+            gd.configure_selection(selection_mode='single', use_checkbox=True)
+            gridOptions = gd.build()
+
+            grid_table = AgGrid(df[["playerName", "position"]],
+                   gridOptions=gridOptions,
+                   enable_enterprise_modules=True,
+                   fit_columns_on_grid_load=True,
+                   theme="balham",
+                   update_mode=GridUpdateMode.MODEL_CHANGED,
+                   allow_unsafe_jscode=True,
+            )
+            #dict_keys(['data', 'selected_rows', 'column_state', 'excel_blob'])
+            try:
+                df_selected = pd.DataFrame(grid_table["selected_rows"])
+                selected_player = df.loc[df["playerName"] == str(df_selected["playerName"].values[0])]
+            except:
+                pass
+        else:
+            pass
+    try:
+        st.write(selected_player[["playerName","position","accuratePass","totalPass"]])
+    except:
+        pass
     return match_prompt

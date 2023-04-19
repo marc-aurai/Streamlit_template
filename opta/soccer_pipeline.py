@@ -16,6 +16,7 @@ from utils.opta_feeds import (
     get_cup,
     get_rankStatus,
     get_injuries,
+    get_formations,
 )
 
 load_dotenv()
@@ -49,8 +50,9 @@ if __name__ == "__main__":
         .pipe(
             get_rankStatus, outletAuthKey_ereD, competition=competition_ID
         )
+        .pipe(get_formations, outletAuthKey_ereD)
         .dropna()
         .pipe(prompt_engineering)
     )
 
-    df.to_csv("./pages/data/eredivisie_test.csv", line_terminator="\n")
+    df.to_csv("./pages/data/eredivisie_test2.csv", line_terminator="\n")
