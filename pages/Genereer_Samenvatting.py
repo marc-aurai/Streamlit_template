@@ -10,6 +10,8 @@ from pages.utils_streamlit.selections import (
     ST_select_injury_home,
     ST_select_injury_away,
     ST_select_trainers,
+    ST_select_rank_home,
+    ST_select_rank_away,
 )
 from pages.utils_streamlit.generate import generate_completion, generate_winstreak_plots
 
@@ -89,9 +91,16 @@ if check_password():
     match_prompt = ST_select_injury_away(
         match_prompt, select_injury_away, select_match_injuries
     )
-    select_trainers, select_optioneel = st.columns(2)
+    select_trainers, select_rank_home = st.columns(2)
     match_prompt = ST_select_trainers(
         match_prompt, select_trainers, select_match_injuries
+    )
+    match_prompt = ST_select_rank_home(
+        match_prompt, select_rank_home, select_match_injuries
+    )
+    select_optioneel, select_rank_away = st.columns(2)
+    match_prompt = ST_select_rank_away(
+        match_prompt, select_rank_away, select_match_injuries
     )
 
     input_data = st.text_area(

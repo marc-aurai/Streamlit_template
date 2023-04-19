@@ -175,3 +175,69 @@ def ST_select_trainers(
         else:
             pass
     return match_prompt
+
+
+def ST_select_rank_home(
+    match_prompt: str, select_rank_home, select_match_injuries: pd.DataFrame
+) -> str:
+    """This function adds both the trainers from the home- and away team, to the prompt in the Streamlit Application.
+
+    Args:
+        match_prompt (str): The prompt that originates from the pipeline (soccer_pipeline.py).
+        select_trainers (st.column): A Streamlit container in the Streamlit UI.
+        select_match_injuries (pd.DataFrame): A dataframe with a single row;
+        which only returns the selected match by the user that occured on the date the user selected.
+
+
+    Returns:
+        str: The prompt that originates from the pipeline (soccer_pipeline.py) + potential
+        injuries, trainers or other datapoints that have been added by the user input (multiselect component in Streamlit).
+    """
+    with select_rank_home:
+        selected_trainers = st.checkbox(
+            value=False,
+            label="Selecteer rank van:\n{}".format(
+                select_match_injuries["home_team"].values[0],
+            ),
+        )
+        if selected_trainers:
+            options = str(select_match_injuries.rank_home.values[0])
+            match_prompt = match_prompt.replace(
+                ".\n\n###\n\n", "\n"+ str(select_match_injuries["home_team"].values[0]) + " staat nu op de " + str("".join(options)) + "e plaats.\n\n###\n\n"
+            )
+        else:
+            pass
+    return match_prompt
+
+
+def ST_select_rank_away(
+    match_prompt: str, select_rank_away, select_match_injuries: pd.DataFrame
+) -> str:
+    """This function adds both the trainers from the home- and away team, to the prompt in the Streamlit Application.
+
+    Args:
+        match_prompt (str): The prompt that originates from the pipeline (soccer_pipeline.py).
+        select_trainers (st.column): A Streamlit container in the Streamlit UI.
+        select_match_injuries (pd.DataFrame): A dataframe with a single row;
+        which only returns the selected match by the user that occured on the date the user selected.
+
+
+    Returns:
+        str: The prompt that originates from the pipeline (soccer_pipeline.py) + potential
+        injuries, trainers or other datapoints that have been added by the user input (multiselect component in Streamlit).
+    """
+    with select_rank_away:
+        selected_trainers = st.checkbox(
+            value=False,
+            label="Selecteer rank van:\n{}".format(
+                select_match_injuries["away_team"].values[0],
+            ),
+        )
+        if selected_trainers:
+            options = str(select_match_injuries.rank_away.values[0])
+            match_prompt = match_prompt.replace(
+                ".\n\n###\n\n", "\n"+ str(select_match_injuries["away_team"].values[0]) + " staat nu op de " + str("".join(options)) + "e plaats.\n\n###\n\n"
+            )
+        else:
+            pass
+    return match_prompt
