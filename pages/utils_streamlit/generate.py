@@ -93,9 +93,9 @@ def generate_completion(
             TEMP=temperature_GPT,
         )
 
-        generate_winstreak_plots(
-            match_streak_home, home_team, match_streak_away, away_team
-        )
+        # generate_winstreak_plots(
+        #     match_streak_home, home_team, match_streak_away, away_team
+        # )
 
         chats = st.empty()
         completion_chunks = []
@@ -121,9 +121,9 @@ def generate_completion(
             MAX_TOKENS=TOKENS,
             TEMP=temperature_GPT,
         )
-        generate_winstreak_plots(
-            match_streak_home, home_team, match_streak_away, away_team
-        )
+        # generate_winstreak_plots(
+        #     match_streak_home, home_team, match_streak_away, away_team
+        # )
         
         chats = st.empty()
         completion_chunks = []

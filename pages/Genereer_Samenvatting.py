@@ -11,7 +11,7 @@ from pages.utils_streamlit.selections import (
     ST_select_injury_away,
     ST_select_trainers,
 )
-from pages.utils_streamlit.generate import generate_completion
+from pages.utils_streamlit.generate import generate_completion, generate_winstreak_plots
 
 if "message_history" not in st.session_state:
     st.session_state.message_history = []
@@ -98,6 +98,10 @@ if check_password():
         label="Wedstrijd Data", value=match_prompt, height=400, max_chars=None
     )
     submit = st.button("Genereer")
+
+    generate_winstreak_plots(
+            match_streak_home, home_team, match_streak_away, away_team
+        )
 
     if submit:
         with st.spinner("Even een samenvatting aan het schrijven, momentje..."):
