@@ -110,25 +110,32 @@ def prompt_engineering(df: pd.DataFrame):
         + df_selection["awayContestantOfficialName"]
     )
 
+    openai_df["_competition"] = prompt_df.competition
+    openai_df["_goalEvents"] = prompt_df.goal_events
+    openai_df["_cardEvents"] = prompt_df.card_events
+    openai_df["_possession"] = prompt_df.possession
+    openai_df["_rankStatus_home"] = prompt_df.rank_status_home
+    openai_df["_rankStatus_away"] = prompt_df.rank_status_away
+
     openai_df["prompt"] = (
         "Geef het artikel een pakkende titel en schrijf een voetbal wedstrijd artikel inclusief paragrafen met de volgende informatie:\n"
+        + prompt_df.final_score.values
+        + ".\n"
         + prompt_df.dates.values
         + " "
         + prompt_df.home_vs_away.values
         + " "
         + prompt_df.venue.values
         + ".\n"
-        + prompt_df.competition.values
-        + ".\n"
-        + prompt_df.final_score.values
-        + ".\n"
-        + prompt_df.goal_events.values
-        + ".\n"
-        + prompt_df.card_events.values
-        + ".\n"
-        + prompt_df.possession.values
-        + prompt_df.rank_status_home.values
-        + prompt_df.rank_status_away.values
+        # + prompt_df.competition.values
+        # + ".\n"
+        # + prompt_df.goal_events.values
+        # + ".\n"
+        # + prompt_df.card_events.values
+        # + ".\n"
+        # + prompt_df.possession.values
+        # + prompt_df.rank_status_home.values
+        # + prompt_df.rank_status_away.values
         # + prompt_df.keepers.values
         + "\n\n###\n\n"  # stop sequence, tip from openAI
     )

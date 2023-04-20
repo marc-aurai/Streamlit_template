@@ -139,6 +139,7 @@ def get_matchstats_cards(
                     "playerId": card["playerId"],
                     "playerName" : get_name(card, "player", outletAuthKey),
                     "cardType": card["type"],
+                    "cardReason": card["cardReason"],
                 }
                 for card in matchstats
             ]
@@ -418,10 +419,8 @@ def get_score(df: pd.DataFrame = None, outletAuthKey: str = None) -> pd.DataFram
                         outletAuthKey, df["id"][match]
                     )
                 )
-                # Access card information from live data
                 .json()["liveData"]["matchDetails"]["scores"]["total"]
             )
-            # For every card event, create dict with info and add to list
             score_home = matchstats["home"]
             score_away = matchstats["away"]
         except:
@@ -641,7 +640,6 @@ def get_formations(
                         outletAuthKey, df["id"][match]
                     )
                 )
-                # Access card information from live data
                 .json()["liveData"]["lineUp"]
             )
             formation_home = []

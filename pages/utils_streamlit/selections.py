@@ -107,7 +107,7 @@ def ST_select_injury_home(
         )
         if selected_home_injuries:
             match_prompt = match_prompt.replace(
-                "competitie.", "competitie.\n" + str("\n".join(selected_home_injuries))
+                "\n\n###\n\n", str(".\n".join(selected_home_injuries))+ ".\n\n###\n\n"
             )
     return match_prompt
 
@@ -140,7 +140,7 @@ def ST_select_injury_away(
         )
         if selected_away_injuries:
             match_prompt = match_prompt.replace(
-                "competitie.", "competitie.\n" + str("\n".join(selected_away_injuries))
+                "\n\n###\n\n", "\n"+str(".\n".join(selected_away_injuries))+ ".\n\n###\n\n"
             )
     return match_prompt
 
@@ -197,7 +197,7 @@ def ST_select_rank_home(
     """
     with select_rank_home:
         selected_trainers = st.checkbox(
-            value=False,
+            value=True,
             label="Rank van:\n{}".format(
                 select_match_injuries["home_team"].values[0],
             ),
@@ -205,7 +205,7 @@ def ST_select_rank_home(
         if selected_trainers:
             options = str(select_match_injuries.rank_home.values[0])
             match_prompt = match_prompt.replace(
-                "\n\n###\n\n", "\n"+ str(select_match_injuries["home_team"].values[0]) + " staat nu op de " + str("".join(options)) + "e plaats.\n\n###\n\n"
+                "\n\n###\n\n", "\n"+str(select_match_injuries["home_team"].values[0]) + " staat nu op de " + str("".join(options)) + "e plaats.\n\n###\n\n"
             )
         else:
             pass
@@ -230,7 +230,7 @@ def ST_select_rank_away(
     """
     with select_rank_away:
         selected_trainers = st.checkbox(
-            value=False,
+            value=True,
             label="Rank van:\n{}".format(
                 select_match_injuries["away_team"].values[0],
             ),
@@ -238,7 +238,7 @@ def ST_select_rank_away(
         if selected_trainers:
             options = str(select_match_injuries.rank_away.values[0])
             match_prompt = match_prompt.replace(
-                "\n\n###\n\n", "\n"+ str(select_match_injuries["away_team"].values[0]) + " staat nu op de " + str("".join(options)) + "e plaats.\n\n###\n\n"
+                "\n\n###\n\n", "\n"+str(select_match_injuries["away_team"].values[0]) + " staat nu op de " + str("".join(options)) + "e plaats.\n\n###\n\n"
             )
         else:
             pass
@@ -286,7 +286,7 @@ def ST_select_formation(
                     for player in player_stats
                     if player["playerId"] == selected_player
                 )
-                player_stat = pd.DataFrame(player_stat, index=[0])
+                player_stat = pd.DataFrame(player_stat, index=[0])# .sort_index(axis=1)
             except:
                 pass
         else:
@@ -295,4 +295,22 @@ def ST_select_formation(
         st.write(player_stat.loc[: ,player_stat.columns != 'playerId'])
     except:
         pass
+    return match_prompt
+
+
+def ST_select_goals(
+    match_prompt: str, select_goals, select_match_injuries: pd.DataFrame
+) -> str:
+    with select_goals:
+        selected_goals = st.checkbox(
+            value=True,
+            label="Goals",
+        )
+        if selected_goals:
+            options = list(select_match_injuries._goalEvents.values[0])
+            match_prompt = match_prompt.replace(
+                "\n\n###\n\n", "\n" + str("".join(options)) + ".\n\n###\n\n"
+            )
+        else:
+            pass
     return match_prompt

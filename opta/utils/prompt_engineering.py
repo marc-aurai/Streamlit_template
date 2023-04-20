@@ -20,7 +20,8 @@ def date(df: pd.DataFrame) -> list:
     dates = df["date"].tolist()
     dates = [dt.strptime(date, "%Y-%m-%dZ").date() for date in dates]
     dates = [
-        "Op "+str(calendar.day_name[date.weekday()])
+        "Op "+
+        str(calendar.day_name[date.weekday()])
         # +" "+str(date.day)+" "+str(date.strftime("%B"))
         for date in dates
     ]
@@ -55,7 +56,8 @@ def venue(df: pd.DataFrame) -> list:
         list: list of all converted venue names from the input dataframe column ['venue'].
     """
     venue_names = [
-        "in "+str(venue)
+        "in het "+
+        str(venue)
         for venue in df["venue"].to_list()
     ]    
     return venue_names
@@ -169,12 +171,45 @@ def card_events(df: pd.DataFrame) -> list:
     for all_matches_all_cards in df['card_events'].tolist():
         cards_in_match = []
         for cards in all_matches_all_cards:
-            kaart_type = "rode kaart" if cards['cardType'] == "RC" or cards['cardType'] == "Y2C" else "gele kaart"
-            cards_in_match.append(str(cards['playerName'])+" van "+
-                                  str(cards["contestantName"])+" kreeg in de "+
-                                  str(cards["periodId"])+"e helft in minuut "+
+            kaart_type = (
+                "rode kaart" if cards['cardType'] == "RC" 
+                or cards['cardType'] == "Y2C" else "gele kaart"
+            )
+            reden_kaart = (
+                "het maken van een overtreding"
+                if cards["cardReason"] == "Foul"
+                else "dat {} al een waarschuwing had gekregen".format(cards['playerName'])
+                if cards["cardReason"] == "Persistent infringement"
+                else "gevaarlijk spel"
+                if cards["cardReason"] == "Dangerous play"
+                else "tijd rekken"
+                if cards["cardReason"] == "Time wasting"
+                else "een ruzie"
+                if cards["cardReason"] == "Argument"
+                else "onenigheid met de scheidsrechter"
+                if cards["cardReason"] == "Dissent"
+                else "door het maken van een schwalbe"
+                if cards["cardReason"] == "Simulation"
+                else "ongepast gedrag na het maken van een doelpunt"
+                if cards["cardReason"] == "Excessive celebration"
+                else "een overtreding"
+                if cards["cardReason"] == "Encroachment"
+                else "het verlaten van het speelveld"
+                if cards["cardReason"] == "Leaving field of play"
+                else "het betreden van het speelveld"
+                if cards["cardReason"] == "Entering field of play"
+                else "een overtreding"
+                if cards["cardReason"] == "Not Retreating"
+                else "een overtreding"
+                if cards["cardReason"] == "Entering referee review area"
+                else "een overtreding"
+            )
+            cards_in_match.append("Door "+str(reden_kaart)+" kreeg "+
+                                  str(cards['playerName'])+" van "+
+                                  str(cards["contestantName"])+" in minuut "+
                                   str(cards["timeMin"])+" een "+
-                                  str(kaart_type))
+                                  str(kaart_type)
+                                  )
         all_cards.append(cards_in_match) if cards_in_match else all_cards.append(["Beide partijen hebben geen kaarten gekregen van de scheidsrechter"])
     return all_cards
 
