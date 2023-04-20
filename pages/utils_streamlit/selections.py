@@ -100,14 +100,12 @@ def ST_select_injury_home(
         injuries_home = ast.literal_eval(select_match_injuries.home_injuries.values[0])
         injuries_home = [injury for injury in injuries_home if injury != "None"]
         selected_home_injuries = st.multiselect(
-            "{} blessures: ".format(
-                select_match_injuries["home_team"].values[0]
-            ),
+            "{} blessures: ".format(select_match_injuries["home_team"].values[0]),
             options=injuries_home,
         )
         if selected_home_injuries:
             match_prompt = match_prompt.replace(
-                "\n\n###\n\n", str(".\n".join(selected_home_injuries))+ ".\n\n###\n\n"
+                "\n\n###\n\n", str(".\n".join(selected_home_injuries)) + ".\n\n###\n\n"
             )
     return match_prompt
 
@@ -133,14 +131,13 @@ def ST_select_injury_away(
         injuries_away = [injury for injury in injuries_away if injury != "None"]
 
         selected_away_injuries = st.multiselect(
-            "{} blessures: ".format(
-                select_match_injuries["away_team"].values[0]
-            ),
+            "{} blessures: ".format(select_match_injuries["away_team"].values[0]),
             options=injuries_away,
         )
         if selected_away_injuries:
             match_prompt = match_prompt.replace(
-                "\n\n###\n\n", "\n"+str(".\n".join(selected_away_injuries))+ ".\n\n###\n\n"
+                "\n\n###\n\n",
+                "\n" + str(".\n".join(selected_away_injuries)) + ".\n\n###\n\n",
             )
     return match_prompt
 
@@ -179,120 +176,117 @@ def ST_select_trainers(
     return match_prompt
 
 
-def ST_select_rank_home(
-    match_prompt: str, select_rank_home, select_match_injuries: pd.DataFrame
+def ST_select_rank(
+    match_prompt: str, select_rank, select_match_injuries: pd.DataFrame, team: str
 ) -> str:
-    """This function adds both the trainers from the home- and away team, to the prompt in the Streamlit Application.
-
-    Args:
-        match_prompt (str): The prompt that originates from the pipeline (soccer_pipeline.py).
-        select_trainers (st.column): A Streamlit container in the Streamlit UI.
-        select_match_injuries (pd.DataFrame): A dataframe with a single row;
-        which only returns the selected match by the user that occured on the date the user selected.
-
-
-    Returns:
-        str: The prompt that originates from the pipeline (soccer_pipeline.py) + potential
-        injuries, trainers or other datapoints that have been added by the user input (multiselect component in Streamlit).
-    """
-    with select_rank_home:
-        selected_trainers = st.checkbox(
+    with select_rank:
+        selected_rank = st.checkbox(
             value=True,
             label="Rank van:\n{}".format(
-                select_match_injuries["home_team"].values[0],
+                select_match_injuries[str(team)+"_team"].values[0],
             ),
         )
-        if selected_trainers:
-            options = str(select_match_injuries.rank_home.values[0])
-            match_prompt = match_prompt.replace(
-                "\n\n###\n\n", "\n"+str(select_match_injuries["home_team"].values[0]) + " staat nu op de " + str("".join(options)) + "e plaats.\n\n###\n\n"
-            )
-        else:
-            pass
-    return match_prompt
+        if selected_rank:
+            lastRank = str(select_match_injuries["lastRank_"+str(team)].values[0])
+            newRank = str(select_match_injuries["rank_"+str(team)].values[0])
+            if lastRank != newRank:
+                match_prompt = match_prompt.replace(
+                    "\n\n###\n\n",
+                    "\n"
+                    + str(select_match_injuries[str(team)+"_team"].values[0])
+                    + " stond op plek {} en staat nu op de {}".format(
+                        lastRank,
+                        newRank,
+                    )
+                    + "e plaats.\n\n###\n\n",
+                )
+            else:
+                match_prompt = match_prompt.replace(
+                    "\n\n###\n\n",
+                    "\n"
+                    + str(select_match_injuries[str(team)+"_team"].values[0])
+                    + " staat na deze wedstrijd nog steeds op de {}".format(
+                        newRank,
+                    )
+                    + "e plaats.\n\n###\n\n",
+                )
 
-
-def ST_select_rank_away(
-    match_prompt: str, select_rank_away, select_match_injuries: pd.DataFrame
-) -> str:
-    """This function adds both the trainers from the home- and away team, to the prompt in the Streamlit Application.
-
-    Args:
-        match_prompt (str): The prompt that originates from the pipeline (soccer_pipeline.py).
-        select_trainers (st.column): A Streamlit container in the Streamlit UI.
-        select_match_injuries (pd.DataFrame): A dataframe with a single row;
-        which only returns the selected match by the user that occured on the date the user selected.
-
-
-    Returns:
-        str: The prompt that originates from the pipeline (soccer_pipeline.py) + potential
-        injuries, trainers or other datapoints that have been added by the user input (multiselect component in Streamlit).
-    """
-    with select_rank_away:
-        selected_trainers = st.checkbox(
-            value=True,
-            label="Rank van:\n{}".format(
-                select_match_injuries["away_team"].values[0],
-            ),
-        )
-        if selected_trainers:
-            options = str(select_match_injuries.rank_away.values[0])
-            match_prompt = match_prompt.replace(
-                "\n\n###\n\n", "\n"+str(select_match_injuries["away_team"].values[0]) + " staat nu op de " + str("".join(options)) + "e plaats.\n\n###\n\n"
-            )
         else:
             pass
     return match_prompt
 
 
 def ST_select_formation(
-    match_prompt: str, select_field, select_match_injuries: pd.DataFrame, player_stats: pd.DataFrame, team: str
+    match_prompt: str,
+    select_field,
+    select_match_injuries: pd.DataFrame,
+    player_stats: pd.DataFrame,
+    team: str,
 ) -> str:
     with select_field:
         selected_formations = st.checkbox(
             value=False,
             label="Opstelling van:\n{}".format(
-                select_match_injuries[str(team)+"_team"].values[0],
+                select_match_injuries[str(team) + "_team"].values[0],
             ),
         )
         if selected_formations:
-            formation_away = ast.literal_eval(select_match_injuries["formation_"+str(team)].values[0])
+            formation_away = ast.literal_eval(
+                select_match_injuries["formation_" + str(team)].values[0]
+            )
             df = pd.DataFrame(formation_away)
-            gd = GridOptionsBuilder.from_dataframe(df[["playerName","position","positionSide"]])
+            gd = GridOptionsBuilder.from_dataframe(
+                df[["playerName", "position", "positionSide"]]
+            )
             gd.configure_pagination(enabled=True)
-            gd.configure_selection(selection_mode='single', use_checkbox=True)
+            gd.configure_selection(selection_mode="single", use_checkbox=True)
             gridOptions = gd.build()
 
-            grid_table = AgGrid(df[["playerName", "position", "positionSide"]],
-                   gridOptions=gridOptions,
-                   enable_enterprise_modules=True,
-                   fit_columns_on_grid_load=True,
-                   theme="balham",
-                   update_mode=GridUpdateMode.MODEL_CHANGED,
-                   allow_unsafe_jscode=True,
+            grid_table = AgGrid(
+                df[["playerName", "position", "positionSide"]],
+                gridOptions=gridOptions,
+                enable_enterprise_modules=True,
+                fit_columns_on_grid_load=True,
+                theme="balham",
+                update_mode=GridUpdateMode.MODEL_CHANGED,
+                allow_unsafe_jscode=True,
             )
-            #dict_keys(['data', 'selected_rows', 'column_state', 'excel_blob'])
-            player_stats = player_stats.loc[player_stats["date"] == select_match_injuries.date.values[0]]
+            # dict_keys(['data', 'selected_rows', 'column_state', 'excel_blob'])
+            player_stats = player_stats.loc[
+                player_stats["date"] == select_match_injuries.date.values[0]
+            ]
             player_stats = [
-                ast.literal_eval(player_stats["player_stats_"+str(team)].values[match])
-                for match in range(len(player_stats["player_stats_"+str(team)].values))
-            ] # Get all player stats from all matches on the selected date
-            player_stats = [item for sublist in player_stats for item in sublist] # flatten player stats list
+                ast.literal_eval(
+                    player_stats["player_stats_" + str(team)].values[match]
+                )
+                for match in range(
+                    len(player_stats["player_stats_" + str(team)].values)
+                )
+            ]  # Get all player stats from all matches on the selected date
+            player_stats = [
+                item for sublist in player_stats for item in sublist
+            ]  # flatten player stats list
             try:
                 df_selected = pd.DataFrame(grid_table["selected_rows"])
-                selected_player = df["playerId"].loc[df["playerName"] == str(df_selected["playerName"].values[0])].values[0]
+                selected_player = (
+                    df["playerId"]
+                    .loc[df["playerName"] == str(df_selected["playerName"].values[0])]
+                    .values[0]
+                )
                 player_stat = next(
-                    player 
+                    player
                     for player in player_stats
                     if player["playerId"] == selected_player
                 )
-                player_stat = pd.DataFrame(player_stat, index=[0])# .sort_index(axis=1)
+                player_stat = pd.DataFrame(
+                    player_stat, index=[0]
+                )  # .sort_index(axis=1)
             except:
                 pass
         else:
             pass
     try:
-        st.write(player_stat.loc[: ,player_stat.columns != 'playerId'])
+        st.write(player_stat.loc[:, player_stat.columns != "playerId"])
     except:
         pass
     return match_prompt

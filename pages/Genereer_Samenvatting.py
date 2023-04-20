@@ -10,8 +10,7 @@ from pages.utils_streamlit.selections import (
     ST_select_injury_home,
     ST_select_injury_away,
     ST_select_trainers,
-    ST_select_rank_home,
-    ST_select_rank_away,
+    ST_select_rank,
     ST_select_formation,
     ST_select_goals,
 )
@@ -114,13 +113,13 @@ if check_password():
     )
 
     select_rank_home, select_optioneel = st.columns(2)
-    match_prompt = ST_select_rank_home(
-        match_prompt, select_rank_home, select_match_injuries
+    match_prompt = ST_select_rank(
+        match_prompt, select_rank_home, select_match_injuries, team="home"
     )
 
     select_rank_away, select_optioneel = st.columns(2)
-    match_prompt = ST_select_rank_away(
-        match_prompt, select_rank_away, select_match_injuries
+    match_prompt = ST_select_rank(
+        match_prompt, select_rank_away, select_match_injuries, team="away"
     )
 
     select_formations_home, select_formations_away = st.columns(2)

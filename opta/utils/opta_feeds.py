@@ -137,7 +137,7 @@ def get_matchstats_cards(
                     "periodId": card["periodId"],
                     "timeMin": card["timeMin"],
                     "playerId": card["playerId"],
-                    "playerName" : get_name(card, "player", outletAuthKey),
+                    "playerName" : str(card["playerName"]).split(". ", 1)[1],
                     "cardType": card["type"],
                     "cardReason": card["cardReason"],
                 }
@@ -197,7 +197,7 @@ def get_matchstats_goals(
                     "periodId": goal["periodId"],
                     "timeMin": goal["timeMin"],
                     "scorerId": goal["scorerId"],
-                    "scorerName" : get_name(goal,"scorer", outletAuthKey),
+                    "scorerName" : str(goal["scorerName"]).split(". ", 1)[1],
                     # "scorerName": goal["scorerName"],
                     "goalType": goal["type"],
                 }
@@ -469,7 +469,9 @@ def get_rankStatus(
         last_six_away,
         rank_statussen_home,
         rank_statussen_away,
-    ) = ([] for i in range(6))
+        lastRanks_home,
+        lastRanks_away,
+    ) = ([] for i in range(8))
 
     print("Get rankstatus..\n")
     for match in tqdm(df.index):
@@ -486,6 +488,7 @@ def get_rankStatus(
                     except:
                         rank_status_home = ""
                     rank_home = str(team_rank["rank"])
+                    lastRank_home = str(team_rank["lastRank"])
                     six_home = str(team_rank["lastSix"])
                 if team_rank["contestantId"] == df["awayContestantId"][match]:
                     try:
@@ -493,6 +496,7 @@ def get_rankStatus(
                     except:
                         rank_status_away = ""
                     rank_away = str(team_rank["rank"])
+                    lastRank_away = str(team_rank["lastRank"])
                     six_away = str(team_rank["lastSix"])
         except:
             (
@@ -500,7 +504,11 @@ def get_rankStatus(
                 rank_away,
                 six_home,
                 six_away,
+                lastRank_home,
+                lastRank_away,
             ) = (
+                "",
+                "",
                 "",
                 "",
                 "",
@@ -512,6 +520,8 @@ def get_rankStatus(
         last_six_away.append(six_away)
         rank_statussen_home.append(rank_status_home)
         rank_statussen_away.append(rank_status_away)
+        lastRanks_home.append(lastRank_home)
+        lastRanks_away.append(lastRank_away)
     (
         df["rank_home"],
         df["rank_away"],
@@ -519,6 +529,8 @@ def get_rankStatus(
         df["last_six_away"],
         df["rank_status_home"],
         df["rank_status_away"],
+        df["lastRank_home"],
+        df["lastRank_away"],
     ) = (
         ranks_home,
         ranks_away,
@@ -526,6 +538,8 @@ def get_rankStatus(
         last_six_away,
         rank_statussen_home,
         rank_statussen_away,
+        lastRanks_home,
+        lastRanks_away
     )
     return df
 
