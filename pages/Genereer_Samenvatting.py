@@ -12,8 +12,7 @@ from pages.utils_streamlit.selections import (
     ST_select_trainers,
     ST_select_rank_home,
     ST_select_rank_away,
-    ST_select_formation_home,
-    ST_select_formation_away,
+    ST_select_formation,
 )
 from pages.utils_streamlit.generate import generate_completion, generate_winstreak_plots
 
@@ -33,6 +32,12 @@ def load_dataset() -> pd.DataFrame:  # Elke dag bijvoorbeeld als job schedulen
     df['date'] = df['date'].str.replace('Z', '')
     return df
 
+@st.cache_data(show_spinner="Een momentje...")
+def load_dataset_player_stats() -> pd.DataFrame:  # Elke dag bijvoorbeeld als job schedulen
+    df = pd.read_csv("./pages/data/eredivisie_playerstats.csv", sep=",")
+    df = df.sort_values(by="date", ascending=False)
+    df['date'] = df['date'].str.replace('Z', '')
+    return df
 
 def streamlit_page_config():
     st.set_page_config(
@@ -55,6 +60,7 @@ if check_password():
     st.sidebar.success("Genereer een samenvatting op deze demo pagina.")
     image = load_images()
     df = load_dataset()
+    df_player_stats = load_dataset_player_stats()
     st.image(image)
     st.write(""" # Southfields AI Tool """)
 
@@ -108,11 +114,11 @@ if check_password():
     )
     select_formations_home, select_formations_away = st.columns(2)
     
-    match_prompt = ST_select_formation_home(
-        match_prompt, select_formations_home, select_match_injuries
+    match_prompt = ST_select_formation(
+        match_prompt, select_formations_home, select_match_injuries, df_player_stats, team="home"
     )
-    match_prompt = ST_select_formation_away(
-        match_prompt, select_formations_away, select_match_injuries
+    match_prompt = ST_select_formation(
+        match_prompt, select_formations_away, select_match_injuries, df_player_stats, team="away"
     )
 
     input_data = st.text_area(

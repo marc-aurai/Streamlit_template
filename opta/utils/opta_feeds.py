@@ -588,7 +588,7 @@ def get_injuries(
                 )
             ).json()["person"]
             home_injury = [
-                str(home_injury["matchName"])
+                str(home_injury["lastName"])
                 + " van {} voetbalt niet mee vanwege een ".format(df["homeContestantOfficialName"][match])
                 + translate_injury(str(home_injury["injury"][0]["type"]))
                 # + " blessure."
@@ -597,7 +597,7 @@ def get_injuries(
                 if "endDate" not in injury_details
             ]
             away_injury = [
-                str(away_injury["matchName"])
+                str(away_injury["lastName"])
                 + " van {} voetbalt niet mee vanwege een ".format(df["awayContestantOfficialName"][match])
                 + translate_injury(str(away_injury["injury"][0]["type"]))
                 # + " blessure."
@@ -627,7 +627,9 @@ def get_formations(
 
     # Create container for new column
     formations_home = []
+    player_stats_home = []
     formations_away = []
+    player_stats_away = []
     print("Get formations..\n")
 
     # Loop through df to get match id's
@@ -642,40 +644,51 @@ def get_formations(
                 # Access card information from live data
                 .json()["liveData"]["lineUp"]
             )
-            
             formation_home = []
-            for player_formation in matchstats_formations[0]["player"]:
-                if player_formation["position"] != "Substitute":
-                    formation_player = {}
-                    formation_player["playerName"] = player_formation["lastName"]
-                    formation_player["position"] = player_formation["position"]
-                    for stat in player_formation["stat"]:
-                        if stat["type"] == "totalPass":
-                            formation_player["totalPass"] = stat["value"]
-                        if stat["type"] == "accuratePass":
-                            formation_player["accuratePass"] = stat["value"]
-                    formation_home.append(formation_player)
-
+            player_stat_home = []
             formation_away = []
-            for player_formation in matchstats_formations[1]["player"]:
-                if player_formation["position"] != "Substitute":
-                    formation_player = {}
-                    formation_player["playerName"] = player_formation["lastName"]
-                    formation_player["position"] = player_formation["position"]
-                    for stat in player_formation["stat"]:
-                        if stat["type"] == "totalPass":
-                            formation_player["totalPass"] = stat["value"]
-                        if stat["type"] == "accuratePass":
-                            formation_player["accuratePass"] = stat["value"]
-                    formation_away.append(formation_player)
+            player_stat_away = []
+            for team in range(2):
+                for player_formation in matchstats_formations[team]["player"]:
+                    if player_formation["position"] != "Substitute":
+                        formation_player = {}
+                        stat_player = {}
+                        formation_player["playerName"] = player_formation["lastName"]
+                        formation_player["position"] = player_formation["position"]
+                        formation_player["positionSide"] = player_formation["positionSide"]
+                        formation_player["playerId"] = player_formation["playerId"]
+                        stat_player["playerName"] = player_formation["lastName"]
+                        stat_player["playerId"] = player_formation["playerId"]
+                        for stat in player_formation["stat"]:
+                            if stat["type"] in ["minsPlayed","totalPass","accuratePass","goalAssist","totalScoringAtt","saves"]:
+                                if stat["type"] == "totalScoringAtt":
+                                    stat_player["score_pogingen"] = stat["value"]
+                                else:
+                                    stat_player[stat["type"]] = stat["value"]
+                        try:
+                            stat_player["Pass_accuracy"] = round((int(stat_player["accuratePass"])*100) / int(stat_player["totalPass"]), 2) 
+                        except:
+                            pass
+                        if team == 0:
+                            formation_home.append(formation_player)
+                            player_stat_home.append(stat_player)
+                        if team == 1:
+                            formation_away.append(formation_player)
+                            player_stat_away.append(stat_player)
 
         except:
             formation_home = []  
             formation_away = []
+            player_stat_home = []
+            player_stat_away = []
         formations_home.append(formation_home)
         formations_away.append(formation_away)
+        player_stats_home.append(player_stat_home)
+        player_stats_away.append(player_stat_away)
 
     # Add list to dataframe
     df["formation_home"] = formations_home
     df["formation_away"] = formations_away
+    df["player_stats_home"] = player_stats_home
+    df["player_stats_away"] = player_stats_away
     return df

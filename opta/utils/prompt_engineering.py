@@ -20,8 +20,8 @@ def date(df: pd.DataFrame) -> list:
     dates = df["date"].tolist()
     dates = [dt.strptime(date, "%Y-%m-%dZ").date() for date in dates]
     dates = [
-        "Op "+str(calendar.day_name[date.weekday()])+" "
-        +str(date.day)+" "+str(date.strftime("%B"))
+        "Op "+str(calendar.day_name[date.weekday()])
+        # +" "+str(date.day)+" "+str(date.strftime("%B"))
         for date in dates
     ]
     return dates
@@ -279,7 +279,7 @@ def article_completion(df: pd.DataFrame) -> list:
 def rank_status_home(df: pd.DataFrame) -> list:
 
     rank_status = [
-        home_team+" staat op de "+rank_home+"e plaats en tevens op degradatie.\n" 
+        "\n"+home_team+" staat op de "+rank_home+"e plaats en tevens op degradatie.\n" 
         if status_home == "Relegation" else ""
         for status_home, rank_home, home_team in zip(
             df["rank_status_home"],
@@ -293,7 +293,7 @@ def rank_status_home(df: pd.DataFrame) -> list:
 def rank_status_away(df: pd.DataFrame) -> list:
 
     rank_status = [
-        away_team+" staat op de "+rank_away+"e plaats en tevens op degradatie.\n" 
+        "\n"+away_team+" staat op de "+rank_away+"e plaats en tevens op degradatie.\n" 
         if status_away == "Relegation" else ""
         for status_away, rank_away, away_team in zip(
             df["rank_status_away"],

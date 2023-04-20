@@ -45,6 +45,8 @@ def select_features(df: pd.DataFrame) -> pd.DataFrame:
             "away_injuries",
             "formation_home",
             "formation_away",
+            "player_stats_home",
+            "player_stats_away",
         ]
     ]
 
@@ -74,6 +76,14 @@ def prompt_engineering(df: pd.DataFrame):
     prompt_df["card_events"] = [
         ", ".join(map(str, l)) for l in prompt_df["card_events"]
     ]
+    player_stats = pd.DataFrame()
+    player_stats = df_selection[
+        [
+            "date",
+            "player_stats_home",
+            "player_stats_away",
+        ]
+    ].copy()
 
     openai_df = pd.DataFrame()
     openai_df = df_selection[
@@ -101,7 +111,7 @@ def prompt_engineering(df: pd.DataFrame):
     )
 
     openai_df["prompt"] = (
-        "Geef de samenvatting een pakkende titel en schrijf een voetbal wedstrijd samenvatting inclusief paragrafen met de volgende informatie:\n"
+        "Geef het artikel een pakkende titel en schrijf een voetbal wedstrijd artikel inclusief paragrafen met de volgende informatie:\n"
         + prompt_df.dates.values
         + " "
         + prompt_df.home_vs_away.values
@@ -117,10 +127,9 @@ def prompt_engineering(df: pd.DataFrame):
         + prompt_df.card_events.values
         + ".\n"
         + prompt_df.possession.values
-        + ".\n"
         + prompt_df.rank_status_home.values
         + prompt_df.rank_status_away.values
         # + prompt_df.keepers.values
         + "\n\n###\n\n"  # stop sequence, tip from openAI
     )
-    return openai_df
+    return openai_df, player_stats

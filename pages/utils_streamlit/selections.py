@@ -245,65 +245,25 @@ def ST_select_rank_away(
     return match_prompt
 
 
-def ST_select_formation_home(
-    match_prompt: str, select_formations_home, select_match_injuries: pd.DataFrame
+def ST_select_formation(
+    match_prompt: str, select_field, select_match_injuries: pd.DataFrame, player_stats: pd.DataFrame, team: str
 ) -> str:
-    with select_formations_home:
+    with select_field:
         selected_formations = st.checkbox(
             value=False,
             label="Opstelling van:\n{}".format(
-                select_match_injuries["home_team"].values[0],
+                select_match_injuries[str(team)+"_team"].values[0],
             ),
         )
         if selected_formations:
-            formation_home = ast.literal_eval(select_match_injuries.formation_home.values[0])
-            df = pd.DataFrame(formation_home)
-            gd = GridOptionsBuilder.from_dataframe(df[["playerName", "position"]])
-            gd.configure_pagination(enabled=True)
-            gd.configure_selection(selection_mode='single', use_checkbox=True)
-            gridOptions = gd.build()
-
-            grid_table = AgGrid(df[["playerName", "position"]],
-                   gridOptions=gridOptions,
-                   enable_enterprise_modules=True,
-                   fit_columns_on_grid_load=True,
-                   theme="balham",
-                   update_mode=GridUpdateMode.MODEL_CHANGED,
-                   allow_unsafe_jscode=True,
-            )
-            try:
-                #dict_keys(['data', 'selected_rows', 'column_state', 'excel_blob'])
-                df_selected = pd.DataFrame(grid_table["selected_rows"])
-                selected_player = df.loc[df["playerName"] == str(df_selected["playerName"].values[0])]
-            except:
-                pass
-        else:
-            pass
-    try:
-        st.write(selected_player[["playerName","position","accuratePass","totalPass"]])
-    except:pass
-    return match_prompt
-
-
-def ST_select_formation_away(
-    match_prompt: str, select_formations_away, select_match_injuries: pd.DataFrame
-) -> str:
-    with select_formations_away:
-        selected_formations = st.checkbox(
-            value=False,
-            label="Opstelling van:\n{}".format(
-                select_match_injuries["away_team"].values[0],
-            ),
-        )
-        if selected_formations:
-            formation_away = ast.literal_eval(select_match_injuries.formation_away.values[0])
+            formation_away = ast.literal_eval(select_match_injuries["formation_"+str(team)].values[0])
             df = pd.DataFrame(formation_away)
-            gd = GridOptionsBuilder.from_dataframe(df[["playerName", "position"]])
+            gd = GridOptionsBuilder.from_dataframe(df[["playerName","position","positionSide"]])
             gd.configure_pagination(enabled=True)
             gd.configure_selection(selection_mode='single', use_checkbox=True)
             gridOptions = gd.build()
 
-            grid_table = AgGrid(df[["playerName", "position"]],
+            grid_table = AgGrid(df[["playerName", "position", "positionSide"]],
                    gridOptions=gridOptions,
                    enable_enterprise_modules=True,
                    fit_columns_on_grid_load=True,
@@ -312,15 +272,23 @@ def ST_select_formation_away(
                    allow_unsafe_jscode=True,
             )
             #dict_keys(['data', 'selected_rows', 'column_state', 'excel_blob'])
+            player_stats = player_stats.loc[player_stats["date"] == select_match_injuries.date.values[0]]
+            player_stats = ast.literal_eval(player_stats["player_stats_"+str(team)].values[0])
             try:
                 df_selected = pd.DataFrame(grid_table["selected_rows"])
-                selected_player = df.loc[df["playerName"] == str(df_selected["playerName"].values[0])]
+                selected_player = df["playerId"].loc[df["playerName"] == str(df_selected["playerName"].values[0])].values[0]
+                player_stat = next(
+                    player 
+                    for player in player_stats
+                    if player["playerId"] == selected_player
+                )
+                player_stat = pd.DataFrame(player_stat, index=[0])
             except:
                 pass
         else:
             pass
     try:
-        st.write(selected_player[["playerName","position","accuratePass","totalPass"]])
+        st.write(player_stat.loc[: ,player_stat.columns != 'playerId'])
     except:
         pass
     return match_prompt
