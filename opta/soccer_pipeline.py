@@ -37,7 +37,7 @@ def competition(outletAuthKey_competition: str) -> pd.DataFrame:
 if __name__ == "__main__":
     competition_ID = "d1k1pqdg2yvw8e8my74yvrdw4"
     df, player_stats = (
-        competition(outletAuthKey_ereD)[:20]
+        competition(outletAuthKey_ereD)
         .pipe(get_cup, outletAuthKey_ereD, competition=competition_ID)
         .pipe(get_score, outletAuthKey_ereD)
         .pipe(get_matchstats_possession, outletAuthKey_ereD)
@@ -55,5 +55,5 @@ if __name__ == "__main__":
         .pipe(prompt_engineering)
     )
 
-    df.to_csv("./pages/data/eredivisie_test2.csv", line_terminator="\n")
+    df.to_csv("./pages/data/eredivisie.csv", line_terminator="\n")
     player_stats.to_csv("./pages/data/eredivisie_playerstats.csv", line_terminator="\n")

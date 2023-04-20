@@ -273,7 +273,11 @@ def ST_select_formation(
             )
             #dict_keys(['data', 'selected_rows', 'column_state', 'excel_blob'])
             player_stats = player_stats.loc[player_stats["date"] == select_match_injuries.date.values[0]]
-            player_stats = ast.literal_eval(player_stats["player_stats_"+str(team)].values[0])
+            player_stats = [
+                ast.literal_eval(player_stats["player_stats_"+str(team)].values[match])
+                for match in range(len(player_stats["player_stats_"+str(team)].values))
+            ] # Get all player stats from all matches on the selected date
+            player_stats = [item for sublist in player_stats for item in sublist] # flatten player stats list
             try:
                 df_selected = pd.DataFrame(grid_table["selected_rows"])
                 selected_player = df["playerId"].loc[df["playerName"] == str(df_selected["playerName"].values[0])].values[0]
