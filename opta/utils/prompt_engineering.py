@@ -40,7 +40,7 @@ def home_vs_away(df: pd.DataFrame) -> list:
     """
     home_versus_away = [
         "speelde " + str(home) + " thuis tegen " + str(away)
-        for home, away in zip(df["homeContestantOfficialName"].to_list(), df["awayContestantOfficialName"].to_list())
+        for home, away in zip(df["homeContestantName"].to_list(), df["awayContestantName"].to_list())
     ]
     return home_versus_away
 
@@ -101,8 +101,8 @@ def final_score(df: pd.DataFrame) -> list:
         for home_score, away_score, home_team, away_team in zip(
             df["score_home"].to_list(),
             df["score_away"].to_list(),
-            df["homeContestantOfficialName"].to_list(),
-            df["awayContestantOfficialName"].tolist(),
+            df["homeContestantName"].to_list(),
+            df["awayContestantName"].tolist(),
         )
     ]
     return final_score
@@ -125,8 +125,8 @@ def goal_events(df: pd.DataFrame) -> list:
         df['goal_events'].tolist(), 
         df['homeContestantId'].tolist(),
         df['awayContestantId'].tolist(),
-        df['homeContestantOfficialName'].tolist(), 
-        df['awayContestantOfficialName'].tolist(),
+        df['homeContestantName'].tolist(), 
+        df['awayContestantName'].tolist(),
     ):
         goals_in_match = []
         for goals in all_matches_all_goals:
@@ -235,8 +235,8 @@ def possession(df: pd.DataFrame) -> list:
         for possession_home, possession_away, home_team, away_team in zip(
             df['possession_home'].to_list(), 
             df['possession_away'].to_list(), 
-            df["homeContestantOfficialName"].to_list(),
-            df["awayContestantOfficialName"].tolist()
+            df["homeContestantName"].to_list(),
+            df["awayContestantName"].tolist()
         )
     ]
     return possessions
@@ -260,8 +260,8 @@ def trainer(df: pd.DataFrame) -> list:
         for trainer_home, trainer_away, home_team, away_team in zip(
             df['trainer_home'].to_list(), 
             df['trainer_away'].to_list(), 
-            df["homeContestantOfficialName"].to_list(),
-            df["awayContestantOfficialName"].tolist()
+            df["homeContestantName"].to_list(),
+            df["awayContestantName"].tolist()
         )
     ]
     return trainers
@@ -285,8 +285,8 @@ def keeper(df: pd.DataFrame) -> list:
         for keeper_home, keeper_away, home_team, away_team in zip(
             df['keeper_home'].to_list(), 
             df['keeper_away'].to_list(), 
-            df["homeContestantOfficialName"].to_list(),
-            df["awayContestantOfficialName"].tolist()
+            df["homeContestantName"].to_list(),
+            df["awayContestantName"].tolist()
         )
     ]
     return keepers
@@ -319,7 +319,7 @@ def rank_status_home(df: pd.DataFrame) -> list:
         for status_home, rank_home, home_team in zip(
             df["rank_status_home"],
             df["rank_home"],
-            df["homeContestantOfficialName"],
+            df["homeContestantName"],
         )
     ]
     return rank_status
@@ -333,7 +333,7 @@ def rank_status_away(df: pd.DataFrame) -> list:
         for status_away, rank_away, away_team in zip(
             df["rank_status_away"],
             df["rank_away"],
-            df["awayContestantOfficialName"],
+            df["awayContestantName"],
         )
     ]
     return rank_status

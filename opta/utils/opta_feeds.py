@@ -67,8 +67,8 @@ def get_tournamentschedule(
             "date",
             "homeContestantId",
             "awayContestantId",
-            "homeContestantOfficialName",
-            "awayContestantOfficialName",
+            "homeContestantName",
+            "awayContestantName",
             "homeContestantCode",
             "awayContestantCode",
         ]
@@ -602,7 +602,7 @@ def get_injuries(
             ).json()["person"]
             home_injury = [
                 str(home_injury["lastName"])
-                + " van {} voetbalt niet mee vanwege een ".format(df["homeContestantOfficialName"][match])
+                + " van {} voetbalt niet mee vanwege een ".format(df["homeContestantName"][match])
                 + translate_injury(str(home_injury["injury"][0]["type"]))
                 # + " blessure."
                 for home_injury in home_response
@@ -611,7 +611,7 @@ def get_injuries(
             ]
             away_injury = [
                 str(away_injury["lastName"])
-                + " van {} voetbalt niet mee vanwege een ".format(df["awayContestantOfficialName"][match])
+                + " van {} voetbalt niet mee vanwege een ".format(df["awayContestantName"][match])
                 + translate_injury(str(away_injury["injury"][0]["type"]))
                 # + " blessure."
                 for away_injury in away_response

@@ -57,7 +57,7 @@ def streamlit_page_config():
 
 if check_password():
     streamlit_page_config()
-    st.sidebar.success("Genereer een  op deze demo pagina.")
+    st.sidebar.success("Genereer een samenvatting op deze demo pagina.")
     image = load_images()
     df = load_dataset()
     df_player_stats = load_dataset_player_stats()

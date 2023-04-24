@@ -33,8 +33,8 @@ def select_features(df: pd.DataFrame) -> pd.DataFrame:
             "trainer_away",
             "keeper_home",
             "keeper_away",
-            "homeContestantOfficialName",
-            "awayContestantOfficialName",
+            "homeContestantName",
+            "awayContestantName",
             "last_six_home",
             "last_six_away",
             "rank_home",
@@ -105,13 +105,13 @@ def prompt_engineering(df: pd.DataFrame):
             "formation_away",
         ]
     ].copy()
-    openai_df["home_team"] = df_selection["homeContestantOfficialName"]
-    openai_df["away_team"] = df_selection["awayContestantOfficialName"]
+    openai_df["home_team"] = df_selection["homeContestantName"]
+    openai_df["away_team"] = df_selection["awayContestantName"]
     openai_df["trainers"] = prompt_df["trainers"]
     openai_df["match"] = (
-        df_selection["homeContestantOfficialName"]
+        df_selection["homeContestantName"]
         + " vs "
-        + df_selection["awayContestantOfficialName"]
+        + df_selection["awayContestantName"]
     )
 
     openai_df["_competition"] = prompt_df.competition
