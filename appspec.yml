@@ -1,0 +1,3 @@
+hooks:
+  BeforeInstall:
+    - location: AWS_scripts/streamlit.sh
