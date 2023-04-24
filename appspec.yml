@@ -1,16 +1,17 @@
 version: 0.0
 os: linux
 files:
-  - source: .
+  - source: /
     destination: /home/ec2-user/
 
 permissions:
-  - object: /home/ec2-user/AWS_scripts/streamlit.sh
-    owner: root
-    mode: 755
-    type:
-      - file
+  - object: /
+    pattern: "**"
+    owner: ec2-user
+    group: ec2-user
 
 hooks:
-  BeforeInstall:
+  AfterInstall:
     - location: AWS_scripts/streamlit.sh
+      timeout: 1200
+      runas: ec2-user
