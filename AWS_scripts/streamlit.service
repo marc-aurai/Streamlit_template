@@ -4,6 +4,7 @@ After=multi-user.target
 [Service]
 Type=simple
 Restart=always
-ExecStart=streamlit run /home/app/Home.py
+WorkingDirectory=/home/app/
+ExecStart=streamlit run Home.py
 [Install]
 WantedBy=multi-user.target
