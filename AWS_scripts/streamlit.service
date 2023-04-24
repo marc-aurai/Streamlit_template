@@ -4,6 +4,6 @@ After=multi-user.target
 [Service]
 Type=simple
 Restart=always
-ExecStart=streamlit run /home/app/Home.py
+ExecStart=streamlit run /home/app/Home.py --server.port 8501
 [Install]
 WantedBy=multi-user.target
