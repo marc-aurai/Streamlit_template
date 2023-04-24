@@ -1,3 +1,16 @@
+version: 0.0
+os: linux
+files:
+  - source: .
+    destination: /home/ec2-user/
+
+permissions:
+  - object: /home/ec2-user/AWS_scripts/streamlit.sh
+    owner: root
+    mode: 755
+    type:
+      - file
+
 hooks:
   BeforeInstall:
     - location: AWS_scripts/streamlit.sh
