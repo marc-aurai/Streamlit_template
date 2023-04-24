@@ -1,2 +1,2 @@
 #!/bin/bash
-pip install -r /home/app/requirements.txt
+pip install -r /home/app/AWS_scripts/requirements.txt
