@@ -1,7 +1,5 @@
 from googletrans import Translator
 
-
-
 def translate_injury(injury):
     """
     Function that translates an injury from English to Dutch
