@@ -66,7 +66,7 @@ if check_password():
 
     # SIDEBAR
     TOKENS = st.sidebar.number_input(
-        label="Maximum length (Tokens)", min_value=50, max_value=500, value=350
+        label="Maximum length (Tokens)", min_value=20, max_value=800, value=400
     )
     temperature_GPT = st.sidebar.number_input(
         label="Model Temperature", min_value=0.0, max_value=1.0, value=0.4
