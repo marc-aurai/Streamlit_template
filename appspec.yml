@@ -4,6 +4,8 @@ files:
   - source: /
     destination: /home/app/
     overwrite: true
+  - source: ./AWS_scripts/streamlit.service
+    destination: /etc/systemd/system/
 file_exists_behavior: OVERWRITE
 
 hooks:
