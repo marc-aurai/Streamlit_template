@@ -43,7 +43,7 @@ def load_dataset_player_stats() -> pd.DataFrame:  # Elke dag bijvoorbeeld als jo
 
 def streamlit_page_config():
     st.set_page_config(
-        page_title="Genereer Samenvatting",
+        page_title="Genereer Voetbal Samenvatting",
         page_icon="🤖",
         layout="wide",
         initial_sidebar_state="expanded",
