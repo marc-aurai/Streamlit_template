@@ -1,8 +1,8 @@
 import streamlit as st
 import boto3
 
-s3 = boto3.resource('s3')
-gpt_ai_bucket = s3.Bucket('gpt-ai-tool-wsc')
+s3 = boto3.client('s3')
+# gpt_ai_bucket = s3.Bucket('gpt-ai-tool-wsc')
 
 def streamlit_page_config():
     st.set_page_config(
@@ -31,7 +31,7 @@ for content in response.get('Contents', []):
     all_videos.append(content['Key'])
 
 selected_video = st.selectbox(
-            "Wedstrijd datum: ", all_videos
+            "Video: ", all_videos
         )
 
 obj = s3.Object("gpt-ai-tool-wsc", "test_videos_streamlit/{}".format(selected_video))
