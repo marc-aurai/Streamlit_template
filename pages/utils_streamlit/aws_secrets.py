@@ -12,6 +12,8 @@ def get_secret(secret_name: str, region: str) -> dict:
         response = client.get_secret_value(SecretId=secret_name)
         if "SecretString" in response:
             secret = response["SecretString"]
+            print(type(secret), secret.keys())
             return json.loads(secret)
         secret = b64decode(response["SecretBinary"])
+        print(type(secret), secret.keys())
         return json.loads(secret)

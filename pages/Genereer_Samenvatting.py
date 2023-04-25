@@ -3,7 +3,7 @@ import streamlit as st
 from PIL import Image
 
 from pages.utils_streamlit.login_aws import check_password as check_password_AWS
-from pages.utils_streamlit.login import check_password
+#from pages.utils_streamlit.login import check_password
 from pages.utils_streamlit.selections import (
     ST_select_match_date,
     ST_select_match,
