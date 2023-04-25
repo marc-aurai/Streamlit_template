@@ -31,7 +31,7 @@ image, image_aurai = load_images()
 st.image(image)
 
 
-st.write("# Welcome to Southfields AI Tool!")
+st.write("# Welcome to Southfields AI Tool!!")
 
 st.sidebar.success("Selecteer een demo hierboven.")
 st.sidebar.image(image_aurai)
