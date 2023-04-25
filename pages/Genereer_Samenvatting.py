@@ -2,6 +2,7 @@ import pandas as pd
 import streamlit as st
 from PIL import Image
 
+import pages.utils_streamlit.login_aws as login_aws
 from pages.utils_streamlit.login_aws import check_password as check_password_AWS
 from pages.utils_streamlit.login import check_password
 from pages.utils_streamlit.selections import (
@@ -55,14 +56,12 @@ def streamlit_page_config():
                 """
     st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 
-try:
+if login_aws.AWS:
     AWS_check = check_password_AWS()
-except:
-    pass
-try:
+    streamlit_check = False
+else:
     streamlit_check = check_password()
-except:
-    pass
+    AWS_check = False
 
 if AWS_check or streamlit_check:
     streamlit_page_config()

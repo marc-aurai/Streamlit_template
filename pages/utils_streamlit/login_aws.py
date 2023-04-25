@@ -3,7 +3,9 @@ from pages.utils_streamlit.aws_secrets import get_secret
 
 try:
     password_aws = get_secret(secret_name="dev/GPT_AI_TOOL", region="eu-central-1")
+    AWS = True
 except:
+    AWS = False
     print("AWS password secret not found.")
 
 def check_password():
