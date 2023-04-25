@@ -3,7 +3,7 @@ import streamlit as st
 from PIL import Image
 
 from pages.utils_streamlit.login_aws import check_password as check_password_AWS
-#from pages.utils_streamlit.login import check_password
+from pages.utils_streamlit.login import check_password
 from pages.utils_streamlit.selections import (
     ST_select_match_date,
     ST_select_match,
@@ -55,8 +55,16 @@ def streamlit_page_config():
                 """
     st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 
+try:
+    AWS_check = check_password_AWS()
+except:
+    pass
+try:
+    streamlit_check = check_password()
+except:
+    pass
 
-if check_password_AWS():
+if AWS_check or streamlit_check:
     streamlit_page_config()
     st.sidebar.success("Genereer een samenvatting op deze demo pagina.")
     image = load_images()
