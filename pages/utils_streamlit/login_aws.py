@@ -3,6 +3,7 @@ from pages.utils_streamlit.aws_secrets import get_secret
 
 
 password_aws = get_secret(secret_name="dev/GPT_AI_TOOL", region="eu-central-1")
+print(password_aws.keys())
 
 def check_password():
     """Returns `True` if the user had a correct password."""
