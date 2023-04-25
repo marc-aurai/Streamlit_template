@@ -3,7 +3,8 @@ import streamlit as st
 from pages.utils_streamlit.aws_secrets import get_secret
 
 try:
-    openai.api_key = get_secret(secret_name="dev/openai", region="eu-central-1")
+    secret_response = get_secret(secret_name="dev/openai", region="eu-central-1")
+    openai.api_key = secret_response["OPENAI_KEY"]
 except:
     print("AWS secret not found.")
 try:
