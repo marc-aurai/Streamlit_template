@@ -1,0 +1,29 @@
+name: Update Eredivisie wedstrijden in dataset
+on:
+  schedule:
+    - cron: '0 0-21/3 * * *'
+  workflow_dispatch:
+jobs:
+  update_plot:
+    name: Update dataset met uitslagen en data van nieuwe wedstrijden
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+          cache: 'pip'
+      - name: Install Dependencies
+        run: pip install -r requirements.txt
+      - name: Run Script and Update Dataset
+        run: |
+          python opta/soccer_pipeline.py
+      - name: Commit and Push Changes
+        run: |
+          git config --local user.email "actions@github.com"
+          git config --local user.name "GitHub Actions"
+          git add pages/data/eredivisie.csv pages/data/eredivsie_playerstats.csv
+          git commit -m "Updated Eredivisie Dataset with GitHub Actions"
+          git push origin main
