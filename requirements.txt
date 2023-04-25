@@ -18,3 +18,4 @@ wordcloud==1.8.2.2
 googletrans==4.0.0-rc1
 streamlit-aggrid==0.3.4.post3
 boto3==1.26.28
+python-dotenv==0.21.0
