@@ -29,7 +29,7 @@ try:
     all_videos.remove("test_videos_streamlit/")
 
     selected_video = st.selectbox(
-                "Wedstrijd datum: ", all_videos
+                "Selecteer video: ", all_videos
             )
 
     obj = s3.Object("gpt-ai-tool-wsc", str(selected_video))
