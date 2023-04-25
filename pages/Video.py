@@ -23,8 +23,12 @@ streamlit_page_config()
 st.sidebar.success("Bekijk een video op deze pagina.")
 
 all_videos = []
-for objects in gpt_ai_bucket.objects.filter(Prefix="test_videos_streamlit/"):
-    all_videos.append(objects.key)
+response = s3.list_objects_v2(
+    Bucket='gpt-ai-tool-wsc',
+    Prefix='test_videos_streamlit/')
+
+for content in response.get('Contents', []):
+    all_videos.append(content['Key'])
 
 selected_video = st.selectbox(
             "Wedstrijd datum: ", all_videos
