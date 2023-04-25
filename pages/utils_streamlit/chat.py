@@ -3,7 +3,7 @@ import streamlit as st
 import boto3
 import json
 
-client = boto3.client('secretsmanager')
+client = boto3.client('secretsmanager', region_name="eu-central-1")
 response = client.get_secret_value(
     SecretId='dev/openai'
 )
