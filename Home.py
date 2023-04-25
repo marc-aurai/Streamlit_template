@@ -21,7 +21,7 @@ def streamlit_page_config():
 @st.cache_data(show_spinner="Een momentje...")
 def load_images():
     image = Image.open('assets/image/southfields_logo.png')
-    #image_aurai = Image.open('assets/image/aurai_logo.png')
+    image_aurai = Image.open('assets/image/aurai_logo.png')
     return image, image_aurai
 
 
@@ -33,7 +33,7 @@ st.image(image)
 st.write("# Welkom bij de AI Tools van Southfields!")
 
 st.sidebar.success("Selecteer een Tool hierboven.")
-st.sidebar.image(image_aurai)
+# st.sidebar.image(image_aurai)
 
 # st.markdown(
 #     """
