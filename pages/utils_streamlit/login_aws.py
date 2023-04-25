@@ -1,8 +1,10 @@
 import streamlit as st
 from pages.utils_streamlit.aws_secrets import get_secret
 
-
-password_aws = get_secret(secret_name="dev/GPT_AI_TOOL", region="eu-central-1")
+try:
+    password_aws = get_secret(secret_name="dev/GPT_AI_TOOL", region="eu-central-1")
+except:
+    print("AWS password secret not found.")
 
 def check_password():
     """Returns `True` if the user had a correct password."""

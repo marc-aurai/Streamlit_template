@@ -6,11 +6,11 @@ try:
     secret_response = get_secret(secret_name="dev/openai", region="eu-central-1")
     openai.api_key = secret_response["OPENAI_KEY"]
 except:
-    print("AWS secret not found.")
+    print("AWS API secret not found.")
 try:
     openai.api_key = st.secrets['OPENAI_KEY']
 except:
-    print("Streamlit secret not found.")
+    print("Streamlit API secret not found.")
 
 def GPT_3(prompt, model_engine, MAX_TOKENS, TEMP):
     """This function interacts with th OpenAI  API through HTTP request. 

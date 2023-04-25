@@ -245,7 +245,7 @@ def ST_select_formation(
             grid_table = AgGrid(
                 df[["playerName", "position", "positionSide"]],
                 gridOptions=gridOptions,
-                enable_enterprise_modules=True,
+                enable_enterprise_modules=False,
                 fit_columns_on_grid_load=True,
                 theme="balham",
                 update_mode=GridUpdateMode.MODEL_CHANGED,
