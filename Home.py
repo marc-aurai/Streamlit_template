@@ -1,7 +1,6 @@
 import streamlit as st
 from PIL import Image
-import os, sys
-print(os.path.dirname(sys.argv[0])) 
+
 
 def streamlit_page_config():
     st.set_page_config(

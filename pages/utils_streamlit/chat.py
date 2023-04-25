@@ -1,8 +1,23 @@
 import openai
 import streamlit as st
+import boto3
+import json
 
+client = boto3.client('secretsmanager')
+response = client.get_secret_value(
+    SecretId='dev/openai'
+)
 
-openai.api_key = st.secrets['OPENAI_KEY']
+secretDictAWS = json.loads(response['SecretString'])
+
+try:
+    openai.api_key = secretDictAWS["OPENAI_KEY"]
+except:
+    print("AWS secret not found.")
+try:
+    openai.api_key = st.secrets['OPENAI_KEY']
+except:
+    print("Streamlit secret not found.")
 
 def GPT_3(prompt, model_engine, MAX_TOKENS, TEMP):
     """This function interacts with th OpenAI  API through HTTP request. 
