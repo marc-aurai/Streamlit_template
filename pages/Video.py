@@ -25,6 +25,7 @@ st.sidebar.success("Bekijk een video op deze pagina.")
 all_videos = []
 for obj in bucket.objects.filter(Delimiter='/', Prefix='test_videos_streamlit/'):
     all_videos.append(obj.key)
+all_videos.remove("test_videos_streamlit/")
 
 selected_video = st.selectbox(
             "Wedstrijd datum: ", all_videos
@@ -33,4 +34,4 @@ st.write(selected_video)
 
 obj = s3.Object("gpt-ai-tool-wsc", str(selected_video))
 body = obj.get()['Body'].read()
-st.video(selected_video)
+st.video(body)
