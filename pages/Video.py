@@ -22,8 +22,9 @@ streamlit_page_config()
 st.sidebar.success("Bekijk een video op deze pagina.")
 
 obj = s3.Object("gpt-ai-tool-wsc", "test_videos_streamlit/Goal by Luuk de Jong.mp4")
-#body = obj.get()['Body'].read()
-video_file = open(obj, 'rb')
-video_bytes = video_file.read()
+body = obj.get()['Body'].read()
+print(body)
+# video_file = open(obj, 'rb')
+# video_bytes = video_file.read()
 
-st.video(video_bytes)
+st.video(body)
