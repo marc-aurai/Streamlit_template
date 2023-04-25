@@ -7,6 +7,7 @@ files:
   - source: ./AWS_scripts/streamlit.service
     destination: /etc/systemd/system/
 file_exists_behavior: OVERWRITE
+
 hooks:
   AfterInstall:
     - location: AWS_scripts/dependencies.sh
