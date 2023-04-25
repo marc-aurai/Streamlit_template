@@ -1,13 +1,8 @@
 import streamlit as st
-import boto3
-import json
+from pages.utils_streamlit.aws_secrets import get_secret
 
-client = boto3.client('secretsmanager', region_name="eu-central-1")
-response = client.get_secret_value(
-    SecretId='dev/GPT_AI_TOOL'
-)
 
-secretDictAWS = json.loads(response['SecretString'])
+password_aws = get_secret(secret_name="dev/GPT_AI_TOOL", region="eu-central-1")
 
 def check_password():
     """Returns `True` if the user had a correct password."""
@@ -15,9 +10,9 @@ def check_password():
     def password_entered():
         """Checks whether a password entered by the user is correct."""
         if (
-            st.session_state["username"] in secretDictAWS["password"]
+            st.session_state["username"] in password_aws
             and st.session_state["password"]
-            == secretDictAWS["password"][st.session_state["username"]]
+            == password_aws[st.session_state["username"]]
         ):
             st.session_state["password_correct"] = True
             del st.session_state["password"]  # don't store username + password

@@ -1,17 +1,9 @@
 import openai
 import streamlit as st
-import boto3
-import json
-
-client = boto3.client('secretsmanager', region_name="eu-central-1")
-response = client.get_secret_value(
-    SecretId='dev/openai'
-)
-
-secretDictAWS = json.loads(response['SecretString'])
+from pages.utils_streamlit.aws_secrets import get_secret
 
 try:
-    openai.api_key = secretDictAWS["OPENAI_KEY"]
+    openai.api_key = get_secret(secret_name="dev/openai", region="eu-central-1")
 except:
     print("AWS secret not found.")
 try:
