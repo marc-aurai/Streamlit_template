@@ -18,6 +18,8 @@ jobs:
         with:
           python-version: '3.9'
           cache: 'pip'
+      - name: 🔎 Check IP
+        run: curl https://api.ipify.org
       - name: Install Dependencies
         run: pip install -r requirements.txt
       - name: Run Script and Update Dataset
