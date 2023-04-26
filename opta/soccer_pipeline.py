@@ -1,28 +1,49 @@
+import argparse
 import os
 
 import pandas as pd
 from dotenv import load_dotenv
 from googletrans import Translator
-from utils.soccer_prompt import prompt_engineering
 from utils.opta_feeds import (
+    get_cup,
+    get_formations,
+    get_injuries,
     get_keepers,
     get_matchstats_cards,
     get_matchstats_goals,
     get_matchstats_possession,
+    get_rankStatus,
+    get_score,
     get_tournamentschedule,
     get_trainer,
     get_venue,
-    get_score,
-    get_cup,
-    get_rankStatus,
-    get_injuries,
-    get_formations,
 )
+from utils.soccer_prompt import prompt_engineering
 
 load_dotenv()
-outletAuthKey_ereD = os.getenv("outletAuthKey_ereD")
-outletAuthKey_KKD = os.getenv("outletAuthKey_KKD")
 
+parser = argparse.ArgumentParser()
+parser.add_argument(
+    "--competitie_name",
+    help="Geef de naam van de competitie. Bijvoorbeeld: Eredivisie..",
+    type=str,
+    default="eredivisie",
+)
+parser.add_argument(
+    "--competitie_id",
+    help="Opta ID van de competitie. Bijvoorbeeld Eredivisie 22/23 = d1k1pqdg2yvw8e8my74yvrdw4",
+    type=str,
+    default="d1k1pqdg2yvw8e8my74yvrdw4",
+)
+parser.add_argument(
+    "--outletAuthKey",
+    help="De authorisatie key vanuit OPTA die je wilt gebruiken",
+    type=str,
+    default="outletAuthKey_ereD",
+)
+args = parser.parse_args()
+
+outletAuthKey = os.getenv(str(args.outletAuthKey))
 
 def competition(outletAuthKey_competition: str) -> pd.DataFrame:
     df_tournament = get_tournamentschedule(
@@ -35,26 +56,26 @@ def competition(outletAuthKey_competition: str) -> pd.DataFrame:
 
 
 if __name__ == "__main__":
-    competitie_name = "eredivisie"
-    competition_ID = "d1k1pqdg2yvw8e8my74yvrdw4"
+    competitie_name = args.competitie_name
+    competition_ID = args.competitie_id
     df, player_stats = (
-        competition(outletAuthKey_ereD)
-        .pipe(get_cup, outletAuthKey_ereD, competition=competition_ID)
-        .pipe(get_score, outletAuthKey_ereD)
-        .pipe(get_matchstats_possession, outletAuthKey_ereD)
-        .pipe(get_matchstats_cards, outletAuthKey_ereD)
-        .pipe(get_venue, outletAuthKey_ereD)
-        .pipe(get_matchstats_goals, outletAuthKey_ereD)
-        .pipe(get_trainer, outletAuthKey_ereD)
-        .pipe(get_keepers, outletAuthKey_ereD)
-        .pipe(get_injuries, outletAuthKey_ereD, competition=competition_ID)
-        .pipe(
-            get_rankStatus, outletAuthKey_ereD, competition=competition_ID
-        )
-        .pipe(get_formations, outletAuthKey_ereD)
+        competition(outletAuthKey)
+        .pipe(get_cup, outletAuthKey, competition=competition_ID)
+        .pipe(get_score, outletAuthKey)
+        .pipe(get_matchstats_possession, outletAuthKey)
+        .pipe(get_matchstats_cards, outletAuthKey)
+        .pipe(get_venue, outletAuthKey)
+        .pipe(get_matchstats_goals, outletAuthKey)
+        .pipe(get_trainer, outletAuthKey)
+        .pipe(get_keepers, outletAuthKey)
+        .pipe(get_injuries, outletAuthKey, competition=competition_ID)
+        .pipe(get_rankStatus, outletAuthKey, competition=competition_ID)
+        .pipe(get_formations, outletAuthKey)
         .dropna()
         .pipe(prompt_engineering)
     )
 
     df.to_csv("./pages/data/{}.csv".format(competitie_name), line_terminator="\n")
-    player_stats.to_csv("./pages/data/{}_playerstats.csv".format(competitie_name), line_terminator="\n")
+    player_stats.to_csv(
+        "./pages/data/{}_playerstats.csv".format(competitie_name), line_terminator="\n"
+    )
