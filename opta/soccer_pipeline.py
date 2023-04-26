@@ -19,6 +19,8 @@ from utils.opta_feeds import (
     get_venue,
 )
 from utils.soccer_prompt import prompt_engineering
+from utils.aws_secrets import get_secret
+
 
 load_dotenv()
 
@@ -43,7 +45,14 @@ parser.add_argument(
 )
 args = parser.parse_args()
 
-outletAuthKey = os.getenv(str(args.outletAuthKey))
+try:
+    outletAuthKey = get_secret(secret_name="dev/{}".format(str(args.outletAuthKey)), region="eu-central-1")
+except:
+    print("AWS Secret not found.")
+try:
+    outletAuthKey = os.getenv(str(args.outletAuthKey))
+except:
+    print("Local .env Secret not found.")
 
 def competition(outletAuthKey_competition: str) -> pd.DataFrame:
     df_tournament = get_tournamentschedule(
