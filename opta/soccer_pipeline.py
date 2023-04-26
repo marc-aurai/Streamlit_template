@@ -69,7 +69,7 @@ if __name__ == "__main__":
     competitie_name = args.competitie_name
     competition_ID = args.competitie_id
     df, player_stats = (
-        competition(outletAuthKey)[:2]
+        competition(outletAuthKey)
         .pipe(get_cup, outletAuthKey, competition=competition_ID)
         .pipe(get_score, outletAuthKey)
         .pipe(get_matchstats_possession, outletAuthKey)
@@ -85,10 +85,10 @@ if __name__ == "__main__":
         .pipe(prompt_engineering)
     )
 
-    # df.to_csv("./pages/data/{}.csv".format(competitie_name), line_terminator="\n")
-    # player_stats.to_csv(
-    #     "./pages/data/{}_playerstats.csv".format(competitie_name), line_terminator="\n"
-    # )
+    df.to_csv("./pages/data/{}.csv".format(competitie_name), line_terminator="\n")
+    player_stats.to_csv(
+        "./pages/data/{}_playerstats.csv".format(competitie_name), line_terminator="\n"
+    )
     try:
         status = data_to_S3(
             file_name="./pages/data/{}.csv".format(competitie_name),
