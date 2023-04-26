@@ -5,7 +5,7 @@ import calendar
 import ast
 
 
-locale.setlocale(category=locale.LC_ALL, locale="nl_NL")
+# locale.setlocale(category=locale.LC_ALL, locale="nl_NL")
 
 
 def date(df: pd.DataFrame) -> list:
