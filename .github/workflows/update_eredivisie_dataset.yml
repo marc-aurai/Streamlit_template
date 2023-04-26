@@ -3,6 +3,9 @@ on:
   schedule:
     - cron: '0 0-21/3 * * *'
   workflow_dispatch:
+env:
+  LC_ALL: nl_NL.UTF-8
+  LC_CTYPE: nl_NL.UTF-8
 jobs:
   update_plot:
     name: Update dataset met uitslagen en data van nieuwe wedstrijden
@@ -18,7 +21,9 @@ jobs:
       - name: Install Dependencies
         run: pip install -r requirements.txt
       - name: Reconfigure locales
-        run: sudo dpkg-reconfigure locales
+        run: |
+          sudo dpkg-reconfigure locales
+          sudo apt-get install locales -y
       - name: Run Script and Update Dataset
         run: |
           python opta/soccer_pipeline.py
