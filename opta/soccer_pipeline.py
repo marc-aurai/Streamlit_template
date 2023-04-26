@@ -37,7 +37,7 @@ parser.add_argument(
 )
 parser.add_argument(
     "--outletAuthKey",
-    help="De authorisatie key vanuit OPTA die je wilt gebruiken",
+    help="De authorisatie key vanuit OPTA die je wilt gebruiken: "+str([key for key in list(dict(os.environ).keys()) if key.startswith('outlet')]),
     type=str,
     default="outletAuthKey_ereD",
 )
