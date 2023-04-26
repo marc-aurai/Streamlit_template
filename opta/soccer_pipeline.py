@@ -20,6 +20,7 @@ from utils.opta_feeds import (
 )
 from utils.soccer_prompt import prompt_engineering
 from utils.aws_secrets import get_secret
+from utils.S3_write import data_to_S3
 
 
 load_dotenv()
@@ -68,7 +69,7 @@ if __name__ == "__main__":
     competitie_name = args.competitie_name
     competition_ID = args.competitie_id
     df, player_stats = (
-        competition(outletAuthKey)
+        competition(outletAuthKey)[:2]
         .pipe(get_cup, outletAuthKey, competition=competition_ID)
         .pipe(get_score, outletAuthKey)
         .pipe(get_matchstats_possession, outletAuthKey)
@@ -84,7 +85,20 @@ if __name__ == "__main__":
         .pipe(prompt_engineering)
     )
 
-    df.to_csv("./pages/data/{}.csv".format(competitie_name), line_terminator="\n")
-    player_stats.to_csv(
-        "./pages/data/{}_playerstats.csv".format(competitie_name), line_terminator="\n"
-    )
+    # df.to_csv("./pages/data/{}.csv".format(competitie_name), line_terminator="\n")
+    # player_stats.to_csv(
+    #     "./pages/data/{}_playerstats.csv".format(competitie_name), line_terminator="\n"
+    # )
+    try:
+        status = data_to_S3(
+            file_name="./pages/data/{}.csv".format(competitie_name),
+            bucket="gpt-ai-tool-wsc",
+            object_name="DATA_pipeline/{}.csv".format(competitie_name),
+        )
+        status = data_to_S3(
+            file_name="./pages/data/{}_playerstats.csv".format(competitie_name),
+            bucket="gpt-ai-tool-wsc",
+            object_name="DATA_pipeline/{}_playerstats.csv".format(competitie_name),
+        )
+    except:
+        print("Not able to write to S3 Bucket")
