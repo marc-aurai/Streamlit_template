@@ -153,6 +153,7 @@ if AWS_check or streamlit_check:
     )
     submit = st.button("Genereer")
 
+
     generate_winstreak_plots(
             match_streak_home, home_team, match_streak_away, away_team
         )
