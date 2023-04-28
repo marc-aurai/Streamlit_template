@@ -48,14 +48,15 @@ args = parser.parse_args()
 
 try:
     outletAuthKey = get_secret(secret_name="dev/{}".format(str(args.outletAuthKey)), region="eu-central-1")
+    print(outletAuthKey)
     outletAuthKey = outletAuthKey["outletAuthKey_ereD"]
+    print(outletAuthKey)
 except:
     print("AWS Secret not found.")
 try:
     outletAuthKey = os.getenv(str(args.outletAuthKey))
 except:
     print("Local .env Secret not found.")
-print(outletAuthKey)
 
 def competition(outletAuthKey_competition: str) -> pd.DataFrame:
     df_tournament = get_tournamentschedule(
