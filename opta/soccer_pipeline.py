@@ -48,6 +48,7 @@ args = parser.parse_args()
 
 try:
     outletAuthKey = get_secret(secret_name="dev/{}".format(str(args.outletAuthKey)), region="eu-central-1")
+    outletAuthKey = outletAuthKey["outletAuthKey_ereD"]
 except:
     print("AWS Secret not found.")
 try:
