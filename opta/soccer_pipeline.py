@@ -25,53 +25,63 @@ from utils.S3_write import data_to_S3
 
 load_dotenv()
 
-parser = argparse.ArgumentParser()
-parser.add_argument(
-    "--competitie_name",
-    help="Geef de naam van de competitie. Bijvoorbeeld: Eredivisie..",
-    type=str,
-    default="eredivisie",
-)
-parser.add_argument(
-    "--competitie_id",
-    help="Opta ID van de competitie. Bijvoorbeeld Eredivisie 22/23 = d1k1pqdg2yvw8e8my74yvrdw4",
-    type=str,
-    default="d1k1pqdg2yvw8e8my74yvrdw4",
-)
-parser.add_argument(
-    "--outletAuthKey",
-    help="De authorisatie key vanuit OPTA die je wilt gebruiken: "+str([key for key in list(dict(os.environ).keys()) if key.startswith('outlet')]),
-    type=str,
-    default="outletAuthKey_ereD",
-)
-args = parser.parse_args()
 
-try:
-    outletAuthKey = get_secret(secret_name="dev/{}".format(str(args.outletAuthKey)), region="eu-central-1")
-    outletAuthKey = outletAuthKey["outletAuthKey_ereD"]
-    print("AWS Secret FOUND.")
-except:
-    print("AWS Secret not found.")
-try:
-    outletAuthKey = os.getenv(str(args.outletAuthKey))
-except:
-    print("Local .env Secret not found.")
-
-def competition(outletAuthKey_competition: str) -> pd.DataFrame:
-    df_tournament = get_tournamentschedule(
-        outletAuthKey=outletAuthKey_competition,
-        competitions=[
-            "d1k1pqdg2yvw8e8my74yvrdw4",  # Eredivisie 22/23
-        ],
+def _argParser():
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--competitie_name",
+        help="Geef de naam van de competitie. Bijvoorbeeld: Eredivisie..",
+        type=str,
+        default="eredivisie",
     )
-    return df_tournament
+    parser.add_argument(
+        "--competitie_id",
+        help="Opta ID van de competitie. Bijvoorbeeld Eredivisie 22/23 = d1k1pqdg2yvw8e8my74yvrdw4",
+        type=str,
+        default="d1k1pqdg2yvw8e8my74yvrdw4",
+    )
+    parser.add_argument(
+        "--outletAuthKey",
+        help="De authorisatie key vanuit OPTA die je wilt gebruiken: "
+        + str(
+            [key for key in list(dict(os.environ).keys()) if key.startswith("outlet")]
+        ),
+        type=str,
+        default="outletAuthKey_ereD",
+    )
+    args = parser.parse_args()
+    return args
+
+
+def _OptaKey(args) -> str:
+    try:
+        outletAuthKey = get_secret(
+            secret_name="dev/{}".format(str(args.outletAuthKey)), region="eu-central-1"
+        )
+        outletAuthKey = outletAuthKey["outletAuthKey_ereD"]
+        print("AWS Secret FOUND.")
+        return outletAuthKey
+    except:
+        print("AWS Secret not found.")
+    try:
+        outletAuthKey = os.getenv(str(args.outletAuthKey))
+        return outletAuthKey
+    except:
+        print("Local .env Secret not found.")
 
 
 if __name__ == "__main__":
+    args = _argParser()
+    outletAuthKey = _OptaKey(args=args)
     competitie_name = args.competitie_name
     competition_ID = args.competitie_id
     df, player_stats = (
-        competition(outletAuthKey)
+        get_tournamentschedule(
+            outletAuthKey,
+            competitions=[
+                "d1k1pqdg2yvw8e8my74yvrdw4",  # Eredivisie 22/23
+            ],
+        )
         .pipe(get_cup, outletAuthKey, competition=competition_ID)
         .pipe(get_score, outletAuthKey)
         .pipe(get_matchstats_possession, outletAuthKey)
