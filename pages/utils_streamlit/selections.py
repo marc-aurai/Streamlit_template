@@ -5,7 +5,7 @@ from st_aggrid import AgGrid, GridUpdateMode, JsCode
 from st_aggrid.grid_options_builder import GridOptionsBuilder
 
 
-def ST_select_dataset(df: pd.DataFrame, select_dateset) -> pd.DataFrame:
+def ST_select_dataset(select_dateset) -> pd.DataFrame:
     """Access a group of matches (or single match) on a particular match date.
 
     Args:

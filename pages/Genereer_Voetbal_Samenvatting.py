@@ -97,7 +97,7 @@ if AWS_check or streamlit_check:
 
     # MAIN PAGE
     select_dataset, select_optioneel = st.columns(2)
-    selected_dataset = ST_select_dataset()
+    selected_dataset = ST_select_dataset(select_dataset)
     df = load_dataset(selected_dataset)
     df_player_stats = load_dataset_player_stats(selected_dataset)
     select_date, select_match = st.columns(2)
