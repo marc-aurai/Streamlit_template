@@ -32,7 +32,7 @@ def load_images():
 @st.cache_data(show_spinner="Een momentje...")
 def load_dataset(selected_dataset: str) -> pd.DataFrame:  # Elke dag bijvoorbeeld als job schedulen
     try:
-        df = read_S3_file(bucketName="gpt-ai-tool-wsc", fileName="prompt_OPTA_data/{}.csv".format(selected_dataset))
+        df = read_S3_file(bucketName="gpt-ai-tool-wsc", fileName="prompt_OPTA_data/All/{}.csv".format(selected_dataset))
     except:
         df = pd.read_csv("./pages/data/eredivisie.csv", sep=",")
     df = df.sort_values(by="date", ascending=False)
@@ -42,7 +42,7 @@ def load_dataset(selected_dataset: str) -> pd.DataFrame:  # Elke dag bijvoorbeel
 @st.cache_data(show_spinner="Een momentje...")
 def load_dataset_player_stats(selected_dataset: str) -> pd.DataFrame:  # Elke dag bijvoorbeeld als job schedulen
     try:
-        df = read_S3_file(bucketName="gpt-ai-tool-wsc", fileName="prompt_OPTA_data/{}_playerstats.csv".format(selected_dataset))
+        df = read_S3_file(bucketName="gpt-ai-tool-wsc", fileName="prompt_OPTA_data/All/{}_playerstats.csv".format(selected_dataset))
     except:
         df = pd.read_csv("./pages/data/eredivisie_playerstats.csv", sep=",")
     df = df.sort_values(by="date", ascending=False)
