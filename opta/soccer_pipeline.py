@@ -38,7 +38,7 @@ def _argParser():
         "--competitie_id",
         help="Opta ID van de competitie. Bijvoorbeeld Eredivisie 22/23 = d1k1pqdg2yvw8e8my74yvrdw4",
         type=str,
-        default="d1k1pqdg2yvw8e8my74yvrdw4",
+        default="d1k1pqdg2yvw8e8my74yvrdw4", # Eredivisie 22/23
     )
     parser.add_argument(
         "--outletAuthKey",
@@ -58,7 +58,7 @@ def _OptaKey(args) -> str:
         outletAuthKey = get_secret(
             secret_name="dev/{}".format(str(args.outletAuthKey)), region="eu-central-1"
         )
-        outletAuthKey = outletAuthKey["outletAuthKey_ereD"]
+        outletAuthKey = outletAuthKey["outletAuthKey"]
         print("AWS Secret FOUND.")
         return outletAuthKey
     except:
@@ -79,7 +79,7 @@ if __name__ == "__main__":
         get_tournamentschedule(
             outletAuthKey,
             competitions=[
-                "d1k1pqdg2yvw8e8my74yvrdw4",  # Eredivisie 22/23
+                competition_ID,  
             ],
         )
         .pipe(get_cup, outletAuthKey, competition=competition_ID)
@@ -105,12 +105,12 @@ if __name__ == "__main__":
         status = data_to_S3(
             file_name="./pages/data/{}.csv".format(competitie_name),
             bucket="gpt-ai-tool-wsc",
-            object_name="DATA_pipeline/{}.csv".format(competitie_name),
+            object_name="prompt_OPTA_data/{}.csv".format(competitie_name),
         )
         status = data_to_S3(
             file_name="./pages/data/{}_playerstats.csv".format(competitie_name),
             bucket="gpt-ai-tool-wsc",
-            object_name="DATA_pipeline/{}_playerstats.csv".format(competitie_name),
+            object_name="prompt_OPTA_data/{}_playerstats.csv".format(competitie_name),
         )
     except:
         print("Not able to write to S3 Bucket")
