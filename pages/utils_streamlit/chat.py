@@ -1,6 +1,6 @@
 import openai
 import streamlit as st
-from pages.utils_streamlit.aws_secrets import get_secret
+from pages.utils_streamlit.AWS import get_secret
 
 try:
     secret_response = get_secret(secret_name="dev/openai", region="eu-central-1")

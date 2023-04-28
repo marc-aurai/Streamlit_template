@@ -2,10 +2,12 @@ import pandas as pd
 import streamlit as st
 from PIL import Image
 
+from pages.utils_streamlit.AWS import read_S3_file
 import pages.utils_streamlit.login_aws as login_aws
 from pages.utils_streamlit.login_aws import check_password as check_password_AWS
 from pages.utils_streamlit.login import check_password
 from pages.utils_streamlit.selections import (
+    ST_select_dataset,
     ST_select_match_date,
     ST_select_match,
     ST_get_data_match,
@@ -28,15 +30,21 @@ def load_images():
 
 
 @st.cache_data(show_spinner="Een momentje...")
-def load_dataset() -> pd.DataFrame:  # Elke dag bijvoorbeeld als job schedulen
-    df = pd.read_csv("./pages/data/eredivisie.csv", sep=",")
+def load_dataset(selected_dataset: str) -> pd.DataFrame:  # Elke dag bijvoorbeeld als job schedulen
+    try:
+        df = read_S3_file(bucketName="gpt-ai-tool-wsc", fileName="prompt_OPTA_data/{}.csv".format(selected_dataset))
+    except:
+        df = pd.read_csv("./pages/data/eredivisie.csv", sep=",")
     df = df.sort_values(by="date", ascending=False)
     df['date'] = df['date'].str.replace('Z', '')
     return df
 
 @st.cache_data(show_spinner="Een momentje...")
-def load_dataset_player_stats() -> pd.DataFrame:  # Elke dag bijvoorbeeld als job schedulen
-    df = pd.read_csv("./pages/data/eredivisie_playerstats.csv", sep=",")
+def load_dataset_player_stats(selected_dataset: str) -> pd.DataFrame:  # Elke dag bijvoorbeeld als job schedulen
+    try:
+        df = read_S3_file(bucketName="gpt-ai-tool-wsc", fileName="prompt_OPTA_data/{}_playerstats.csv".format(selected_dataset))
+    except:
+        df = pd.read_csv("./pages/data/eredivisie_playerstats.csv", sep=",")
     df = df.sort_values(by="date", ascending=False)
     df['date'] = df['date'].str.replace('Z', '')
     return df
@@ -67,8 +75,6 @@ if AWS_check or streamlit_check:
     streamlit_page_config()
     st.sidebar.success("Genereer een samenvatting op deze demo pagina.")
     image = load_images()
-    df = load_dataset()
-    df_player_stats = load_dataset_player_stats()
     st.image(image)
     st.write(""" # Southfields AI Tool """)
 
@@ -90,6 +96,10 @@ if AWS_check or streamlit_check:
     st.sidebar.success("Geselecteerd: " + str(openai_model))
 
     # MAIN PAGE
+    select_dataset, select_optioneel = st.columns(2)
+    selected_dataset = ST_select_dataset()
+    df = load_dataset(selected_dataset)
+    df_player_stats = load_dataset_player_stats(selected_dataset)
     select_date, select_match = st.columns(2)
     matches_on_date = ST_select_match_date(df, select_date)
     selected_match = ST_select_match(select_match, matches_on_date)

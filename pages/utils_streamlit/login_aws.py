@@ -1,5 +1,5 @@
 import streamlit as st
-from pages.utils_streamlit.aws_secrets import get_secret
+from pages.utils_streamlit.AWS import get_secret
 
 try:
     password_aws = get_secret(secret_name="dev/GPT_AI_TOOL", region="eu-central-1")

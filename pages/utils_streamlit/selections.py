@@ -5,6 +5,25 @@ from st_aggrid import AgGrid, GridUpdateMode, JsCode
 from st_aggrid.grid_options_builder import GridOptionsBuilder
 
 
+def ST_select_dataset(df: pd.DataFrame, select_dateset) -> pd.DataFrame:
+    """Access a group of matches (or single match) on a particular match date.
+
+    Args:
+        df (pd.DataFrame): eredivisie.csv, which originate from (soccer_pipeline.py).
+        Includes all the necessary data from all played matches in Eredvisie 22/23.
+        select_date (st.column): A Streamlit container in the Streamlit UI.
+
+    Returns:
+        matches_on_date (pd.DataFrame): Returns a smaller dataframe,
+        which only returns the rows that occured on the date the user selected.
+    """
+    with select_dateset:
+        selected_dataset = st.selectbox(
+            "Voetbal competitie: ", ["eredivisie_22_23", "KKD_22_23"]
+        )
+    return selected_dataset
+
+
 def ST_select_match_date(df: pd.DataFrame, select_date) -> pd.DataFrame:
     """Access a group of matches (or single match) on a particular match date.
 
