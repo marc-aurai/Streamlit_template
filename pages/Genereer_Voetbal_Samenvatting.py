@@ -17,6 +17,7 @@ from pages.utils_streamlit.selections import (
     ST_select_rank,
     ST_select_formation,
     ST_select_goals,
+    ST_select_possession,
 )
 from pages.utils_streamlit.generate import generate_completion, generate_winstreak_plots
 
@@ -109,43 +110,46 @@ if AWS_check or streamlit_check:
         match_streak_away,
         home_team,
         away_team,
-        select_match_injuries,
+        df_match_selected,
     ) = ST_get_data_match(df, selected_match)
 
     # select_cards_home, select_cards_away = st.columns(2)
 
     select_injury_home, select_injury_away = st.columns(2)
     match_prompt = ST_select_injury_home(
-        match_prompt, select_injury_home, select_match_injuries
+        match_prompt, select_injury_home, df_match_selected
     )
     match_prompt = ST_select_injury_away(
-        match_prompt, select_injury_away, select_match_injuries
+        match_prompt, select_injury_away, df_match_selected
     )
 
     select_goals, select_trainers = st.columns(2)
     match_prompt = ST_select_goals(
-        match_prompt, select_goals, select_match_injuries
+        match_prompt, select_goals, df_match_selected
     )
     match_prompt = ST_select_trainers(
-        match_prompt, select_trainers, select_match_injuries
+        match_prompt, select_trainers, df_match_selected
     )
 
-    select_rank_home, select_optioneel = st.columns(2)
+    select_rank_home, select_possession = st.columns(2)
     match_prompt = ST_select_rank(
-        match_prompt, select_rank_home, select_match_injuries, team="home"
+        match_prompt, select_rank_home, df_match_selected, team="home"
+    )
+    match_prompt = ST_select_possession(
+        match_prompt, select_possession, df_match_selected
     )
 
     select_rank_away, select_optioneel = st.columns(2)
     match_prompt = ST_select_rank(
-        match_prompt, select_rank_away, select_match_injuries, team="away"
+        match_prompt, select_rank_away, df_match_selected, team="away"
     )
 
     select_formations_home, select_formations_away = st.columns(2)
     match_prompt = ST_select_formation(
-        match_prompt, select_formations_home, select_match_injuries, df_player_stats, team="home"
+        match_prompt, select_formations_home, df_match_selected, df_player_stats, team="home"
     )
     match_prompt = ST_select_formation(
-        match_prompt, select_formations_away, select_match_injuries, df_player_stats, team="away"
+        match_prompt, select_formations_away, df_match_selected, df_player_stats, team="away"
     )
 
     input_data = st.text_area(
