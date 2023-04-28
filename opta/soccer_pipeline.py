@@ -29,6 +29,12 @@ load_dotenv()
 def _argParser():
     parser = argparse.ArgumentParser()
     parser.add_argument(
+        "--folder_name",
+        help="Geef de naam van de folder waarin je de dataset wilt opslaan in de S3 bucket.",
+        type=str,
+        default="no_name",
+    )
+    parser.add_argument(
         "--competitie_name",
         help="Geef de naam van de competitie. Bijvoorbeeld: Eredivisie..",
         type=str,
@@ -105,12 +111,12 @@ if __name__ == "__main__":
         status = data_to_S3(
             file_name="./pages/data/{}.csv".format(competitie_name),
             bucket="gpt-ai-tool-wsc",
-            object_name="prompt_OPTA_data/{}.csv".format(competitie_name),
+            object_name="prompt_OPTA_data/{}/{}.csv".format(args.folder_name, competitie_name),
         )
         status = data_to_S3(
             file_name="./pages/data/{}_playerstats.csv".format(competitie_name),
             bucket="gpt-ai-tool-wsc",
-            object_name="prompt_OPTA_data/{}_playerstats.csv".format(competitie_name),
+            object_name="prompt_OPTA_data/{}/{}_playerstats.csv".format(args.folder_name, competitie_name),
         )
     except:
         print("Not able to write to S3 Bucket")
