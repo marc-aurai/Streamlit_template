@@ -55,6 +55,7 @@ try:
     outletAuthKey = os.getenv(str(args.outletAuthKey))
 except:
     print("Local .env Secret not found.")
+print(outletAuthKey)
 
 def competition(outletAuthKey_competition: str) -> pd.DataFrame:
     df_tournament = get_tournamentschedule(
