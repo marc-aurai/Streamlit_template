@@ -201,8 +201,9 @@ def ST_select_possession(
         )
         if selected_possession:
             options = list(df_match_selected._possession.values[0])
-            match_prompt = match_prompt.replace(
-                "\n\n###\n\n", "\n" + str("".join(options)) + ".\n\n###\n\n"
+            match_prompt = (
+                match_prompt
+                + str("".join(options)) + ".\n"
             )
         else:
             pass
