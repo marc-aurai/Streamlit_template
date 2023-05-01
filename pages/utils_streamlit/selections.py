@@ -19,7 +19,8 @@ def ST_select_dataset(select_dateset) -> pd.DataFrame:
     """
     with select_dateset:
         selected_dataset = st.selectbox(
-            "Voetbal competitie: ", ["eredivisie_22-23", "eredivisie_21-22", "KKD_22-23"]
+            "Voetbal competitie: ",
+            ["eredivisie_22-23", "eredivisie_21-22", "KKD_22-23"],
         )
     return selected_dataset
 
@@ -123,8 +124,8 @@ def ST_select_injury_home(
             options=injuries_home,
         )
         if selected_home_injuries:
-            match_prompt = match_prompt.replace(
-                "\n\n###\n\n", str(".\n".join(selected_home_injuries)) + ".\n\n###\n\n"
+            match_prompt = (
+                match_prompt + str(".\n".join(selected_home_injuries)) + ".\n"
             )
     return match_prompt
 
@@ -154,9 +155,8 @@ def ST_select_injury_away(
             options=injuries_away,
         )
         if selected_away_injuries:
-            match_prompt = match_prompt.replace(
-                "\n\n###\n\n",
-                "\n" + str(".\n".join(selected_away_injuries)) + ".\n\n###\n\n",
+            match_prompt = (
+                match_prompt + str(".\n".join(selected_away_injuries)) + ".\n"
             )
     return match_prompt
 
@@ -187,9 +187,7 @@ def ST_select_trainers(
         )
         if selected_trainers:
             options = list(select_match_injuries.trainers.values[0])
-            match_prompt = match_prompt.replace(
-                "\n\n###\n\n", "\n" + str("".join(options)) + ".\n\n###\n\n"
-            )
+            match_prompt = match_prompt + str("".join(options)) + ".\n"
         else:
             pass
     return match_prompt
@@ -202,34 +200,26 @@ def ST_select_rank(
         selected_rank = st.checkbox(
             value=True,
             label="Rank van:\n{}".format(
-                select_match_injuries[str(team)+"_team"].values[0],
+                select_match_injuries[str(team) + "_team"].values[0],
             ),
         )
         if selected_rank:
-            lastRank = str(select_match_injuries["lastRank_"+str(team)].values[0])
-            newRank = str(select_match_injuries["rank_"+str(team)].values[0])
+            lastRank = str(select_match_injuries["lastRank_" + str(team)].values[0])
+            newRank = str(select_match_injuries["rank_" + str(team)].values[0])
             if lastRank != newRank:
-                match_prompt = match_prompt.replace(
-                    "\n\n###\n\n",
-                    "\n"
-                    + str(select_match_injuries[str(team)+"_team"].values[0])
-                    + " stond op plek {} en staat nu op de {}".format(
-                        lastRank,
-                        newRank,
-                    )
-                    + "e plaats.\n\n###\n\n",
+                match_prompt = (
+                    match_prompt
+                    + str(select_match_injuries[str(team) + "_team"].values[0])
+                    + " stond op plek {} en staat nu op de {}".format(lastRank, newRank)
+                    + "e plaats.\n"
                 )
             else:
-                match_prompt = match_prompt.replace(
-                    "\n\n###\n\n",
-                    "\n"
-                    + str(select_match_injuries[str(team)+"_team"].values[0])
-                    + " staat na deze wedstrijd nog steeds op de {}".format(
-                        newRank,
-                    )
-                    + "e plaats.\n\n###\n\n",
+                match_prompt = (
+                    match_prompt
+                    + str(select_match_injuries[str(team) + "_team"].values[0])
+                    + " staat na deze wedstrijd nog steeds op de {}".format(newRank)
+                    + "e plaats.\n"
                 )
-
         else:
             pass
     return match_prompt
@@ -321,9 +311,7 @@ def ST_select_goals(
         )
         if selected_goals:
             options = list(select_match_injuries._goalEvents.values[0])
-            match_prompt = match_prompt.replace(
-                "\n\n###\n\n", "\n" + str("".join(options)) + ".\n\n###\n\n"
-            )
+            match_prompt = match_prompt + str("".join(options)) + ".\n"
         else:
             pass
     return match_prompt
