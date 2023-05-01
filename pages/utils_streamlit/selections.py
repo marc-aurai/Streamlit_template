@@ -199,7 +199,7 @@ def ST_select_possession(
     with select_possession:
         selected_possession = st.checkbox(
             value=True,
-            label="Balbezit:",
+            label="Balbezit",
         )
         if selected_possession:
             options = list(df_match_selected._possession.values[0])
