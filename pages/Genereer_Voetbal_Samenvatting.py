@@ -17,6 +17,7 @@ from pages.utils_streamlit.selections import (
     ST_select_rank,
     ST_select_formation,
     ST_select_goals,
+    ST_select_possession,
 )
 from pages.utils_streamlit.generate import generate_completion, generate_winstreak_plots
 
@@ -130,9 +131,13 @@ if AWS_check or streamlit_check:
         match_prompt, select_trainers, df_match_selected
     )
 
-    select_rank_home, select_optioneel = st.columns(2)
+    select_rank_home, select_possession = st.columns(2)
     match_prompt = ST_select_rank(
         match_prompt, select_rank_home, df_match_selected, team="home"
+
+    )
+    match_prompt = ST_select_possession(
+        match_prompt, select_possession, df_match_selected
     )
 
     select_rank_away, select_optioneel = st.columns(2)

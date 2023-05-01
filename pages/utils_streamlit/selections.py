@@ -161,18 +161,16 @@ def ST_select_injury_away(
     return match_prompt
 
 
+
 def ST_select_trainers(
     match_prompt: str, select_trainers, df_match_selected: pd.DataFrame
 ) -> str:
     """This function adds both the trainers from the home- and away team, to the prompt in the Streamlit Application.
-
     Args:
         match_prompt (str): The prompt that originates from the pipeline (soccer_pipeline.py).
         select_trainers (st.column): A Streamlit container in the Streamlit UI.
         df_match_selected (pd.DataFrame): A dataframe with a single row;
         which only returns the selected match by the user that occured on the date the user selected.
-
-
     Returns:
         str: The prompt that originates from the pipeline (soccer_pipeline.py) + potential
         injuries, trainers or other datapoints that have been added by the user input (multiselect component in Streamlit).
@@ -188,6 +186,24 @@ def ST_select_trainers(
         if selected_trainers:
             options = list(df_match_selected.trainers.values[0])
             match_prompt = match_prompt + str("".join(options)) + ".\n"
+        else:
+            pass
+    return match_prompt
+
+
+def ST_select_possession(
+    match_prompt: str, select_possession, df_match_selected: pd.DataFrame
+) -> str:
+    with select_possession:
+        selected_possession = st.checkbox(
+            value=True,
+            label="Balbezit",
+        )
+        if selected_possession:
+            options = list(df_match_selected._possession.values[0])
+            match_prompt = match_prompt.replace(
+                "\n\n###\n\n", "\n" + str("".join(options)) + ".\n\n###\n\n"
+            )
         else:
             pass
     return match_prompt
