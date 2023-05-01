@@ -134,6 +134,7 @@ if AWS_check or streamlit_check:
     select_rank_home, select_possession = st.columns(2)
     match_prompt = ST_select_rank(
         match_prompt, select_rank_home, df_match_selected, team="home"
+
     )
     match_prompt = ST_select_possession(
         match_prompt, select_possession, df_match_selected

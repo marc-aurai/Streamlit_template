@@ -141,6 +141,6 @@ def prompt_engineering(df: pd.DataFrame):
         # + prompt_df.rank_status_home.values
         # + prompt_df.rank_status_away.values
         # + prompt_df.keepers.values
-        + "\n\n###\n\n"  # stop sequence, tip from openAI
+        # + "\n\n###\n\n"  # stop sequence, tip from openAI
     )
     return openai_df, player_stats
