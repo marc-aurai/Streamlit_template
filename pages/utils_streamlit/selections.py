@@ -42,7 +42,7 @@ def ST_select_match_date(df: pd.DataFrame, select_date) -> pd.DataFrame:
             "Wedstrijd datum: ", df.date.unique().tolist()
         )
     matches_on_date = df.loc[df["date"] == selected_match_date]
-    return matches_on_date
+    return matches_on_date, selected_match_date
 
 
 def ST_select_match(select_match, matches_on_date: pd.DataFrame) -> str:
