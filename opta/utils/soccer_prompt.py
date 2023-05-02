@@ -122,7 +122,7 @@ def prompt_engineering(df: pd.DataFrame):
     openai_df["_rankStatus_away"] = prompt_df.rank_status_away
 
     openai_df["prompt"] = (
-        "Geef het artikel een lijst met pakkende titels en schrijf een voetbal wedstrijd artikel inclusief paragrafen.\n"
+        "Geef het artikel een lijst met 4 pakkende titels en schrijf een voetbal wedstrijd artikel inclusief paragrafen.\n"
         # + "De eerste keer dat iemand genoemd wordt dient de voornaam en achternaam gebruikt te worden.\n" 
         # + "Wanneer een persoon voor de tweede keer benoemd wordt dient alleen de achternaam gebruikt te worden.\n"
         + "Gebruik de volgende informatie:\n"
