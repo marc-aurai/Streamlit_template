@@ -102,7 +102,7 @@ if AWS_check or streamlit_check:
     df = load_dataset(selected_dataset)
     df_player_stats = load_dataset_player_stats(selected_dataset)
     select_date, select_match = st.columns(2)
-    matches_on_date = ST_select_match_date(df, select_date)
+    matches_on_date, selected_match_date = ST_select_match_date(df, select_date)
     selected_match = ST_select_match(select_match, matches_on_date)
     (
         match_prompt,
@@ -166,7 +166,7 @@ if AWS_check or streamlit_check:
     if submit:
         with st.spinner("Even een samenvatting aan het schrijven, momentje..."):
             if input_data != "..":
-                generate_completion(
+                completion = generate_completion(
                     openai_model,
                     input_data,
                     TOKENS,
@@ -175,6 +175,11 @@ if AWS_check or streamlit_check:
                     home_team,
                     match_streak_away,
                     away_team,
+                )
+                st.download_button(
+                    "Download samenvatting",
+                    data = completion,
+                    file_name = "{}_vs_{}_{}.txt".format(home_team, away_team, selected_match_date),
                 )
 
     st.info(

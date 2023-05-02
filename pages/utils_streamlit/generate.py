@@ -146,3 +146,4 @@ def generate_completion(
             seed="Aneka",
             is_user=False,
         )
+    return "".join(completion_chunks).strip()
