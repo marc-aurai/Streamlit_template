@@ -75,25 +75,29 @@ def get_tournamentschedule(
     ]
     # Return only selected columns from dataframe
 
-def get_name(goal, type = None, outletAuthKey: str = None):
+def get_name(df, type: str = None, outletAuthKey: str = None, competition: str = None):
     """
     Helper function for get_matchstats_goals to get the 'correct' name for the scorer or player
     takes in the goal event from match_stats goals and the same outletAuthKey
     If no name is available, the scorername from the goal event is returned
     """
-    data = requests.get(f"http://api.performfeeds.com/soccerdata/squads/{{}}?_rt=b&_fmt=json&ctst={{}}".format(
-        outletAuthKey, goal["contestantId"])).json()
+    data = requests.get(f"http://api.performfeeds.com/soccerdata/squads/{{}}/?_rt=b&_fmt=json&tmcl={{}}&ctst={{}}".format(
+        outletAuthKey, competition, df["contestantId"])).json()
 
-    try: 
-        for squad in data["squad"]:
-            for person in squad["person"]:
-                if person["id"] == goal[type + "Id"]:
-                    return person["shortLastName"]
-    except:            
-        return goal[type + 'Name']
+    try:
+        name = next(person["firstName"] + ' ' + person["lastName"]
+        for squad in data["squad"]
+        for person in squad["person"] 
+        if person["id"] == df[str(type)+"Id"]
+        )
+        return str(name)
+    except:
+        return str(df["scorerName"]).split(". ", 1)[1]
 
 def get_matchstats_cards(
-    df: pd.DataFrame = None, outletAuthKey: str = None
+    df: pd.DataFrame = None, 
+    outletAuthKey: str = None,
+    competition: str = None,
 ) -> pd.DataFrame:
     """This function returns the input dataframe with one extra collumn named ['card_events'].
     The column contains a list of dictionaries that represents all the cards with their corresponding information:
@@ -137,7 +141,8 @@ def get_matchstats_cards(
                     "periodId": card["periodId"],
                     "timeMin": card["timeMin"],
                     "playerId": card["playerId"],
-                    "playerName" : str(card["playerName"]).split(". ", 1)[1],
+                    #"playerName" : str(card["playerName"]).split(". ", 1)[1],
+                    "playerName": get_name(card, type = "player", outletAuthKey=outletAuthKey, competition=competition),
                     "cardType": card["type"],
                     "cardReason": card["cardReason"],
                 }
@@ -153,7 +158,9 @@ def get_matchstats_cards(
 
 
 def get_matchstats_goals(
-    df: pd.DataFrame = None, outletAuthKey: str = None
+    df: pd.DataFrame = None, 
+    outletAuthKey: str = None,
+    competition: str = None,
 ) -> pd.DataFrame:
     """This function returns the input dataframe with one extra collumn named ['goal_events'].
     The column contains a list of dictionaries that represents all the goals with their corresponding information:
@@ -197,8 +204,8 @@ def get_matchstats_goals(
                     "periodId": goal["periodId"],
                     "timeMin": goal["timeMin"],
                     "scorerId": goal["scorerId"],
-                    "scorerName" : str(goal["scorerName"]).split(". ", 1)[1],
-                    # "scorerName": goal["scorerName"],
+                    #"scorerName" : str(goal["scorerName"]).split(". ", 1)[1],
+                    'scorerName' : get_name(goal, type = 'scorer', outletAuthKey=outletAuthKey, competition=competition),
                     "goalType": goal["type"],
                 }
                 for goal in matchstats
@@ -601,7 +608,7 @@ def get_injuries(
                 )
             ).json()["person"]
             home_injury = [
-                str(home_injury["lastName"])
+                str(home_injury["firstName"]) + ' ' + str(home_injury["lastName"])
                 + " van {} voetbalt niet mee vanwege een ".format(df["homeContestantName"][match])
                 + translate_injury(str(home_injury["injury"][0]["type"]))
                 # + " blessure."
@@ -610,7 +617,7 @@ def get_injuries(
                 if "endDate" not in injury_details
             ]
             away_injury = [
-                str(away_injury["lastName"])
+                str(away_injury["firstName"]) + ' ' + str(away_injury["lastName"])
                 + " van {} voetbalt niet mee vanwege een ".format(df["awayContestantName"][match])
                 + translate_injury(str(away_injury["injury"][0]["type"]))
                 # + " blessure."
