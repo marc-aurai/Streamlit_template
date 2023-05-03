@@ -5,7 +5,7 @@ from PIL import Image
 def streamlit_page_config():
     st.set_page_config(
         page_title="Home",
-        page_icon="🏠",
+        page_icon=Image.open("assets/image/SF_icon.png"),
         layout='wide',
         initial_sidebar_state='expanded'
     )

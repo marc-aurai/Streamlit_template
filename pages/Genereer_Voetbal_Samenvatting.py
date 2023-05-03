@@ -53,7 +53,7 @@ def load_dataset_player_stats(selected_dataset: str) -> pd.DataFrame:  # Elke da
 def streamlit_page_config():
     st.set_page_config(
         page_title="Genereer Samenvatting",
-        page_icon="🤖",
+        page_icon=Image.open("assets/image/SF_icon.png"),
         layout="wide",
         initial_sidebar_state="expanded",
     )
@@ -74,9 +74,9 @@ else:
 
 if AWS_check or streamlit_check:
     streamlit_page_config()
+    SF_logo = load_images()
     st.sidebar.success("Genereer een samenvatting op deze demo pagina.")
-    image = load_images()
-    st.image(image)
+    st.image(SF_logo)
     st.write(""" # Southfields AI Tool """)
 
     # SIDEBAR
