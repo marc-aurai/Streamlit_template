@@ -12,9 +12,7 @@ articles_eredivisie_ESPN_Style.csv
 articles_eredivisie_rewritten.csv
 training_2
 explore_data.ipynb
-date.py
 winstreak_plot.ipynb
-check_injury.ipynb
 secrets.toml
 eredivisie_test.csv
 eredivisie_test2.csv
