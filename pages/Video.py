@@ -1,5 +1,7 @@
 import streamlit as st
 import boto3
+from PIL import Image
+
 
 try:
     s3 = boto3.resource('s3')
