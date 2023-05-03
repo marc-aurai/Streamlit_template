@@ -66,6 +66,7 @@ def streamlit_page_config():
                 """
     st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 
+streamlit_page_config()
 if AWS_login.AWS:
     AWS_check = check_password_AWS()
     streamlit_check = False
@@ -74,7 +75,6 @@ else:
     AWS_check = False
 
 if AWS_check or streamlit_check:
-    streamlit_page_config()
     SF_logo = load_images()
     st.sidebar.success("Genereer een samenvatting op deze demo pagina.")
     st.image(SF_logo)
