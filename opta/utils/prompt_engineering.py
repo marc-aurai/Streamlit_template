@@ -280,8 +280,8 @@ def keeper(df: pd.DataFrame) -> list:
         ['keeper_home'] + ['keeper_away'] + ['home_team'] + ['away_team']. 
     """
     keepers = [
-        keeper_home + " is de keeper van " + home_team + ". " + 
-        keeper_away + " is de keeper van " + away_team
+        keeper_home + " was doelman van " + home_team + ". " + 
+        keeper_away + " was doelman van " + away_team
         for keeper_home, keeper_away, home_team, away_team in zip(
             df['keeper_home'].to_list(), 
             df['keeper_away'].to_list(), 
