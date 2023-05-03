@@ -37,7 +37,7 @@ def load_dataset():
 
 
 def streamlit_page_config():
-    st.set_page_config(page_title="Analyse Dashboard", page_icon="📊")
+    st.set_page_config(page_title="Southfields AI", page_icon="📊")
     hide_streamlit_style = """
                 <style>
                 #MainMenu {visibility: hidden;}
