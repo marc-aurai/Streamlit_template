@@ -3,8 +3,8 @@ import streamlit as st
 from PIL import Image
 
 from pages.utils_streamlit.AWS import read_S3_file
-import pages.utils_streamlit.login_aws as login_aws
-from pages.utils_streamlit.login_aws import check_password as check_password_AWS
+import pages.utils_streamlit.AWS_login as AWS_login
+from pages.utils_streamlit.AWS_login import check_password as check_password_AWS
 from pages.utils_streamlit.login import check_password
 from pages.utils_streamlit.selections import (
     ST_select_date_match_venue,
@@ -66,7 +66,7 @@ def streamlit_page_config():
                 """
     st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 
-if login_aws.AWS:
+if AWS_login.AWS:
     AWS_check = check_password_AWS()
     streamlit_check = False
 else:
