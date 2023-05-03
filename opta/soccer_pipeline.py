@@ -1,9 +1,7 @@
 import argparse
 import os
 
-import pandas as pd
 from dotenv import load_dotenv
-from googletrans import Translator
 from utils.opta_feeds import (
     get_cup,
     get_formations,
@@ -19,8 +17,7 @@ from utils.opta_feeds import (
     get_venue,
 )
 from utils.soccer_prompt import prompt_engineering
-from utils.aws_secrets import get_secret
-from utils.S3_write import data_to_S3
+from utils.AWS import get_secret, data_to_S3
 
 
 load_dotenv()
