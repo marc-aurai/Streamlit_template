@@ -348,3 +348,19 @@ def ST_select_date_match_venue(
         else:
             pass
     return match_prompt
+
+
+def ST_select_keepers(
+    match_prompt: str, select_keepers, df_match_selected: pd.DataFrame
+) -> str:
+    with select_keepers:
+        selected_keepers = st.checkbox(
+            value=True,
+            label="Keepers",
+        )
+        if selected_keepers:
+            options = list(df_match_selected.keepers.values[0])
+            match_prompt = match_prompt + str("".join(options)) + ".\n"
+        else:
+            pass
+    return match_prompt
