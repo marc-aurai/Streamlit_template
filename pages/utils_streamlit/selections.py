@@ -20,7 +20,7 @@ def ST_select_dataset(select_dateset) -> pd.DataFrame:
     with select_dateset:
         selected_dataset = st.selectbox(
             "Voetbal competitie: ",
-            ["eredivisie_22-23", "eredivisie_21-22", "KKD_22-23"],
+            ["Eredivisie 22-23", "Eredivisie 21-22", "KKD 22-23"],
         )
     return selected_dataset
 
