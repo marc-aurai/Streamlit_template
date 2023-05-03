@@ -332,3 +332,19 @@ def ST_select_goals(
         else:
             pass
     return match_prompt
+
+
+def ST_select_date_match_venue(
+    match_prompt: str, select_intro, df_match_selected: pd.DataFrame
+) -> str:
+    with select_intro:
+        selected_intro = st.checkbox(
+            value=True,
+            label="Intro",
+        )
+        if selected_intro:
+            options = list(df_match_selected._date_match_venue.values[0])
+            match_prompt = match_prompt + str("".join(options)) + ".\n"
+        else:
+            pass
+    return match_prompt
