@@ -114,6 +114,7 @@ def prompt_engineering(df: pd.DataFrame):
         + df_selection["awayContestantName"]
     )
 
+    openai_df["_date_match_venue"] = prompt_df.dates + " " + prompt_df.home_vs_away + " " + prompt_df.venue
     openai_df["_competition"] = prompt_df.competition
     openai_df["_goalEvents"] = prompt_df.goal_events
     openai_df["_cardEvents"] = prompt_df.card_events
@@ -128,22 +129,11 @@ def prompt_engineering(df: pd.DataFrame):
         + "Gebruik de volgende informatie:\n"
         + prompt_df.final_score.values
         + ".\n"
-        + prompt_df.dates.values
-        + " "
-        + prompt_df.home_vs_away.values
-        + " "
-        + prompt_df.venue.values
-        + ".\n"
-        # + prompt_df.competition.values
+        # + prompt_df.dates.values
+        # + " "
+        # + prompt_df.home_vs_away.values
+        # + " "
+        # + prompt_df.venue.values
         # + ".\n"
-        # + prompt_df.goal_events.values
-        # + ".\n"
-        # + prompt_df.card_events.values
-        # + ".\n"
-        # + prompt_df.possession.values
-        # + prompt_df.rank_status_home.values
-        # + prompt_df.rank_status_away.values
-        # + prompt_df.keepers.values
-        # + "\n\n###\n\n"  # stop sequence, tip from openAI
     )
     return openai_df, player_stats

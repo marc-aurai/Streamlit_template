@@ -7,6 +7,7 @@ import pages.utils_streamlit.login_aws as login_aws
 from pages.utils_streamlit.login_aws import check_password as check_password_AWS
 from pages.utils_streamlit.login import check_password
 from pages.utils_streamlit.selections import (
+    ST_select_date_match_venue,
     ST_select_dataset,
     ST_select_match_date,
     ST_select_match,
@@ -123,6 +124,11 @@ if AWS_check or streamlit_check:
         match_prompt, select_injury_away, df_match_selected
     )
 
+    select_intro, select_optioneel = st.columns(2)
+    match_prompt = ST_select_date_match_venue(
+       match_prompt, select_intro, df_match_selected
+    )
+
     select_goals, select_trainers = st.columns(2)
     match_prompt = ST_select_goals(
         match_prompt, select_goals, df_match_selected
@@ -140,7 +146,7 @@ if AWS_check or streamlit_check:
         match_prompt, select_possession, df_match_selected
     )
 
-    select_rank_away, select_optioneel = st.columns(2)
+    select_rank_away, select_optioneel2 = st.columns(2)
     match_prompt = ST_select_rank(
         match_prompt, select_rank_away, df_match_selected, team="away"
     )
