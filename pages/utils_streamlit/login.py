@@ -27,11 +27,12 @@ def check_password():
     elif not st.session_state["password_correct"]:
         # Password not correct, show input + error.
         st.text_input("Username", on_change=password_entered, key="username")
-        st.text_input(
+        password_input = st.text_input(
             "Password", type="password", on_change=password_entered, key="password"
         )
-        st.error("😕 Gebruiker niet herkend of wachtwoord incorrect")
-        return False
+        if password_input:
+            st.error("😕 Gebruiker niet herkend of wachtwoord incorrect")
+            return False
     else:
         # Password correct.
         return True
