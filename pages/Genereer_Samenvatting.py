@@ -82,10 +82,7 @@ if AWS_check or streamlit_check:
     with tab1:
         SF_logo = load_images()
         st.sidebar.success("Genereer een samenvatting op deze demo pagina.")
-
         st.image(SF_logo)
-
-        st.write(""" # Southfields AI Tool """)
 
         # SIDEBAR
         TOKENS = st.sidebar.number_input(
