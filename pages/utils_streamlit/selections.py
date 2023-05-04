@@ -374,6 +374,7 @@ def ST_club_logos(
 ):
     with select_container:
         try:
+            print("get aws logo")
             st.image(
                 Image.open(BytesIO(
                 read_S3_club_logos(
