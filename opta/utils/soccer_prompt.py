@@ -108,7 +108,7 @@ def prompt_engineering(df: pd.DataFrame):
     openai_df["home_team"] = df_selection["homeContestantName"]
     openai_df["away_team"] = df_selection["awayContestantName"]
     openai_df["trainers"] = prompt_df["trainers"]
-    openai_df["keepers"] = prompt_df["keepers"]
+    openai_df["trainers"] = prompt_df["keepers"]
     openai_df["match"] = (
         df_selection["homeContestantName"]
         + " vs "
