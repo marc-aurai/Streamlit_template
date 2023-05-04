@@ -5,6 +5,7 @@ from st_aggrid import AgGrid, GridUpdateMode, JsCode
 from st_aggrid.grid_options_builder import GridOptionsBuilder
 from PIL import Image
 from pages.utils_streamlit.AWS import read_S3_club_logos
+from io import BytesIO
 
 
 def ST_select_dataset(select_dateset) -> pd.DataFrame:
@@ -374,11 +375,11 @@ def ST_club_logos(
     with select_container:
         try:
             st.image(
-                Image.open(
+                Image.open(BytesIO(
                 read_S3_club_logos(
                     bucket="gpt-ai-tool-wsc",
                     fileName="eredivisie_logos/{}.png".format(df_match_selected[str(team)+"_team"].values[0]),
-                    )
+                    ))
                 )
             )
         except:
