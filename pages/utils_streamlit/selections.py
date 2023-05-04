@@ -374,13 +374,9 @@ def ST_club_logos(
 ):
     with select_container:
         try:
-            print(read_S3_club_logos(
-                    bucket="gpt-ai-tool-wsc",
-                    fileName="eredivisie_logos/{}.png".format(df_match_selected[str(team)+"_team"].values[0]),
-                    ))
             st.image(
                 read_S3_club_logos(
-                    bucket="gpt-ai-tool-wsc",
+                    bucketName="gpt-ai-tool-wsc",
                     fileName="eredivisie_logos/{}.png".format(df_match_selected[str(team)+"_team"].values[0]),
                     )
             )
