@@ -374,13 +374,12 @@ def ST_club_logos(
 ):
     with select_container:
         try:
-            print("get aws logo")
             st.image(
-                Image.open(BytesIO(
+                Image.open(
                 read_S3_club_logos(
                     bucket="gpt-ai-tool-wsc",
                     fileName="eredivisie_logos/{}.png".format(df_match_selected[str(team)+"_team"].values[0]),
-                    ))
+                    )
                 )
             )
         except:
