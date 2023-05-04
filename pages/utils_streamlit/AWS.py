@@ -26,5 +26,6 @@ def read_S3_file(bucketName: str, fileName: str) -> pd.DataFrame:
 
 def read_S3_club_logos(bucketName: str, fileName: str):
     s3 = boto3.client('s3') 
-    obj = s3.get_object(Bucket= bucketName, Key= fileName) 
-    return obj['Body'].read() # 'Body' is a key word
+    obj = s3.Object(bucketName, str(fileName))
+    body = obj.get()['Body'].read()
+    return body # 'Body' is a key word
