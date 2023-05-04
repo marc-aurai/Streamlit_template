@@ -102,7 +102,7 @@ if AWS_check or streamlit_check:
         st.sidebar.success("Geselecteerd: " + str(openai_model))
 
         # MAIN PAGE
-        select_dataset, empty_field,club_logo_home, club_logo_away = st.columns((9, 5, 2, 2))
+        select_dataset, empty_field,club_logo_home, uitslag, club_logo_away = st.columns((9, 3, 2, 2, 2))
         selected_dataset = ST_select_dataset(select_dataset)
 
         df = load_dataset(selected_dataset)
@@ -118,8 +118,12 @@ if AWS_check or streamlit_check:
             away_team,
             df_match_selected,
         ) = ST_get_data_match(df, selected_match)
-
+            
         ST_club_logos(club_logo_home, df_match_selected, team="home")
+        with uitslag: 
+            st.write("<span style='font-size:40px'>{}</span>".format(str(df_match_selected.score_home.values[0])
+                                                                     +" - "+str(df_match_selected.score_away.values[0])), 
+                     unsafe_allow_html=True)
         ST_club_logos(club_logo_away, df_match_selected, team="away")
 
         select_injury_home, select_injury_away = st.columns(2)

@@ -107,6 +107,8 @@ def prompt_engineering(df: pd.DataFrame):
             "formation_away",
             "substitutions_home",
             "substitutions_away",
+            "score_home",
+            "score_away",
         ]
     ].copy()
     openai_df["home_team"] = df_selection["homeContestantName"]
