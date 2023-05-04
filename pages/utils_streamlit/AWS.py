@@ -22,3 +22,9 @@ def read_S3_file(bucketName: str, fileName: str) -> pd.DataFrame:
     s3 = boto3.client('s3') 
     obj = s3.get_object(Bucket= bucketName, Key= fileName) 
     return pd.read_csv(obj['Body']) # 'Body' is a key word
+
+
+def read_S3_club_logos(bucketName: str, fileName: str):
+    s3 = boto3.client('s3') 
+    obj = s3.get_object(Bucket= bucketName, Key= fileName) 
+    return obj['Body'] # 'Body' is a key word

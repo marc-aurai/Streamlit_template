@@ -3,6 +3,8 @@ import pandas as pd
 import ast
 from st_aggrid import AgGrid, GridUpdateMode, JsCode
 from st_aggrid.grid_options_builder import GridOptionsBuilder
+from PIL import Image
+from pages.utils_streamlit.AWS import read_S3_club_logos
 
 
 def ST_select_dataset(select_dateset) -> pd.DataFrame:
@@ -364,3 +366,23 @@ def ST_select_keepers(
         else:
             pass
     return match_prompt
+
+
+def ST_club_logos(
+    select_container, df_match_selected: pd.DataFrame, team: str
+):
+    with select_container:
+        try:
+            st.image(
+                Image.open(
+                read_S3_club_logos(
+                    bucket="gpt-ai-tool-wsc",
+                    fileName="eredivisie_logos/{}.png".format(df_match_selected[str(team)+"_team"].values[0]),
+                    )
+                )
+            )
+        except:
+            try:
+                st.image(Image.open("assets/eredivisie_logos/{}.png".format(df_match_selected[str(team)+"_team"].values[0])))
+            except:
+                pass

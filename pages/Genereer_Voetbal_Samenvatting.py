@@ -20,6 +20,7 @@ from pages.utils_streamlit.selections import (
     ST_select_goals,
     ST_select_possession,
     ST_select_keepers,
+    ST_club_logos,
 )
 from pages.utils_streamlit.generate import generate_completion, generate_winstreak_plots
 
@@ -63,6 +64,7 @@ def streamlit_page_config():
                 <style>
                 #MainMenu {visibility: hidden;}
                 footer {visibility: hidden;}
+                button[title="View fullscreen"]{visibility: hidden;}
                 </style>
                 """
     st.markdown(hide_streamlit_style, unsafe_allow_html=True)
@@ -78,7 +80,9 @@ else:
 if AWS_check or streamlit_check:
     SF_logo = load_images()
     st.sidebar.success("Genereer een samenvatting op deze demo pagina.")
+
     st.image(SF_logo)
+
     st.write(""" # Southfields AI Tool """)
 
     # SIDEBAR
@@ -99,8 +103,9 @@ if AWS_check or streamlit_check:
     st.sidebar.success("Geselecteerd: " + str(openai_model))
 
     # MAIN PAGE
-    select_dataset, select_optioneel = st.columns(2)
+    select_dataset, empty_field,club_logo_home, club_logo_away = st.columns((9, 5, 2, 2))
     selected_dataset = ST_select_dataset(select_dataset)
+
     df = load_dataset(selected_dataset)
     df_player_stats = load_dataset_player_stats(selected_dataset)
     select_date, select_match = st.columns(2)
@@ -115,7 +120,8 @@ if AWS_check or streamlit_check:
         df_match_selected,
     ) = ST_get_data_match(df, selected_match)
 
-    # select_cards_home, select_cards_away = st.columns(2)
+    ST_club_logos(club_logo_home, df_match_selected, team="home")
+    ST_club_logos(club_logo_away, df_match_selected, team="away")
 
     select_injury_home, select_injury_away = st.columns(2)
     match_prompt = ST_select_injury_home(
