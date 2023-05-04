@@ -374,10 +374,6 @@ def ST_club_logos(
 ):
     with select_container:
         try:
-            logo = read_S3_club_logos(
-                    bucket="gpt-ai-tool-wsc",
-                    fileName="eredivisie_logos/{}.png".format(df_match_selected[str(team)+"_team"].values[0]),
-                    )
             st.image(
                 Image.open(BytesIO(
                 read_S3_club_logos(
@@ -387,7 +383,6 @@ def ST_club_logos(
                 )
             )
         except:
-            print("Read logos no succes")
             try:
                 st.image(Image.open("assets/eredivisie_logos/{}.png".format(df_match_selected[str(team)+"_team"].values[0])))
             except:
