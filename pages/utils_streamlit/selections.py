@@ -295,13 +295,17 @@ def ST_select_formation(
             nameOff, symbol, nameOn, timeMin = st.columns((4,1,4,1))
             for substitution in ast.literal_eval(substitutions):
                 with nameOff:
-                    st.write("<p style='font-size:10px'>{}</p>".format(substitution["playerOffName"]), unsafe_allow_html=True)
+                    st.write("<span style='font-size:10px'>{}</span>".format(substitution["playerOffName"])
+                             +"<span style='color:red;font-size:10px'>{}</span>".format("⬇"),
+                             unsafe_allow_html=True)
                 with symbol:
-                    st.write("<p style='color:white;font-size:10px'>{}</p>".format("⇆"), unsafe_allow_html=True)
+                    st.write("<span style='color:white;font-size:10px'>{}</span>".format("⇆"), unsafe_allow_html=True)
                 with nameOn:
-                    st.write("<p style='font-size:10px'>{}</p>".format(substitution["playerOnName"]), unsafe_allow_html=True)
+                    st.write("<span style='font-size:10px'>{}</span>".format(substitution["playerOnName"])
+                             +"<span style='color:green;font-size:10px'>{}</span>".format("⬆"), 
+                             unsafe_allow_html=True)
                 with timeMin:
-                    st.write("<p style='color:white;font-size:10px'>{}{}</p>".format(str(substitution["timeMin"]),"'"), unsafe_allow_html=True)
+                    st.write("<span style='color:white;font-size:10px'>{}{}</span>".format(str(substitution["timeMin"]),"'"), unsafe_allow_html=True)
             
             player_stats = player_stats.loc[
                 player_stats["date"] == df_match_selected.date.values[0]
