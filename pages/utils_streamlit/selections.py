@@ -267,20 +267,42 @@ def ST_select_formation(
             gd = GridOptionsBuilder.from_dataframe(
                 df[["playerName", "position", "positionSide"]]
             )
-            gd.configure_pagination(enabled=True)
+            gd.configure_pagination(enabled=False)
             gd.configure_selection(selection_mode="single", use_checkbox=True)
             gridOptions = gd.build()
 
+            custom_css = {
+                ".ag-column-hover": {"background-color":"#Cbcbcb","color":"#FFFFFF"},
+                ".ag-row-hover": {"background-color":"#Cbcbcb","color":"#FFFFFF"},
+                ".ag-header-hover": {"background-color":"#Cbcbcb","color":"#FFFFFF"},
+                ".ag-header-cell": {"background-color":"#100c44", "color":"#FFFFFF"},
+                ".ag-row-odd": {"background-color":"#100c44", "color":"#FFFFFF"},
+                ".ag-row-even": {"background-color":"#100c44", "color":"#FFFFFF"},
+                ".ag-subheader": {"border-color":"#100c44"},
+                }
+            
             grid_table = AgGrid(
                 df[["playerName", "position", "positionSide"]],
                 gridOptions=gridOptions,
                 enable_enterprise_modules=False,
                 fit_columns_on_grid_load=True,
-                theme="balham",
+                custom_css=custom_css,
                 update_mode=GridUpdateMode.MODEL_CHANGED,
                 allow_unsafe_jscode=True,
             )
-            # dict_keys(['data', 'selected_rows', 'column_state', 'excel_blob'])
+            # Show substitutions
+            substitutions = df_match_selected["substitutions_"+str(team)].values[0]
+            nameOff, symbol, nameOn, timeMin = st.columns((4,1,4,1))
+            for substitution in ast.literal_eval(substitutions):
+                with nameOff:
+                    st.write("<p style='font-size:10px'>{}</p>".format(substitution["playerOffName"]), unsafe_allow_html=True)
+                with symbol:
+                    st.write("<p style='color:white;font-size:10px'>{}</p>".format("⇆"), unsafe_allow_html=True)
+                with nameOn:
+                    st.write("<p style='font-size:10px'>{}</p>".format(substitution["playerOnName"]), unsafe_allow_html=True)
+                with timeMin:
+                    st.write("<p style='color:white;font-size:10px'>{}{}</p>".format(str(substitution["timeMin"]),"'"), unsafe_allow_html=True)
+            
             player_stats = player_stats.loc[
                 player_stats["date"] == df_match_selected.date.values[0]
             ]
@@ -295,6 +317,8 @@ def ST_select_formation(
             player_stats = [
                 item for sublist in player_stats for item in sublist
             ]  # flatten player stats list
+           
+
             try:
                 df_selected = pd.DataFrame(grid_table["selected_rows"])
                 selected_player = (

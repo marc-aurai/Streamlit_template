@@ -711,3 +711,47 @@ def get_formations(
     df["player_stats_home"] = player_stats_home
     df["player_stats_away"] = player_stats_away
     return df
+
+
+def get_substitute(
+    df: pd.DataFrame = None,
+    outletAuthKey: str = None,
+) -> pd.DataFrame:
+
+    substitutions_home = []
+    substitutions_away = []
+    print("Get substitute..\n")
+
+    # Loop through df to get match id's
+    for match in tqdm(df.index):
+        try:
+            matchstats = (
+                requests.get(
+                    f"http://api.performfeeds.com/soccerdata/matchstats/{{}}/?_rt=b&_fmt=json&fx={{}}".format(
+                        outletAuthKey, df["id"][match]
+                    )
+                )
+                .json()
+            )
+            substitute_home = []
+            substitute_away = []
+            for substitute in matchstats["liveData"]["substitute"]:
+                substitute_player = {}
+                substitute_player["timeMin"] = substitute["timeMin"]
+                substitute_player["playerOffName"] = substitute["playerOffName"]
+                substitute_player["playerOnName"] = substitute["playerOnName"]
+                substitute_player["subReason"] = substitute["subReason"]
+                if substitute["contestantId"] == matchstats["matchInfo"]["contestant"][0]["id"]:
+                    substitute_home.append(substitute_player)
+                if substitute["contestantId"] == matchstats["matchInfo"]["contestant"][1]["id"]:
+                    substitute_away.append(substitute_player)
+        except:
+            substitute_home = []  
+            substitute_away = []
+        substitutions_home.append(substitute_home)
+        substitutions_away.append(substitute_away)
+
+    # Add list to dataframe
+    df["substitutions_home"] = substitutions_home
+    df["substitutions_away"] = substitutions_away
+    return df
