@@ -680,16 +680,16 @@ def get_formations(
                     if player_formation["position"] != "Substitute":
                         formation_player = {}
                         stat_player = {}
-                        for card in cards:
-                            if player_formation["playerId"] == card["playerId"]:
-                                if card["type"] == "YC":
-                                    formation_player["playerName"] = "🟨 " + str(player_formation["lastName"])
-                                if card["type"] == "Y2C":
-                                    formation_player["playerName"] = "🟨|🟨 " + player_formation["lastName"] 
-                                if card["type"] == "RC":
-                                    formation_player["playerName"] = "🟥 " + player_formation["lastName"] 
-                            else:
-                                formation_player["playerName"] = player_formation["lastName"]
+                        if player_formation["playerId"] in [sub['playerId'] for sub in cards]:
+                            card = next(item for item in cards if item["playerId"] == player_formation["playerId"]) # Select the right card if the player exist
+                            if card["type"] == "YC":
+                                formation_player["playerName"] = "🟨 " + player_formation["lastName"]
+                            if card["type"] == "Y2C":
+                                formation_player["playerName"] = "🟨|🟨 " + player_formation["lastName"] 
+                            if card["type"] == "RC":
+                                formation_player["playerName"] = "🟥 " + player_formation["lastName"] 
+                        else:
+                            formation_player["playerName"] = player_formation["lastName"]
                         formation_player["position"] = player_formation["position"]
                         formation_player["positionSide"] = player_formation["positionSide"]
                         formation_player["playerId"] = player_formation["playerId"]
@@ -711,6 +711,7 @@ def get_formations(
                         if team == 1:
                             formation_away.append(formation_player)
                             player_stat_away.append(stat_player)
+                print("\n")
 
         except:
             formation_home = []  
