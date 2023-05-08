@@ -663,6 +663,14 @@ def get_formations(
                 )
                 .json()["liveData"]["lineUp"]
             )
+            cards = (
+                requests.get(
+                    f"http://api.performfeeds.com/soccerdata/matchstats/{{}}/?_rt=b&_fmt=json&fx={{}}".format(
+                        outletAuthKey, df["id"][match]
+                    )
+                )
+                .json()["liveData"]["card"]
+            )
             formation_home = []
             player_stat_home = []
             formation_away = []
@@ -672,7 +680,16 @@ def get_formations(
                     if player_formation["position"] != "Substitute":
                         formation_player = {}
                         stat_player = {}
-                        formation_player["playerName"] = player_formation["lastName"]
+                        for card in cards:
+                            if player_formation["playerId"] == card["playerId"]:
+                                if card["type"] == "YC":
+                                    formation_player["playerName"] = "🟨 " + str(player_formation["lastName"])
+                                if card["type"] == "Y2C":
+                                    formation_player["playerName"] = "🟨|🟨 " + player_formation["lastName"] 
+                                if card["type"] == "RC":
+                                    formation_player["playerName"] = "🟥 " + player_formation["lastName"] 
+                            else:
+                                formation_player["playerName"] = player_formation["lastName"]
                         formation_player["position"] = player_formation["position"]
                         formation_player["positionSide"] = player_formation["positionSide"]
                         formation_player["playerId"] = player_formation["playerId"]
