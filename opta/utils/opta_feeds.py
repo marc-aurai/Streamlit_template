@@ -114,7 +114,7 @@ def get_matchstats_cards(
 
     # Create container for new column
     all_team_cards = []
-    print("Get Card Events..\n")
+    print("\nGet Card Events..")
 
     # Loop through df to get match id's
     for match in tqdm(df.index):
@@ -177,7 +177,7 @@ def get_matchstats_goals(
 
     # Container for new column
     all_team_goals = []
-    print("Get Goal Events..\n")
+    print("\nGet Goal Events..")
 
     # Loop through df to get all match id's
     for match in tqdm(df.index):
@@ -233,7 +233,7 @@ def get_matchstats_possession(
     """
     all_possessions_home = []
     all_possessions_away = []
-    print("Get Possession Percentage..\n")
+    print("\nGet Possession Percentage..")
     for match in tqdm(df.index):
         try:
             matchstats = requests.get(
@@ -281,7 +281,7 @@ def get_venue(df: pd.DataFrame = None, outletAuthKey: str = None) -> pd.DataFram
 
     # Container for new venues column
     all_venues = []
-    print("Get venues..\n")
+    print("\nGet venues..")
 
     # Loop through match id's
     for match in tqdm(df.index):
@@ -317,7 +317,7 @@ def get_trainer(df: pd.DataFrame = None, outletAuthKey: str = None) -> pd.DataFr
     """
     trainers_home = []
     trainers_away = []
-    print("Get Trainers..\n")
+    print("\nGet Trainers..")
 
     # Loop through match id's
     for match in tqdm(df.index):
@@ -365,7 +365,7 @@ def get_keepers(df: pd.DataFrame = None, outletAuthKey: str = None) -> pd.DataFr
     """
     keepers_home = []
     keepers_away = []
-    print("Get Keepers..\n")
+    print("\nGet Keepers..")
 
     # Loop through match id's
     for match in tqdm(df.index):
@@ -414,7 +414,7 @@ def get_score(df: pd.DataFrame = None, outletAuthKey: str = None) -> pd.DataFram
     """
 
     # Create container for new column
-    print("Get score..\n")
+    print("\nGet score..")
     scores_home = []
     scores_away = []
     # Loop through df to get match id's
@@ -447,7 +447,7 @@ def get_cup(
     outletAuthKey: str = None,
     competition: str = None,
 ) -> pd.DataFrame:
-    print("Get competitions..\n")
+    print("\nGet competitions..")
     cups = []
     for match in tqdm(df.index):
         try:
@@ -480,7 +480,7 @@ def get_rankStatus(
         lastRanks_away,
     ) = ([] for i in range(8))
 
-    print("Get rankstatus..\n")
+    print("\nGet rankstatus..")
     for match in tqdm(df.index):
         try:
             response = requests.get(
@@ -566,7 +566,7 @@ def translate_injury(injury):
     "hamstring": "hamstringblessure",
     "illness": "ziek",
     "knee injury": "knieblessure",
-    "knock": "knock blessure",
+    "knock": "blessure",
     "thigh muscle strain": "verrekte dijspier",
     "calf/shin injury": "scheen- of kuitblessure",
     "groin strain": "verrekte lies",
@@ -592,7 +592,7 @@ def get_injuries(
     outletAuthKey: str = None,
     competition: str = None,
 ) -> pd.DataFrame:
-    print("Get injuries..\n")
+    print("\nGet injuries..")
     home_injuries = []
     away_injuries = []
     for match in tqdm(df.index):
@@ -650,7 +650,7 @@ def get_formations(
     player_stats_home = []
     formations_away = []
     player_stats_away = []
-    print("Get formations..\n")
+    print("\nGet formations..")
 
     # Loop through df to get match id's
     for match in tqdm(df.index):
@@ -737,7 +737,7 @@ def get_substitute(
 
     substitutions_home = []
     substitutions_away = []
-    print("Get substitute..\n")
+    print("\nGet substitute..")
 
     # Loop through df to get match id's
     for match in tqdm(df.index):
