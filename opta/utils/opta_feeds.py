@@ -711,8 +711,6 @@ def get_formations(
                         if team == 1:
                             formation_away.append(formation_player)
                             player_stat_away.append(stat_player)
-                print("\n")
-
         except:
             formation_home = []  
             formation_away = []
