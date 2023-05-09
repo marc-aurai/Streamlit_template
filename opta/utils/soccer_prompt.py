@@ -52,6 +52,8 @@ def select_features(df: pd.DataFrame) -> pd.DataFrame:
             "substitutions_home",
             "substitutions_away",
             "goalMakers",
+            "cardsHistoryRed",
+            "cardsHistoryYellow",
         ]
     ]
 
@@ -111,6 +113,8 @@ def prompt_engineering(df: pd.DataFrame):
             "score_home",
             "score_away",
             "goalMakers",
+            "cardsHistoryRed",
+            "cardsHistoryYellow",
         ]
     ].copy()
     openai_df["home_team"] = df_selection["homeContestantName"]

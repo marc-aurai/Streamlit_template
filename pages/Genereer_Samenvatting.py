@@ -21,6 +21,7 @@ from pages.utils_streamlit.selections import (
     ST_select_possession,
     ST_select_keepers,
     ST_club_logos,
+    ST_uniqueEvents,
 )
 from pages.utils_streamlit.generate import generate_completion, generate_winstreak_plots
 
@@ -173,6 +174,7 @@ if AWS_check or streamlit_check:
         match_prompt = ST_select_formation(
             match_prompt, select_formations_away, df_match_selected, df_player_stats, team="away"
         )
+        match_prompt = ST_uniqueEvents(match_prompt, df_match_selected)
 
         input_data = st.text_area(
             label="Wedstrijd Data", value=match_prompt, height=400, max_chars=None

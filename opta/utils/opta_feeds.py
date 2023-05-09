@@ -3,6 +3,8 @@ import requests
 from tqdm import tqdm
 import numpy as np
 from googletrans import Translator
+from collections import Counter
+import ast
 
 
 # ID's van Eredivisie seizoenen volgorde 23/22/21
@@ -778,4 +780,41 @@ def get_substitute(
     # Add list to dataframe
     df["substitutions_home"] = substitutions_home
     df["substitutions_away"] = substitutions_away
+    return df
+
+def total_cards_player(
+    df: pd.DataFrame = None,
+) -> pd.DataFrame:
+
+    playerCardsYellow = []
+    cardsHistoryYellow = []
+    playerCardsRed = []
+    cardsHistoryRed = []
+    for home, away in zip(df.formation_home.values,df.formation_away.values):
+        cardsMatchYellow = []
+        cardsMatchRed = []
+        try:
+            for playerHome, playerAway in zip(home, away):
+                if any([card in playerHome["playerName"] for card in ["🟨"]]):
+                    playerCardsYellow.append(playerHome["playerName"])
+                    cardsMatchYellow.append(playerHome["playerName"])
+                if any([card in playerAway["playerName"] for card in ["🟨"]]):
+                    playerCardsYellow.append(playerAway["playerName"])
+                    cardsMatchYellow.append(playerAway["playerName"])
+                # Rood of twee keer geel in wedstrijd
+                if any([card in playerHome["playerName"] for card in ["🟨|🟨","🟥"]]):
+                    playerCardsRed.append(playerHome["playerName"])
+                    cardsMatchRed.append(playerHome["playerName"])
+                if any([card in playerAway["playerName"] for card in ["🟨|🟨","🟥"]]):
+                    playerCardsRed.append(playerAway["playerName"])
+                    cardsMatchRed.append(playerAway["playerName"])
+            countRed= [x for x in playerCardsRed if x in cardsMatchRed]
+            countYellow= [x for x in playerCardsYellow if x in cardsMatchYellow]
+            cardsHistoryRed.append(dict(Counter(countRed)))
+            cardsHistoryYellow.append(dict(Counter(countYellow)))
+        except:
+            cardsHistoryRed.append({})
+            cardsHistoryYellow.append({})
+    df["cardsHistoryRed"] = cardsHistoryRed
+    df["cardsHistoryYellow"] = cardsHistoryYellow
     return df

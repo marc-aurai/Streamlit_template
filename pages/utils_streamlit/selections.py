@@ -1,11 +1,13 @@
-import streamlit as st
-import pandas as pd
 import ast
+from io import BytesIO
+
+import pandas as pd
+import streamlit as st
+from PIL import Image
 from st_aggrid import AgGrid, GridUpdateMode, JsCode
 from st_aggrid.grid_options_builder import GridOptionsBuilder
-from PIL import Image
+
 from pages.utils_streamlit.AWS import read_S3_club_logos
-from io import BytesIO
 
 
 def ST_select_dataset(select_dateset) -> pd.DataFrame:
@@ -413,3 +415,32 @@ def ST_club_logos(
                 st.image(Image.open("assets/eredivisie_logos/{}.png".format(df_match_selected[str(team)+"_team"].values[0])))
             except:
                 pass
+
+
+def ST_uniqueEvents(
+    match_prompt: str,
+    df_match_selected: pd.DataFrame,
+):
+    for key, value in  ast.literal_eval(df_match_selected.cardsHistoryYellow.values[0]).items():
+        if value in [5,10]:
+            st.write("<span style='font-size:14px'>{}. </span>".format(str(key))
+                             +"<span style='color:yellow;font-size:16px'>Cumulatief: {}</span>".format(str(value)),
+                             unsafe_allow_html=True)
+        elif value > 10:
+            st.write("<span style='font-size:14px'>{}. </span>".format(str(key))
+                             +"<span style='color:yellow;font-size:16px'>Cumulatief: {}</span>".format(str(value)),
+                             unsafe_allow_html=True)
+    
+    for key, value in  ast.literal_eval(df_match_selected.cardsHistoryRed.values[0]).items():
+        checkBox_schorsing = st.checkbox(label="Schorsingen", value=False)
+        st.write("<span style='font-size:14px'>{}. </span>".format(str(key))
+                            +"<span style='color:red;font-size:16px'>Cumulatief: {}</span>".format(str(value)),
+                            unsafe_allow_html=True)
+        if checkBox_schorsing:
+            match_prompt = match_prompt + str(key).replace("🟥 ", "") + " is geschorst voor de volgende wedstrijd vanwege een rode kaart."
+    try:
+        if checkBox_schorsing:
+            match_prompt = match_prompt + "\n"
+    except: # Then no checkBox was available: No red cards.
+        pass
+    return match_prompt 

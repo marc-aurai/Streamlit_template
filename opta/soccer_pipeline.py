@@ -16,6 +16,7 @@ from utils.opta_feeds import (
     get_trainer,
     get_venue,
     get_substitute,
+    total_cards_player,
 )
 from utils.soccer_prompt import prompt_engineering
 from utils.AWS import get_secret, data_to_S3
@@ -98,6 +99,7 @@ if __name__ == "__main__":
         .pipe(get_rankStatus, outletAuthKey, competition=competition_ID)
         .pipe(get_formations, outletAuthKey)
         .pipe(get_substitute,outletAuthKey)
+        .pipe(total_cards_player)
         .dropna()
         .pipe(prompt_engineering)
     )
