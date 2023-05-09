@@ -417,6 +417,24 @@ def ST_club_logos(
                 pass
 
 
+def ST_cardEvents(
+    match_prompt: str, select_container, df_match_selected: pd.DataFrame
+):
+    with select_container:
+        overtredingen = str(df_match_selected._cardEvents.values[0]).split(", ")
+        print(overtredingen)
+        selectedCards = st.multiselect(
+            "Overtredingen:" ,
+            options=overtredingen,
+        )
+        if selectedCards:
+            match_prompt = (
+                match_prompt + str(".\n".join(selectedCards)) + ".\n"
+            )
+
+    return match_prompt
+
+
 def ST_uniqueEvents(
     match_prompt: str,
     df_match_selected: pd.DataFrame,

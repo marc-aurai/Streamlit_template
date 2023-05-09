@@ -703,7 +703,7 @@ def get_formations(
                         formation_player["position"] = player_formation["position"]
                         formation_player["positionSide"] = player_formation["positionSide"]
                         formation_player["playerId"] = player_formation["playerId"]
-                        stat_player["playerName"] = player_formation["lastName"]
+                        stat_player["playerName"] = formation_player["playerName"] # Copy from formation_player, which includes cards
                         stat_player["playerId"] = player_formation["playerId"]
                         for stat in player_formation["stat"]:
                             if stat["type"] in ["minsPlayed","totalPass","accuratePass","goalAssist","totalScoringAtt","saves"]:

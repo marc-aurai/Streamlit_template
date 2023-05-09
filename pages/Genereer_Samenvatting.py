@@ -21,6 +21,7 @@ from pages.utils_streamlit.selections import (
     ST_select_possession,
     ST_select_keepers,
     ST_club_logos,
+    ST_cardEvents,
     ST_uniqueEvents,
 )
 from pages.utils_streamlit.generate import generate_completion, generate_winstreak_plots
@@ -135,6 +136,8 @@ if AWS_check or streamlit_check:
             match_prompt, select_injury_away, df_match_selected
         )
 
+        selectCards, select_optioneel4 = st.columns(2)
+
         select_intro, select_optioneel = st.columns(2)
         match_prompt = ST_select_date_match_venue(
         match_prompt, select_intro, df_match_selected
@@ -174,6 +177,8 @@ if AWS_check or streamlit_check:
         match_prompt = ST_select_formation(
             match_prompt, select_formations_away, df_match_selected, df_player_stats, team="away"
         )
+
+        match_prompt = ST_cardEvents(match_prompt, selectCards, df_match_selected)
         match_prompt = ST_uniqueEvents(match_prompt, df_match_selected)
 
         input_data = st.text_area(
