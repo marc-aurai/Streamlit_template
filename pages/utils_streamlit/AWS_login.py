@@ -3,7 +3,6 @@ from pages.utils_streamlit.AWS import get_secret
 
 try:
     password_aws = get_secret(secret_name="dev/GPT_AI_TOOL", region="eu-central-1")
-    password_aws_aurai = get_secret(secret_name="dev/GPT_AI_TOOL_aurai", region="eu-central-1")
     AWS = True
 except:
     AWS = False
@@ -18,10 +17,6 @@ def check_password():
             st.session_state["username"] in password_aws
             and st.session_state["password"]
             == password_aws[st.session_state["username"]]
-        ) or(
-            st.session_state["username"] in password_aws_aurai
-            and st.session_state["password"]
-            == password_aws_aurai[st.session_state["username"]]
         ):
             st.session_state["password_correct"] = True
             del st.session_state["password"]  # don't store username + password
