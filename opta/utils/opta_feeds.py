@@ -759,13 +759,33 @@ def get_substitute(
                 )
                 .json()
             )
+            cards = (
+                requests.get(
+                    f"http://api.performfeeds.com/soccerdata/matchstats/{{}}/?_rt=b&_fmt=json&fx={{}}".format(
+                        outletAuthKey, df["id"][match]
+                    )
+                )
+                .json()["liveData"]["card"]
+            )
             substitute_home = []
             substitute_away = []
             for substitute in matchstats["liveData"]["substitute"]:
                 substitute_player = {}
+                substitute_player["playerOnName"] = substitute["playerOnName"] # Speler in begint altijd met clean sheet.
+
+                # Speler uit, voeg kaart toe tot naam
+                if substitute["playerOffId"] in [sub['playerId'] for sub in cards]:
+                    card = next(item for item in cards if item["playerId"] == substitute["playerOffId"]) # Select the right card if the player exist
+                    if card["type"] == "YC":
+                        substitute_player["playerOffName"] = "🟨 " + substitute["playerOffName"]
+                    if card["type"] == "Y2C":
+                        substitute_player["playerOffName"] = "🟨|🟨 " + substitute["playerOffName"]
+                    if card["type"] == "RC":
+                        substitute_player["playerOffName"] = "🟥 " + substitute["playerOffName"]
+                else:
+                    substitute_player["playerOffName"] = substitute["playerOffName"]
+
                 substitute_player["timeMin"] = substitute["timeMin"]
-                substitute_player["playerOffName"] = substitute["playerOffName"]
-                substitute_player["playerOnName"] = substitute["playerOnName"]
                 substitute_player["subReason"] = substitute["subReason"]
                 if substitute["contestantId"] == matchstats["matchInfo"]["contestant"][0]["id"]:
                     substitute_home.append(substitute_player)
