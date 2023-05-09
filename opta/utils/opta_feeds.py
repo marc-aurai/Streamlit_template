@@ -177,6 +177,7 @@ def get_matchstats_goals(
 
     # Container for new column
     all_team_goals = []
+    all_goalMakers = []
     print("\nGet Goal Events..")
 
     # Loop through df to get all match id's
@@ -210,12 +211,19 @@ def get_matchstats_goals(
                 }
                 for goal in matchstats
             ]
+            goalMakers = [
+                get_name(goal, type = 'scorer', outletAuthKey=outletAuthKey, competition=competition)
+                for goal in matchstats
+            ]
         except:
             team_goals = []  # If there are no goals available
+            goalMakers = []
         all_team_goals.append(team_goals)
+        all_goalMakers.append(goalMakers)
 
     # Add list to dataframe
     df["goal_events"] = all_team_goals
+    df["goalMakers"] = all_goalMakers
     return df
 
 
