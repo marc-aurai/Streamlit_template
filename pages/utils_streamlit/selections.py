@@ -422,7 +422,6 @@ def ST_cardEvents(
 ):
     with select_container:
         overtredingen = str(df_match_selected._cardEvents.values[0]).split(", ")
-        print(overtredingen)
         selectedCards = st.multiselect(
             "Overtredingen:" ,
             options=overtredingen,
@@ -431,7 +430,6 @@ def ST_cardEvents(
             match_prompt = (
                 match_prompt + str(".\n".join(selectedCards)) + ".\n"
             )
-
     return match_prompt
 
 
