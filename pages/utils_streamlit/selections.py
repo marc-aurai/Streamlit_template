@@ -1,10 +1,9 @@
 import ast
-from io import BytesIO
 
 import pandas as pd
 import streamlit as st
 from PIL import Image
-from st_aggrid import AgGrid, GridUpdateMode, JsCode
+from st_aggrid import AgGrid, GridUpdateMode
 from st_aggrid.grid_options_builder import GridOptionsBuilder
 
 from pages.utils_streamlit.AWS import read_S3_club_logos
@@ -166,7 +165,6 @@ def ST_select_injury_away(
     return match_prompt
 
 
-
 def ST_select_trainers(
     match_prompt: str, select_trainers, df_match_selected: pd.DataFrame
 ) -> str:
@@ -206,10 +204,7 @@ def ST_select_possession(
         )
         if selected_possession:
             options = list(df_match_selected._possession.values[0])
-            match_prompt = (
-                match_prompt
-                + str("".join(options)) + ".\n"
-            )
+            match_prompt = match_prompt + str("".join(options)) + ".\n"
         else:
             pass
     return match_prompt
@@ -274,15 +269,15 @@ def ST_select_formation(
             gridOptions = gd.build()
 
             custom_css = {
-                ".ag-column-hover": {"background-color":"#Cbcbcb","color":"#FFFFFF"},
-                ".ag-row-hover": {"background-color":"#Cbcbcb","color":"#FFFFFF"},
-                ".ag-header-hover": {"background-color":"#Cbcbcb","color":"#FFFFFF"},
-                ".ag-header-cell": {"background-color":"#100c44", "color":"#FFFFFF"},
-                ".ag-row-odd": {"background-color":"#100c44", "color":"#FFFFFF"},
-                ".ag-row-even": {"background-color":"#100c44", "color":"#FFFFFF"},
-                ".ag-subheader": {"border-color":"#100c44"},
-                }
-            
+                ".ag-column-hover": {"background-color": "#Cbcbcb", "color": "#FFFFFF"},
+                ".ag-row-hover": {"background-color": "#Cbcbcb", "color": "#FFFFFF"},
+                ".ag-header-hover": {"background-color": "#Cbcbcb", "color": "#FFFFFF"},
+                ".ag-header-cell": {"background-color": "#100c44", "color": "#FFFFFF"},
+                ".ag-row-odd": {"background-color": "#100c44", "color": "#FFFFFF"},
+                ".ag-row-even": {"background-color": "#100c44", "color": "#FFFFFF"},
+                ".ag-subheader": {"border-color": "#100c44"},
+            }
+
             grid_table = AgGrid(
                 df[["playerName", "position", "positionSide"]],
                 gridOptions=gridOptions,
@@ -293,22 +288,44 @@ def ST_select_formation(
                 allow_unsafe_jscode=True,
             )
             # Show substitutions
-            substitutions = df_match_selected["substitutions_"+str(team)].values[0]
-            nameOff, symbol, nameOn, timeMin = st.columns((4,1,4,1))
+            substitutions = df_match_selected["substitutions_" + str(team)].values[0]
+            nameOff, symbol, nameOn, timeMin = st.columns((4, 1, 4, 1))
             for substitution in ast.literal_eval(substitutions):
                 with nameOff:
-                    st.write("<span style='font-size:10px'>{}</span>".format(substitution["playerOffName"])
-                             +"<span style='color:red;font-size:10px'>{}</span>".format("⬇"),
-                             unsafe_allow_html=True)
+                    st.write(
+                        "<span style='font-size:10px'>{}</span>".format(
+                            substitution["playerOffName"]
+                        )
+                        + "<span style='color:red;font-size:10px'>{}</span>".format(
+                            "⬇"
+                        ),
+                        unsafe_allow_html=True,
+                    )
                 with symbol:
-                    st.write("<span style='color:white;font-size:10px'>{}</span>".format("⇆"), unsafe_allow_html=True)
+                    st.write(
+                        "<span style='color:white;font-size:10px'>{}</span>".format(
+                            "⇆"
+                        ),
+                        unsafe_allow_html=True,
+                    )
                 with nameOn:
-                    st.write("<span style='font-size:10px'>{}</span>".format(substitution["playerOnName"])
-                             +"<span style='color:green;font-size:10px'>{}</span>".format("⬆"), 
-                             unsafe_allow_html=True)
+                    st.write(
+                        "<span style='font-size:10px'>{}</span>".format(
+                            substitution["playerOnName"]
+                        )
+                        + "<span style='color:green;font-size:10px'>{}</span>".format(
+                            "⬆"
+                        ),
+                        unsafe_allow_html=True,
+                    )
                 with timeMin:
-                    st.write("<span style='color:white;font-size:10px'>{}{}</span>".format(str(substitution["timeMin"]),"'"), unsafe_allow_html=True)
-            
+                    st.write(
+                        "<span style='color:white;font-size:10px'>{}{}</span>".format(
+                            str(substitution["timeMin"]), "'"
+                        ),
+                        unsafe_allow_html=True,
+                    )
+
             player_stats = player_stats.loc[
                 player_stats["date"] == df_match_selected.date.values[0]
             ]
@@ -323,7 +340,6 @@ def ST_select_formation(
             player_stats = [
                 item for sublist in player_stats for item in sublist
             ]  # flatten player stats list
-           
 
             try:
                 df_selected = pd.DataFrame(grid_table["selected_rows"])
@@ -399,37 +415,39 @@ def ST_select_keepers(
     return match_prompt
 
 
-def ST_club_logos(
-    select_container, df_match_selected: pd.DataFrame, team: str
-):
+def ST_club_logos(select_container, df_match_selected: pd.DataFrame, team: str):
     with select_container:
         try:
             st.image(
                 read_S3_club_logos(
                     bucketName="gpt-ai-tool-wsc",
-                    fileName="eredivisie_logos/{}.png".format(df_match_selected[str(team)+"_team"].values[0]),
-                    )
+                    fileName="eredivisie_logos/{}.png".format(
+                        df_match_selected[str(team) + "_team"].values[0]
+                    ),
+                )
             )
         except:
             try:
-                st.image(Image.open("assets/eredivisie_logos/{}.png".format(df_match_selected[str(team)+"_team"].values[0])))
+                st.image(
+                    Image.open(
+                        "assets/eredivisie_logos/{}.png".format(
+                            df_match_selected[str(team) + "_team"].values[0]
+                        )
+                    )
+                )
             except:
                 pass
 
 
-def ST_cardEvents(
-    match_prompt: str, select_container, df_match_selected: pd.DataFrame
-):
+def ST_cardEvents(match_prompt: str, select_container, df_match_selected: pd.DataFrame):
     with select_container:
         overtredingen = str(df_match_selected._cardEvents.values[0]).split(", ")
         selectedCards = st.multiselect(
-            "Overtredingen:" ,
+            "Overtredingen:",
             options=overtredingen,
         )
         if selectedCards:
-            match_prompt = (
-                match_prompt + str(".\n".join(selectedCards)) + ".\n"
-            )
+            match_prompt = match_prompt + str(".\n".join(selectedCards)) + ".\n"
     return match_prompt
 
 
@@ -437,26 +455,46 @@ def ST_uniqueEvents(
     match_prompt: str,
     df_match_selected: pd.DataFrame,
 ):
-    for key, value in  ast.literal_eval(df_match_selected.cardsHistoryYellow.values[0]).items():
-        if value in [5,10]:
-            st.write("<span style='font-size:14px'>{}. </span>".format(str(key))
-                             +"<span style='color:yellow;font-size:16px'>Cumulatief: {}</span>".format(str(value)),
-                             unsafe_allow_html=True)
+    for key, value in ast.literal_eval(
+        df_match_selected.cardsHistoryYellow.values[0]
+    ).items():
+        if value in [5, 10]:
+            st.write(
+                "<span style='font-size:14px'>{}. </span>".format(str(key))
+                + "<span style='color:yellow;font-size:16px'>Cumulatief: {}</span>".format(
+                    str(value)
+                ),
+                unsafe_allow_html=True,
+            )
         elif value > 10:
-            st.write("<span style='font-size:14px'>{}. </span>".format(str(key))
-                             +"<span style='color:yellow;font-size:16px'>Cumulatief: {}</span>".format(str(value)),
-                             unsafe_allow_html=True)
-    
-    for key, value in  ast.literal_eval(df_match_selected.cardsHistoryRed.values[0]).items():
+            st.write(
+                "<span style='font-size:14px'>{}. </span>".format(str(key))
+                + "<span style='color:yellow;font-size:16px'>Cumulatief: {}</span>".format(
+                    str(value)
+                ),
+                unsafe_allow_html=True,
+            )
+
+    for key, value in ast.literal_eval(
+        df_match_selected.cardsHistoryRed.values[0]
+    ).items():
         checkBox_schorsing = st.checkbox(label="Schorsingen", value=False)
-        st.write("<span style='font-size:14px'>{}. </span>".format(str(key))
-                            +"<span style='color:red;font-size:16px'>Cumulatief: {}</span>".format(str(value)),
-                            unsafe_allow_html=True)
+        st.write(
+            "<span style='font-size:14px'>{}. </span>".format(str(key))
+            + "<span style='color:red;font-size:16px'>Cumulatief: {}</span>".format(
+                str(value)
+            ),
+            unsafe_allow_html=True,
+        )
         if checkBox_schorsing:
-            match_prompt = match_prompt + str(key).replace("🟥 ", "") + " is geschorst voor de volgende wedstrijd vanwege een rode kaart."
+            match_prompt = (
+                match_prompt
+                + str(key).replace("🟥 ", "")
+                + " is geschorst voor de volgende wedstrijd vanwege een rode kaart."
+            )
     try:
         if checkBox_schorsing:
             match_prompt = match_prompt + "\n"
-    except: # Then no checkBox was available: No red cards.
+    except:  # Then no checkBox was available: No red cards.
         pass
-    return match_prompt 
+    return match_prompt
