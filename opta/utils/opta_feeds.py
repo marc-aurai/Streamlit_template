@@ -63,6 +63,7 @@ def get_tournamentschedule(
         # Concat all competitions together (seasons 23/22/21)
         df_all_matches = pd.concat([df_all_matches, df_matches], ignore_index=True)
 
+    df_all_matches["date"] = pd.to_datetime(df_all_matches["date"], format="%Y-%m-%dZ").dt.strftime('%a %d %b %Y')
     return df_all_matches[
         [
             "id",

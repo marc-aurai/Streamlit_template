@@ -18,7 +18,7 @@ def date(df: pd.DataFrame) -> list:
         list: list of all converted dates from the input dataframe column ['date'].
     """
     dates = df["date"].tolist()
-    dates = [dt.strptime(date, "%Y-%m-%dZ").date() for date in dates]
+    dates = [dt.strptime(date, "%a %d %b %Y").date() for date in dates]
     dates = [
         "Op "+
         str(calendar.day_name[date.weekday()])
