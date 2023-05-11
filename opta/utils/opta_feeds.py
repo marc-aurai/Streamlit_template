@@ -4,7 +4,6 @@ from tqdm import tqdm
 import numpy as np
 from googletrans import Translator
 from collections import Counter
-import ast
 
 
 # ID's van Eredivisie seizoenen volgorde 23/22/21
