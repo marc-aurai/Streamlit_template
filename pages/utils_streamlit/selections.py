@@ -1,4 +1,6 @@
 import ast
+import datetime as dt
+import locale
 
 import pandas as pd
 import streamlit as st
@@ -8,6 +10,7 @@ from st_aggrid.grid_options_builder import GridOptionsBuilder
 
 from pages.utils_streamlit.AWS import read_S3_club_logos
 
+locale.setlocale(category=locale.LC_ALL, locale="nl_NL")
 
 def ST_select_dataset(select_dateset) -> pd.DataFrame:
     """Access a group of matches (or single match) on a particular match date.
@@ -41,9 +44,10 @@ def ST_select_match_date(df: pd.DataFrame, select_date) -> pd.DataFrame:
         matches_on_date (pd.DataFrame): Returns a smaller dataframe,
         which only returns the rows that occured on the date the user selected.
     """
+    sorted_dates = sorted(df.date.unique().tolist(), key=lambda x: dt.datetime.strptime(x, '%a %d %b %Y'), reverse=True)
     with select_date:
         selected_match_date = st.selectbox(
-            "Wedstrijd datum: ", df.date.unique().tolist()
+            "Wedstrijd datum: ", sorted_dates
         )
     matches_on_date = df.loc[df["date"] == selected_match_date]
     return matches_on_date, selected_match_date
