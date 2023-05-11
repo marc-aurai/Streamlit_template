@@ -770,20 +770,20 @@ def get_substitute(
             substitute_home = []
             substitute_away = []
             for substitute in matchstats["liveData"]["substitute"]:
-                substitute_player = {}
-                substitute_player["playerOnName"] = substitute["playerOnName"] # Speler in begint altijd met clean sheet.
+                substitute_player = {} 
 
                 # Speler uit, voeg kaart toe tot naam
-                if substitute["playerOffId"] in [sub['playerId'] for sub in cards]:
-                    card = next(item for item in cards if item["playerId"] == substitute["playerOffId"]) # Select the right card if the player exist
-                    if card["type"] == "YC":
-                        substitute_player["playerOffName"] = "🟨 " + substitute["playerOffName"]
-                    if card["type"] == "Y2C":
-                        substitute_player["playerOffName"] = "🟨|🟨 " + substitute["playerOffName"]
-                    if card["type"] == "RC":
-                        substitute_player["playerOffName"] = "🟥 " + substitute["playerOffName"]
-                else:
-                    substitute_player["playerOffName"] = substitute["playerOffName"]
+                for substituteType in ["On", "Off"]:
+                    if substitute["player{}Id".format(substituteType)] in [sub['playerId'] for sub in cards]:
+                        card = next(item for item in cards if item["playerId"] == substitute["player{}Id".format(substituteType)]) # Select the right card if the player exist
+                        if card["type"] == "YC":
+                            substitute_player["player{}Name".format(substituteType)] = "🟨 " + substitute["player{}Name".format(substituteType)]
+                        if card["type"] == "Y2C":
+                            substitute_player["player{}Name".format(substituteType)] = "🟨|🟨 " + substitute["player{}Name".format(substituteType)]
+                        if card["type"] == "RC":
+                            substitute_player["player{}Name".format(substituteType)] = "🟥 " + substitute["player{}Name".format(substituteType)]
+                    else:
+                        substitute_player["player{}Name".format(substituteType)] = substitute["player{}Name".format(substituteType)]
 
                 substitute_player["timeMin"] = substitute["timeMin"]
                 substitute_player["subReason"] = substitute["subReason"]
