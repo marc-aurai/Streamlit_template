@@ -844,7 +844,9 @@ def get_substitute(
                         substitute_player[
                             "player{}Name".format(substituteType)
                         ] = substitute["player{}Name".format(substituteType)]
-
+                
+                substitute_player["playerOnId"] = substitute["playerOnId"]
+                substitute_player["playerOffId"] = substitute["playerOffId"]
                 substitute_player["timeMin"] = substitute["timeMin"]
                 substitute_player["subReason"] = substitute["subReason"]
                 if (
@@ -869,8 +871,42 @@ def get_substitute(
     return df
 
 
+def convertCardId(outletAuthKey, competition, cardsHistoryYellow, cardsHistoryRed):
+    try:
+        matchstats = requests.get(
+                    f"http://api.performfeeds.com/soccerdata/squads/{{}}/?_rt=b&_fmt=json&tmcl={{}}".format(
+                        outletAuthKey, competition
+                    )
+                ).json()["squad"]
+        
+        cardsHistoryYellow_Names= []
+        for cardsHistoryMatch in cardsHistoryYellow:
+            yellowCardsCounter = {}
+            for key, value in cardsHistoryMatch.items():
+                for team in matchstats:
+                    for person in team["person"]:
+                        if key == person["id"]:
+                            yellowCardsCounter["🟨 " + str(person["matchName"])] = value
+            cardsHistoryYellow_Names.append(yellowCardsCounter)
+
+        cardsHistoryRed_Names= []
+        for cardsHistoryMatch in cardsHistoryRed:
+            redCardsCounter = {}
+            for key, value in cardsHistoryMatch.items():
+                for team in matchstats:
+                    for person in team["person"]:
+                        if key == person["id"]:
+                            redCardsCounter["🟥 " + str(person["matchName"])] = value
+            cardsHistoryRed_Names.append(redCardsCounter)
+    except:
+        pass
+    return cardsHistoryYellow_Names, cardsHistoryRed_Names
+
+
 def total_cards_player(
-    df: pd.DataFrame = None,
+    df: pd.DataFrame,
+    outletAuthKey: str,
+    competition: str,
 ) -> pd.DataFrame:
     playerCardsYellow = []
     cardsHistoryYellow = []
@@ -882,35 +918,35 @@ def total_cards_player(
         try:
             for playerHome in home:
                 if any([card in playerHome["playerName"] for card in ["🟨"]]):
-                    playerCardsYellow.append(playerHome["playerName"])
-                    cardsMatchYellow.append(playerHome["playerName"])
+                    playerCardsYellow.append(playerHome["playerId"])
+                    cardsMatchYellow.append(playerHome["playerId"])
                 # Rood of twee keer geel in wedstrijd
                 if any([card in playerHome["playerName"] for card in ["🟨|🟨", "🟥"]]):
-                    playerCardsRed.append(playerHome["playerName"])
-                    cardsMatchRed.append(playerHome["playerName"])
+                    playerCardsRed.append(playerHome["playerId"])
+                    cardsMatchRed.append(playerHome["playerId"])
             for playerAway in away:    
                 if any([card in playerAway["playerName"] for card in ["🟨"]]):
-                    playerCardsYellow.append(playerAway["playerName"])
-                    cardsMatchYellow.append(playerAway["playerName"])
+                    playerCardsYellow.append(playerAway["playerId"])
+                    cardsMatchYellow.append(playerAway["playerId"])
                 if any([card in playerAway["playerName"] for card in ["🟨|🟨", "🟥"]]):
-                    playerCardsRed.append(playerAway["playerName"])
-                    cardsMatchRed.append(playerAway["playerName"])
+                    playerCardsRed.append(playerAway["playerId"])
+                    cardsMatchRed.append(playerAway["playerId"])
 
             for playerSubHome in subHome:
                 if any([card in playerSubHome["playerOnName"] for card in ["🟨"]]):
-                    playerCardsYellow.append(playerSubHome["playerOnName"])
-                    cardsMatchYellow.append(playerSubHome["playerOnName"])
+                    playerCardsYellow.append(playerSubHome["playerOnId"])
+                    cardsMatchYellow.append(playerSubHome["playerOnId"])
                 if any([card in playerSubHome["playerOnName"] for card in ["🟨|🟨", "🟥"]]):
-                    playerCardsRed.append(playerSubHome["playerOnName"])
-                    cardsMatchRed.append(playerSubHome["playerOnName"])
+                    playerCardsRed.append(playerSubHome["playerOnId"])
+                    cardsMatchRed.append(playerSubHome["playerOnId"])
 
             for playerSubAway in subAway:
                 if any([card in playerSubAway["playerOnName"] for card in ["🟨"]]):
-                    playerCardsYellow.append(playerSubAway["playerOnName"])
-                    cardsMatchYellow.append(playerSubAway["playerOnName"])
+                    playerCardsYellow.append(playerSubAway["playerOnId"])
+                    cardsMatchYellow.append(playerSubAway["playerOnId"])
                 if any([card in playerSubAway["playerOnName"] for card in ["🟨|🟨", "🟥"]]):
-                    playerCardsRed.append(playerSubAway["playerOnName"])
-                    cardsMatchRed.append(playerSubAway["playerOnName"])
+                    playerCardsRed.append(playerSubAway["playerOnId"])
+                    cardsMatchRed.append(playerSubAway["playerOnId"])
 
             countRed = [x for x in playerCardsRed if x in cardsMatchRed]
             countYellow = [x for x in playerCardsYellow if x in cardsMatchYellow]
@@ -919,6 +955,8 @@ def total_cards_player(
         except:
             cardsHistoryRed.append({})
             cardsHistoryYellow.append({})
+    cardsHistoryYellow, cardsHistoryRed = convertCardId(outletAuthKey, competition, cardsHistoryYellow, cardsHistoryRed)
+    
     df["cardsHistoryRed"] = cardsHistoryRed
     df["cardsHistoryYellow"] = cardsHistoryYellow
     return df

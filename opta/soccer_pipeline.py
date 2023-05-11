@@ -99,7 +99,7 @@ if __name__ == "__main__":
         .pipe(get_rankStatus, outletAuthKey, competition=competition_ID)
         .pipe(get_formations, outletAuthKey)
         .pipe(get_substitute,outletAuthKey)
-        .pipe(total_cards_player)
+        .pipe(total_cards_player, outletAuthKey, competition=competition_ID)
         .dropna()
         .pipe(prompt_engineering)
     )
