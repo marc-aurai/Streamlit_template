@@ -876,17 +876,23 @@ def total_cards_player(
     cardsHistoryYellow = []
     playerCardsRed = []
     cardsHistoryRed = []
-    for home, away in zip(df.formation_home.values, df.formation_away.values):
+    for home, subHome, away, subAway in zip(df.formation_home.values, df.substitutions_home.values, df.formation_away.values, df.substitutions_away.values):
         cardsMatchYellow = []
         cardsMatchRed = []
         try:
-            for playerHome, playerAway in zip(home, away):
+            for playerHome, playerSubHome, playerAway, playerSubAway in zip(home, subHome, away, subAway):
                 if any([card in playerHome["playerName"] for card in ["🟨"]]):
                     playerCardsYellow.append(playerHome["playerName"])
                     cardsMatchYellow.append(playerHome["playerName"])
                 if any([card in playerAway["playerName"] for card in ["🟨"]]):
                     playerCardsYellow.append(playerAway["playerName"])
                     cardsMatchYellow.append(playerAway["playerName"])
+                if any([card in playerSubHome["playerOnName"] for card in ["🟨"]]):
+                    playerCardsYellow.append(playerSubHome["playerOnName"])
+                    cardsMatchYellow.append(playerSubHome["playerOnName"])
+                if any([card in playerSubAway["playerOnName"] for card in ["🟨"]]):
+                    playerCardsYellow.append(playerSubAway["playerOnName"])
+                    cardsMatchYellow.append(playerSubAway["playerOnName"])
                 # Rood of twee keer geel in wedstrijd
                 if any([card in playerHome["playerName"] for card in ["🟨|🟨", "🟥"]]):
                     playerCardsRed.append(playerHome["playerName"])
@@ -894,6 +900,13 @@ def total_cards_player(
                 if any([card in playerAway["playerName"] for card in ["🟨|🟨", "🟥"]]):
                     playerCardsRed.append(playerAway["playerName"])
                     cardsMatchRed.append(playerAway["playerName"])
+                if any([card in playerSubHome["playerOnName"] for card in ["🟨|🟨", "🟥"]]):
+                    playerCardsRed.append(playerSubHome["playerOnName"])
+                    cardsMatchRed.append(playerSubHome["playerOnName"])
+                if any([card in playerSubAway["playerOnName"] for card in ["🟨|🟨", "🟥"]]):
+                    playerCardsRed.append(playerSubAway["playerOnName"])
+                    cardsMatchRed.append(playerSubAway["playerOnName"])
+
             countRed = [x for x in playerCardsRed if x in cardsMatchRed]
             countYellow = [x for x in playerCardsYellow if x in cardsMatchYellow]
             cardsHistoryRed.append(dict(Counter(countRed)))
