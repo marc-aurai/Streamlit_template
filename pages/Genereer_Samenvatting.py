@@ -114,7 +114,7 @@ if AWS_check or streamlit_check:
         st.sidebar.success("Geselecteerd: " + str(openai_model))
 
         # MAIN PAGE
-        select_dataset, empty_field,club_logo_home, uitslag, club_logo_away = st.columns((9, 3, 2, 2, 2))
+        select_dataset, empty_field,club_logo_home, uitslag, club_logo_away = st.columns((9, 2.25, 2.25, 2.25, 2.25))
         selected_dataset = ST_select_dataset(select_dataset)
 
         df = load_dataset(selected_dataset)
