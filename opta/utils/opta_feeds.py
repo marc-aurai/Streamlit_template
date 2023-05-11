@@ -880,29 +880,34 @@ def total_cards_player(
         cardsMatchYellow = []
         cardsMatchRed = []
         try:
-            for playerHome, playerSubHome, playerAway, playerSubAway in zip(home, subHome, away, subAway):
+            for playerHome in home:
                 if any([card in playerHome["playerName"] for card in ["🟨"]]):
                     playerCardsYellow.append(playerHome["playerName"])
                     cardsMatchYellow.append(playerHome["playerName"])
-                if any([card in playerAway["playerName"] for card in ["🟨"]]):
-                    playerCardsYellow.append(playerAway["playerName"])
-                    cardsMatchYellow.append(playerAway["playerName"])
-                if any([card in playerSubHome["playerOnName"] for card in ["🟨"]]):
-                    playerCardsYellow.append(playerSubHome["playerOnName"])
-                    cardsMatchYellow.append(playerSubHome["playerOnName"])
-                if any([card in playerSubAway["playerOnName"] for card in ["🟨"]]):
-                    playerCardsYellow.append(playerSubAway["playerOnName"])
-                    cardsMatchYellow.append(playerSubAway["playerOnName"])
                 # Rood of twee keer geel in wedstrijd
                 if any([card in playerHome["playerName"] for card in ["🟨|🟨", "🟥"]]):
                     playerCardsRed.append(playerHome["playerName"])
                     cardsMatchRed.append(playerHome["playerName"])
+            for playerAway in away:    
+                if any([card in playerAway["playerName"] for card in ["🟨"]]):
+                    playerCardsYellow.append(playerAway["playerName"])
+                    cardsMatchYellow.append(playerAway["playerName"])
                 if any([card in playerAway["playerName"] for card in ["🟨|🟨", "🟥"]]):
                     playerCardsRed.append(playerAway["playerName"])
                     cardsMatchRed.append(playerAway["playerName"])
+
+            for playerSubHome in subHome:
+                if any([card in playerSubHome["playerOnName"] for card in ["🟨"]]):
+                    playerCardsYellow.append(playerSubHome["playerOnName"])
+                    cardsMatchYellow.append(playerSubHome["playerOnName"])
                 if any([card in playerSubHome["playerOnName"] for card in ["🟨|🟨", "🟥"]]):
                     playerCardsRed.append(playerSubHome["playerOnName"])
                     cardsMatchRed.append(playerSubHome["playerOnName"])
+
+            for playerSubAway in subAway:
+                if any([card in playerSubAway["playerOnName"] for card in ["🟨"]]):
+                    playerCardsYellow.append(playerSubAway["playerOnName"])
+                    cardsMatchYellow.append(playerSubAway["playerOnName"])
                 if any([card in playerSubAway["playerOnName"] for card in ["🟨|🟨", "🟥"]]):
                     playerCardsRed.append(playerSubAway["playerOnName"])
                     cardsMatchRed.append(playerSubAway["playerOnName"])
