@@ -24,9 +24,9 @@ def plot_winstreak(streak: str, title_plt: str):
     streak_list = [
         "Gelijk"
         if match_status == "D"
-        else "Lose"
+        else "Verloren"
         if match_status == "L"
-        else "Win"
+        else "Gewonnen"
         if match_status == "W"
         else "None"
         for match_status in list(streak)

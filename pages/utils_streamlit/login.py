@@ -19,16 +19,16 @@ def check_password():
 
     if "password_correct" not in st.session_state:
         # First run, show inputs for username + password.
-        st.text_input("Username", on_change=password_entered, key="username")
+        st.text_input("Gebruikersnaam", key="username")
         st.text_input(
-            "Password", type="password", on_change=password_entered, key="password"
+            "Wachtwoord", type="password", on_change=password_entered, key="password"
         )
         return False
     elif not st.session_state["password_correct"]:
         # Password not correct, show input + error.
-        st.text_input("Username", on_change=password_entered, key="username")
+        st.text_input("Gebruikersnaam", on_change=password_entered, key="username")
         password_input = st.text_input(
-            "Password", type="password", on_change=password_entered, key="password"
+            "Wachtwoord", type="password", on_change=password_entered, key="password"
         )
         if password_input:
             st.error("😕 Gebruiker niet herkend of wachtwoord incorrect")

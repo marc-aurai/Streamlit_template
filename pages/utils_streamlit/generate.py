@@ -69,6 +69,7 @@ def generate_completion(
     home_team: str,
     match_streak_away: str,
     away_team: str,
+    selected_match_date: str,
 ):
     """This function will be called, when the button 'Genereer' has been pushed in the 
     Streamlit UI.
@@ -139,11 +140,10 @@ def generate_completion(
 
         st.session_state.message_history.append("".join(completion_chunks).strip())
 
-    for message_ in reversed(st.session_state.message_history):
-        st_message(
-            message_,
-            avatar_style="bottts-neutral",
-            seed="Aneka",
-            is_user=False,
-        )
+    st.download_button(
+                        "Download samenvatting",
+                        data = "".join(completion_chunks).strip(),
+                        file_name = "{}_vs_{}_{}.txt".format(home_team, away_team, selected_match_date),
+                    )
+    
     return "".join(completion_chunks).strip()

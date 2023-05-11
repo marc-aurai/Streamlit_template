@@ -261,8 +261,14 @@ def ST_select_formation(
                 df_match_selected["formation_" + str(team)].values[0]
             )
             df = pd.DataFrame(formation_away)
+            df.rename(
+                columns={"playerName": "Naam",
+                        "position": "Positie",
+                        "positionSide": "Positie kant"},
+                inplace=True,
+            )
             gd = GridOptionsBuilder.from_dataframe(
-                df[["playerName", "position", "positionSide"]]
+                df[["Naam", "Positie", "Positie kant"]]
             )
             gd.configure_pagination(enabled=False)
             gd.configure_selection(selection_mode="single", use_checkbox=True)
@@ -279,7 +285,7 @@ def ST_select_formation(
             }
 
             grid_table = AgGrid(
-                df[["playerName", "position", "positionSide"]],
+                df[["Naam", "Positie", "Positie kant"]],
                 gridOptions=gridOptions,
                 enable_enterprise_modules=False,
                 fit_columns_on_grid_load=True,
@@ -293,34 +299,34 @@ def ST_select_formation(
             for substitution in ast.literal_eval(substitutions):
                 with nameOff:
                     st.write(
-                        "<span style='font-size:10px'>{}</span>".format(
+                        "<span style='font-size:12px'>{}</span>".format(
                             substitution["playerOffName"]
                         )
-                        + "<span style='color:red;font-size:10px'>{}</span>".format(
+                        + "<span style='color:red;font-size:12px'>{}</span>".format(
                             "⬇"
                         ),
                         unsafe_allow_html=True,
                     )
                 with symbol:
                     st.write(
-                        "<span style='color:white;font-size:10px'>{}</span>".format(
+                        "<span style='color:white;font-size:12px'>{}</span>".format(
                             "⇆"
                         ),
                         unsafe_allow_html=True,
                     )
                 with nameOn:
                     st.write(
-                        "<span style='font-size:10px'>{}</span>".format(
+                        "<span style='font-size:12px'>{}</span>".format(
                             substitution["playerOnName"]
                         )
-                        + "<span style='color:green;font-size:10px'>{}</span>".format(
+                        + "<span style='color:green;font-size:12px'>{}</span>".format(
                             "⬆"
                         ),
                         unsafe_allow_html=True,
                     )
                 with timeMin:
                     st.write(
-                        "<span style='color:white;font-size:10px'>{}{}</span>".format(
+                        "<span style='color:white;font-size:12px'>{}{}</span>".format(
                             str(substitution["timeMin"]), "'"
                         ),
                         unsafe_allow_html=True,
@@ -345,7 +351,7 @@ def ST_select_formation(
                 df_selected = pd.DataFrame(grid_table["selected_rows"])
                 selected_player = (
                     df["playerId"]
-                    .loc[df["playerName"] == str(df_selected["playerName"].values[0])]
+                    .loc[df["Naam"] == str(df_selected["Naam"].values[0])]
                     .values[0]
                 )
                 player_stat = next(
@@ -354,8 +360,20 @@ def ST_select_formation(
                     if player["playerId"] == selected_player
                 )
                 player_stat = pd.DataFrame(
-                    player_stat, index=[0]
+                    player_stat, index=[1]
                 )  # .sort_index(axis=1)
+                player_stat.rename(
+                columns={"playerName": "Naam",
+                        "saves":"Reddingen",
+                        "goalAssist": "Assists",
+                        "accuratePass": "Passes Aangekomen",
+                        "totalPass": "Totaal Passes",
+                        "score_pogingen": "Score Pogingen",
+                        "minsPlayed": "Minuten Gespeeld",
+                        "Pass_accuracy": "Pass Accuraatheid"},
+                inplace=True,
+                )
+                player_stat = player_stat.set_index("Naam")
             except:
                 pass
         else:

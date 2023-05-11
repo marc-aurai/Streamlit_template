@@ -25,6 +25,8 @@ from pages.utils_streamlit.selections import (
     ST_uniqueEvents,
 )
 from pages.utils_streamlit.generate import generate_completion, generate_winstreak_plots
+from streamlit_chat import message as st_message
+
 
 if "message_history" not in st.session_state:
     st.session_state.message_history = []
@@ -71,6 +73,14 @@ def streamlit_page_config():
                 """
     st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 
+    multi_css=f'''
+            <style>
+            .stMultiSelect div div div div div:nth-of-type(2) {{visibility: hidden;}}
+            .stMultiSelect div div div div div:nth-of-type(2)::before {{visibility: visible; content:"Maak eventueel een keuze"}}
+            </style>
+            '''
+    st.markdown(multi_css, unsafe_allow_html=True)
+
 streamlit_page_config()
 if AWS_login.AWS:
     AWS_check = check_password_AWS()
@@ -88,7 +98,7 @@ if AWS_check or streamlit_check:
 
         # SIDEBAR
         TOKENS = st.sidebar.number_input(
-            label="Maximum length (Tokens)", min_value=20, max_value=800, value=400
+            label="Maximum length (Tokens)", min_value=20, max_value=800, value=700
         )
         temperature_GPT = st.sidebar.number_input(
             label="Model Temperature", min_value=0.0, max_value=1.0, value=0.4
@@ -182,7 +192,7 @@ if AWS_check or streamlit_check:
         match_prompt = ST_uniqueEvents(match_prompt, df_match_selected)
 
         input_data = st.text_area(
-            label="Wedstrijd Data", value=match_prompt, height=400, max_chars=None
+            label="Wedstrijd Data (Prompt)", value=match_prompt, height=400, max_chars=None
         )
         submit = st.button("Genereer")
 
@@ -203,14 +213,16 @@ if AWS_check or streamlit_check:
                         home_team,
                         match_streak_away,
                         away_team,
+                        selected_match_date,
                     )
-                    st.download_button(
-                        "Download samenvatting",
-                        data = completion,
-                        file_name = "{}_vs_{}_{}.txt".format(home_team, away_team, selected_match_date),
-                    )
-
-        st.info(
+        for message_ in reversed(st.session_state.message_history):
+            st_message(
+                message_,
+                avatar_style="bottts-neutral",
+                seed="Aneka",
+                is_user=False,
+            )
+        st.sidebar.info(
             """Model temperature:\n - Hogere waarden zoals 0.8 zal de output meer random 
                 maken\n - Lagere waarden zoals 0.2 zal de output meer gericht en deterministisch maken""",
             icon="ℹ️",
