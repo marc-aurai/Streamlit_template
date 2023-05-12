@@ -17,4 +17,6 @@ def streamlit_page_config():
 
 streamlit_page_config()
 
-st.date_input("Kies een datum")
+selected_data = st.date_input("Kies een datum")
+
+print(selected_data)
