@@ -438,6 +438,13 @@ def ST_select_keepers(
 
 
 def ST_club_logos(select_container, df_match_selected: pd.DataFrame, team: str):
+    """ Show a team logo inside a streamlit container 
+
+    Args:
+        select_container (_type_): _description_
+        df_match_selected (pd.DataFrame): _description_
+        team (str): _description_
+    """
     with select_container:
         try:
             st.image(
@@ -477,6 +484,16 @@ def ST_uniqueEvents(
     match_prompt: str,
     df_match_selected: pd.DataFrame,
 ):
+    """ Show cumulatief aantal kaarten per speler, indien het intressant is. 
+    Zoals schorsingen bijvoorbeeld.
+    Args:
+        match_prompt (str): 
+        df_match_selected (pd.DataFrame): De geselecteerde match (dataframe row), 
+        na het selecteren van: competitite -> datum -> wedstrijd
+
+    Returns:
+        _type_: _description_
+    """
     for key, value in ast.literal_eval(
         df_match_selected.cardsHistoryYellow.values[0]
     ).items():
