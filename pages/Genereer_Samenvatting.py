@@ -107,8 +107,8 @@ if AWS_check or streamlit_check:
             "Selecteer een model",
             (
                 "gpt-3.5-turbo",
-                "curie:ft-southfields-2023-04-05-11-53-31",
-                "davinci:ft-southfields-2023-04-07-18-26-14",
+                # "curie:ft-southfields-2023-04-05-11-53-31",
+                # "davinci:ft-southfields-2023-04-07-18-26-14",
             ),
         )
         st.sidebar.success("Geselecteerd: " + str(openai_model))
