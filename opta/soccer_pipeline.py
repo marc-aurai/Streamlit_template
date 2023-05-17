@@ -4,7 +4,6 @@ import os
 from dotenv import load_dotenv
 from utils.opta_feeds import (
     get_cup,
-    get_formations,
     get_injuries,
     get_keepers,
     get_matchstats_cards,
@@ -15,8 +14,15 @@ from utils.opta_feeds import (
     get_tournamentschedule,
     get_trainer,
     get_venue,
+)
+from utils.playerStats import (
+    get_totalCardsPlayer,
+    get_matchStats,
+    get_countPlayerGoals,
+)
+from utils.opstelling import(
+    get_formations,
     get_substitute,
-    total_cards_player,
 )
 from utils.soccer_prompt import prompt_engineering
 from utils.AWS import get_secret, data_to_S3
@@ -99,7 +105,9 @@ if __name__ == "__main__":
         .pipe(get_rankStatus, outletAuthKey, competition=competition_ID)
         .pipe(get_formations, outletAuthKey)
         .pipe(get_substitute,outletAuthKey)
-        .pipe(total_cards_player, outletAuthKey, competition=competition_ID)
+        .pipe(get_totalCardsPlayer, outletAuthKey, competition=competition_ID)
+        .pipe(get_matchStats, outletAuthKey)
+        .pipe(get_countPlayerGoals, outletAuthKey)
         .dropna()
         .pipe(prompt_engineering)
     )

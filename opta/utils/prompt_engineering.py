@@ -130,11 +130,17 @@ def goal_events(df: pd.DataFrame) -> list:
     ):
         goals_in_match = []
         for goals in all_matches_all_goals:
+            if goals["assistName"] != "":
+                assistName = ""
+                # assistName = " en de assist werd gemaakt door " + goals["assistName"]
+            else: 
+                assistName = ""
             if goals['goalType'] == "G":
                 goals_in_match.append(str(goals['scorerName'])+" scoorde voor "+
                                     str(goals["contestantName"])+" in de "+
                                     str(goals["periodId"])+"e helft in minuut "+
-                                    str(goals["timeMin"]))
+                                    str(goals["timeMin"])+
+                                    str(assistName))
             if goals['goalType'] == "PG":
                 goals_in_match.append(str(goals['scorerName'])+" scoorde een strafschop voor "+
                                     str(goals["contestantName"])+" in de "+

@@ -24,6 +24,13 @@ from pages.utils_streamlit.selections import (
     ST_cardEvents,
     ST_uniqueEvents,
 )
+from pages.utils_streamlit.stats import (
+    ST_show_formation, 
+    ST_SchotenOpDoel, 
+    ST_SchotenOpDoelTeam,
+    ST_AssistMakers,
+    ST_GoalMakers,
+)
 from pages.utils_streamlit.generate import generate_completion, generate_winstreak_plots
 from streamlit_chat import message as st_message
 
@@ -90,7 +97,7 @@ else:
     AWS_check = False
 
 if AWS_check or streamlit_check:
-    tab1, tab2, tab3 = st.tabs(["Voetbal", "Handbal", "Rugby League"])
+    tab1, tab2, tab3, tab4 = st.tabs(["Voetbal", "Voetbal Stats", "Handbal", "Rugby League"])
     with tab1:
         SF_logo = load_images()
         st.sidebar.success("Genereer een samenvatting op deze demo pagina.")
@@ -129,7 +136,8 @@ if AWS_check or streamlit_check:
             home_team,
             away_team,
             df_match_selected,
-        ) = ST_get_data_match(df, selected_match)
+            df_playerStats_selected,
+        ) = ST_get_data_match(df, selected_match, df_player_stats)
             
         ST_club_logos(club_logo_home, df_match_selected, team="home")
         with uitslag: 
@@ -226,4 +234,33 @@ if AWS_check or streamlit_check:
             """Model temperature:\n - Hogere waarden zoals 0.8 zal de output meer random 
                 maken\n - Lagere waarden zoals 0.2 zal de output meer gericht en deterministisch maken""",
             icon="ℹ️",
+        )
+
+    with tab2:
+        opt1, club_logo_home, opt2, club_logo_away, opt3 = st.columns((1.5,1,3,1,1.5))
+        ST_club_logos(club_logo_home, df_match_selected, team="home")
+        ST_club_logos(club_logo_away, df_match_selected, team="away")
+
+        select_schoten_home, select_schoten_away = st.columns(2)
+        ST_SchotenOpDoel(select_schoten_home, df_playerStats_selected, team="Home")
+        ST_SchotenOpDoel(select_schoten_away, df_playerStats_selected, team="Away")
+
+        select_schoten_homeTeam, select_schoten_awayTeam = st.columns(2)
+        ST_SchotenOpDoelTeam(select_schoten_homeTeam, df_playerStats_selected, team="Home", team_name = home_team)
+        ST_SchotenOpDoelTeam(select_schoten_awayTeam, df_playerStats_selected, team="Away", team_name = away_team)
+
+        goals_Home, goals_away = st.columns(2)
+        ST_GoalMakers(goals_Home, df_playerStats_selected, team_name=home_team)
+        ST_GoalMakers(goals_away, df_playerStats_selected, team_name=away_team)
+
+        assists_Home, assists_away = st.columns(2)
+        ST_AssistMakers(assists_Home, df_playerStats_selected, team_name=home_team)
+        ST_AssistMakers(assists_away, df_playerStats_selected, team_name=away_team)
+
+        select_formations_home, select_formations_away = st.columns(2)
+        match_prompt = ST_show_formation(
+            match_prompt, select_formations_home, df_match_selected, df_player_stats, team="home"
+        )
+        match_prompt = ST_show_formation(
+            match_prompt, select_formations_away, df_match_selected, df_player_stats, team="away"
         )

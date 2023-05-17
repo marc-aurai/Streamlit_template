@@ -49,11 +49,17 @@ def select_features(df: pd.DataFrame) -> pd.DataFrame:
             "formation_away",
             "player_stats_home",
             "player_stats_away",
+            "MatchStatsHome",
+            "MatchStatsAway",
+            "SchotenOpDoel_Home",
+            "SchotenOpDoel_Away",
             "substitutions_home",
             "substitutions_away",
             "goalMakers",
             "cardsHistoryRed",
             "cardsHistoryYellow",
+            "GoalCounter",
+            "AssistCounter",
         ]
     ]
 
@@ -83,15 +89,7 @@ def prompt_engineering(df: pd.DataFrame):
     prompt_df["card_events"] = [
         ", ".join(map(str, l)) for l in prompt_df["card_events"]
     ]
-    player_stats = pd.DataFrame()
-    player_stats = df_selection[
-        [
-            "date",
-            "player_stats_home",
-            "player_stats_away",
-        ]
-    ].copy()
-
+    
     openai_df = pd.DataFrame()
     openai_df = df_selection[
         [
@@ -115,6 +113,8 @@ def prompt_engineering(df: pd.DataFrame):
             "goalMakers",
             "cardsHistoryRed",
             "cardsHistoryYellow",
+            "homeContestantId",
+            "awayContestantId",
         ]
     ].copy()
     openai_df["home_team"] = df_selection["homeContestantName"]
@@ -135,6 +135,22 @@ def prompt_engineering(df: pd.DataFrame):
     openai_df["_rankStatus_home"] = prompt_df.rank_status_home
     openai_df["_rankStatus_away"] = prompt_df.rank_status_away
 
+    player_stats = pd.DataFrame()
+    player_stats = df_selection[
+        [
+            "date",
+            "player_stats_home",
+            "player_stats_away",
+            "MatchStatsHome", 
+            "MatchStatsAway",
+            "SchotenOpDoel_Home",
+            "SchotenOpDoel_Away",
+            "GoalCounter",
+            "AssistCounter",
+        ]
+    ].copy()
+    player_stats["match"] = openai_df["match"]
+
     openai_df["prompt"] = (
         "Geef het artikel een lijst met 4 pakkende titels en schrijf een voetbal wedstrijd artikel inclusief paragrafen.\n"
         # + "De eerste keer dat iemand genoemd wordt dient de voornaam en achternaam gebruikt te worden.\n" 
@@ -142,11 +158,6 @@ def prompt_engineering(df: pd.DataFrame):
         + "Gebruik de volgende informatie:\n"
         + prompt_df.final_score.values
         + ".\n"
-        # + prompt_df.dates.values
-        # + " "
-        # + prompt_df.home_vs_away.values
-        # + " "
-        # + prompt_df.venue.values
-        # + ".\n"
     )
+    
     return openai_df, player_stats

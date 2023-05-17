@@ -73,7 +73,7 @@ def ST_select_match(select_match, matches_on_date: pd.DataFrame) -> str:
 
 
 def ST_get_data_match(
-    df: pd.DataFrame, selected_match: str
+    df: pd.DataFrame, selected_match: str, df_playerStats: pd.DataFrame
 ) -> tuple[str, str, str, str, str, pd.DataFrame]:
     """Get all the available data from a specific date and matchthat originates from OPTA and
     processed by the soccer_pipeline.py script.
@@ -98,6 +98,7 @@ def ST_get_data_match(
     home_team = df["home_team"].loc[df["match"] == selected_match].to_list()[0]
     away_team = df["away_team"].loc[df["match"] == selected_match].to_list()[0]
     df_match_selected = df.loc[df["match"] == selected_match]
+    df_playerStats_selected = df_playerStats.loc[df_playerStats["match"] == selected_match]
     return (
         match_prompt,
         match_streak_home,
@@ -105,6 +106,7 @@ def ST_get_data_match(
         home_team,
         away_team,
         df_match_selected,
+        df_playerStats_selected
     )
 
 

@@ -3,7 +3,6 @@ import requests
 from tqdm import tqdm
 import numpy as np
 from googletrans import Translator
-from collections import Counter
 
 
 # ID's van Eredivisie seizoenen volgorde 23/22/21
@@ -99,7 +98,10 @@ def get_name(df, type: str = None, outletAuthKey: str = None, competition: str =
         )
         return str(name)
     except:
-        return str(df["scorerName"]).split(". ", 1)[1]
+        try:
+            return str(df[str(type) + "Name"]).split(". ", 1)[1]
+        except: # Als er geen assistnaam aanwezig is.
+            return ""
 
 
 def get_matchstats_cards(
@@ -226,7 +228,14 @@ def get_matchstats_goals(
                         competition=competition,
                     ),
                     "goalType": goal["type"],
+                    "assistName": get_name(
+                        goal,
+                        type="assistPlayer",
+                        outletAuthKey=outletAuthKey,
+                        competition=competition,
+                    ),
                 }
+
                 for goal in matchstats
             ]
             goalMakers = [
@@ -678,285 +687,3 @@ def get_injuries(
     )
     return df
 
-
-def get_formations(
-    df: pd.DataFrame = None,
-    outletAuthKey: str = None,
-) -> pd.DataFrame:
-    # Create container for new column
-    formations_home = []
-    player_stats_home = []
-    formations_away = []
-    player_stats_away = []
-    print("\nGet formations..")
-
-    # Loop through df to get match id's
-    for match in tqdm(df.index):
-        try:
-            matchstats_formations = requests.get(
-                f"http://api.performfeeds.com/soccerdata/matchstats/{{}}/?_rt=b&_fmt=json&fx={{}}".format(
-                    outletAuthKey, df["id"][match]
-                )
-            ).json()["liveData"]["lineUp"]
-            cards = requests.get(
-                f"http://api.performfeeds.com/soccerdata/matchstats/{{}}/?_rt=b&_fmt=json&fx={{}}".format(
-                    outletAuthKey, df["id"][match]
-                )
-            ).json()["liveData"]["card"]
-            formation_home = []
-            player_stat_home = []
-            formation_away = []
-            player_stat_away = []
-            for team in range(2):
-                for player_formation in matchstats_formations[team]["player"]:
-                    if player_formation["position"] != "Substitute":
-                        formation_player = {}
-                        stat_player = {}
-                        if player_formation["playerId"] in [
-                            sub["playerId"] for sub in cards
-                        ]:
-                            card = next(
-                                item
-                                for item in cards
-                                if item["playerId"] == player_formation["playerId"]
-                            )  # Select the right card if the player exist
-                            if card["type"] == "YC":
-                                formation_player["playerName"] = (
-                                    "🟨 " + player_formation["lastName"]
-                                )
-                            if card["type"] == "Y2C":
-                                formation_player["playerName"] = (
-                                    "🟨|🟨 " + player_formation["lastName"]
-                                )
-                            if card["type"] == "RC":
-                                formation_player["playerName"] = (
-                                    "🟥 " + player_formation["lastName"]
-                                )
-                        else:
-                            formation_player["playerName"] = player_formation[
-                                "lastName"
-                            ]
-                        formation_player["position"] = player_formation["position"]
-                        formation_player["positionSide"] = player_formation[
-                            "positionSide"
-                        ]
-                        formation_player["playerId"] = player_formation["playerId"]
-                        stat_player["playerName"] = formation_player[
-                            "playerName"
-                        ]  # Copy from formation_player, which includes cards
-                        stat_player["playerId"] = player_formation["playerId"]
-                        for stat in player_formation["stat"]:
-                            if stat["type"] in [
-                                "minsPlayed",
-                                "totalPass",
-                                "accuratePass",
-                                "goalAssist",
-                                "totalScoringAtt",
-                                "saves",
-                            ]:
-                                if stat["type"] == "totalScoringAtt":
-                                    stat_player["score_pogingen"] = stat["value"]
-                                else:
-                                    stat_player[stat["type"]] = stat["value"]
-                        try:
-                            stat_player["Pass_accuracy"] = round(
-                                (int(stat_player["accuratePass"]) * 100)
-                                / int(stat_player["totalPass"]),
-                                2,
-                            )
-                        except:
-                            pass
-                        if team == 0:
-                            formation_home.append(formation_player)
-                            player_stat_home.append(stat_player)
-                        if team == 1:
-                            formation_away.append(formation_player)
-                            player_stat_away.append(stat_player)
-        except:
-            formation_home = []
-            formation_away = []
-            player_stat_home = []
-            player_stat_away = []
-        formations_home.append(formation_home)
-        formations_away.append(formation_away)
-        player_stats_home.append(player_stat_home)
-        player_stats_away.append(player_stat_away)
-
-    # Add list to dataframe
-    df["formation_home"] = formations_home
-    df["formation_away"] = formations_away
-    df["player_stats_home"] = player_stats_home
-    df["player_stats_away"] = player_stats_away
-    return df
-
-
-def get_substitute(
-    df: pd.DataFrame = None,
-    outletAuthKey: str = None,
-) -> pd.DataFrame:
-    substitutions_home = []
-    substitutions_away = []
-    print("\nGet substitute..")
-
-    # Loop through df to get match id's
-    for match in tqdm(df.index):
-        try:
-            matchstats = requests.get(
-                f"http://api.performfeeds.com/soccerdata/matchstats/{{}}/?_rt=b&_fmt=json&fx={{}}".format(
-                    outletAuthKey, df["id"][match]
-                )
-            ).json()
-            cards = requests.get(
-                f"http://api.performfeeds.com/soccerdata/matchstats/{{}}/?_rt=b&_fmt=json&fx={{}}".format(
-                    outletAuthKey, df["id"][match]
-                )
-            ).json()["liveData"]["card"]
-            substitute_home = []
-            substitute_away = []
-            for substitute in matchstats["liveData"]["substitute"]:
-                substitute_player = {}
-
-                # Speler uit, voeg kaart toe tot naam
-                for substituteType in ["On", "Off"]:
-                    if substitute["player{}Id".format(substituteType)] in [
-                        sub["playerId"] for sub in cards
-                    ]:
-                        card = next(
-                            item
-                            for item in cards
-                            if item["playerId"]
-                            == substitute["player{}Id".format(substituteType)]
-                        )  # Select the right card if the player exist
-                        if card["type"] == "YC":
-                            substitute_player["player{}Name".format(substituteType)] = (
-                                "🟨 " + substitute["player{}Name".format(substituteType)]
-                            )
-                        if card["type"] == "Y2C":
-                            substitute_player["player{}Name".format(substituteType)] = (
-                                "🟨|🟨 "
-                                + substitute["player{}Name".format(substituteType)]
-                            )
-                        if card["type"] == "RC":
-                            substitute_player["player{}Name".format(substituteType)] = (
-                                "🟥 " + substitute["player{}Name".format(substituteType)]
-                            )
-                    else:
-                        substitute_player[
-                            "player{}Name".format(substituteType)
-                        ] = substitute["player{}Name".format(substituteType)]
-                
-                substitute_player["playerOnId"] = substitute["playerOnId"]
-                substitute_player["playerOffId"] = substitute["playerOffId"]
-                substitute_player["timeMin"] = substitute["timeMin"]
-                substitute_player["subReason"] = substitute["subReason"]
-                if (
-                    substitute["contestantId"]
-                    == matchstats["matchInfo"]["contestant"][0]["id"]
-                ):
-                    substitute_home.append(substitute_player)
-                if (
-                    substitute["contestantId"]
-                    == matchstats["matchInfo"]["contestant"][1]["id"]
-                ):
-                    substitute_away.append(substitute_player)
-        except:
-            substitute_home = []
-            substitute_away = []
-        substitutions_home.append(substitute_home)
-        substitutions_away.append(substitute_away)
-
-    # Add list to dataframe
-    df["substitutions_home"] = substitutions_home
-    df["substitutions_away"] = substitutions_away
-    return df
-
-
-def convertCardId(outletAuthKey, competition, cardsHistoryYellow, cardsHistoryRed):
-    try:
-        matchstats = requests.get(
-                    f"http://api.performfeeds.com/soccerdata/squads/{{}}/?_rt=b&_fmt=json&tmcl={{}}".format(
-                        outletAuthKey, competition
-                    )
-                ).json()["squad"]
-        
-        cardsHistoryYellow_Names= []
-        for cardsHistoryMatch in cardsHistoryYellow:
-            yellowCardsCounter = {}
-            for key, value in cardsHistoryMatch.items():
-                for team in matchstats:
-                    for person in team["person"]:
-                        if key == person["id"]:
-                            yellowCardsCounter["🟨 " + str(person["matchName"])] = value
-            cardsHistoryYellow_Names.append(yellowCardsCounter)
-
-        cardsHistoryRed_Names= []
-        for cardsHistoryMatch in cardsHistoryRed:
-            redCardsCounter = {}
-            for key, value in cardsHistoryMatch.items():
-                for team in matchstats:
-                    for person in team["person"]:
-                        if key == person["id"]:
-                            redCardsCounter["🟥 " + str(person["matchName"])] = value
-            cardsHistoryRed_Names.append(redCardsCounter)
-    except:
-        pass
-    return cardsHistoryYellow_Names, cardsHistoryRed_Names
-
-
-def total_cards_player(
-    df: pd.DataFrame,
-    outletAuthKey: str,
-    competition: str,
-) -> pd.DataFrame:
-    playerCardsYellow = []
-    cardsHistoryYellow = []
-    playerCardsRed = []
-    cardsHistoryRed = []
-    for home, subHome, away, subAway in zip(df.formation_home.values, df.substitutions_home.values, df.formation_away.values, df.substitutions_away.values):
-        cardsMatchYellow = []
-        cardsMatchRed = []
-        try:
-            for playerHome in home:
-                if any([card in playerHome["playerName"] for card in ["🟨"]]):
-                    playerCardsYellow.append(playerHome["playerId"])
-                    cardsMatchYellow.append(playerHome["playerId"])
-                # Rood of twee keer geel in wedstrijd
-                if any([card in playerHome["playerName"] for card in ["🟨|🟨", "🟥"]]):
-                    playerCardsRed.append(playerHome["playerId"])
-                    cardsMatchRed.append(playerHome["playerId"])
-            for playerAway in away:    
-                if any([card in playerAway["playerName"] for card in ["🟨"]]):
-                    playerCardsYellow.append(playerAway["playerId"])
-                    cardsMatchYellow.append(playerAway["playerId"])
-                if any([card in playerAway["playerName"] for card in ["🟨|🟨", "🟥"]]):
-                    playerCardsRed.append(playerAway["playerId"])
-                    cardsMatchRed.append(playerAway["playerId"])
-
-            for playerSubHome in subHome:
-                if any([card in playerSubHome["playerOnName"] for card in ["🟨"]]):
-                    playerCardsYellow.append(playerSubHome["playerOnId"])
-                    cardsMatchYellow.append(playerSubHome["playerOnId"])
-                if any([card in playerSubHome["playerOnName"] for card in ["🟨|🟨", "🟥"]]):
-                    playerCardsRed.append(playerSubHome["playerOnId"])
-                    cardsMatchRed.append(playerSubHome["playerOnId"])
-
-            for playerSubAway in subAway:
-                if any([card in playerSubAway["playerOnName"] for card in ["🟨"]]):
-                    playerCardsYellow.append(playerSubAway["playerOnId"])
-                    cardsMatchYellow.append(playerSubAway["playerOnId"])
-                if any([card in playerSubAway["playerOnName"] for card in ["🟨|🟨", "🟥"]]):
-                    playerCardsRed.append(playerSubAway["playerOnId"])
-                    cardsMatchRed.append(playerSubAway["playerOnId"])
-
-            countRed = [x for x in playerCardsRed if x in cardsMatchRed]
-            countYellow = [x for x in playerCardsYellow if x in cardsMatchYellow]
-            cardsHistoryRed.append(dict(Counter(countRed)))
-            cardsHistoryYellow.append(dict(Counter(countYellow)))
-        except:
-            cardsHistoryRed.append({})
-            cardsHistoryYellow.append({})
-    cardsHistoryYellow, cardsHistoryRed = convertCardId(outletAuthKey, competition, cardsHistoryYellow, cardsHistoryRed)
-    
-    df["cardsHistoryRed"] = cardsHistoryRed
-    df["cardsHistoryYellow"] = cardsHistoryYellow
-    return df
