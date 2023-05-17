@@ -22,11 +22,14 @@ def get_formations(
                     outletAuthKey, df["id"][match]
                 )
             ).json()["liveData"]["lineUp"]
-            cards = requests.get(
-                f"http://api.performfeeds.com/soccerdata/matchstats/{{}}/?_rt=b&_fmt=json&fx={{}}".format(
-                    outletAuthKey, df["id"][match]
-                )
-            ).json()["liveData"]["card"]
+            try:
+                cards = requests.get(
+                    f"http://api.performfeeds.com/soccerdata/matchstats/{{}}/?_rt=b&_fmt=json&fx={{}}".format(
+                        outletAuthKey, df["id"][match]
+                    )
+                ).json()["liveData"]["card"]
+            except:
+                cards = {}
             formation_home = []
             player_stat_home = []
             formation_away = []
