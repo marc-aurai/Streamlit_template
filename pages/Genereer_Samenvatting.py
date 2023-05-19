@@ -210,6 +210,7 @@ if AWS_check or streamlit_check:
         generate_winstreak_plots(
                 match_streak_home, home_team, match_streak_away, away_team
             )
+        st.markdown("""---""")
 
         if submit:
             with st.spinner("Even een samenvatting aan het schrijven, momentje..."):
@@ -244,7 +245,6 @@ if AWS_check or streamlit_check:
         ST_clubLogos(club_logo_away, df_match_selected, team="away", logo_fold=logo_folder)
 
         st.markdown("<h2 style='text-align: center; color: white;'>Speler Statistieken</h2>", unsafe_allow_html=True)
-        st.markdown("""---""")
         select_schoten_home, select_schoten_away = st.columns(2)
         ST_SchotenOpDoel(select_schoten_home, df_playerStats_selected, team="Home")
         ST_SchotenOpDoel(select_schoten_away, df_playerStats_selected, team="Away")
@@ -258,13 +258,11 @@ if AWS_check or streamlit_check:
         ST_AssistMakers(assists_away, df_playerStats_selected, team_name=away_team)
 
         st.markdown("<h2 style='text-align: center; color: white;'>Team Statistieken</h2>", unsafe_allow_html=True)
-        st.markdown("""---""")
         select_schoten_homeTeam, select_schoten_awayTeam = st.columns(2)
         ST_SchotenOpDoelTeam(select_schoten_homeTeam, df_playerStats_selected, team="Home", team_name = home_team)
         ST_SchotenOpDoelTeam(select_schoten_awayTeam, df_playerStats_selected, team="Away", team_name = away_team)
 
         st.markdown("<h2 style='text-align: center; color: white;'>Opstelling</h2>", unsafe_allow_html=True)
-        st.markdown("""---""")
         select_formations_home, select_formations_away = st.columns(2)
         match_prompt = ST_showFormation(
             match_prompt, select_formations_home, df_match_selected, df_player_stats, team="home"
