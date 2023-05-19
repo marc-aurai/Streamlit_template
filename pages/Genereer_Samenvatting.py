@@ -123,7 +123,7 @@ if AWS_check or streamlit_check:
         opt4, club_logo_home, uitslag, club_logo_away, opt5 = st.columns((1.5,1,3,1,1.5))
         st.markdown("""---""")
 
-        select_dataset, opt6 = st.columns(2)
+        select_dataset, opt = st.columns(2)
         selected_dataset, logo_folder = ST_selectDataset(select_dataset)
 
         df = load_dataset(selected_dataset)
@@ -156,47 +156,45 @@ if AWS_check or streamlit_check:
             match_prompt, select_injury_away, df_match_selected, team="away",
         )
 
-        selectCards, select_optioneel4 = st.columns(2)
+        selectCards, opt = st.columns(2)
 
-        select_intro, select_optioneel = st.columns(2)
+        select_intro, select_trainers = st.columns(2)
         match_prompt = ST_selectIntro(
         match_prompt, select_intro, df_match_selected
-        )
-
-        select_goals, select_trainers = st.columns(2)
-        match_prompt = ST_selectGoals(
-            match_prompt, select_goals, df_match_selected
         )
         match_prompt = ST_selectTrainers(
             match_prompt, select_trainers, df_match_selected
         )
 
-        select_keepers, select_optioneel3 = st.columns(2)
-        match_prompt = ST_selectKeepers(
-            match_prompt, select_keepers, df_match_selected
-        )
-
-        select_rank_home, select_possession = st.columns(2)
-        match_prompt = ST_selectRank(
-            match_prompt, select_rank_home, df_match_selected, team="home"
-
+        select_goals, select_possession = st.columns(2)
+        match_prompt = ST_selectGoals(
+            match_prompt, select_goals, df_match_selected
         )
         match_prompt = ST_selectPossession(
             match_prompt, select_possession, df_match_selected
         )
+        
+        select_keepers, opt = st.columns(2)
+        match_prompt = ST_selectKeepers(
+            match_prompt, select_keepers, df_match_selected
+        )
 
-        select_rank_away, select_optioneel2 = st.columns(2)
+        select_rank_home, select_rank_away = st.columns(2)
+        match_prompt = ST_selectRank(
+            match_prompt, select_rank_home, df_match_selected, team="home"
+
+        )
         match_prompt = ST_selectRank(
             match_prompt, select_rank_away, df_match_selected, team="away"
         )
 
-        select_formations_home, select_formations_away = st.columns(2)
-        match_prompt = ST_selectFormation(
-            match_prompt, select_formations_home, df_match_selected, df_player_stats, team="home"
-        )
-        match_prompt = ST_selectFormation(
-            match_prompt, select_formations_away, df_match_selected, df_player_stats, team="away"
-        )
+        # select_formations_home, select_formations_away = st.columns(2)
+        # match_prompt = ST_selectFormation(
+        #     match_prompt, select_formations_home, df_match_selected, df_player_stats, team="home"
+        # )
+        # match_prompt = ST_selectFormation(
+        #     match_prompt, select_formations_away, df_match_selected, df_player_stats, team="away"
+        # )
 
         match_prompt = ST_cardEvents(match_prompt, selectCards, df_match_selected)
         match_prompt = ST_uniqueEvents(match_prompt, df_match_selected)

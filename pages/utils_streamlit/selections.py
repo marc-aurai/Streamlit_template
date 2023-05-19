@@ -134,7 +134,7 @@ def ST_selectInjuries(
         injuries = ast.literal_eval(df_match_selected["{}_injuries".format(team)].values[0])
         injuries = [injury for injury in injuries if injury != "None"]
         selected_injuries = st.multiselect(
-            "{} blessures: ".format(df_match_selected["{}_team".format(team)].values[0]),
+            "(:blue[{}]) {} blessures: ".format(len(injuries), df_match_selected["{}_team".format(team)].values[0]),
             options=injuries,
         )
         if selected_injuries:
@@ -261,6 +261,7 @@ def ST_selectFormation(
                 ".ag-row-odd": {"background-color": "#100c44", "color": "#FFFFFF"},
                 ".ag-row-even": {"background-color": "#100c44", "color": "#FFFFFF"},
                 ".ag-subheader": {"border-color": "#100c44"},
+                ".ag-material": {"primary-color": "#4285F4"},
             }
 
             grid_table = AgGrid(
@@ -450,7 +451,7 @@ def ST_cardEvents(match_prompt: str, select_container, df_match_selected: pd.Dat
     with select_container:
         overtredingen = str(df_match_selected._cardEvents.values[0]).split(", ")
         selectedCards = st.multiselect(
-            "Overtredingen:",
+            "(:blue[{}]) Overtredingen:".format(len(overtredingen)),
             options=overtredingen,
         )
         if selectedCards:
