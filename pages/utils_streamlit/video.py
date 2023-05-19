@@ -9,7 +9,7 @@ def ST_readVideo():
         all_videos = []
         for obj in bucket.objects.filter(Delimiter='/', Prefix='uploads/'):
             all_videos.append(obj.key)
-        print(all_videos)
+        st.text_area(all_videos)
         # all_videos.remove("test_videos_streamlit/")
 
         # selected_video = st.selectbox(
