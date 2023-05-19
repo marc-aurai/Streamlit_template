@@ -27,15 +27,18 @@ def videoMetaData():
     return df, s3
 
 def ST_readVideo():
-    df, s3 = videoMetaData()
-    selectedTitle = st.selectbox(
-                "Selecteer video: ", df.title.values
-            )
-    selected_video = df.loc[df["title"] == selectedTitle]
-
     try:
-        obj = s3.Object("wsc-espn-site", "uploads/"+str(selected_video.filename.values[0])+".mp4")
-        body = obj.get()['Body'].read()
-        st.video(body)
+        df, s3 = videoMetaData()
+        selectedTitle = st.selectbox(
+                    "Selecteer video: ", df.title.values
+                )
+        selected_video = df.loc[df["title"] == selectedTitle]
+
+        try:
+            obj = s3.Object("wsc-espn-site", "uploads/"+str(selected_video.filename.values[0])+".mp4")
+            body = obj.get()['Body'].read()
+            st.video(body)
+        except:
+            st.write("Video not supported.")
     except:
-        st.write("Video not supported.")
+        st.write("Initialisatie nog bezig.")
