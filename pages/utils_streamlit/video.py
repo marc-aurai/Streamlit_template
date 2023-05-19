@@ -12,8 +12,8 @@ def videoMetaData():
 
     all_videos = []
     for obj in bucket.objects.filter(Delimiter='/', Prefix='uploads/'):
-        if ".json" in obj.key:
-            all_videos.append(obj.key)
+        if ".mp4" in obj.key:
+            all_videos.append(str(obj.key).replace(".mp4", ".json"))
 
     videoData = []
     for file in all_videos:
