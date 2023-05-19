@@ -31,6 +31,7 @@ from pages.utils_streamlit.stats import (
     ST_GoalMakers,
     ST_ongeslagenStreak,
 )
+from pages.utils_streamlit.video import ST_readVideo
 from pages.utils_streamlit.generate import generate_completion, generate_winstreak_plots
 from streamlit_chat import message as st_message
 
@@ -97,7 +98,7 @@ else:
     AWS_check = False
 
 if AWS_check or streamlit_check:
-    tab_voetbal, tab_voetbalStats, tab_handbal, tab_rugby = st.tabs(["Voetbal", "Voetbal Stats", "Handbal", "Rugby League"])
+    tab_voetbal, tab_voetbalStats, tab_voetbalVideos, tab_handbal, tab_rugby = st.tabs(["Voetbal", "Voetbal Stats", "Voetbal Videos", "Handbal", "Rugby League"])
     with tab_voetbal:
         SF_logo = load_images()
         st.sidebar.success("Genereer een samenvatting op deze demo pagina.")
@@ -274,3 +275,6 @@ if AWS_check or streamlit_check:
         match_prompt = ST_showFormation(
             match_prompt, select_formations_away, df_match_selected, df_player_stats, team="away"
         )
+
+    with tab_voetbalVideos:
+        ST_readVideo()
