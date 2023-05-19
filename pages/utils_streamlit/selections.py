@@ -29,7 +29,11 @@ def ST_select_dataset(select_dateset) -> pd.DataFrame:
             "Voetbal competitie: ",
             ["Eredivisie 22-23", "Eredivisie 21-22", "KKD 22-23"],
         )
-    return selected_dataset
+    if selected_dataset == "KKD 22-23":
+        logo_folder = "KKD_logos"
+    else:
+        logo_folder = "eredivisie_logos"
+    return selected_dataset, logo_folder
 
 
 def ST_select_match_date(df: pd.DataFrame, select_date) -> pd.DataFrame:
@@ -439,7 +443,7 @@ def ST_select_keepers(
     return match_prompt
 
 
-def ST_club_logos(select_container, df_match_selected: pd.DataFrame, team: str):
+def ST_club_logos(select_container, df_match_selected: pd.DataFrame, team: str, logo_fold: str = "eredivisie_logos"):
     """ Show a team logo inside a streamlit container 
 
     Args:
@@ -452,7 +456,8 @@ def ST_club_logos(select_container, df_match_selected: pd.DataFrame, team: str):
             st.image(
                 read_S3_club_logos(
                     bucketName="gpt-ai-tool-wsc",
-                    fileName="eredivisie_logos/{}.png".format(
+                    fileName="logos/{}/{}.png".format(
+                        logo_fold,
                         df_match_selected[str(team) + "_team"].values[0]
                     ),
                 )
@@ -461,7 +466,8 @@ def ST_club_logos(select_container, df_match_selected: pd.DataFrame, team: str):
             try:
                 st.image(
                     Image.open(
-                        "assets/eredivisie_logos/{}.png".format(
+                        "assets/logos/{}/{}.png".format(
+                            logo_fold,
                             df_match_selected[str(team) + "_team"].values[0]
                         )
                     )

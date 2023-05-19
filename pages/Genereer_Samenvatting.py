@@ -122,7 +122,7 @@ if AWS_check or streamlit_check:
 
         # MAIN PAGE
         select_dataset, empty_field,club_logo_home, uitslag, club_logo_away = st.columns((9, 2.25, 2.25, 2.25, 2.25))
-        selected_dataset = ST_select_dataset(select_dataset)
+        selected_dataset, logo_folder = ST_select_dataset(select_dataset)
 
         df = load_dataset(selected_dataset)
         df_player_stats = load_dataset_player_stats(selected_dataset)
@@ -139,12 +139,12 @@ if AWS_check or streamlit_check:
             df_playerStats_selected,
         ) = ST_get_data_match(df, selected_match, df_player_stats)
             
-        ST_club_logos(club_logo_home, df_match_selected, team="home")
+        ST_club_logos(club_logo_home, df_match_selected, team="home", logo_fld=logo_folder)
         with uitslag: 
             st.write("<span style='font-size:40px'>{}</span>".format(str(df_match_selected.score_home.values[0])
                                                                      +" - "+str(df_match_selected.score_away.values[0])), 
                      unsafe_allow_html=True)
-        ST_club_logos(club_logo_away, df_match_selected, team="away")
+        ST_club_logos(club_logo_away, df_match_selected, team="away", logo_fld=logo_folder)
 
         select_injury_home, select_injury_away = st.columns(2)
         match_prompt = ST_select_injury_home(
@@ -238,8 +238,8 @@ if AWS_check or streamlit_check:
 
     with tab2:
         opt1, club_logo_home, opt2, club_logo_away, opt3 = st.columns((1.5,1,3,1,1.5))
-        ST_club_logos(club_logo_home, df_match_selected, team="home")
-        ST_club_logos(club_logo_away, df_match_selected, team="away")
+        ST_club_logos(club_logo_home, df_match_selected, team="home", logo_fld=logo_folder)
+        ST_club_logos(club_logo_away, df_match_selected, team="away", logo_fld=logo_folder)
 
         select_schoten_home, select_schoten_away = st.columns(2)
         ST_SchotenOpDoel(select_schoten_home, df_playerStats_selected, team="Home")
