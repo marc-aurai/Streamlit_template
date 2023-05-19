@@ -70,7 +70,7 @@ def streamlit_page_config():
         page_icon=Image.open("assets/image/SF_icon.png"),
         layout="wide",
         initial_sidebar_state="expanded",
-    )
+    )    
     hide_streamlit_style = """
                 <style>
                 #MainMenu {visibility: hidden;}
@@ -241,13 +241,10 @@ if AWS_check or streamlit_check:
         ST_club_logos(club_logo_home, df_match_selected, team="home", logo_fold=logo_folder)
         ST_club_logos(club_logo_away, df_match_selected, team="away", logo_fold=logo_folder)
 
+        st.markdown("<h2 style='text-align: center; color: white;'>Speler Statistieken</h2>", unsafe_allow_html=True)
         select_schoten_home, select_schoten_away = st.columns(2)
         ST_SchotenOpDoel(select_schoten_home, df_playerStats_selected, team="Home")
         ST_SchotenOpDoel(select_schoten_away, df_playerStats_selected, team="Away")
-
-        select_schoten_homeTeam, select_schoten_awayTeam = st.columns(2)
-        ST_SchotenOpDoelTeam(select_schoten_homeTeam, df_playerStats_selected, team="Home", team_name = home_team)
-        ST_SchotenOpDoelTeam(select_schoten_awayTeam, df_playerStats_selected, team="Away", team_name = away_team)
 
         goals_Home, goals_away = st.columns(2)
         ST_GoalMakers(goals_Home, df_playerStats_selected, team_name=home_team)
@@ -257,6 +254,13 @@ if AWS_check or streamlit_check:
         ST_AssistMakers(assists_Home, df_playerStats_selected, team_name=home_team)
         ST_AssistMakers(assists_away, df_playerStats_selected, team_name=away_team)
 
+        st.markdown("<h2 style='text-align: center; color: white;'>Team Statistieken</h2>", unsafe_allow_html=True)
+
+        select_schoten_homeTeam, select_schoten_awayTeam = st.columns(2)
+        ST_SchotenOpDoelTeam(select_schoten_homeTeam, df_playerStats_selected, team="Home", team_name = home_team)
+        ST_SchotenOpDoelTeam(select_schoten_awayTeam, df_playerStats_selected, team="Away", team_name = away_team)
+
+        st.markdown("<h2 style='text-align: center; color: white;'>Opstelling</h2>", unsafe_allow_html=True)
         select_formations_home, select_formations_away = st.columns(2)
         match_prompt = ST_show_formation(
             match_prompt, select_formations_home, df_match_selected, df_player_stats, team="home"
