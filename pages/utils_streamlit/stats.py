@@ -4,7 +4,7 @@ import ast
 from st_aggrid import AgGrid, GridUpdateMode
 from st_aggrid.grid_options_builder import GridOptionsBuilder
 
-def ST_show_formation(
+def ST_showFormation(
     match_prompt: str,
     select_field,
     df_match_selected: pd.DataFrame,

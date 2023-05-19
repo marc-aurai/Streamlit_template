@@ -7,25 +7,24 @@ import pages.utils_streamlit.AWS_login as AWS_login
 from pages.utils_streamlit.AWS_login import check_password as check_password_AWS
 from pages.utils_streamlit.login import check_password
 from pages.utils_streamlit.selections import (
-    ST_select_date_match_venue,
-    ST_select_dataset,
-    ST_select_match_date,
-    ST_select_match,
-    ST_get_data_match,
-    ST_select_injury_home,
-    ST_select_injury_away,
-    ST_select_trainers,
-    ST_select_rank,
-    ST_select_formation,
-    ST_select_goals,
-    ST_select_possession,
-    ST_select_keepers,
-    ST_club_logos,
+    ST_selectIntro,
+    ST_selectDataset,
+    ST_selectMatchDate,
+    ST_selectMatch,
+    ST_getDataFromMatch,
+    ST_selectInjuries,
+    ST_selectTrainers,
+    ST_selectRank,
+    ST_selectFormation,
+    ST_selectGoals,
+    ST_selectPossession,
+    ST_selectKeepers,
+    ST_clubLogos,
     ST_cardEvents,
     ST_uniqueEvents,
 )
 from pages.utils_streamlit.stats import (
-    ST_show_formation, 
+    ST_showFormation, 
     ST_SchotenOpDoel, 
     ST_SchotenOpDoelTeam,
     ST_AssistMakers,
@@ -124,15 +123,14 @@ if AWS_check or streamlit_check:
         opt4, club_logo_home, uitslag, club_logo_away, opt5 = st.columns((1.5,1,3,1,1.5))
         st.markdown("""---""")
 
-        #select_dataset, empty_field,club_logo_home, uitslag, club_logo_away = st.columns((9, 2.25, 2.25, 2.25, 2.25))
         select_dataset, opt6 = st.columns(2)
-        selected_dataset, logo_folder = ST_select_dataset(select_dataset)
+        selected_dataset, logo_folder = ST_selectDataset()(select_dataset)
 
         df = load_dataset(selected_dataset)
         df_player_stats = load_dataset_player_stats(selected_dataset)
         select_date, select_match = st.columns(2)
-        matches_on_date, selected_match_date = ST_select_match_date(df, select_date)
-        selected_match = ST_select_match(select_match, matches_on_date)
+        matches_on_date, selected_match_date = ST_selectMatchDate(df, select_date)
+        selected_match = ST_selectMatch(select_match, matches_on_date)
         (
             match_prompt,
             match_streak_home,
@@ -141,62 +139,62 @@ if AWS_check or streamlit_check:
             away_team,
             df_match_selected,
             df_playerStats_selected,
-        ) = ST_get_data_match(df, selected_match, df_player_stats)
+        ) = ST_getDataFromMatch(df, selected_match, df_player_stats)
             
-        ST_club_logos(club_logo_home, df_match_selected, team="home", logo_fold=logo_folder)
+        ST_clubLogos(club_logo_home, df_match_selected, team="home", logo_fold=logo_folder)
         with uitslag: 
             st.markdown("<p style='text-align: center; color: white; font-size: 45px;'>{}</p>".format(str(df_match_selected.score_home.values[0])
                                                                     + " - "+str(df_match_selected.score_away.values[0])),
                                                                      unsafe_allow_html=True)
-        ST_club_logos(club_logo_away, df_match_selected, team="away", logo_fold=logo_folder)
+        ST_clubLogos(club_logo_away, df_match_selected, team="away", logo_fold=logo_folder)
 
         select_injury_home, select_injury_away = st.columns(2)
-        match_prompt = ST_select_injury_home(
-            match_prompt, select_injury_home, df_match_selected
+        match_prompt = ST_selectInjuries(
+            match_prompt, select_injury_home, df_match_selected, team="home",
         )
-        match_prompt = ST_select_injury_away(
-            match_prompt, select_injury_away, df_match_selected
+        match_prompt = ST_selectInjuries(
+            match_prompt, select_injury_away, df_match_selected, team="away",
         )
 
         selectCards, select_optioneel4 = st.columns(2)
 
         select_intro, select_optioneel = st.columns(2)
-        match_prompt = ST_select_date_match_venue(
+        match_prompt = ST_selectIntro()(
         match_prompt, select_intro, df_match_selected
         )
 
         select_goals, select_trainers = st.columns(2)
-        match_prompt = ST_select_goals(
+        match_prompt = ST_selectGoals(
             match_prompt, select_goals, df_match_selected
         )
-        match_prompt = ST_select_trainers(
+        match_prompt = ST_selectTrainers(
             match_prompt, select_trainers, df_match_selected
         )
 
         select_keepers, select_optioneel3 = st.columns(2)
-        match_prompt = ST_select_keepers(
+        match_prompt = ST_selectKeepers(
             match_prompt, select_keepers, df_match_selected
         )
 
         select_rank_home, select_possession = st.columns(2)
-        match_prompt = ST_select_rank(
+        match_prompt = ST_selectRank(
             match_prompt, select_rank_home, df_match_selected, team="home"
 
         )
-        match_prompt = ST_select_possession(
+        match_prompt = ST_selectPossession(
             match_prompt, select_possession, df_match_selected
         )
 
         select_rank_away, select_optioneel2 = st.columns(2)
-        match_prompt = ST_select_rank(
+        match_prompt = ST_selectRank(
             match_prompt, select_rank_away, df_match_selected, team="away"
         )
 
         select_formations_home, select_formations_away = st.columns(2)
-        match_prompt = ST_select_formation(
+        match_prompt = ST_selectFormation(
             match_prompt, select_formations_home, df_match_selected, df_player_stats, team="home"
         )
-        match_prompt = ST_select_formation(
+        match_prompt = ST_selectFormation(
             match_prompt, select_formations_away, df_match_selected, df_player_stats, team="away"
         )
 
@@ -242,8 +240,8 @@ if AWS_check or streamlit_check:
 
     with tab_voetbalStats:
         opt1, club_logo_home, opt2, club_logo_away, opt3 = st.columns((1.5,1,3,1,1.5))
-        ST_club_logos(club_logo_home, df_match_selected, team="home", logo_fold=logo_folder)
-        ST_club_logos(club_logo_away, df_match_selected, team="away", logo_fold=logo_folder)
+        ST_clubLogos(club_logo_home, df_match_selected, team="home", logo_fold=logo_folder)
+        ST_clubLogos(club_logo_away, df_match_selected, team="away", logo_fold=logo_folder)
 
         st.markdown("<h2 style='text-align: center; color: white;'>Speler Statistieken</h2>", unsafe_allow_html=True)
         select_schoten_home, select_schoten_away = st.columns(2)
@@ -266,9 +264,9 @@ if AWS_check or streamlit_check:
 
         st.markdown("<h2 style='text-align: center; color: white;'>Opstelling</h2>", unsafe_allow_html=True)
         select_formations_home, select_formations_away = st.columns(2)
-        match_prompt = ST_show_formation(
+        match_prompt = ST_showFormation(
             match_prompt, select_formations_home, df_match_selected, df_player_stats, team="home"
         )
-        match_prompt = ST_show_formation(
+        match_prompt = ST_showFormation(
             match_prompt, select_formations_away, df_match_selected, df_player_stats, team="away"
         )
