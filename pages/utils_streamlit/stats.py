@@ -216,3 +216,25 @@ def ST_GoalMakers(
             st.dataframe(df, use_container_width=True)
         except:
             pass
+
+
+def ST_ongeslagenStreak(    
+    field,
+    df: pd.DataFrame,
+    team: str,
+):
+    with field:
+        streak = ""
+        last_six = str(df["last_six_{}".format(team)].values[0])
+        last_six = [
+            match_status
+        for match_status in list(last_six)
+        ]
+        for i in range(3, 6):
+            if all(element == last_six[0] for element in last_six[:i]):
+                if last_six[0] == "W":
+                    streak = "Laatste {} gewonnen 🔥".format(i)
+                if last_six[0] == "L":
+                    streak = "Laatste {} verloren 👎".format(i)
+        if streak != "":
+            st.markdown("<h2 style='text-align: center; color: white; font-size: 18px;'>{}</h2>".format(streak), unsafe_allow_html=True)

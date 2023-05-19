@@ -29,6 +29,7 @@ from pages.utils_streamlit.stats import (
     ST_SchotenOpDoelTeam,
     ST_AssistMakers,
     ST_GoalMakers,
+    ST_ongeslagenStreak,
 )
 from pages.utils_streamlit.generate import generate_completion, generate_winstreak_plots
 from streamlit_chat import message as st_message
@@ -241,6 +242,11 @@ if AWS_check or streamlit_check:
         opt1, club_logo_home, opt2, club_logo_away, opt3 = st.columns((1.5,1,3,1,1.5))
         ST_clubLogos(club_logo_home, df_match_selected, team="home", logo_fold=logo_folder)
         ST_clubLogos(club_logo_away, df_match_selected, team="away", logo_fold=logo_folder)
+
+        streak_home, streak_away = st.columns((2))
+        ST_ongeslagenStreak(streak_home, df_match_selected, team="home")
+        ST_ongeslagenStreak(streak_away, df_match_selected, team="away")
+
 
         st.markdown("<h2 style='text-align: center; color: white;'>Speler Statistieken</h2>", unsafe_allow_html=True)
         select_schoten_home, select_schoten_away = st.columns(2)
