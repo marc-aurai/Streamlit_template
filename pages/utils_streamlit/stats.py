@@ -184,13 +184,13 @@ def ST_AssistMakers(
     with field:
         try:
             df = pd.DataFrame({
+                "Assists dit Seizoen": ast.literal_eval(df["AssistCounter"].values[0]).values(),   
                 "Spelernaam": ast.literal_eval(df["AssistCounter"].values[0]).keys(),
-                "Assists dit Seizoen": ast.literal_eval(df["AssistCounter"].values[0]).values()   
             })
             df = df.loc[df['Spelernaam'].str.contains(team_name, case=False)]  
             df['Spelernaam'] = df['Spelernaam'].str.replace(team_name, '', regex=True)
             df['Spelernaam'] = df['Spelernaam'].str.replace("|", '', regex=True)       
-            df = df.set_index("Spelernaam")
+            df = df.set_index("Assists dit Seizoen")
             st.dataframe(df.sort_values(by="Assists dit Seizoen", ascending=False), use_container_width=True)
         except:
             pass
@@ -204,15 +204,15 @@ def ST_GoalMakers(
     with field:
         try:
             df = pd.DataFrame({
+                "Goals dit Seizoen": ast.literal_eval(df["GoalCounter"].values[0]).values(),
                 "Spelernaam": ast.literal_eval(df["GoalCounter"].values[0]).keys(),
-                "Goals dit Seizoen": ast.literal_eval(df["GoalCounter"].values[0]).values()
                 })
             df = df.loc[df['Spelernaam'].str.contains(team_name, case=False)]
             df['Spelernaam'] = df['Spelernaam'].str.replace(team_name, '', regex=True)
             df['Spelernaam'] = df['Spelernaam'].str.replace("|", '', regex=True)
             df.sort_values(by="Goals dit Seizoen", ascending=False)
             df['Spelernaam'].where(df['Goals dit Seizoen'] <10, df['Spelernaam'].astype(str) + "🔥", inplace=True)
-            df = df.set_index("Spelernaam")
+            df = df.set_index("Goals dit Seizoen")
             st.dataframe(df, use_container_width=True)
         except:
             pass
