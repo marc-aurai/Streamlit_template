@@ -97,11 +97,11 @@ else:
     AWS_check = False
 
 if AWS_check or streamlit_check:
-    tab1, tab2, tab3, tab4 = st.tabs(["Voetbal", "Voetbal Stats", "Handbal", "Rugby League"])
-    with tab1:
+    tab_voetbal, tab_voetbalStats, tab_handbal, tab_rugby = st.tabs(["Voetbal", "Voetbal Stats", "Handbal", "Rugby League"])
+    with tab_voetbal:
         SF_logo = load_images()
         st.sidebar.success("Genereer een samenvatting op deze demo pagina.")
-        st.image(SF_logo)
+        #st.image(SF_logo)
 
         # SIDEBAR
         TOKENS = st.sidebar.number_input(
@@ -121,7 +121,11 @@ if AWS_check or streamlit_check:
         st.sidebar.success("Geselecteerd: " + str(openai_model))
 
         # MAIN PAGE
-        select_dataset, empty_field,club_logo_home, uitslag, club_logo_away = st.columns((9, 2.25, 2.25, 2.25, 2.25))
+        opt4, club_logo_home, uitslag, club_logo_away, opt5 = st.columns((1.5,1,3,1,1.5))
+        st.markdown("""---""")
+
+        #select_dataset, empty_field,club_logo_home, uitslag, club_logo_away = st.columns((9, 2.25, 2.25, 2.25, 2.25))
+        select_dataset, opt6 = st.columns(2)
         selected_dataset, logo_folder = ST_select_dataset(select_dataset)
 
         df = load_dataset(selected_dataset)
@@ -141,9 +145,9 @@ if AWS_check or streamlit_check:
             
         ST_club_logos(club_logo_home, df_match_selected, team="home", logo_fold=logo_folder)
         with uitslag: 
-            st.write("<span style='font-size:40px'>{}</span>".format(str(df_match_selected.score_home.values[0])
-                                                                     +" - "+str(df_match_selected.score_away.values[0])), 
-                     unsafe_allow_html=True)
+            st.markdown("<p style='text-align: center; color: white; font-size: 45px;'>{}</p>".format(str(df_match_selected.score_home.values[0])
+                                                                    + " - "+str(df_match_selected.score_away.values[0])),
+                                                                     unsafe_allow_html=True)
         ST_club_logos(club_logo_away, df_match_selected, team="away", logo_fold=logo_folder)
 
         select_injury_home, select_injury_away = st.columns(2)
@@ -236,7 +240,7 @@ if AWS_check or streamlit_check:
             icon="ℹ️",
         )
 
-    with tab2:
+    with tab_voetbalStats:
         opt1, club_logo_home, opt2, club_logo_away, opt3 = st.columns((1.5,1,3,1,1.5))
         ST_club_logos(club_logo_home, df_match_selected, team="home", logo_fold=logo_folder)
         ST_club_logos(club_logo_away, df_match_selected, team="away", logo_fold=logo_folder)
