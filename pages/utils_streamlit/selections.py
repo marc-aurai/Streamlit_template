@@ -131,7 +131,7 @@ def ST_selectInjuries(
         injuries that have been added by the user input (multiselect component in Streamlit).
     """
     with select_field:
-        injuries = ast.literal_eval(df_match_selected["_injuries".format(team)].values[0])
+        injuries = ast.literal_eval(df_match_selected["{}_injuries".format(team)].values[0])
         injuries = [injury for injury in injuries if injury != "None"]
         selected_injuries = st.multiselect(
             "{} blessures: ".format(df_match_selected["{}_team".format(team)].values[0]),
