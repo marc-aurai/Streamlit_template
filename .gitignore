@@ -21,7 +21,7 @@ xDragdrop.py
 logos
 qr_code.py
 xAgenda.py
-competitions_.py
-connector_.py
+competitions.py
+connector.py
 
 test
