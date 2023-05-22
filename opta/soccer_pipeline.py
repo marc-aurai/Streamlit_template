@@ -110,7 +110,7 @@ if __name__ == "__main__":
         .pipe(get_substitute,outletAuthKey)
         .pipe(get_totalCardsPlayer, outletAuthKey, competition=competition_ID)
         .pipe(get_matchStats, outletAuthKey)
-        .pipe(get_countPlayerGoals, outletAuthKey)
+        .pipe(get_countPlayerGoals)
         .pipe(get_totalMinsPlayed_Season)
         .dropna()
         .pipe(prompt_engineering)
