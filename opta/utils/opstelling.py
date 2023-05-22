@@ -80,17 +80,20 @@ def get_formations(
                                 "goalAssist",
                                 "totalScoringAtt",
                                 "saves",
-                            ]:
+                            ]:                                
                                 if stat["type"] == "totalScoringAtt":
                                     stat_player["score_pogingen"] = stat["value"]
                                 else:
                                     stat_player[stat["type"]] = stat["value"]
+       
                         try:
                             stat_player["Pass_accuracy"] = round(
                                 (int(stat_player["accuratePass"]) * 100)
                                 / int(stat_player["totalPass"]),
                                 2,
                             )
+                            if stat_player["minsPlayed"] == "90":
+                                stat_player["minsPlayed"] = df["matchLength"][match]
                         except:
                             pass
                         if team == 0:
@@ -172,9 +175,10 @@ def get_substitute(
                             "player{}Name".format(substituteType)
                         ] = substitute["player{}Name".format(substituteType)]
                 
-                substitute_player["playerOnId"] = substitute["playerOnId"]
+                substitute_player["playerId"] = substitute["playerOnId"]
                 substitute_player["playerOffId"] = substitute["playerOffId"]
                 substitute_player["timeMin"] = substitute["timeMin"]
+                substitute_player["minsPlayed"] = df["matchLength"][match] - int(substitute["timeMin"])
                 substitute_player["subReason"] = substitute["subReason"]
                 if (
                     substitute["contestantId"]

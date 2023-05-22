@@ -2,6 +2,7 @@ import pandas as pd
 import requests
 from collections import Counter
 from tqdm import tqdm
+import ast
 
 
 def convertCardId(outletAuthKey, competition, cardsHistoryYellow, cardsHistoryRed):
@@ -158,7 +159,6 @@ def get_matchStats(
 
 def get_countPlayerGoals(
     df: pd.DataFrame = None,
-    outletAuthKey: str = None,
 ) -> pd.DataFrame:
     
     goalCounter = []
@@ -185,3 +185,69 @@ def get_countPlayerGoals(
     df["GoalCounter"] = goalCounter
     df["AssistCounter"] = assistCounter
     return df
+
+
+def refactor_totalMinsPlayed(df: pd.DataFrame):
+    minsPlayedByPlayer = []
+    for minsPlayedCounter, home, away, sub_home, sub_away in zip(df["minsPlayedCounter"].values, df["player_stats_home"].values, df["player_stats_away"].values, df["substitutions_home"].values, df["substitutions_away"].values):
+        minsPlayed = {k: v for d in minsPlayedCounter for k, v in d.items()}
+
+        nameAndMinutes = {}
+
+        players = [
+            *home,
+            *away,
+            *sub_home,
+            *sub_away
+        ]
+
+        for player in players:
+            if player["playerId"] in minsPlayed:
+                playerName = player.get("playerName") or player.get("playerOnName")
+                nameAndMinutes[playerName] = minsPlayed[player["playerId"]]
+
+        minsPlayedByPlayer.append(nameAndMinutes)
+    
+    df["minsPlayedCounter"] = minsPlayedByPlayer
+    return df
+
+
+
+def get_totalMinsPlayed_Season(
+    df: pd.DataFrame = None,
+) -> pd.DataFrame:
+    """Vergaar van iedere speler het aantal speelminuten gedurende het seizoen, het aantal minuten wordt berekend na elke wedstrijd.
+
+    Args:
+        df (pd.DataFrame, optional): _description_. Defaults to None.
+
+    Returns:
+        pd.DataFrame: _description_
+    """
+
+    totalMinsPlayed = []
+    for homePlayers, awayPlayers, sub_home, sub_away in zip(df.player_stats_home, df.player_stats_away, df.substitutions_home, df.substitutions_away):
+        mins_played = [{x["playerId"]: int(x["minsPlayed"])} for x in homePlayers + awayPlayers + sub_home + sub_away]
+        totalMinsPlayed.append(mins_played)
+        
+    historyMinsCounter = []
+    totalMinsCounter = []
+    for match in totalMinsPlayed:
+        matchCounter = []
+        for player in match:
+            for playerID, minsPlayed in player.items():
+                found = False
+                for d in historyMinsCounter:
+                    if playerID in d:
+                        d[playerID] += minsPlayed
+                        matchCounter.append({playerID: d[playerID]})
+                        found = True
+                        break
+                if not found:
+                    historyMinsCounter.append({playerID: minsPlayed})
+                    matchCounter.append({playerID: minsPlayed})
+        totalMinsCounter.append(matchCounter)
+    df["minsPlayedCounter"] = totalMinsCounter
+
+    return refactor_totalMinsPlayed(df=df)
+

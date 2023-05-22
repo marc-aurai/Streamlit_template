@@ -21,6 +21,7 @@ def select_features(df: pd.DataFrame) -> pd.DataFrame:
             "score_home",
             "score_away",
             "date",
+            "matchLength",
             "cup",
             "possession_home",
             "possession_away",
@@ -60,6 +61,7 @@ def select_features(df: pd.DataFrame) -> pd.DataFrame:
             "cardsHistoryYellow",
             "GoalCounter",
             "AssistCounter",
+            "minsPlayedCounter",
         ]
     ]
 
@@ -139,14 +141,20 @@ def prompt_engineering(df: pd.DataFrame):
     player_stats = df_selection[
         [
             "date",
+            "matchLength",
+            "homeContestantId",
+            "awayContestantId",
             "player_stats_home",
             "player_stats_away",
+            "substitutions_home",
+            "substitutions_away",
             "MatchStatsHome", 
             "MatchStatsAway",
             "SchotenOpDoel_Home",
             "SchotenOpDoel_Away",
             "GoalCounter",
             "AssistCounter",
+            "minsPlayedCounter",
         ]
     ].copy()
     player_stats["match"] = openai_df["match"]

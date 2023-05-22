@@ -30,6 +30,7 @@ from pages.utils_streamlit.stats import (
     ST_AssistMakers,
     ST_GoalMakers,
     ST_ongeslagenStreak,
+    ST_minsPlayed,
 )
 from pages.utils_streamlit.video import ST_readVideo
 from pages.utils_streamlit.generate import generate_completion, generate_winstreak_plots
@@ -262,6 +263,10 @@ if AWS_check or streamlit_check:
             assists_Home, assists_away = st.columns(2)
             ST_AssistMakers(assists_Home, df_playerStats_selected, team_name=home_team)
             ST_AssistMakers(assists_away, df_playerStats_selected, team_name=away_team)
+
+            gespeeldeMinuten_home, gespeeldeMinuten_away = st.columns(2)
+            ST_minsPlayed(gespeeldeMinuten_home, df_playerStats_selected, team="home")
+            ST_minsPlayed(gespeeldeMinuten_away, df_playerStats_selected, team="away")
 
             st.markdown("<h2 style='text-align: center; color: white;'>Team Statistieken</h2>", unsafe_allow_html=True)
             select_schoten_homeTeam, select_schoten_awayTeam = st.columns(2)

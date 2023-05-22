@@ -687,3 +687,31 @@ def get_injuries(
     )
     return df
 
+
+def get_matchLength(
+    df: pd.DataFrame = None,
+    outletAuthKey: str = None,
+) -> pd.DataFrame:
+    # Container for new venues column
+    all_matchLengths = []
+    print("\nGet matchLength..")
+
+    # Loop through match id's
+    for match in tqdm(df.index):
+        try:
+            # Enter match id in API call
+            response = requests.get(
+                f"http://api.performfeeds.com/soccerdata/matchstats/{{}}/?_rt=b&_fmt=json&fx={{}}".format(
+                    outletAuthKey, df["id"][match]
+                )
+            ).json()
+
+            # Access venue information in json if available
+            matchLength = response["liveData"]["matchDetails"]["matchLengthMin"]
+        except:
+            matchLength = ""
+        all_matchLengths.append(matchLength)
+
+    # Add list to dataframe
+    df["matchLength"] = all_matchLengths
+    return df

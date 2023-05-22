@@ -14,11 +14,13 @@ from utils.opta_feeds import (
     get_tournamentschedule,
     get_trainer,
     get_venue,
+    get_matchLength,
 )
 from utils.playerStats import (
     get_totalCardsPlayer,
     get_matchStats,
     get_countPlayerGoals,
+    get_totalMinsPlayed_Season,
 )
 from utils.opstelling import(
     get_formations,
@@ -94,6 +96,7 @@ if __name__ == "__main__":
             ],
         )
         .pipe(get_cup, outletAuthKey, competition=competition_ID)
+        .pipe(get_matchLength, outletAuthKey)
         .pipe(get_score, outletAuthKey)
         .pipe(get_matchstats_possession, outletAuthKey)
         .pipe(get_matchstats_cards, outletAuthKey, competition=competition_ID)
@@ -108,6 +111,7 @@ if __name__ == "__main__":
         .pipe(get_totalCardsPlayer, outletAuthKey, competition=competition_ID)
         .pipe(get_matchStats, outletAuthKey)
         .pipe(get_countPlayerGoals, outletAuthKey)
+        .pipe(get_totalMinsPlayed_Season)
         .dropna()
         .pipe(prompt_engineering)
     )
