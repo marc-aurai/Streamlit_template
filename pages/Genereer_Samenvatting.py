@@ -100,181 +100,182 @@ else:
 if AWS_check or streamlit_check:
     tab_voetbal, tab_voetbalStats, tab_voetbalVideos, tab_handbal, tab_rugby = st.tabs(["Voetbal", "Voetbal Stats", "Voetbal Videos", "Handbal", "Rugby League"])
     with tab_voetbal:
-        SF_logo = load_images()
-        st.sidebar.success("Genereer een samenvatting op deze demo pagina.")
-        #st.image(SF_logo)
+        with st.spinner("Momentje Alstublieft.."):
+            SF_logo = load_images()
+            st.sidebar.success("Genereer een samenvatting op deze demo pagina.")
+            #st.image(SF_logo)
 
-        # SIDEBAR
-        TOKENS = st.sidebar.number_input(
-            label="Maximum length (Tokens)", min_value=20, max_value=800, value=700
-        )
-        temperature_GPT = st.sidebar.number_input(
-            label="Model Temperature", min_value=0.0, max_value=1.0, value=0.4
-        )
-        openai_model = st.sidebar.selectbox(
-            "Selecteer een model",
+            # SIDEBAR
+            TOKENS = st.sidebar.number_input(
+                label="Maximum length (Tokens)", min_value=20, max_value=800, value=700
+            )
+            temperature_GPT = st.sidebar.number_input(
+                label="Model Temperature", min_value=0.0, max_value=1.0, value=0.4
+            )
+            openai_model = st.sidebar.selectbox(
+                "Selecteer een model",
+                (
+                    "gpt-3.5-turbo",
+                    # "curie:ft-southfields-2023-04-05-11-53-31",
+                    # "davinci:ft-southfields-2023-04-07-18-26-14",
+                ),
+            )
+            st.sidebar.success("Geselecteerd: " + str(openai_model))
+
+            # MAIN PAGE
+            opt4, club_logo_home, uitslag, club_logo_away, opt5 = st.columns((1.5,1,3,1,1.5))
+            st.markdown("""---""")
+
+            select_dataset, opt = st.columns(2)
+            selected_dataset, logo_folder = ST_selectDataset(select_dataset)
+
+            df = load_dataset(selected_dataset)
+            df_player_stats = load_dataset_player_stats(selected_dataset)
+            select_date, select_match = st.columns(2)
+            matches_on_date, selected_match_date = ST_selectMatchDate(df, select_date)
+            selected_match = ST_selectMatch(select_match, matches_on_date)
             (
-                "gpt-3.5-turbo",
-                # "curie:ft-southfields-2023-04-05-11-53-31",
-                # "davinci:ft-southfields-2023-04-07-18-26-14",
-            ),
-        )
-        st.sidebar.success("Geselecteerd: " + str(openai_model))
+                match_prompt,
+                match_streak_home,
+                match_streak_away,
+                home_team,
+                away_team,
+                df_match_selected,
+                df_playerStats_selected,
+            ) = ST_getDataFromMatch(df, selected_match, df_player_stats)
+                
+            ST_clubLogos(club_logo_home, df_match_selected, team="home", logo_fold=logo_folder)
+            with uitslag: 
+                st.markdown("<p style='text-align: center; color: white; font-size: 45px;'>{}</p>".format(str(df_match_selected.score_home.values[0])
+                                                                        + " - "+str(df_match_selected.score_away.values[0])),
+                                                                        unsafe_allow_html=True)
+            ST_clubLogos(club_logo_away, df_match_selected, team="away", logo_fold=logo_folder)
 
-        # MAIN PAGE
-        opt4, club_logo_home, uitslag, club_logo_away, opt5 = st.columns((1.5,1,3,1,1.5))
-        st.markdown("""---""")
+            select_injury_home, select_injury_away = st.columns(2)
+            match_prompt = ST_selectInjuries(
+                match_prompt, select_injury_home, df_match_selected, team="home",
+            )
+            match_prompt = ST_selectInjuries(
+                match_prompt, select_injury_away, df_match_selected, team="away",
+            )
 
-        select_dataset, opt = st.columns(2)
-        selected_dataset, logo_folder = ST_selectDataset(select_dataset)
+            selectCards, opt = st.columns(2)
 
-        df = load_dataset(selected_dataset)
-        df_player_stats = load_dataset_player_stats(selected_dataset)
-        select_date, select_match = st.columns(2)
-        matches_on_date, selected_match_date = ST_selectMatchDate(df, select_date)
-        selected_match = ST_selectMatch(select_match, matches_on_date)
-        (
-            match_prompt,
-            match_streak_home,
-            match_streak_away,
-            home_team,
-            away_team,
-            df_match_selected,
-            df_playerStats_selected,
-        ) = ST_getDataFromMatch(df, selected_match, df_player_stats)
+            select_intro, select_trainers = st.columns(2)
+            match_prompt = ST_selectIntro(
+            match_prompt, select_intro, df_match_selected
+            )
+            match_prompt = ST_selectTrainers(
+                match_prompt, select_trainers, df_match_selected
+            )
+
+            select_goals, select_possession = st.columns(2)
+            match_prompt = ST_selectGoals(
+                match_prompt, select_goals, df_match_selected
+            )
+            match_prompt = ST_selectPossession(
+                match_prompt, select_possession, df_match_selected
+            )
             
-        ST_clubLogos(club_logo_home, df_match_selected, team="home", logo_fold=logo_folder)
-        with uitslag: 
-            st.markdown("<p style='text-align: center; color: white; font-size: 45px;'>{}</p>".format(str(df_match_selected.score_home.values[0])
-                                                                    + " - "+str(df_match_selected.score_away.values[0])),
-                                                                     unsafe_allow_html=True)
-        ST_clubLogos(club_logo_away, df_match_selected, team="away", logo_fold=logo_folder)
-
-        select_injury_home, select_injury_away = st.columns(2)
-        match_prompt = ST_selectInjuries(
-            match_prompt, select_injury_home, df_match_selected, team="home",
-        )
-        match_prompt = ST_selectInjuries(
-            match_prompt, select_injury_away, df_match_selected, team="away",
-        )
-
-        selectCards, opt = st.columns(2)
-
-        select_intro, select_trainers = st.columns(2)
-        match_prompt = ST_selectIntro(
-        match_prompt, select_intro, df_match_selected
-        )
-        match_prompt = ST_selectTrainers(
-            match_prompt, select_trainers, df_match_selected
-        )
-
-        select_goals, select_possession = st.columns(2)
-        match_prompt = ST_selectGoals(
-            match_prompt, select_goals, df_match_selected
-        )
-        match_prompt = ST_selectPossession(
-            match_prompt, select_possession, df_match_selected
-        )
-        
-        select_keepers, opt = st.columns(2)
-        match_prompt = ST_selectKeepers(
-            match_prompt, select_keepers, df_match_selected
-        )
-
-        select_rank_home, select_rank_away = st.columns(2)
-        match_prompt = ST_selectRank(
-            match_prompt, select_rank_home, df_match_selected, team="home"
-
-        )
-        match_prompt = ST_selectRank(
-            match_prompt, select_rank_away, df_match_selected, team="away"
-        )
-
-        # select_formations_home, select_formations_away = st.columns(2)
-        # match_prompt = ST_selectFormation(
-        #     match_prompt, select_formations_home, df_match_selected, df_player_stats, team="home"
-        # )
-        # match_prompt = ST_selectFormation(
-        #     match_prompt, select_formations_away, df_match_selected, df_player_stats, team="away"
-        # )
-
-        match_prompt = ST_cardEvents(match_prompt, selectCards, df_match_selected)
-        match_prompt = ST_uniqueEvents(match_prompt, df_match_selected)
-
-        input_data = st.text_area(
-            label="Wedstrijd Data (Prompt)", value=match_prompt, height=400, max_chars=None
-        )
-        submit = st.button("Genereer")
-
-
-        generate_winstreak_plots(
-                match_streak_home, home_team, match_streak_away, away_team
+            select_keepers, opt = st.columns(2)
+            match_prompt = ST_selectKeepers(
+                match_prompt, select_keepers, df_match_selected
             )
-        st.markdown("""---""")
 
-        if submit:
-            with st.spinner("Even een samenvatting aan het schrijven, momentje..."):
-                if input_data != "..":
-                    completion = generate_completion(
-                        openai_model,
-                        input_data,
-                        TOKENS,
-                        temperature_GPT,
-                        match_streak_home,
-                        home_team,
-                        match_streak_away,
-                        away_team,
-                        selected_match_date,
-                    )
-        for message_ in reversed(st.session_state.message_history):
-            st_message(
-                message_,
-                avatar_style="bottts-neutral",
-                seed="Aneka",
-                is_user=False,
+            select_rank_home, select_rank_away = st.columns(2)
+            match_prompt = ST_selectRank(
+                match_prompt, select_rank_home, df_match_selected, team="home"
+
             )
-        st.sidebar.info(
-            """Model temperature:\n - Hogere waarden zoals 0.8 zal de output meer random 
-                maken\n - Lagere waarden zoals 0.2 zal de output meer gericht en deterministisch maken""",
-            icon="ℹ️",
-        )
+            match_prompt = ST_selectRank(
+                match_prompt, select_rank_away, df_match_selected, team="away"
+            )
 
-    with tab_voetbalStats:
-        opt1, club_logo_home, opt2, club_logo_away, opt3 = st.columns((1.5,1,3,1,1.5))
-        ST_clubLogos(club_logo_home, df_match_selected, team="home", logo_fold=logo_folder)
-        ST_clubLogos(club_logo_away, df_match_selected, team="away", logo_fold=logo_folder)
+            # select_formations_home, select_formations_away = st.columns(2)
+            # match_prompt = ST_selectFormation(
+            #     match_prompt, select_formations_home, df_match_selected, df_player_stats, team="home"
+            # )
+            # match_prompt = ST_selectFormation(
+            #     match_prompt, select_formations_away, df_match_selected, df_player_stats, team="away"
+            # )
 
-        streak_home, streak_away = st.columns((2))
-        ST_ongeslagenStreak(streak_home, df_match_selected, team="home")
-        ST_ongeslagenStreak(streak_away, df_match_selected, team="away")
+            match_prompt = ST_cardEvents(match_prompt, selectCards, df_match_selected)
+            match_prompt = ST_uniqueEvents(match_prompt, df_match_selected)
+
+            input_data = st.text_area(
+                label="Wedstrijd Data (Prompt)", value=match_prompt, height=400, max_chars=None
+            )
+            submit = st.button("Genereer")
 
 
-        st.markdown("<h2 style='text-align: center; color: white;'>Speler Statistieken</h2>", unsafe_allow_html=True)
-        select_schoten_home, select_schoten_away = st.columns(2)
-        ST_SchotenOpDoel(select_schoten_home, df_playerStats_selected, team="Home")
-        ST_SchotenOpDoel(select_schoten_away, df_playerStats_selected, team="Away")
+            generate_winstreak_plots(
+                    match_streak_home, home_team, match_streak_away, away_team
+                )
+            st.markdown("""---""")
 
-        goals_Home, goals_away = st.columns(2)
-        ST_GoalMakers(goals_Home, df_playerStats_selected, team_name=home_team)
-        ST_GoalMakers(goals_away, df_playerStats_selected, team_name=away_team)
+            if submit:
+                with st.spinner("Even een samenvatting aan het schrijven, momentje..."):
+                    if input_data != "..":
+                        completion = generate_completion(
+                            openai_model,
+                            input_data,
+                            TOKENS,
+                            temperature_GPT,
+                            match_streak_home,
+                            home_team,
+                            match_streak_away,
+                            away_team,
+                            selected_match_date,
+                        )
+            for message_ in reversed(st.session_state.message_history):
+                st_message(
+                    message_,
+                    avatar_style="bottts-neutral",
+                    seed="Aneka",
+                    is_user=False,
+                )
+            st.sidebar.info(
+                """Model temperature:\n - Hogere waarden zoals 0.8 zal de output meer random 
+                    maken\n - Lagere waarden zoals 0.2 zal de output meer gericht en deterministisch maken""",
+                icon="ℹ️",
+            )
 
-        assists_Home, assists_away = st.columns(2)
-        ST_AssistMakers(assists_Home, df_playerStats_selected, team_name=home_team)
-        ST_AssistMakers(assists_away, df_playerStats_selected, team_name=away_team)
+        with tab_voetbalStats:
+            opt1, club_logo_home, opt2, club_logo_away, opt3 = st.columns((1.5,1,3,1,1.5))
+            ST_clubLogos(club_logo_home, df_match_selected, team="home", logo_fold=logo_folder)
+            ST_clubLogos(club_logo_away, df_match_selected, team="away", logo_fold=logo_folder)
 
-        st.markdown("<h2 style='text-align: center; color: white;'>Team Statistieken</h2>", unsafe_allow_html=True)
-        select_schoten_homeTeam, select_schoten_awayTeam = st.columns(2)
-        ST_SchotenOpDoelTeam(select_schoten_homeTeam, df_playerStats_selected, team="Home", team_name = home_team)
-        ST_SchotenOpDoelTeam(select_schoten_awayTeam, df_playerStats_selected, team="Away", team_name = away_team)
+            streak_home, streak_away = st.columns((2))
+            ST_ongeslagenStreak(streak_home, df_match_selected, team="home")
+            ST_ongeslagenStreak(streak_away, df_match_selected, team="away")
 
-        st.markdown("<h2 style='text-align: center; color: white;'>Opstelling</h2>", unsafe_allow_html=True)
-        select_formations_home, select_formations_away = st.columns(2)
-        match_prompt = ST_showFormation(
-            match_prompt, select_formations_home, df_match_selected, df_player_stats, team="home"
-        )
-        match_prompt = ST_showFormation(
-            match_prompt, select_formations_away, df_match_selected, df_player_stats, team="away"
-        )
 
-    with tab_voetbalVideos:
-        ST_readVideo()
+            st.markdown("<h2 style='text-align: center; color: white;'>Speler Statistieken</h2>", unsafe_allow_html=True)
+            select_schoten_home, select_schoten_away = st.columns(2)
+            ST_SchotenOpDoel(select_schoten_home, df_playerStats_selected, team="Home")
+            ST_SchotenOpDoel(select_schoten_away, df_playerStats_selected, team="Away")
+
+            goals_Home, goals_away = st.columns(2)
+            ST_GoalMakers(goals_Home, df_playerStats_selected, team_name=home_team)
+            ST_GoalMakers(goals_away, df_playerStats_selected, team_name=away_team)
+
+            assists_Home, assists_away = st.columns(2)
+            ST_AssistMakers(assists_Home, df_playerStats_selected, team_name=home_team)
+            ST_AssistMakers(assists_away, df_playerStats_selected, team_name=away_team)
+
+            st.markdown("<h2 style='text-align: center; color: white;'>Team Statistieken</h2>", unsafe_allow_html=True)
+            select_schoten_homeTeam, select_schoten_awayTeam = st.columns(2)
+            ST_SchotenOpDoelTeam(select_schoten_homeTeam, df_playerStats_selected, team="Home", team_name = home_team)
+            ST_SchotenOpDoelTeam(select_schoten_awayTeam, df_playerStats_selected, team="Away", team_name = away_team)
+
+            st.markdown("<h2 style='text-align: center; color: white;'>Opstelling</h2>", unsafe_allow_html=True)
+            select_formations_home, select_formations_away = st.columns(2)
+            match_prompt = ST_showFormation(
+                match_prompt, select_formations_home, df_match_selected, df_player_stats, team="home"
+            )
+            match_prompt = ST_showFormation(
+                match_prompt, select_formations_away, df_match_selected, df_player_stats, team="away"
+            )
+
+        with tab_voetbalVideos:
+            ST_readVideo()
