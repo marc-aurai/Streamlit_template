@@ -270,6 +270,7 @@ def get_totalMinsPlayed_Season_Team(
 
         df_selected = pd.concat([df_Home, df_Away], ignore_index=True).sort_values(by="dateConverted", ascending=True)
         df_selected["sum_matchLength"] = df_selected['matchLength'].cumsum()
+        df_selected["sum_matchLength"] = df_selected["sum_matchLength"].astype(int)
         
         df_Home = df_selected.loc[(df_selected["homeContestantId"] == club_id)]
         df_Away = df_selected.loc[(df_selected["awayContestantId"] == club_id)]
