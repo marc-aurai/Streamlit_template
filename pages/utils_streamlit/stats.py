@@ -248,11 +248,13 @@ def ST_minsPlayed(
     with field:
         minsPlayed = ast.literal_eval(df["minsPlayedCounter"].values[0])
         formation_names = [player_stat["playerName"] for player_stat in ast.literal_eval(df["player_stats_{}".format(team)].values[0])] + [player_stat["playerOnName"] for player_stat in ast.literal_eval(df["substitutions_{}".format(team)].values[0])]
-
+        speelminutenTeam = df["sum_matchLength_{}".format(team)].values[0]
         df = pd.DataFrame({
-                "Speelminuten dit Seizoen": minsPlayed.values(),
+                "Speelminuten": minsPlayed.values(),
                 "Spelernaam": minsPlayed.keys(),
-                }).sort_values(by="Speelminuten dit Seizoen", ascending=False)
+                }).sort_values(by="Speelminuten", ascending=False)
         df = df[df['Spelernaam'].isin(formation_names)]
-        df = df.set_index("Speelminuten dit Seizoen")
+        speelMinutenPercentage = [str(round(((speelMinuten*100) / speelminutenTeam), 2))+"%" for speelMinuten in df["Speelminuten"].values]
+        df["Speelminuten Seizoen"] = speelMinutenPercentage
+        df = df.set_index("Speelminuten")
         st.dataframe(df, use_container_width=True)

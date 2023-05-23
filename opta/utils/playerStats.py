@@ -273,10 +273,10 @@ def get_totalMinsPlayed_Season_Team(
         
         df_Home = df_selected.loc[(df_selected["homeContestantId"] == club_id)]
         df_Away = df_selected.loc[(df_selected["awayContestantId"] == club_id)]
-        df_Home.rename(columns = {'sum_matchLength':'sum_matchLength_Home'}, inplace = True)
-        df_Away.rename(columns = {'sum_matchLength':'sum_matchLength_Away'}, inplace = True)
+        df_Home.rename(columns = {'sum_matchLength':'sum_matchLength_home'}, inplace = True)
+        df_Away.rename(columns = {'sum_matchLength':'sum_matchLength_away'}, inplace = True)
 
-        df_Away = df_Away[["date","homeContestantId","awayContestantId", "sum_matchLength_Away","matchLength"]]
+        df_Away = df_Away[["date","homeContestantId","awayContestantId", "sum_matchLength_away","matchLength"]]
 
         HOME = HOME.append(df_Home, ignore_index=True)
         AWAY = AWAY.append(df_Away, ignore_index=True)
