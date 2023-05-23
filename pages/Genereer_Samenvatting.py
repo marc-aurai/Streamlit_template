@@ -1,6 +1,7 @@
 import pandas as pd
 import streamlit as st
 from PIL import Image
+import ast
 
 from pages.utils_streamlit.AWS import read_S3_file
 import pages.utils_streamlit.AWS_login as AWS_login
@@ -152,6 +153,22 @@ if AWS_check or streamlit_check:
                 st.markdown("<p style='text-align: center; color: white; font-size: 45px;'>{}</p>".format(str(df_match_selected.score_home.values[0])
                                                                         + " - "+str(df_match_selected.score_away.values[0])),
                                                                         unsafe_allow_html=True)
+                for goal in ast.literal_eval(df_match_selected._goalEventsOrginal.values[0]):
+                    st.write(
+                        "<span style='font-size:12px'>⚽ {}</span>".format(
+                            goal["scorerName"]
+                        )
+                        + "<span style='color:white;font-size:12px'> {}</span>".format(
+                            goal["timeMin"]
+                        )
+                        +"<span style='font-size:12px'>' {}</span>".format(
+                            goal["contestantName"]
+                        ),
+                        unsafe_allow_html=True,
+                    )
+                    # st.markdown("<p style='text-align: center; color: white; font-size: 10px;'>⚽  {} {}' ({})</p>".format(goal["scorerName"], goal["timeMin"], goal["contestantName"]),
+                    #                                                     unsafe_allow_html=True)
+
             ST_clubLogos(club_logo_away, df_match_selected, team="away", logo_fold=logo_folder)
 
             select_injury_home, select_injury_away = st.columns(2)
