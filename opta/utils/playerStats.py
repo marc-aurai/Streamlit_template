@@ -5,6 +5,7 @@ from tqdm import tqdm
 import ast
 import locale
 
+pd.set_option('mode.chained_assignment', None)
 locale.setlocale(category=locale.LC_ALL, locale="nl_NL")
 
 
@@ -269,7 +270,8 @@ def get_totalMinsPlayed_Season_Team(
         df_Away = df.loc[(df["awayContestantId"] == club_id)]
 
         df_selected = pd.concat([df_Home, df_Away], ignore_index=True).sort_values(by="dateConverted", ascending=True)
-        df_selected["sum_matchLength"] = df_selected['matchLength'].cumsum(skipna=True)
+        df_selected = df_selected.loc[(df_selected["matchLength"] != "")] # Only select matches that have occured and thus a matchLength
+        df_selected["sum_matchLength"] = df_selected['matchLength'].cumsum()
         
         df_Home = df_selected.loc[(df_selected["homeContestantId"] == club_id)]
         df_Away = df_selected.loc[(df_selected["awayContestantId"] == club_id)]
@@ -278,10 +280,16 @@ def get_totalMinsPlayed_Season_Team(
 
         df_Away = df_Away[["date","homeContestantId","awayContestantId", "sum_matchLength_away","matchLength"]]
 
-        HOME = HOME.append(df_Home, ignore_index=True)
-        AWAY = AWAY.append(df_Away, ignore_index=True)
+        HOME = pd.concat([HOME, df_Home], ignore_index=True)
+        AWAY = pd.concat([AWAY, df_Away], ignore_index=True)
+        # HOME = HOME.append(df_Home, ignore_index=True)
+        # AWAY = AWAY.append(df_Away, ignore_index=True)
 
     HOME = HOME.drop_duplicates(subset=["date","homeContestantId","awayContestantId","matchLength"])
     AWAY = AWAY.drop_duplicates(subset=["date","homeContestantId","awayContestantId","matchLength"])
-    df_merged = pd.merge(HOME,AWAY, on=["date", "homeContestantId", "awayContestantId","matchLength"]).sort_values(by="dateConverted", ascending=True)
+    df_merged = pd.merge(HOME,AWAY, on=["date", "homeContestantId", "awayContestantId","matchLength"]).sort_values(by="dateConverted", ascending=True).reset_index()
     return df_merged
+    # df_test = df.loc[(df["matchLength"] != "")]
+    # print(df_test[["date", "matchLength"]])
+    # print(df[["date", "matchLength"]])
+    # return df
