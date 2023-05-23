@@ -20,7 +20,8 @@ from utils.playerStats import (
     get_totalCardsPlayer,
     get_matchStats,
     get_countPlayerGoals,
-    get_totalMinsPlayed_Season,
+    get_totalMinsPlayed_Season_Player,
+    get_totalMinsPlayed_Season_Team,
 )
 from utils.opstelling import(
     get_formations,
@@ -111,7 +112,8 @@ if __name__ == "__main__":
         .pipe(get_totalCardsPlayer, outletAuthKey, competition=competition_ID)
         .pipe(get_matchStats, outletAuthKey)
         .pipe(get_countPlayerGoals)
-        .pipe(get_totalMinsPlayed_Season)
+        .pipe(get_totalMinsPlayed_Season_Player)
+        .pipe(get_totalMinsPlayed_Season_Team)
         .dropna()
         .pipe(prompt_engineering)
     )

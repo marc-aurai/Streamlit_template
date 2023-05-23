@@ -3,6 +3,9 @@ import requests
 from collections import Counter
 from tqdm import tqdm
 import ast
+import locale
+
+locale.setlocale(category=locale.LC_ALL, locale="nl_NL")
 
 
 def convertCardId(outletAuthKey, competition, cardsHistoryYellow, cardsHistoryRed):
@@ -213,7 +216,7 @@ def refactor_totalMinsPlayed(df: pd.DataFrame):
 
 
 
-def get_totalMinsPlayed_Season(
+def get_totalMinsPlayed_Season_Player(
     df: pd.DataFrame = None,
 ) -> pd.DataFrame:
     """Vergaar van iedere speler het aantal speelminuten gedurende het seizoen, het aantal minuten wordt berekend na elke wedstrijd.
@@ -251,3 +254,34 @@ def get_totalMinsPlayed_Season(
 
     return refactor_totalMinsPlayed(df=df)
 
+
+def get_totalMinsPlayed_Season_Team(
+    df: pd.DataFrame = None,
+) -> pd.DataFrame:
+
+    HOME = pd.DataFrame()
+    AWAY = pd.DataFrame()
+
+    club_ids = list(set(df.homeContestantId.values.tolist() + df.awayContestantId.values.tolist()))
+    df['dateConverted'] = pd.to_datetime(df['date'], format='%a %d %b %Y')
+    for club_id in club_ids:
+        df_Home = df.loc[(df["homeContestantId"] == club_id)]
+        df_Away = df.loc[(df["awayContestantId"] == club_id)]
+
+        df_selected = pd.concat([df_Home, df_Away], ignore_index=True).sort_values(by="dateConverted", ascending=True)
+        df_selected["sum_matchLength"] = df_selected['matchLength'].cumsum()
+        
+        df_Home = df_selected.loc[(df_selected["homeContestantId"] == club_id)]
+        df_Away = df_selected.loc[(df_selected["awayContestantId"] == club_id)]
+        df_Home.rename(columns = {'sum_matchLength':'sum_matchLength_Home'}, inplace = True)
+        df_Away.rename(columns = {'sum_matchLength':'sum_matchLength_Away'}, inplace = True)
+
+        df_Away = df_Away[["date","homeContestantId","awayContestantId", "sum_matchLength_Away","matchLength"]]
+
+        HOME = HOME.append(df_Home, ignore_index=True)
+        AWAY = AWAY.append(df_Away, ignore_index=True)
+
+    HOME = HOME.drop_duplicates(subset=["date","homeContestantId","awayContestantId","matchLength"])
+    AWAY = AWAY.drop_duplicates(subset=["date","homeContestantId","awayContestantId","matchLength"])
+    df_merged = pd.merge(HOME,AWAY, on=["date", "homeContestantId", "awayContestantId","matchLength"]).sort_values(by="dateConverted", ascending=True)
+    return df_merged

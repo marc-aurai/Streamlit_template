@@ -22,6 +22,8 @@ def select_features(df: pd.DataFrame) -> pd.DataFrame:
             "score_away",
             "date",
             "matchLength",
+            "sum_matchLength_Home",
+            "sum_matchLength_Away",
             "cup",
             "possession_home",
             "possession_away",
@@ -142,6 +144,8 @@ def prompt_engineering(df: pd.DataFrame):
         [
             "date",
             "matchLength",
+            "sum_matchLength_Home",
+            "sum_matchLength_Away",
             "homeContestantId",
             "awayContestantId",
             "player_stats_home",
