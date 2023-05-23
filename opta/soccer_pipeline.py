@@ -95,7 +95,7 @@ if __name__ == "__main__":
             competitions=[
                 competition_ID,  
             ],
-        )[:50]
+        )
         .pipe(get_cup, outletAuthKey, competition=competition_ID)
         .pipe(get_matchLength, outletAuthKey)
         .pipe(get_score, outletAuthKey)
