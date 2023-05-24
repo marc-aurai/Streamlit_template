@@ -25,11 +25,12 @@ def videoMetaData():
         videoData.append([file_name, json_data["title"], json_data["publishDate"]])
 
     df = pd.DataFrame(videoData, columns=["filename", "title", "date"]).sort_values(by="date", ascending=False)
-    return df, s3
+    return df
 
 
 def ST_readVideo(df, s3):
     try:
+        s3 = boto3.resource('s3')
         # df, s3 = videoMetaData()
         df["date"] = pd.to_datetime(df["date"], format="%Y-%m-%dT%H:%M:%S.%f").dt.strftime('%a %d %b %Y')
         sorted_dates = sorted(df.date.unique().tolist(), key=lambda x: dt.datetime.strptime(x, '%a %d %b %Y'), reverse=True)

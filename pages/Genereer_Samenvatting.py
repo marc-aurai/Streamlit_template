@@ -44,8 +44,8 @@ if "message_history" not in st.session_state:
 
 @st.cache_data(show_spinner="Een momentje...")
 def load_metadataVideosFrom_S3Bucket():
-    df,s3 = videoMetaData()
-    return df, s3
+    df = videoMetaData()
+    return df
 
 @st.cache_data(show_spinner="Een momentje...")
 def load_images():
