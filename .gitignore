@@ -10,12 +10,16 @@ prompt_engineering.ipynb
 
 articles_eredivisie_ESPN_Style.csv
 articles_eredivisie_rewritten.csv
+eredivisie_test.csv
+eredivisie_test2.csv
+merged.csv
+merged_ereD.csv
+
+
 training_2
 explore_data.ipynb
 winstreak_plot.ipynb
 secrets.toml
-eredivisie_test.csv
-eredivisie_test2.csv
 Dockerfile
 xDragdrop.py
 logos
@@ -24,5 +28,6 @@ xAgenda.py
 competitions.py
 connector.py
 Video_.py
+soccer_prompt_ESPN.py
 
 test
