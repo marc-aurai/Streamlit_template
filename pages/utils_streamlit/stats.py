@@ -44,6 +44,7 @@ def ST_showFormation(
             custom_css=custom_css,
             update_mode=GridUpdateMode.MODEL_CHANGED,
             allow_unsafe_jscode=True,
+            reload_data=True,
         )
         # Show substitutions
         substitutions = df_match_selected["substitutions_" + str(team)].values[0]
