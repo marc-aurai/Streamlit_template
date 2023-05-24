@@ -42,10 +42,12 @@ def ST_readVideo(df, dateSelected):
         df_date = df.loc[df["date"] == selected_date]
 
         dates = df_date.title.values
+        print(dates)
         try: # Automatically render to video date, that was selected in the main page.
             indexRender = dates.index(dateSelected, 0, len(dates))
         except:
             indexRender=0
+        print(indexRender)
         selectedTitle = st.selectbox(
                     "Selecteer video: ", dates,
                     index=indexRender, 
