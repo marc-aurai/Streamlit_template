@@ -216,7 +216,7 @@ if AWS_check or streamlit_check:
             #     match_prompt, select_formations_away, df_match_selected, df_player_stats, team="away"
             # )
             formation_home = ast.literal_eval(
-                df_match_selected["formation_away"].values[0]
+                df_match_selected["formation_home"].values[0]
             )
             df_formationHome = pd.DataFrame(formation_home)
             formation_away = ast.literal_eval(
