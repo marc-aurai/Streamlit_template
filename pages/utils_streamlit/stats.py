@@ -36,13 +36,13 @@ def ST_showFormation(
             ".ag-subheader": {"border-color": "#100c44"},
         }
 
-        AgGrid(
+        grid_table = AgGrid(
             df[["Naam", "Positie", "Positie kant"]],
             gridOptions=gridOptions,
             enable_enterprise_modules=False,
             fit_columns_on_grid_load=True,
             custom_css=custom_css,
-            update_mode=GridUpdateMode.MODEL_CHANGED,
+            update_mode=GridUpdateMode.VALUE_CHANGED,
             allow_unsafe_jscode=True,
         )
         # Show substitutions
