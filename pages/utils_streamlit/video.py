@@ -27,6 +27,7 @@ def videoMetaData():
     df = pd.DataFrame(videoData, columns=["filename", "title", "date"]).sort_values(by="date", ascending=False)
     return df, s3
 
+@st.cache_data(show_spinner="Een momentje...")
 def ST_readVideo():
     try:
         df, s3 = videoMetaData()
