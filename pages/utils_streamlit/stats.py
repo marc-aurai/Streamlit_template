@@ -36,7 +36,7 @@ def ST_showFormation(
             ".ag-subheader": {"border-color": "#100c44"},
         }
 
-        grid_table = AgGrid(
+        AgGrid(
             df[["Naam", "Positie", "Positie kant"]],
             gridOptions=gridOptions,
             enable_enterprise_modules=False,
