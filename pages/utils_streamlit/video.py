@@ -4,6 +4,7 @@ import streamlit as st
 import json
 import pandas as pd
 import datetime as dt
+import requests
 
 
 def videoMetaData():
@@ -51,6 +52,9 @@ def ST_readVideo(df):
                 obj = s3.Object("wsc-espn-site", "uploads/"+str(selected_video.filename.values[0])+".mp4")
                 body = obj.get()['Body'].read()
                 st.video(body)
+
+                body_cloudfront = requests.get("https://d3r3q57kjc1ce1.cloudfront.net/uploads/"+str(selected_video.filename.values[0])+".mp4")
+                st.video(body_cloudfront)
         except:
             st.write("Video not supported.")
     except: 
