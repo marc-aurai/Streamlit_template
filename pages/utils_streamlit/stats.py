@@ -42,7 +42,7 @@ def ST_showFormation(
             enable_enterprise_modules=False,
             fit_columns_on_grid_load=True,
             custom_css=custom_css,
-            update_mode=GridUpdateMode.VALUE_CHANGED,
+            update_mode=GridUpdateMode.MODEL_CHANGED,
             allow_unsafe_jscode=True,
         )
         # Show substitutions
@@ -100,8 +100,8 @@ def ST_showFormation(
             item for sublist in player_stats for item in sublist
         ]  # flatten player stats list
 
-        try:
-            df_selected = pd.DataFrame(grid_table["selected_rows"])
+        df_selected = pd.DataFrame(grid_table["selected_rows"])
+        if not df_selected.empty:
             selected_player = (
                 df["playerId"]
                 .loc[df["Naam"] == str(df_selected["Naam"].values[0])]
@@ -127,8 +127,7 @@ def ST_showFormation(
             inplace=True,
             )
             player_stat = player_stat.set_index("Naam")
-        except:
-            pass
+            
     try:
         st.write(player_stat.loc[:, player_stat.columns != "playerId"])
     except:
