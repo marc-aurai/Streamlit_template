@@ -9,12 +9,10 @@ def ST_showFormation(
     df_match_selected: pd.DataFrame,
     player_stats: pd.DataFrame,
     team: str,
+    df: pd.DataFrame,
 ) -> str:
     with select_field:
-        formation_away = ast.literal_eval(
-            df_match_selected["formation_" + str(team)].values[0]
-        )
-        df = pd.DataFrame(formation_away)
+        
         df.rename(
             columns={"playerName": "Naam",
                     "position": "Positie",

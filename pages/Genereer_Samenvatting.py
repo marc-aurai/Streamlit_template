@@ -215,6 +215,14 @@ if AWS_check or streamlit_check:
             # match_prompt = ST_selectFormation(
             #     match_prompt, select_formations_away, df_match_selected, df_player_stats, team="away"
             # )
+            formation_home = ast.literal_eval(
+                df_match_selected["formation_away"].values[0]
+            )
+            df_formationHome = pd.DataFrame(formation_home)
+            formation_away = ast.literal_eval(
+                df_match_selected["formation_away"].values[0]
+            )
+            df_formationAway = pd.DataFrame(formation_away)
 
             match_prompt = ST_cardEvents(match_prompt, selectCards, df_match_selected)
             match_prompt = ST_uniqueEvents(match_prompt, df_match_selected)
@@ -292,10 +300,10 @@ if AWS_check or streamlit_check:
             st.markdown("<h2 style='text-align: center; color: white;'>Opstelling</h2>", unsafe_allow_html=True)
             select_formations_home, select_formations_away = st.columns(2)
             ST_showFormation(
-                select_formations_home, df_match_selected, df_player_stats, team="home"
+                select_formations_home, df_match_selected, df_player_stats, team="home", df=df_formationHome
             )
             ST_showFormation(
-                select_formations_away, df_match_selected, df_player_stats, team="away"
+                select_formations_away, df_match_selected, df_player_stats, team="away", df=df_formationAway
             )
 
         with tab_voetbalVideos:
