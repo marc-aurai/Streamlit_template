@@ -291,11 +291,11 @@ if AWS_check or streamlit_check:
 
             st.markdown("<h2 style='text-align: center; color: white;'>Opstelling</h2>", unsafe_allow_html=True)
             select_formations_home, select_formations_away = st.columns(2)
-            match_prompt = ST_showFormation(
-                match_prompt, select_formations_home, df_match_selected, df_player_stats, team="home"
+            ST_showFormation(
+                select_formations_home, df_match_selected, df_player_stats, team="home"
             )
-            match_prompt = ST_showFormation(
-                match_prompt, select_formations_away, df_match_selected, df_player_stats, team="away"
+            ST_showFormation(
+                select_formations_away, df_match_selected, df_player_stats, team="away"
             )
 
         with tab_voetbalVideos:

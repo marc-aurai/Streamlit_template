@@ -5,7 +5,6 @@ from st_aggrid import AgGrid, GridUpdateMode
 from st_aggrid.grid_options_builder import GridOptionsBuilder
 
 def ST_showFormation(
-    match_prompt: str,
     select_field,
     df_match_selected: pd.DataFrame,
     player_stats: pd.DataFrame,
@@ -135,7 +134,6 @@ def ST_showFormation(
         st.write(player_stat.loc[:, player_stat.columns != "playerId"])
     except:
         pass
-    return match_prompt
 
 
 def ST_SchotenOpDoelTeam(
