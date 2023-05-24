@@ -16,7 +16,6 @@ from pages.utils_streamlit.selections import (
     ST_selectInjuries,
     ST_selectTrainers,
     ST_selectRank,
-    ST_selectFormation,
     ST_selectGoals,
     ST_selectPossession,
     ST_selectKeepers,
