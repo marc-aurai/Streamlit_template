@@ -97,7 +97,7 @@ def streamlit_page_config():
     st.markdown(multi_css, unsafe_allow_html=True)
 
 streamlit_page_config()
-df = load_metadataVideosFrom_S3Bucket()
+df_videoMetadata = load_metadataVideosFrom_S3Bucket()
 login_field, opt = st.columns(2)
 with login_field:
     if AWS_login.AWS:
@@ -299,4 +299,4 @@ if AWS_check or streamlit_check:
             )
 
         with tab_voetbalVideos:
-            ST_readVideo()
+            ST_readVideo(df_videoMetadata)

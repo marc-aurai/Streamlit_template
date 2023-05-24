@@ -28,7 +28,7 @@ def videoMetaData():
     return df
 
 
-def ST_readVideo(df, s3):
+def ST_readVideo(df):
     try:
         s3 = boto3.resource('s3')
         # df, s3 = videoMetaData()
