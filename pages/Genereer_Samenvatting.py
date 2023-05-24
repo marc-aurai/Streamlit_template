@@ -23,6 +23,7 @@ from pages.utils_streamlit.selections import (
     ST_clubLogos,
     ST_cardEvents,
     ST_uniqueEvents,
+    ST_goalEvents_MD,
 )
 from pages.utils_streamlit.stats import (
     ST_showFormation, 
@@ -127,7 +128,8 @@ if AWS_check or streamlit_check:
             st.sidebar.success("Geselecteerd: " + str(openai_model))
 
             # MAIN PAGE
-            opt4, club_logo_home, uitslag, club_logo_away, opt5 = st.columns((1.5,1,3,1,1.5))
+            opt, club_logo_home, uitslag, club_logo_away, opt = st.columns((1.5,1,3,1,1.5))
+            opt, goalsHomeField, opt, goalsAwayField = st.columns((1,4,2,4))
             st.markdown("""---""")
 
             select_dataset, opt = st.columns(2)
@@ -153,21 +155,11 @@ if AWS_check or streamlit_check:
                 st.markdown("<p style='text-align: center; color: white; font-size: 45px;'>{}</p>".format(str(df_match_selected.score_home.values[0])
                                                                         + " - "+str(df_match_selected.score_away.values[0])),
                                                                         unsafe_allow_html=True)
-                for goal in ast.literal_eval(df_match_selected._goalEventsOrginal.values[0]):
-                    st.write(
-                        "<span style='font-size:12px'>⚽ {}</span>".format(
-                            goal["scorerName"]
-                        )
-                        + "<span style='color:white;font-size:12px'> {}</span>".format(
-                            goal["timeMin"]
-                        )
-                        +"<span style='font-size:12px'>' {}</span>".format(
-                            goal["contestantName"]
-                        ),
-                        unsafe_allow_html=True,
-                    )
-                    # st.markdown("<p style='text-align: center; color: white; font-size: 10px;'>⚽  {} {}' ({})</p>".format(goal["scorerName"], goal["timeMin"], goal["contestantName"]),
-                    #                                                     unsafe_allow_html=True)
+            for goal in ast.literal_eval(df_match_selected._goalEventsOrginal.values[0]):
+                if goal["contestantId"] == df_match_selected.homeContestantId.values[0]:   
+                    ST_goalEvents_MD(goalsField=goalsHomeField, goalEvent=goal)
+                if goal["contestantId"] == df_match_selected.awayContestantId.values[0]:   
+                    ST_goalEvents_MD(goalsField=goalsAwayField, goalEvent=goal)
 
             ST_clubLogos(club_logo_away, df_match_selected, team="away", logo_fold=logo_folder)
 

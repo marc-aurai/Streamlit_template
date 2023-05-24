@@ -516,3 +516,22 @@ def ST_uniqueEvents(
     except:  # Then no checkBox was available: No red cards.
         pass
     return match_prompt
+
+
+def ST_goalEvents_MD(
+    goalsField,
+    goalEvent: dict,
+):
+    with goalsField:
+        st.write(
+            "<span style='font-size:12px'>⚽ {}</span>".format(
+                goalEvent["scorerName"]
+            )
+            + "<span style='color:white;font-size:12px'> {}</span>".format(
+                goalEvent["timeMin"]
+            )
+            +"<span style='font-size:12px'>' {}</span>".format(
+                goalEvent["contestantName"]
+            ),
+            unsafe_allow_html=True,
+        )
