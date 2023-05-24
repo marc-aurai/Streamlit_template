@@ -48,7 +48,7 @@ def ST_showFormation(
         # Show substitutions
         substitutions = df_match_selected["substitutions_" + str(team)].values[0]
         nameOff, symbol, nameOn, timeMin = st.columns((4, 1, 4, 1))
-        try:
+        if substitutions:
             for substitution in ast.literal_eval(substitutions):
                 with nameOff:
                     st.write(
@@ -84,8 +84,6 @@ def ST_showFormation(
                         ),
                         unsafe_allow_html=True,
                     )
-        except:
-            pass # No substitutions this match
 
         player_stats = player_stats.loc[
             player_stats["date"] == df_match_selected.date.values[0]
@@ -131,10 +129,10 @@ def ST_showFormation(
             player_stat = player_stat.set_index("Naam")
         except:
             pass
-    # try:
-    #     st.write(player_stat.loc[:, player_stat.columns != "playerId"])
-    # except:
-    #     pass
+    try:
+        st.write(player_stat.loc[:, player_stat.columns != "playerId"])
+    except:
+        pass
 
 
 def ST_SchotenOpDoelTeam(
