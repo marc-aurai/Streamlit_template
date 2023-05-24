@@ -34,7 +34,7 @@ from pages.utils_streamlit.stats import (
     ST_ongeslagenStreak,
     ST_minsPlayed,
 )
-from pages.utils_streamlit.video import ST_readVideo, videoMetaData
+from pages.utils_streamlit.video import ST_readVideo
 from pages.utils_streamlit.generate import generate_completion, generate_winstreak_plots
 from streamlit_chat import message as st_message
 
@@ -42,11 +42,6 @@ from streamlit_chat import message as st_message
 if "message_history" not in st.session_state:
     st.session_state.message_history = []
 
-
-@st.cache_data(show_spinner="Een momentje...")
-def loadVideosFrom_S3Bucket():
-    df_videos, s3 = videoMetaData()
-    return df_videos, s3
 
 @st.cache_data(show_spinner="Een momentje...")
 def load_images():
@@ -98,8 +93,6 @@ def streamlit_page_config():
     st.markdown(multi_css, unsafe_allow_html=True)
 
 streamlit_page_config()
-df_videos, s3 = loadVideosFrom_S3Bucket()
-
 login_field, opt = st.columns(2)
 with login_field:
     if AWS_login.AWS:
@@ -301,4 +294,4 @@ if AWS_check or streamlit_check:
             )
 
         with tab_voetbalVideos:
-            ST_readVideo(df_videos, s3)
+            ST_readVideo()

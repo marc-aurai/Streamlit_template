@@ -28,9 +28,9 @@ def videoMetaData():
     return df, s3
 
 
-def ST_readVideo(df, s3):
+def ST_readVideo():
     try:
-        # df, s3 = videoMetaData()
+        df, s3 = videoMetaData()
         df["date"] = pd.to_datetime(df["date"], format="%Y-%m-%dT%H:%M:%S.%f").dt.strftime('%a %d %b %Y')
         sorted_dates = sorted(df.date.unique().tolist(), key=lambda x: dt.datetime.strptime(x, '%a %d %b %Y'), reverse=True)
 
