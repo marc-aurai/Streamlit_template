@@ -6,6 +6,7 @@ import pandas as pd
 import datetime as dt
 
 
+@st.cache_data(show_spinner="Een momentje...")
 def videoMetaData():
     s3 = boto3.resource('s3')
     bucket = s3.Bucket('wsc-espn-site')
