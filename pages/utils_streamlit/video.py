@@ -41,12 +41,10 @@ def ST_readVideo(df, dateSelected):
             indexRender = sorted_dates.index(dateSelected, 0, len(sorted_dates))
         except:
             indexRender=0
-        print(indexRender)
 
         selected_date = st.selectbox(
                     "Selecteer datum: ", sorted_dates,
                     index=indexRender, 
-
                 )
         df_date = df.loc[df["date"] == selected_date]
 
