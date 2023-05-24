@@ -36,21 +36,22 @@ def ST_readVideo(df, dateSelected):
         df["date"] = pd.to_datetime(df["date"], format="%Y-%m-%dT%H:%M:%S.%f").dt.strftime('%a %d %b %Y')
         sorted_dates = sorted(df.date.unique().tolist(), key=lambda x: dt.datetime.strptime(x, '%a %d %b %Y'), reverse=True)
 
-        selected_date = st.selectbox(
-                    "Selecteer datum: ", sorted_dates
-                )
-        df_date = df.loc[df["date"] == selected_date]
 
-        dates = df_date.title.values
-        print(dates)
         try: # Automatically render to video date, that was selected in the main page.
-            indexRender = dates.index(dateSelected, 0, len(dates))
+            indexRender = sorted_dates.index(dateSelected, 0, len(sorted_dates))
         except:
             indexRender=0
         print(indexRender)
-        selectedTitle = st.selectbox(
-                    "Selecteer video: ", dates,
+
+        selected_date = st.selectbox(
+                    "Selecteer datum: ", sorted_dates,
                     index=indexRender, 
+
+                )
+        df_date = df.loc[df["date"] == selected_date]
+
+        selectedTitle = st.selectbox(
+                    "Selecteer video: ", df_date.title.values,
                 )
         selected_video = df_date.loc[df_date["title"] == selectedTitle]
 
