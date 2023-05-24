@@ -97,7 +97,11 @@ def streamlit_page_config():
     st.markdown(multi_css, unsafe_allow_html=True)
 
 streamlit_page_config()
-df_videoMetadata = load_metadataVideosFrom_S3Bucket()
+try:
+    df_videoMetadata = load_metadataVideosFrom_S3Bucket()
+except:
+    print("Access AWS Probably denied.")
+
 login_field, opt = st.columns(2)
 with login_field:
     if AWS_login.AWS:
@@ -307,5 +311,8 @@ if AWS_check or streamlit_check:
             )
 
         with tab_voetbalVideos:
-            ST_readVideo(df_videoMetadata)
+            try:
+                ST_readVideo(df_videoMetadata, df_match_selected.date.values[0])
+            except:
+                print("AWS Access was denied.")
             

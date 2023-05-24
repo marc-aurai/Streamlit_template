@@ -29,7 +29,7 @@ def videoMetaData():
     return df
 
 
-def ST_readVideo(df):
+def ST_readVideo(df, dateSelected):
     try:
         s3 = boto3.resource('s3')
         # df, s3 = videoMetaData()
@@ -41,9 +41,10 @@ def ST_readVideo(df):
                 )
         df_date = df.loc[df["date"] == selected_date]
 
-
+        dates = df_date.title.values
         selectedTitle = st.selectbox(
-                    "Selecteer video: ", df_date.title.values
+                    "Selecteer video: ", dates,
+                    index=dates.index(dateSelected, 0, len(dates)), 
                 )
         selected_video = df_date.loc[df_date["title"] == selectedTitle]
 
