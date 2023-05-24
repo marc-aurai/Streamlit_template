@@ -97,7 +97,7 @@ def streamlit_page_config():
     st.markdown(multi_css, unsafe_allow_html=True)
 
 streamlit_page_config()
-df, s3 = load_metadataVideosFrom_S3Bucket()
+df = load_metadataVideosFrom_S3Bucket()
 login_field, opt = st.columns(2)
 with login_field:
     if AWS_login.AWS:
