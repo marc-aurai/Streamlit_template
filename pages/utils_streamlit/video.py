@@ -48,12 +48,12 @@ def ST_readVideo(df):
         selected_video = df_date.loc[df_date["title"] == selectedTitle]
 
         try:
-            with st.spinner("Video cloudfront.."):
-                st.video("https://d3r3q57kjc1ce1.cloudfront.net/uploads/"+str(selected_video.filename.values[0])+".mp4")
             with st.spinner("Video aan het ophalen.."):
-                obj = s3.Object("wsc-espn-site", "uploads/"+str(selected_video.filename.values[0])+".mp4")
-                body = obj.get()['Body'].read()
-                st.video(body)
+                st.video("https://d3r3q57kjc1ce1.cloudfront.net/uploads/"+str(selected_video.filename.values[0])+".mp4")
+            # with st.spinner("Video aan het ophalen.."):
+            #     obj = s3.Object("wsc-espn-site", "uploads/"+str(selected_video.filename.values[0])+".mp4")
+            #     body = obj.get()['Body'].read()
+            #     st.video(body)
         except:
             st.write("Video not supported.")
     except: 
