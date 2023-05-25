@@ -2,34 +2,18 @@ import argparse
 import os
 
 from dotenv import load_dotenv
-from utils.opta_feeds import (
-    get_cup,
-    get_injuries,
-    get_keepers,
-    get_matchstats_cards,
-    get_matchstats_goals,
-    get_matchstats_possession,
-    get_rankStatus,
-    get_score,
-    get_tournamentschedule,
-    get_trainer,
-    get_venue,
-    get_matchLength,
-)
-from utils.playerStats import (
-    get_totalCardsPlayer,
-    get_matchStats,
-    get_countPlayerGoals,
-    get_totalMinsPlayed_Season_Player,
-    get_totalMinsPlayed_Season_Team,
-)
-from utils.opstelling import(
-    get_formations,
-    get_substitute,
-)
+from utils.AWS import data_to_S3, get_secret
+from utils.opstelling import get_formations, get_substitute
+from utils.opta_feeds import (get_cup, get_injuries, get_keepers,
+                              get_matchLength, get_matchstats_cards,
+                              get_matchstats_goals, get_matchstats_possession,
+                              get_rankStatus, get_score,
+                              get_tournamentschedule, get_trainer, get_venue)
+from utils.playerStats import (get_countPlayerGoals, get_matchStats,
+                               get_totalCardsPlayer,
+                               get_totalMinsPlayed_Season_Player,
+                               get_totalMinsPlayed_Season_Team)
 from utils.soccer_prompt import prompt_engineering
-from utils.AWS import get_secret, data_to_S3
-
 
 load_dotenv()
 

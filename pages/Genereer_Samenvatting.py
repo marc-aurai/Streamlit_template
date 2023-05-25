@@ -1,45 +1,36 @@
+import ast
+
 import pandas as pd
 import streamlit as st
 from PIL import Image
-import ast
-
-from pages.utils_streamlit.AWS import read_S3_file
-import pages.utils_streamlit.AWS_login as AWS_login
-from pages.utils_streamlit.AWS_login import check_password as check_password_AWS
-from pages.utils_streamlit.login import check_password
-from pages.utils_streamlit.selections import (
-    ST_selectIntro,
-    ST_selectDataset,
-    ST_selectMatchDate,
-    ST_selectMatch,
-    ST_getDataFromMatch,
-    ST_selectInjuries,
-    ST_selectTrainers,
-    ST_selectRank,
-    ST_selectGoals,
-    ST_selectPossession,
-    ST_selectKeepers,
-    ST_clubLogos,
-    ST_cardEvents,
-    ST_uniqueEvents,
-    ST_goalEvents_MD,
-)
-from pages.utils_streamlit.stats import (
-    ST_showFormation, 
-    ST_SchotenOpDoel, 
-    ST_SchotenOpDoelTeam,
-    ST_AssistMakers,
-    ST_GoalMakers,
-    ST_ongeslagenStreak,
-    ST_minsPlayed,
-    ST_penaltyKiller,
-    ST_penaltyRankingList,
-    ST_goalRankingList,
-)
-from pages.utils_streamlit.video import ST_readVideo, videoMetaData
-from pages.utils_streamlit.generate import generate_completion, generate_winstreak_plots
 from streamlit_chat import message as st_message
 
+import pages.utils_streamlit.AWS_login as AWS_login
+from pages.utils_streamlit.AWS import read_S3_file
+from pages.utils_streamlit.AWS_login import \
+    check_password as check_password_AWS
+from pages.utils_streamlit.generate import (generate_completion,
+                                            generate_winstreak_plots)
+from pages.utils_streamlit.login import check_password
+from pages.utils_streamlit.selections import (ST_cardEvents, ST_clubLogos,
+                                              ST_getDataFromMatch,
+                                              ST_goalEvents_MD,
+                                              ST_selectDataset, ST_selectGoals,
+                                              ST_selectInjuries,
+                                              ST_selectIntro, ST_selectKeepers,
+                                              ST_selectMatch,
+                                              ST_selectMatchDate,
+                                              ST_selectPossession,
+                                              ST_selectRank, ST_selectTrainers,
+                                              ST_uniqueEvents)
+from pages.utils_streamlit.stats import (ST_AssistMakers, ST_GoalMakers,
+                                         ST_goalRankingList, ST_minsPlayed,
+                                         ST_ongeslagenStreak, ST_penaltyKiller,
+                                         ST_penaltyRankingList,
+                                         ST_SchotenOpDoel,
+                                         ST_SchotenOpDoelTeam,
+                                         ST_showFormation)
+from pages.utils_streamlit.video import ST_readVideo, videoMetaData
 
 if "message_history" not in st.session_state:
     st.session_state.message_history = []

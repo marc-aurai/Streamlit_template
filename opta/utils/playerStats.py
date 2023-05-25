@@ -1,9 +1,9 @@
+import locale
+from collections import Counter
+
 import pandas as pd
 import requests
-from collections import Counter
 from tqdm import tqdm
-import ast
-import locale
 
 pd.set_option('mode.chained_assignment', None)
 locale.setlocale(category=locale.LC_ALL, locale="nl_NL")
