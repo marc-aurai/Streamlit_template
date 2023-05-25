@@ -3,6 +3,10 @@ import streamlit as st
 import ast
 from st_aggrid import AgGrid, GridUpdateMode
 from st_aggrid.grid_options_builder import GridOptionsBuilder
+from collections import Counter
+import heapq
+
+
 
 def ST_showFormation(
     select_field,
@@ -255,3 +259,104 @@ def ST_minsPlayed(
         df["Speelminuten Seizoen"] = speelMinutenPercentage
         df = df.set_index("Speelminuten")
         st.dataframe(df, use_container_width=True)
+
+    
+def ST_penaltyKiller(
+    field,
+    df: pd.DataFrame,
+    team: str,
+):
+    try:
+        penaltyEventsKeeper = ast.literal_eval(df["penalty{}".format(team)].values[0])
+        if penaltyEventsKeeper:
+            with field:
+                for penalty in penaltyEventsKeeper:
+                    if "penaltySave" in penalty:
+                        st.write(
+                        "<span style='color:white;font-size:12px'>{} (Keeper) kreeg een penalty tegen deze wedstrijd en hield hem tegen.🔥 </span>".format(
+                            penalty["playerName"]
+                        ),
+                        unsafe_allow_html=True,
+                        )
+                    else:
+                        st.write(
+                        "<span style='color:white;font-size:12px'>{} (Keeper) kreeg een penalty tegen deze wedstrijd en hield hem niet tegen. </span>".format(
+                            penalty["playerName"]
+                        ),
+                        unsafe_allow_html=True,
+                    )
+                    
+    except:
+        pass
+
+
+def ST_penaltyRankingList(
+        df: pd.DataFrame,
+        penaltyField,
+):
+    try:
+        penaltyEvents = df.penaltyHome.values.tolist() + df.penaltyAway.values.tolist()
+        penaltyEvents = [i for i in penaltyEvents if i != "[]"]
+        penaltyEventsRefactored = []
+        for penaltyEvent in penaltyEvents:
+            penaltyEventsRefactored.append(ast.literal_eval(penaltyEvent)[0])
+
+        penaltyRankingList = []
+        for penaltyEvent in penaltyEventsRefactored:
+            if "penaltySave" in penaltyEvent:
+                penaltyRankingList.append(penaltyEvent)
+
+        penaltyRanking = dict(Counter(x['playerName'] for x in penaltyRankingList))
+        df_penaltyRanking = pd.DataFrame(penaltyRanking.items(), columns=["Naam", "Totaal penalty's gestopt"]).set_index("Naam")
+        with penaltyField:
+            st.write(
+                        "<h5 style='text-align: center; color:white;font-size:12px'>Top Penalty Killers</h5>",
+                        unsafe_allow_html=True,
+                    )
+            st.dataframe(df_penaltyRanking.sort_values(by="Totaal penalty's gestopt", ascending=False), use_container_width=True)
+    except:
+        pass
+
+def remove_duplicate_top_scorers(lst):
+    unique_first_elements = set()
+    result = []
+
+    for tuple_item in lst:
+        first_element = tuple_item[0]
+        if first_element not in unique_first_elements:
+            unique_first_elements.add(first_element)
+            result.append(tuple_item)
+
+    return result
+
+
+def ST_goalRankingList(
+        df: pd.DataFrame,
+        goalCounterField,
+):
+    try:
+        goalEvents = df.GoalCounter.values.tolist()
+        goalEventsRanking = []
+        for goalEvent in goalEvents:
+            goalEventsRanking.append(ast.literal_eval(goalEvent))
+        goalEventsRanking = [i for i in goalEventsRanking if i != {}]
+
+        goalCounter = []
+        for goal in goalEventsRanking:
+            for playerName, goalAmount in goal.items():
+                goalCounter.append((playerName, goalAmount))
+
+        top10_Scorers = sorted(goalCounter, key = lambda x: x[1], reverse = True)[:50]
+        top10_Scorers = remove_duplicate_top_scorers(top10_Scorers)
+        with goalCounterField:
+            st.write(
+                        "<h5 style='text-align: center;color:white;font-size:12px'>Top Scorers</h5>",
+                        unsafe_allow_html=True,
+                    )
+            df_top10 = pd.DataFrame(top10_Scorers, columns=["Naam", "Doelpunten"])
+            df_top10[['Club', 'Naam']] = df_top10['Naam'].str.split('|', expand=True)
+            df_top10 = df_top10[["Naam", "Club", "Doelpunten"]]
+            df_top10.index = df_top10.index + 1
+            st.dataframe(df_top10)
+    except:
+        pass

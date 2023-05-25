@@ -105,13 +105,15 @@ def get_matchStats(
     df: pd.DataFrame = None,
     outletAuthKey: str = None,
 ) -> pd.DataFrame:
-    # Create container for new column
     player_stats_home = []
     player_stats_away = []
-    print("\nGet match statistics..")
     SchotenOpDoelTotaal_Home = []
     SchotenOpDoelTotaal_Away = []
-    # Loop through df to get match id's
+    penalty_stats_home = []
+    penalty_stats_away = []
+    
+    print("\nMatch statistics retrieval..")
+    
     for match in tqdm(df.index):
         try:
             matchstats_formations = requests.get(
@@ -122,40 +124,60 @@ def get_matchStats(
 
             player_stat_home = []
             player_stat_away = []
+            penalty_stat_home = []
+            penalty_stat_away = []
+            
             for team in range(2):
                 for player_formation in matchstats_formations[team]["player"]:
-                        stat_player = {}
-                        for stat in player_formation["stat"]:
-                                if stat["type"] == "totalScoringAtt":
-                                    stat_player["SchotenOpDoel"] = stat["value"]
-                                    stat_player["playerName"] = player_formation["firstName"] + " " + player_formation["lastName"]
-                                    stat_player["playerId"] = player_formation["playerId"]
+                    stat_player = {}
+                    stat_player_penalties = {}
+                    for stat in player_formation["stat"]:
+                        if stat["type"] == "totalScoringAtt":
+                            stat_player["SchotenOpDoel"] = stat["value"]
+                            stat_player["playerName"] = player_formation["firstName"] + " " + player_formation["lastName"]
+                            stat_player["playerId"] = player_formation["playerId"]
 
-                        if team == 0 and stat_player:
-                            player_stat_home.append(stat_player)
-                        if team == 1 and stat_player:
-                            player_stat_away.append(stat_player)
+                        elif stat["type"] in ["penaltySave","penaltyFaced"]: # penaltyWon= Speler die de penalty schoot heeft hem erin geschoten.
+                            stat_player_penalties["playerName"] = player_formation["firstName"] + " " + player_formation["lastName"]
+                            stat_player_penalties["playerId"] = player_formation["playerId"]
+                            stat_player_penalties[str(stat["type"])] = stat["value"]
+                            
+
+                    if team == 0 and stat_player:
+                        player_stat_home.append(stat_player)
+                    if team == 0 and stat_player_penalties:
+                        penalty_stat_home.append(stat_player_penalties)
+                    if team == 1 and stat_player:
+                        player_stat_away.append(stat_player)
+                    if team == 1 and stat_player_penalties:
+                        penalty_stat_away.append(stat_player_penalties)
+
+        
         except:
             player_stat_home = []
             player_stat_away = []
+            penalty_stat_home = []
+            penalty_stat_away = []
+        
         player_stat_home = sorted(player_stat_home, key=lambda d: d['SchotenOpDoel'], reverse=True) 
         player_stat_away = sorted(player_stat_away, key=lambda d: d['SchotenOpDoel'], reverse=True) 
         
-        TotaalSchotenOpDoel_Home = 0
-        TotaalSchotenOpDoel_Away = 0
-        for SchotenOpDoel in player_stat_home:
-            TotaalSchotenOpDoel_Home += int(SchotenOpDoel["SchotenOpDoel"])
-        for SchotenOpDoel in player_stat_away:
-            TotaalSchotenOpDoel_Away += int(SchotenOpDoel["SchotenOpDoel"])
+        TotaalSchotenOpDoel_Home = sum(int(player["SchotenOpDoel"]) for player in player_stat_home)
+        TotaalSchotenOpDoel_Away = sum(int(player["SchotenOpDoel"]) for player in player_stat_away)
         
         player_stats_home.append(player_stat_home)
         player_stats_away.append(player_stat_away)
     
         SchotenOpDoelTotaal_Home.append(TotaalSchotenOpDoel_Home)
         SchotenOpDoelTotaal_Away.append(TotaalSchotenOpDoel_Away) 
-    # Add list to dataframe
+
+        penalty_stats_home.append(penalty_stat_home)
+        penalty_stats_away.append(penalty_stat_away)
+
     df["SchotenOpDoel_Home"] = SchotenOpDoelTotaal_Home
     df["SchotenOpDoel_Away"] = SchotenOpDoelTotaal_Away
+    df["penaltyHome"] = penalty_stats_home
+    df["penaltyAway"] = penalty_stats_away
     df["MatchStatsHome"] = player_stats_home
     df["MatchStatsAway"] = player_stats_away
     return df
@@ -168,22 +190,25 @@ def get_countPlayerGoals(
     goalCounter = []
     assistCounter = []
     allGoalmakers = []
-    AllAssistMakers = []
+    allAssistMakers = []
     for goals in df.goal_events.values:
         countMatchGoals = []
         countMatchAssists = []
         for goal in goals:
             try:
                 if goal["assistName"] != "":
-                    AllAssistMakers.append(str(goal["contestantName"]+ " | " + goal["assistName"]))
-                    countMatchAssists.append(str(goal["contestantName"]+ " | " + goal["assistName"]))
+                    assistMakers = str(goal["contestantName"]) + " | " + str(goal["assistName"])
+                    allAssistMakers.append(assistMakers)
+                    countMatchAssists.append(assistMakers)
+                
                 if goal["scorerName"] != "":
-                    allGoalmakers.append(str(goal["contestantName"]+ " | " + goal["scorerName"]))
-                    countMatchGoals.append(str(goal["contestantName"]+ " | " + goal["scorerName"]))
+                    goalMakers = str(goal["contestantName"]) + " | " + str(goal["scorerName"])
+                    allGoalmakers.append(goalMakers)
+                    countMatchGoals.append(goalMakers)
             except:
                 pass
         MatchGoals = [x for x in allGoalmakers if x in countMatchGoals]
-        MatchAssists = [x for x in AllAssistMakers if x in countMatchAssists]
+        MatchAssists = [x for x in allAssistMakers if x in countMatchAssists]
         goalCounter.append(dict(Counter(MatchGoals)))
         assistCounter.append(dict(Counter(MatchAssists)))
     df["GoalCounter"] = goalCounter
@@ -282,14 +307,8 @@ def get_totalMinsPlayed_Season_Team(
 
         HOME = pd.concat([HOME, df_Home], ignore_index=True)
         AWAY = pd.concat([AWAY, df_Away], ignore_index=True)
-        # HOME = HOME.append(df_Home, ignore_index=True)
-        # AWAY = AWAY.append(df_Away, ignore_index=True)
 
     HOME = HOME.drop_duplicates(subset=["date","homeContestantId","awayContestantId","matchLength"])
     AWAY = AWAY.drop_duplicates(subset=["date","homeContestantId","awayContestantId","matchLength"])
     df_merged = pd.merge(HOME,AWAY, on=["date", "homeContestantId", "awayContestantId","matchLength"]).sort_values(by="dateConverted", ascending=True).reset_index()
     return df_merged
-    # df_test = df.loc[(df["matchLength"] != "")]
-    # print(df_test[["date", "matchLength"]])
-    # print(df[["date", "matchLength"]])
-    # return df

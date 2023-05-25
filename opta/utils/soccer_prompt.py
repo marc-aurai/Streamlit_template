@@ -66,6 +66,8 @@ def select_features(df: pd.DataFrame) -> pd.DataFrame:
             "GoalCounter",
             "AssistCounter",
             "minsPlayedCounter",
+            "penaltyHome",
+            "penaltyAway",
         ]
     ]
 
@@ -164,6 +166,8 @@ def prompt_engineering(df: pd.DataFrame):
             "GoalCounter",
             "AssistCounter",
             "minsPlayedCounter",
+            "penaltyHome",
+            "penaltyAway",
         ]
     ].copy()
     player_stats["match"] = openai_df["match"]
