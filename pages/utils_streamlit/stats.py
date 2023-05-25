@@ -171,7 +171,8 @@ def ST_SchotenOpDoel(
                 inplace=True,
                 )
             df['Spelernaam'].where(df['Schoten op doel'] <4, df['Spelernaam'].astype(str) + "🔥", inplace=True)
-            df = df.set_index("Spelernaam")
+            #df = df.set_index("Spelernaam")
+            df.index = df.index + 1
             st.dataframe(df.style.set_properties(**{'color': 'rgb(255, 255, 255)'}), use_container_width=True)
         except:
             pass
@@ -191,8 +192,9 @@ def ST_AssistMakers(
             df = df.loc[df['Spelernaam'].str.contains(team_name, case=False)]  
             df['Spelernaam'] = df['Spelernaam'].str.replace(team_name, '', regex=True)
             df['Spelernaam'] = df['Spelernaam'].str.replace("|", '', regex=True)       
-            df = df.set_index("Spelernaam")
+            #df = df.set_index("Spelernaam")
             df = df.sort_values(by="Assists dit Seizoen", ascending=False)
+            df.index = df.index + 1
             st.dataframe(df.style.set_properties(**{'color': 'rgb(255, 255, 255)'}), use_container_width=True)
         except:
             pass
@@ -214,7 +216,8 @@ def ST_GoalMakers(
             df['Spelernaam'] = df['Spelernaam'].str.replace("|", '', regex=True)
             df.sort_values(by="Goals dit Seizoen", ascending=False)
             df['Spelernaam'].where(df['Goals dit Seizoen'] <10, df['Spelernaam'].astype(str) + "🔥", inplace=True)
-            df = df.set_index("Spelernaam")
+            #df = df.set_index("Spelernaam")
+            df.index = df.index + 1
             st.dataframe(df.style.set_properties(**{'color': 'rgb(255, 255, 255)'}), use_container_width=True)
         except:
             pass
@@ -308,13 +311,14 @@ def ST_penaltyRankingList(
                 penaltyRankingList.append(penaltyEvent)
 
         penaltyRanking = dict(Counter(x['playerName'] for x in penaltyRankingList))
-        df_penaltyRanking = pd.DataFrame(penaltyRanking.items(), columns=["Naam", "Totaal penalty's gestopt"]).set_index("Naam")
+        df_penaltyRanking = pd.DataFrame(penaltyRanking.items(), columns=["Naam", "Totaal penalty's gestopt"])# .set_index("Naam")
         with penaltyField:
             st.write(
                         "<h5 style='text-align: center; color:white;font-size:12px'>Top Penalty Killers</h5>",
                         unsafe_allow_html=True,
                     )
-            df_penaltyRanking = df_penaltyRanking.sort_values(by="Totaal penalty's gestopt", ascending=False)
+            df_penaltyRanking = df_penaltyRanking.sort_values(by="Totaal penalty's gestopt", ascending=False).reset_index(drop=True)
+            df_penaltyRanking.index = df_penaltyRanking.index + 1
             st.dataframe(df_penaltyRanking.style.set_properties(**{'color': 'rgb(255, 255, 255)'}), use_container_width=True)
     except:
         pass
