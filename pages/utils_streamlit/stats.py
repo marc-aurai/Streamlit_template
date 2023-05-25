@@ -275,18 +275,18 @@ def ST_penaltyKiller(
             with field:
                 for penalty in penaltyEventsKeeper:
                     if "penaltySave" in penalty:
-                        st.write(
-                        "<span style='color:white;font-size:12px'>{} (Keeper) kreeg een penalty tegen deze wedstrijd en hield hem tegen.🔥 </span>".format(
+                        st.info(
+                        "{} (Keeper) kreeg een penalty tegen deze wedstrijd en hield hem tegen.🔥".format(
                             penalty["playerName"]
                         ),
-                        unsafe_allow_html=True,
+                        # unsafe_allow_html=True,
                         )
                     else:
-                        st.write(
-                        "<span style='color:white;font-size:12px'>{} (Keeper) kreeg een penalty tegen deze wedstrijd en hield hem niet tegen. </span>".format(
+                        st.info(
+                        "{} (Keeper) kreeg een penalty tegen deze wedstrijd en hield hem niet tegen.".format(
                             penalty["playerName"]
                         ),
-                        unsafe_allow_html=True,
+                        # unsafe_allow_html=True,
                     )
                     
     except:
@@ -310,13 +310,13 @@ def ST_penaltyRankingList(
                 penaltyRankingList.append(penaltyEvent)
 
         penaltyRanking = dict(Counter(x['playerName'] for x in penaltyRankingList))
-        df_penaltyRanking = pd.DataFrame(penaltyRanking.items(), columns=["Naam", "Totaal penalty's gestopt"])# .set_index("Naam")
+        df_penaltyRanking = pd.DataFrame(penaltyRanking.items(), columns=["Naam", "Penalty's gestopt"])# .set_index("Naam")
         with penaltyField:
             st.write(
                         "<h5 style='text-align: center; color:white;font-size:12px'>Top Penalty Killers</h5>",
                         unsafe_allow_html=True,
                     )
-            df_penaltyRanking = df_penaltyRanking.sort_values(by="Totaal penalty's gestopt", ascending=False).reset_index(drop=True)
+            df_penaltyRanking = df_penaltyRanking.sort_values(by="Penalty's gestopt", ascending=False).reset_index(drop=True)
             df_penaltyRanking.index = df_penaltyRanking.index + 1
             st.dataframe(df_penaltyRanking.style.set_properties(**{'color': 'rgb(255, 255, 255)'}), use_container_width=True)
     except:

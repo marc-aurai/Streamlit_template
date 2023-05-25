@@ -275,6 +275,9 @@ if AWS_check or streamlit_check:
 
 
             st.markdown("<h2 style='text-align: center; color: white;'>Speler Statistieken</h2>", unsafe_allow_html=True)
+            select_penaltyHome, select_penaltyAway = st.columns(2)
+            ST_penaltyKiller(select_penaltyHome, df_playerStats_selected, team="Home")
+            ST_penaltyKiller(select_penaltyAway, df_playerStats_selected, team="Away")
 
             select_schoten_home, select_schoten_away = st.columns(2)
             ST_SchotenOpDoel(select_schoten_home, df_playerStats_selected, team="Home")
@@ -292,9 +295,9 @@ if AWS_check or streamlit_check:
             ST_minsPlayed(gespeeldeMinuten_home, df_playerStats_selected, team="home")
             ST_minsPlayed(gespeeldeMinuten_away, df_playerStats_selected, team="away")
 
-            select_penaltyHome, select_penaltyAway = st.columns(2)
-            ST_penaltyKiller(select_penaltyHome, df_playerStats_selected, team="Home")
-            ST_penaltyKiller(select_penaltyAway, df_playerStats_selected, team="Away")
+            # select_penaltyHome, select_penaltyAway = st.columns(2)
+            # ST_penaltyKiller(select_penaltyHome, df_playerStats_selected, team="Home")
+            # ST_penaltyKiller(select_penaltyAway, df_playerStats_selected, team="Away")
 
             st.markdown("<h2 style='text-align: center; color: white;'>Team Statistieken</h2>", unsafe_allow_html=True)
             select_schoten_homeTeam, select_schoten_awayTeam = st.columns(2)
@@ -302,7 +305,7 @@ if AWS_check or streamlit_check:
             ST_SchotenOpDoelTeam(select_schoten_awayTeam, df_playerStats_selected, team="Away", team_name = away_team)
 
             st.markdown("<h2 style='text-align: center; color: white;'>Competitie Statistieken</h2>", unsafe_allow_html=True)
-            select_penaltyRanking, select_goalRanking = st.columns((1.5,2))
+            select_penaltyRanking, select_goalRanking = st.columns((1.6,2))
             ST_penaltyRankingList(df_player_stats, select_penaltyRanking)
             ST_goalRankingList(df_player_stats, select_goalRanking)
 
