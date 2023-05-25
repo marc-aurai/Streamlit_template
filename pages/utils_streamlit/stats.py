@@ -260,7 +260,8 @@ def ST_minsPlayed(
         df = df[df['Spelernaam'].isin(formation_names)]
         speelMinutenPercentage = [str(round(((speelMinuten*100) / speelminutenTeam), 2))+"%" for speelMinuten in df["Speelminuten"].values]
         df["Speelminuten Seizoen"] = speelMinutenPercentage
-        df = df.set_index("Speelminuten")
+        # df = df.set_index("Speelminuten")
+        df.index = df.index + 1
         st.dataframe(df.style.set_properties(**{'color': 'rgb(255, 255, 255)'}), use_container_width=True)
 
     

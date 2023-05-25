@@ -106,6 +106,9 @@ Het is erg gebruiksvriendelijk voor zowel de user als de developer. Het is fijn 
 Om iedereen te laten testen met het Language model met diverse wedstrijden, is er een applicatie gebouwd in Streamlit. De applicatie is opgebouwd met het Streamlit multipage principe. Bestaande uit 3 pagina's: </br>
 1. **Home page**: Introductie pagina van de Web App. </br>
 2. **Genereer Samenvatting page**: Hier kan men met diverse wedstrijden testen en zelf diverse prompts creeëren door middel van de fijne User Interface. </br>
+    ***2a.*** Voetbal</br>
+    ***2b.*** Voetbal Stats</br>
+    ***2c.*** Voetbal Videos</br>
 3. **Analyse Page**: Hier zijn diverse insights te vinden over de data die is gebruikt (Eredivisie). </br>
 
 ### Home page
