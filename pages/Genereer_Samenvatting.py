@@ -99,6 +99,7 @@ def streamlit_page_config():
             '''
     st.markdown(multi_css, unsafe_allow_html=True)
 
+
 streamlit_page_config()
 try:
     df_videoMetadata = load_metadataVideosFrom_S3Bucket()

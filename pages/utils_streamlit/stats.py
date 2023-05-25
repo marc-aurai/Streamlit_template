@@ -149,7 +149,7 @@ def ST_SchotenOpDoelTeam(
         try:
             df = pd.DataFrame({"Team": team_name,"Schoten op doel Totaal": df["SchotenOpDoel_" + str(team)]})
             df = df.set_index("Schoten op doel Totaal")
-            st.dataframe(df, use_container_width=True)
+            st.dataframe(df.style.set_properties(**{'color': 'rgb(255, 255, 255)'}), use_container_width=True)
         except:
             pass
         
@@ -172,7 +172,7 @@ def ST_SchotenOpDoel(
                 )
             df['Spelernaam'].where(df['Schoten op doel'] <4, df['Spelernaam'].astype(str) + "🔥", inplace=True)
             df = df.set_index("Schoten op doel")
-            st.dataframe(df, use_container_width=True)
+            st.dataframe(df.style.set_properties(**{'color': 'rgb(255, 255, 255)'}), use_container_width=True)
         except:
             pass
 
@@ -192,7 +192,8 @@ def ST_AssistMakers(
             df['Spelernaam'] = df['Spelernaam'].str.replace(team_name, '', regex=True)
             df['Spelernaam'] = df['Spelernaam'].str.replace("|", '', regex=True)       
             df = df.set_index("Assists dit Seizoen")
-            st.dataframe(df.sort_values(by="Assists dit Seizoen", ascending=False), use_container_width=True)
+            df = df.sort_values(by="Assists dit Seizoen", ascending=False)
+            st.dataframe(df.style.set_properties(**{'color': 'rgb(255, 255, 255)'}), use_container_width=True)
         except:
             pass
 
@@ -258,7 +259,7 @@ def ST_minsPlayed(
         speelMinutenPercentage = [str(round(((speelMinuten*100) / speelminutenTeam), 2))+"%" for speelMinuten in df["Speelminuten"].values]
         df["Speelminuten Seizoen"] = speelMinutenPercentage
         df = df.set_index("Speelminuten")
-        st.dataframe(df, use_container_width=True)
+        st.dataframe(df.style.set_properties(**{'color': 'rgb(255, 255, 255)'}), use_container_width=True)
 
     
 def ST_penaltyKiller(
@@ -313,7 +314,8 @@ def ST_penaltyRankingList(
                         "<h5 style='text-align: center; color:white;font-size:12px'>Top Penalty Killers</h5>",
                         unsafe_allow_html=True,
                     )
-            st.dataframe(df_penaltyRanking.sort_values(by="Totaal penalty's gestopt", ascending=False), use_container_width=True)
+            df_penaltyRanking = df_penaltyRanking.sort_values(by="Totaal penalty's gestopt", ascending=False)
+            st.dataframe(df_penaltyRanking.style.set_properties(**{'color': 'rgb(255, 255, 255)'}), use_container_width=True)
     except:
         pass
 
@@ -357,6 +359,6 @@ def ST_goalRankingList(
             df_top10[['Club', 'Naam']] = df_top10['Naam'].str.split('|', expand=True)
             df_top10 = df_top10[["Naam", "Club", "Doelpunten"]]
             df_top10.index = df_top10.index + 1
-            st.dataframe(df_top10)
+            st.dataframe(df_top10.style.set_properties(**{'color': 'rgb(255, 255, 255)'}))
     except:
         pass
