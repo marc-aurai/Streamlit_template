@@ -171,7 +171,7 @@ def ST_SchotenOpDoel(
                 inplace=True,
                 )
             df['Spelernaam'].where(df['Schoten op doel'] <4, df['Spelernaam'].astype(str) + "🔥", inplace=True)
-            df = df.set_index("Schoten op doel")
+            df = df.set_index("Spelernaam")
             st.dataframe(df.style.set_properties(**{'color': 'rgb(255, 255, 255)'}), use_container_width=True)
         except:
             pass
@@ -191,7 +191,7 @@ def ST_AssistMakers(
             df = df.loc[df['Spelernaam'].str.contains(team_name, case=False)]  
             df['Spelernaam'] = df['Spelernaam'].str.replace(team_name, '', regex=True)
             df['Spelernaam'] = df['Spelernaam'].str.replace("|", '', regex=True)       
-            df = df.set_index("Assists dit Seizoen")
+            df = df.set_index("Spelernaam")
             df = df.sort_values(by="Assists dit Seizoen", ascending=False)
             st.dataframe(df.style.set_properties(**{'color': 'rgb(255, 255, 255)'}), use_container_width=True)
         except:
@@ -214,8 +214,8 @@ def ST_GoalMakers(
             df['Spelernaam'] = df['Spelernaam'].str.replace("|", '', regex=True)
             df.sort_values(by="Goals dit Seizoen", ascending=False)
             df['Spelernaam'].where(df['Goals dit Seizoen'] <10, df['Spelernaam'].astype(str) + "🔥", inplace=True)
-            df = df.set_index("Goals dit Seizoen")
-            st.dataframe(df, use_container_width=True)
+            df = df.set_index("Spelernaam")
+            st.dataframe(df.style.set_properties(**{'color': 'rgb(255, 255, 255)'}), use_container_width=True)
         except:
             pass
 
