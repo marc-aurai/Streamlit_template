@@ -321,7 +321,7 @@ def ST_penaltyRankingList(
         df_penaltyRanking = pd.DataFrame(penaltyRanking.items(), columns=["Naam", "Penalty's gestopt"])# .set_index("Naam")
         with penaltyField:
             st.write(
-                        "<h5 style='text-align: center; color:blue;font-size:12px'>Top Penalty Killers</h5>",
+                        "<h5 style='text-align: center; color:white;font-size:15px'>Top Penalty Killers</h5>",
                         unsafe_allow_html=True,
                     )
             df_penaltyRanking = df_penaltyRanking.sort_values(by="Penalty's gestopt", ascending=False).reset_index(drop=True)
@@ -363,7 +363,7 @@ def ST_goalRankingList(
         top10_Scorers = remove_duplicate_top_scorers(top10_Scorers)
         with goalCounterField:
             st.write(
-                        "<h5 style='text-align: center;color:blue;font-size:12px'>Top Scorers</h5>",
+                        "<h5 style='text-align: center;color:white;font-size:15px'>Top Scorers</h5>",
                         unsafe_allow_html=True,
                     )
             df_top10 = pd.DataFrame(top10_Scorers, columns=["Naam", "Doelpunten"])
