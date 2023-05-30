@@ -16,7 +16,7 @@ def ST_showFormation(
 ) -> str:
     with select_field:
         selected_formations = st.checkbox(
-            value=True,
+            value=False,
             label="Opstelling van:\n{}".format(
                 df_match_selected[str(team) + "_team"].values[0],
             ),
