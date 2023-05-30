@@ -139,10 +139,10 @@ def ST_showFormation(
                 )
                 player_stat = player_stat.set_index("Naam")
                 
-        try:
-            st.write(player_stat.loc[:, player_stat.columns != "playerId"])
-        except:
-            pass
+    try:
+        st.write(player_stat.loc[:, player_stat.columns != "playerId"])
+    except:
+        pass
 
 
 def ST_SchotenOpDoelTeam(
