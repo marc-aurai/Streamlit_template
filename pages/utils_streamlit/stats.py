@@ -326,6 +326,7 @@ def ST_penaltyRankingList(
                         unsafe_allow_html=True,
                     )
             df_penaltyRanking = df_penaltyRanking.sort_values(by="Penalty's gestopt", ascending=False)
+            df_penaltyRanking = df_penaltyRanking.reset_index(drop=True)
             df_penaltyRanking.index = df_penaltyRanking.index + 1
             st.dataframe(df_penaltyRanking.style.set_properties(**{'color': 'rgb(255, 255, 255)'}), use_container_width=True)
     except:
