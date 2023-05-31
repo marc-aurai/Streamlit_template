@@ -160,7 +160,7 @@ De eerste stap in de pipeline is: </br>
 
 **Om de pipeline succesvol uit te voeren, is er een .env file nodig onder folder */opta* met de OPTA authorisatie key voor de bijbehorende competitie.**
 
-In het onderstaande voorbeeld zie je hoe een authorisatie key word opgehaald uit de environment file (*.env*) om een API call naar OPTA succesvol te kunnnen uitvoeren. </br>
+In het onderstaande voorbeeld zie je hoe een authorisatie key wordt opgehaald uit de environment file (*.env*) om een API call naar OPTA succesvol te kunnnen uitvoeren. </br>
 Voorbeeld authorisatie key: </br>
 *outletAuthKey_ereD = os.getenv("outletAuthKey_ereD")*
 
@@ -205,8 +205,8 @@ Meenemen in de prompt ja/nee:
 <img src="assets/streamlit_app/other_preferences.png" width="70%" height="70%"/>
 
 #### Genereer Samenvatting
-Het textveld veranderd interactief, door de handelingen van de user. Zo word er dus voor elke wedstrijd een unieke prompt gecreëerd in het textveld onder 'Wedstrijd data'. </br>
-In de background wordt alle OPTA data van de geselecteerde wedstrijd opgehaald en geprocessed in een 'natural language' format, dit process word ook wel een pipeline genoemd. </br>
+Het textveld veranderd interactief, door de handelingen van de user. Zo wordt er dus voor elke wedstrijd een unieke prompt gecreëerd in het textveld onder 'Wedstrijd data'. </br>
+In de background wordt alle OPTA data van de geselecteerde wedstrijd opgehaald en geprocessed in een 'natural language' format, dit process wordt ook wel een pipeline genoemd. </br>
 Het is zelfs ook nog mogelijk om in het textveld handmatig extra data/text mee te geven als input voor het model. </br>
 Zodra de user de gewenste prompt voor zich heeft, hoeft de user enkel de '**Genereer**' button te activeren. </br>
 <img src="assets/streamlit_app/example_generate.gif" width="80%" height="80%"/>
@@ -278,13 +278,15 @@ AWS CodeDeploy is een volledig beheerde deployment service, die de software depl
 
 ## Route 53
 AWS Route53 is een DNS webservice en verbindt gebruikers met de web applicatie die op de EC2 instance draait. </br>
-Gebruikers worden dus veilig geroute naar de web applicatie [dashboard.sportnatives.com](dashboard.sportnatives.com) (Die als service op de EC2 draait).</br>
+Gebruikers worden dus veilig geroute naar de web applicatie [dashboard.sportnatives.com](http://dashboard.sportnatives.com/) (Die als service op de EC2 draait).</br>
+
+
 ## S3 bucket
 AWS S3 (bucket naam: **gpt-ai-tool-wsc**) wordt gebruikt om files op te slaan, zoals de datasets die in format *.csv* zijn.
-Ook de video's die afkomstig zijn van WSC worden opgeslagen in een S3 bucket (bucket naam: **wsc-espn-site** ).
+Ook de video's die afkomstig zijn van WSC worden opgeslagen in een S3 bucket (bucket naam: **wsc-espn-site**).
 
 ## Secrets Manager
-AWS Secrets Manager word gebruik voor de volgende zaken: </br>
+AWS Secrets Manager wordt gebruikt voor de volgende zaken die privé moeten blijven, en niet openbaar gemaakt mogen worden: </br>
 - Gebruikersnamen (*Streamlit*)
 - Wachtwoorden (*Streamlit*)
 - API Key (*OpenAI*)
