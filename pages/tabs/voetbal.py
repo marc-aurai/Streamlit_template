@@ -23,7 +23,15 @@ from pages.utils_streamlit.selections import (ST_cardEvents, ST_clubLogos,
 @st.cache_data(show_spinner="Een momentje...")
 def load_dataset(
     selected_dataset: str,
-) -> pd.DataFrame:  # Elke dag bijvoorbeeld als job schedulen
+) -> pd.DataFrame: 
+    """Deze functie laad de geselecteerde algemene dataset (e.g.: Eredivisie 22-23, KKD 22-23) in vanuit de S3 bucket of lokaal uit folder: ./pages/data/
+
+    Args:
+        selected_dataset (str): Naam van de .csv file, (zonder .csv)
+
+    Returns:
+        pd.DataFrame: Uit deze functie krijg je de dataset terug in de vorm van een pandas dataframe.
+    """
     try:
         df = read_S3_file(
             bucketName="gpt-ai-tool-wsc",
@@ -39,7 +47,15 @@ def load_dataset(
 @st.cache_data(show_spinner="Een momentje...")
 def load_dataset_player_stats(
     selected_dataset: str,
-) -> pd.DataFrame:  # Elke dag bijvoorbeeld als job schedulen
+) -> pd.DataFrame:  
+    """Deze functie laad de geselecteerde spelers/playerstats dataset in vanuit de S3 bucket of lokaal uit folder: ./pages/data/
+
+    Args:
+        selected_dataset (str): Naam van de .csv file, (zonder .csv)
+
+    Returns:
+        pd.DataFrame: Uit deze functie krijg je de dataset terug in de vorm van een pandas dataframe.
+    """
     try:
         df = read_S3_file(
             bucketName="gpt-ai-tool-wsc",
