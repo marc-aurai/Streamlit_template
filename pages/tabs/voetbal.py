@@ -5,24 +5,19 @@ import streamlit as st
 from streamlit_chat import message as st_message
 
 from pages.utils_streamlit.AWS import read_S3_file
-from pages.utils_streamlit.generate import generate_completion, generate_winstreak_plots
-from pages.utils_streamlit.selections import (
-    ST_cardEvents,
-    ST_clubLogos,
-    ST_getDataFromMatch,
-    ST_goalEvents_MD,
-    ST_selectDataset,
-    ST_selectGoals,
-    ST_selectInjuries,
-    ST_selectIntro,
-    ST_selectKeepers,
-    ST_selectMatch,
-    ST_selectMatchDate,
-    ST_selectPossession,
-    ST_selectRank,
-    ST_selectTrainers,
-    ST_uniqueEvents,
-)
+from pages.utils_streamlit.generate import (generate_completion,
+                                            generate_winstreak_plots)
+from pages.utils_streamlit.selections import (ST_cardEvents, ST_clubLogos,
+                                              ST_getDataFromMatch,
+                                              ST_goalEvents_MD,
+                                              ST_selectDataset, ST_selectGoals,
+                                              ST_selectInjuries,
+                                              ST_selectIntro, ST_selectKeepers,
+                                              ST_selectMatch,
+                                              ST_selectMatchDate,
+                                              ST_selectPossession,
+                                              ST_selectRank, ST_selectTrainers,
+                                              ST_uniqueEvents)
 
 
 @st.cache_data(show_spinner="Een momentje...")

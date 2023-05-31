@@ -36,7 +36,7 @@ def _argParser():
         "--competitie_id",
         help="Opta ID van de competitie. Bijvoorbeeld Eredivisie 22/23 = d1k1pqdg2yvw8e8my74yvrdw4",
         type=str,
-        default="d1k1pqdg2yvw8e8my74yvrdw4", # Eredivisie 22/23
+        default="d1k1pqdg2yvw8e8my74yvrdw4",  # Eredivisie 22/23
     )
     parser.add_argument(
         "--outletAuthKey",
@@ -77,7 +77,7 @@ if __name__ == "__main__":
         get_tournamentschedule(
             outletAuthKey,
             competitions=[
-                competition_ID,  
+                competition_ID,
             ],
         )
         .pipe(get_cup, outletAuthKey, competition=competition_ID)
@@ -92,7 +92,7 @@ if __name__ == "__main__":
         .pipe(get_injuries, outletAuthKey, competition=competition_ID)
         .pipe(get_rankStatus, outletAuthKey, competition=competition_ID)
         .pipe(get_formations, outletAuthKey)
-        .pipe(get_substitute,outletAuthKey)
+        .pipe(get_substitute, outletAuthKey)
         .pipe(get_totalCardsPlayer, outletAuthKey, competition=competition_ID)
         .pipe(get_matchStats, outletAuthKey)
         .pipe(get_countPlayerGoals)
@@ -110,12 +110,16 @@ if __name__ == "__main__":
         status = data_to_S3(
             file_name="./pages/data/{}.csv".format(competitie_name),
             bucket="gpt-ai-tool-wsc",
-            object_name="prompt_OPTA_data/{}/{}.csv".format(args.folder_name, competitie_name),
+            object_name="prompt_OPTA_data/{}/{}.csv".format(
+                args.folder_name, competitie_name
+            ),
         )
         status = data_to_S3(
             file_name="./pages/data/{}_playerstats.csv".format(competitie_name),
             bucket="gpt-ai-tool-wsc",
-            object_name="prompt_OPTA_data/{}/{}_playerstats.csv".format(args.folder_name, competitie_name),
+            object_name="prompt_OPTA_data/{}/{}_playerstats.csv".format(
+                args.folder_name, competitie_name
+            ),
         )
     except:
         print("Not able to write to S3 Bucket")

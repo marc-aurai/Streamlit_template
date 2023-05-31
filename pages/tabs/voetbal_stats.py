@@ -2,18 +2,13 @@ import pandas as pd
 import streamlit as st
 
 from pages.utils_streamlit.selections import ST_clubLogos
-from pages.utils_streamlit.stats import (
-    ST_AssistMakers,
-    ST_GoalMakers,
-    ST_goalRankingList,
-    ST_minsPlayed,
-    ST_ongeslagenStreak,
-    ST_penaltyKiller,
-    ST_penaltyRankingList,
-    ST_SchotenOpDoel,
-    ST_SchotenOpDoelTeam,
-    ST_showFormation,
-)
+from pages.utils_streamlit.stats import (ST_AssistMakers, ST_GoalMakers,
+                                         ST_goalRankingList, ST_minsPlayed,
+                                         ST_ongeslagenStreak, ST_penaltyKiller,
+                                         ST_penaltyRankingList,
+                                         ST_SchotenOpDoel,
+                                         ST_SchotenOpDoelTeam,
+                                         ST_showFormation)
 
 
 def TAB_voetbal_stats(
