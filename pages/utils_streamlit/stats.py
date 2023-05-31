@@ -221,8 +221,8 @@ def ST_GoalMakers(
             df['Spelernaam'] = df['Spelernaam'].str.replace(team_name, '', regex=True)
             df['Spelernaam'] = df['Spelernaam'].str.replace("|", '', regex=True)
             df.sort_values(by="Goals dit Seizoen", ascending=False)
-            df['Spelernaam'].where(df['Goals dit Seizoen'] <10, df['Spelernaam'].astype(str) + "🔥", inplace=True).reset_index(drop=True, inplace=True)
-            #df = df.set_index("Spelernaam")
+            df['Spelernaam'].where(df['Goals dit Seizoen'] <10, df['Spelernaam'].astype(str) + "🔥", inplace=True)
+            df = df.reset_index(drop=True)
             df.index = df.index + 1
             st.dataframe(df.style.set_properties(**{'color': 'rgb(255, 255, 255)'}), use_container_width=True)
         except:
@@ -325,7 +325,7 @@ def ST_penaltyRankingList(
                         "<h5 style='text-align: center; color:white;font-size:15px'>Top Penalty Killers</h5>",
                         unsafe_allow_html=True,
                     )
-            df_penaltyRanking = df_penaltyRanking.sort_values(by="Penalty's gestopt", ascending=False).reset_index(inplace=True, drop=True)
+            df_penaltyRanking = df_penaltyRanking.sort_values(by="Penalty's gestopt", ascending=False)
             df_penaltyRanking.index = df_penaltyRanking.index + 1
             st.dataframe(df_penaltyRanking.style.set_properties(**{'color': 'rgb(255, 255, 255)'}), use_container_width=True)
     except:
