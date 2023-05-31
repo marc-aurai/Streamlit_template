@@ -284,3 +284,8 @@ AWS S3 (bucket naam: **gpt-ai-tool-wsc**) wordt gebruikt om files op te slaan, z
 Ook de video's die afkomstig zijn van WSC worden opgeslagen in een S3 bucket (bucket naam: **wsc-espn-site** ).
 
 ## Secrets Manager
+AWS Secrets Manager word gebruik voor de volgende zaken: </br>
+- Gebruikersnamen (*Streamlit*)
+- Wachtwoorden (*Streamlit*)
+- API Key (*OpenAI*)
+- API authorisatie Keys (*OPTA*)
