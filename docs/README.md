@@ -4,11 +4,13 @@ o { color: Orange }
 g { color: Green }
 b { color: Blue }
 </style>
+
 # Introductie 
 *Author: Marc Blomvliet - Aurai* </br>
 Dit project is gestart als MVP voor Southfields (Project GPT3 - GPT3.5).
 Het doel van het project is om middels van play by play data, afkomstig van OPTA, voetbal wedstrijdsamenvattingen te genereren met een Language model.
 
+# <g>Test</g>
 ## Bouwstenen
 Om een beter beeld te krijgen hoe de GIT Repository is opgebouwd, verdeel ik het in hoofdzakelijk 4 componenten. </br>
 - ESPN Scraper om Wedstrijd samenvattingen te vergaren */espn_scraper*
