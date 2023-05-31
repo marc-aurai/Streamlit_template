@@ -5,6 +5,10 @@ g { color: Green }
 b { color: Blue }
 </style>
 
+<meta http-equiv='cache-control' content='no-cache'> 
+<meta http-equiv='expires' content='0'> 
+<meta http-equiv='pragma' content='no-cache'>
+
 <img src="assets/company_logos/SF_icon.png" width="10%" height="10%" align="middle" style="margin:0px 150px"/>
 <img src="assets/company_logos/aurai_logo_black.png" width="25%" height="25%" align="middle" style="margin:0px 50px"/>
 
