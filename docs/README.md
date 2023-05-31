@@ -130,8 +130,9 @@ De pipeline is opgebouwd als volgt: </br>
 Zoals je ziet heeft de Pipeline 2 Parameters nodig om te starten *competitie ID* en de bijbehorende *authorisatie key(OPTA)* die bij deze competitie hoort. </br>
 Dit betekent dat de pipeline inprincipe universeel werkt voor elke voetbal competitie. Zolang OPTA dezelfde structuur behoud voor elke voetbal competitie. </br>
 De volgende lijst geeft weer wat voor <b>functies</b> er gebruikt worden in de pipeline, en indien het in de vorm van een dictionary is wat voor <o>keys</o> er bestaan per kolom. </br>
+De pipeline zet alles in een *pandas dataframe*. </br>
 De eerste stap in de pipeline is: </br>
-**<b>get_tournamentschedule()</b>** Deze functie vergaart het volgende, en zet alles in een *pandas dataframe*:
+**<b>get_tournamentschedule()</b>** - <g>utils/opta_feeds.py</g> - Deze functie vergaart het volgende:
 - id (Wedstrijd ID's)
 - date (Datum)
 - homeContestantId (Thuisploeg ID)
@@ -139,21 +140,21 @@ De eerste stap in de pipeline is: </br>
 - homeContestantOfficialName (Thuisploegnaam)
 - awayContestantOfficialName (Uitploegnaam)
 
-**<b>get_cup()</b>** Deze functie vergaart het volgende:
+**<b>get_cup()</b>** - <g>utils/opta_feeds.py</g> - Deze functie vergaart het volgende:
 - cup (Naam van de competitie als *string*)
 
-**<b>get_matchLength()</b>** Deze functie vergaart het volgende:
+**<b>get_matchLength()</b>** - <g>utils/opta_feeds.py</g> - Deze functie vergaart het volgende:
 - matchLength (De duur van de wedstrijd in minuten)
 
-**<b>get_score()</b>** Deze functie vergaart het volgende:
+**<b>get_score()</b>** - <g>utils/opta_feeds.py</g> - Deze functie vergaart het volgende:
 - score_home (Doelsaldo thuisploeg)
 - score_away (Doelsaldo uitploeg)
 
-**<b>get_matchstats_possession()</b>** Deze functie vergaart het volgende:
+**<b>get_matchstats_possession()</b>** - <g>utils/opta_feeds.py</g> - Deze functie vergaart het volgende:
 - possession_home (Balbezit thuisploeg, uitgedrukt in %)
 - possession_away (Balbezit uitploeg, uitgedrukt in %)
 
-**<b>get_matchstats_cards()</b>** Deze functie vergaart het volgende:
+**<b>get_matchstats_cards()</b>** - <g>utils/opta_feeds.py</g> - Deze functie vergaart het volgende:
 - card_events (Als *dictionary*)
     - <o>contestantName</o> (Team naam)
     - <o>contestantId</o> (ID van team)
@@ -164,10 +165,10 @@ De eerste stap in de pipeline is: </br>
     - <o>cardType</o> (Kaart type die de speler heeft gekregen -> geel, tweede geel of rood)
     - <o>cardReason</o> (De reden van de kaart)
 
-**<b>get_venue()</b>** Deze functie vergaart het volgende:
+**<b>get_venue()</b>** - <g>utils/opta_feeds.py</g> - Deze functie vergaart het volgende:
 - venue: Vergaar de naam van het stadion waar de wedstrijd plaats vond.
 
-**<b>get_matchstats_goals()</b>** Deze functie vergaart het volgende:
+**<b>get_matchstats_goals()</b>** - <g>utils/opta_feeds.py</g> - Deze functie vergaart het volgende:
 - goal_events (Als *dictionary*)
     - <o>contestantName</o> (Team naam)
     - <o>contestantId</o> (ID van team)
@@ -179,15 +180,15 @@ De eerste stap in de pipeline is: </br>
     - <o>assistName</o> (Indien aanwezeg: Spelersnaam van de gene die de assist gaf)
 - goalMakers (Lijst met namen, van de spelers die een goal hebben gemaakt deze wedstrijd)
 
-**<b>get_trainer()</b>** Deze functie vergaart het volgende:
+**<b>get_trainer()</b>** - <g>utils/opta_feeds.py</g> - Deze functie vergaart het volgende:
 - trainer_home (De naam van de trainer, thuisploeg)
 - trainer_away (De naam van de trainer, uitploeg)
  
-**<b>get_keepers()</b>** Deze functie vergaart het volgende:
+**<b>get_keepers()</b>** - <g>utils/opta_feeds.py</g> - Deze functie vergaart het volgende:
 - keeper_home (De naam van de keeper, thuisploeg)
 - keeper_away (De naam van de keeper, uitploeg)
 
-**<b>get_injuries()</b>** Deze functie vergaart het volgende:
+**<b>get_injuries()</b>** - <g>utils/opta_feeds.py</g> - Deze functie vergaart het volgende:
 - home_injuries (Lijst van de lopende blessures van de thuisploeg)
     - <o>Spelersnaam</o>
     - <o>Type blessure</o>
@@ -195,7 +196,7 @@ De eerste stap in de pipeline is: </br>
     - <o>Spelersnaam</o>
     - <o>Type blessure</o>
 
-**<b>get_rankStatus()</b>** Deze functie vergaart het volgende:
+**<b>get_rankStatus()</b>** - <g>utils/opta_feeds.py</g> - Deze functie vergaart het volgende:
 - rank_home (Uitgedrukt in een getal, dat de plaats in de ranglijst van de competitie aanduidt)
 - rank_away (Uitgedrukt in een getal, dat de plaats in de ranglijst van de competitie aanduidt)
 - last_six_home (Uitslag reeks laatste 6 wedstrijden: W=Gewonnen, D=Gelijk, L=Verloren)
@@ -205,7 +206,7 @@ De eerste stap in de pipeline is: </br>
 - lastRank_home: De rank van de thuisploeg vóór de wedstrijd
 - lastRank_away: De rank van de uitploeg vóór de wedstrijd
 
-**<b>get_formations()</b>** Deze functie vergaart het volgende:
+**<b>get_formations()</b>** - <g>utils/opstelling.py</g> - Deze functie vergaart het volgende:
 - formation_home (De opstelling van de thuisploeg)
     - Spelersnaam
     - Positie
@@ -221,19 +222,19 @@ De eerste stap in de pipeline is: </br>
 - player_stats_home
 - player_stats_away
 
-**<b>get_substitute()</b>** Deze functie vergaart het volgende:
+**<b>get_substitute()</b>** - <g>utils/opstelling.py</g> - Deze functie vergaart het volgende:
 
-**<b>get_totalCardsPlayer()</b>** Deze functie vergaart het volgende:
+**<b>get_totalCardsPlayer()</b>** - <g>utils/playerStats.py</g> - Deze functie vergaart het volgende:
 
-**<b>get_matchStats()</b>** Deze functie vergaart het volgende:
+**<b>get_matchStats()</b>** - <g>utils/playerStats.py</g> - Deze functie vergaart het volgende:
 
-**<b>get_countPlayerGoals()</b>** Deze functie vergaart het volgende:
+**<b>get_countPlayerGoals()</b>** - <g>utils/playerStats.py</g> - Deze functie vergaart het volgende:
 
-**<b>get_totalMinsPlayed_Season_Player()</b>** Deze functie vergaart het volgende:
+**<b>get_totalMinsPlayed_Season_Player()</b>** - <g>utils/playerStats.py</g> - Deze functie vergaart het volgende:
 
-**<b>get_totalMinsPlayed_Season_Team()</b>** Deze functie vergaart het volgende:
+**<b>get_totalMinsPlayed_Season_Team()</b>** - <g>utils/playerStats.py</g> - Deze functie vergaart het volgende:
 
-**<b>prompt_engineering()</b>** Deze functie vergaart het volgende:
+**<b>prompt_engineering()</b>** - <g>utils/soccer_prompt.py</g> - Deze functie vergaart het volgende:
 
 **Om de pipeline succesvol uit te voeren, is er een .env file nodig onder folder */opta* met de OPTA authorisatie key voor de bijbehorende competitie.**
 
