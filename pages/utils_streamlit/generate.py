@@ -9,10 +9,10 @@ from pages.utils_streamlit.chat import (
     GPT_chat_completion,
     GPT_chat_completion_streaming,
 )
-from pages.utils_streamlit.plot_winstreak import plot_winstreak
+from pages.utils_streamlit.plot_winstreak import _plotWinstreak
 
 
-def get_datetime() -> str:
+def _getDatetime() -> str:
     """This function returns the current time (hour:minutes:seconds), 
     it is used to give the match summaries a timestamp in the Streamlit UI.
 
@@ -30,7 +30,7 @@ def get_datetime() -> str:
     return created_at_formatted
 
 
-def generate_winstreak_plots(
+def _generateWinstreakPlots(
     match_streak_home: str, home_team: str, match_streak_away: str, away_team: str
 ):
     """Creates two plots in the Streamlit UI with a indication for: win, lose and draw.
@@ -45,7 +45,7 @@ def generate_winstreak_plots(
     # try:
     with plot_col1:
         st.pyplot(
-            plot_winstreak(match_streak_home, title_plt=str(home_team) + "\n")
+            _plotWinstreak(match_streak_home, title_plt=str(home_team) + "\n")
         )
     # except:
     #     with plot_col1:
@@ -53,14 +53,14 @@ def generate_winstreak_plots(
     try:
         with plot_col3:
             st.pyplot(
-                plot_winstreak(match_streak_away, title_plt=str(away_team) + "\n")
+                _plotWinstreak(match_streak_away, title_plt=str(away_team) + "\n")
             )
     except:
         with plot_col3:
             st.warning("Winstreak Away team not available.")
 
 
-def generate_completion(
+def _generateCompletion(
     openai_model: str,
     input_data: str,
     TOKENS: int,
@@ -100,7 +100,7 @@ def generate_completion(
 
         chats = st.empty()
         completion_chunks = []
-        _datetime = get_datetime()
+        _datetime = _getDatetime()
         completion_chunks.append(str(_datetime) + "\n\n")
         for chunk in generated_output:
             try:
@@ -128,7 +128,7 @@ def generate_completion(
         
         chats = st.empty()
         completion_chunks = []
-        _datetime = get_datetime()
+        _datetime = _getDatetime()
         completion_chunks.append(str(_datetime) + "\n\n")
         for chunk in generated_output:
             try:

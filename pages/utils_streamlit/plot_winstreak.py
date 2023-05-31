@@ -7,7 +7,7 @@ plt.rcParams["savefig.facecolor"] = "#100c44"
 plt.rcParams["text.color"] = "#FFFFFF"
 
 
-def plot_winstreak(streak: str, title_plt: str):
+def _plotWinstreak(streak: str, title_plt: str):
     figure(figsize=(3, 1), dpi=60)
     x = [0, 1, 2, 3, 4, 5]
     y = [0, 0, 0, 0, 0, 0]

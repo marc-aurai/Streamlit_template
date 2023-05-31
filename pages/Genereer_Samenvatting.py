@@ -6,24 +6,24 @@ from pages.tabs.voetbal import TAB_voetbal
 from pages.tabs.voetbal_stats import TAB_voetbal_stats
 from pages.utils_streamlit.AWS_login import check_password as check_password_AWS
 from pages.utils_streamlit.login import check_password
-from pages.utils_streamlit.video import ST_readVideo, videoMetaData
+from pages.utils_streamlit.video import ST_readVideo, _videoMetaData
 
 if "message_history" not in st.session_state:
     st.session_state.message_history = []
 
 
 @st.cache_data(show_spinner="Een momentje...")
-def load_metadataVideosFrom_S3Bucket():
-    df = videoMetaData()
+def _loadMetadataVideos_S3Bucket():
+    df = _videoMetaData()
     return df
 
 
 @st.cache_data(show_spinner="Een momentje...")
-def load_images():
+def _loadImages():
     return Image.open("assets/image/southfields_logo.png")
 
 
-def streamlit_page_config():
+def _streamlitPageConfig():
     st.set_page_config(
         page_title="Southfields AI",
         page_icon=Image.open("assets/image/SF_icon.png"),
@@ -48,11 +48,11 @@ def streamlit_page_config():
     st.markdown(multi_css, unsafe_allow_html=True)
 
 
-streamlit_page_config()
-SF_logo = load_images()
+_streamlitPageConfig()
+SF_logo = _loadImages()
 
 try:
-    df_videoMetadata = load_metadataVideosFrom_S3Bucket()
+    df_videoMetadata = _loadMetadataVideos_S3Bucket()
 except:
     print("Access AWS Probably denied.")
 

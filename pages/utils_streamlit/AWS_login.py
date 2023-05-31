@@ -1,8 +1,8 @@
 import streamlit as st
-from pages.utils_streamlit.AWS import get_secret
+from pages.utils_streamlit.AWS import _getSecret
 
 try:
-    password_aws = get_secret(secret_name="dev/GPT_AI_TOOL", region="eu-central-1")
+    password_aws = _getSecret(secret_name="dev/GPT_AI_TOOL", region="eu-central-1")
     AWS = True
 except:
     AWS = False

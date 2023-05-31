@@ -4,9 +4,9 @@ import pandas as pd
 import streamlit as st
 from streamlit_chat import message as st_message
 
-from pages.utils_streamlit.AWS import read_S3_file
-from pages.utils_streamlit.generate import (generate_completion,
-                                            generate_winstreak_plots)
+from pages.utils_streamlit.AWS import _readS3File
+from pages.utils_streamlit.generate import (_generateCompletion,
+                                            _generateWinstreakPlots)
 from pages.utils_streamlit.selections import (ST_cardEvents, ST_clubLogos,
                                               ST_getDataFromMatch,
                                               ST_goalEvents_MD,
@@ -21,7 +21,7 @@ from pages.utils_streamlit.selections import (ST_cardEvents, ST_clubLogos,
 
 
 @st.cache_data(show_spinner="Een momentje...")
-def load_dataset(
+def _loadDataset(
     selected_dataset: str,
 ) -> pd.DataFrame: 
     """Deze functie laad de geselecteerde algemene dataset (e.g.: Eredivisie 22-23, KKD 22-23) in vanuit de S3 bucket of lokaal uit folder: ./pages/data/
@@ -33,7 +33,7 @@ def load_dataset(
         pd.DataFrame: Uit deze functie krijg je de dataset terug in de vorm van een pandas dataframe.
     """
     try:
-        df = read_S3_file(
+        df = _readS3File(
             bucketName="gpt-ai-tool-wsc",
             fileName="prompt_OPTA_data/All/{}.csv".format(selected_dataset),
         )
@@ -45,7 +45,7 @@ def load_dataset(
 
 
 @st.cache_data(show_spinner="Een momentje...")
-def load_dataset_player_stats(
+def _loadDatasetPlayerStats(
     selected_dataset: str,
 ) -> pd.DataFrame:  
     """Deze functie laad de geselecteerde spelers/playerstats dataset in vanuit de S3 bucket of lokaal uit folder: ./pages/data/
@@ -57,7 +57,7 @@ def load_dataset_player_stats(
         pd.DataFrame: Uit deze functie krijg je de dataset terug in de vorm van een pandas dataframe.
     """
     try:
-        df = read_S3_file(
+        df = _readS3File(
             bucketName="gpt-ai-tool-wsc",
             fileName="prompt_OPTA_data/All/{}_playerstats.csv".format(selected_dataset),
         )
@@ -98,8 +98,8 @@ def TAB_voetbal():
         select_dataset, opt = st.columns(2)
         selected_dataset, logo_folder = ST_selectDataset(select_dataset)
 
-        df = load_dataset(selected_dataset)
-        df_player_stats = load_dataset_player_stats(selected_dataset)
+        df = _loadDataset(selected_dataset)
+        df_player_stats = _loadDatasetPlayerStats(selected_dataset)
         select_date, select_match = st.columns(2)
         matches_on_date, selected_match_date = ST_selectMatchDate(df, select_date)
         selected_match = ST_selectMatch(select_match, matches_on_date)
@@ -190,7 +190,7 @@ def TAB_voetbal():
         )
         submit = st.button("Genereer")
 
-        generate_winstreak_plots(
+        _generateWinstreakPlots(
             match_streak_home, home_team, match_streak_away, away_team
         )
         st.markdown("""---""")
@@ -198,7 +198,7 @@ def TAB_voetbal():
         if submit:
             with st.spinner("Even een samenvatting aan het schrijven, momentje..."):
                 if input_data != "..":
-                    completion = generate_completion(
+                    completion = _generateCompletion(
                         openai_model,
                         input_data,
                         TOKENS,

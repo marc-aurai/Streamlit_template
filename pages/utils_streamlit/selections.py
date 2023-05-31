@@ -8,7 +8,7 @@ from PIL import Image
 from st_aggrid import AgGrid, GridUpdateMode
 from st_aggrid.grid_options_builder import GridOptionsBuilder
 
-from pages.utils_streamlit.AWS import read_S3_club_logos
+from pages.utils_streamlit.AWS import _readS3ClubLogos
 
 locale.setlocale(category=locale.LC_ALL, locale="nl_NL")
 
@@ -425,7 +425,7 @@ def ST_clubLogos(select_container, df_match_selected: pd.DataFrame, team: str, l
     with select_container:
         try:
             st.image(
-                read_S3_club_logos(
+                _readS3ClubLogos(
                     bucketName="gpt-ai-tool-wsc",
                     fileName="logos/{}/{}.png".format(
                         logo_fold,

@@ -1,13 +1,11 @@
 import boto3
-import os
 import streamlit as st
 import json
 import pandas as pd
 import datetime as dt
-import requests
 
 
-def videoMetaData():
+def _videoMetaData():
     s3 = boto3.resource('s3')
     bucket = s3.Bucket('wsc-espn-site')
 
