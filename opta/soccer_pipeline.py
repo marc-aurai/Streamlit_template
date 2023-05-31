@@ -52,6 +52,16 @@ def _argParser():
 
 
 def _OptaKey(args) -> str:
+    """Deze functie zoekt naar de OPTA Authorisatie key, in AWS secret manager. 
+    Of indien dit lokaal wordt gerunt, zoekt het naar de OPTA Authorisatie key in een .env file (onder folder ./opta).
+    Deze .env file staat niet in de Git repository, ivm security redenen.
+
+    Args:
+        args (_type_): de argparser die onder andere de naam van de authorisatie key beheert.
+
+    Returns:
+        str: de authorisatie key als string
+    """
     try:
         outletAuthKey = get_secret(
             secret_name="dev/{}".format(str(args.outletAuthKey)), region="eu-central-1"
