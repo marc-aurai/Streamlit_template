@@ -7,7 +7,17 @@ def get_formations(
     df: pd.DataFrame = None,
     outletAuthKey: str = None,
 ) -> pd.DataFrame:
-    # Create container for new column
+    """Vergaar de opstelling van een team en bepaalde speler statistieken, met een API call naar OPTA toe.
+
+    Args:
+        df (pd.DataFrame, optional): De dataset als pandas dataframe die moet worden uitgebreid met de kolommen: 
+        formation_home, formation_away, player_stats_home, player_stats_away. Defaults to None.
+        outletAuthKey (str, optional): De authorisatie key die hoort bij het een bepaalde: sport/competitie/seizoen. Defaults to None.
+
+    Returns:
+        pd.DataFrame: Een geupdate pandas dataframe met 4 extra kolommen: formation_home, formation_away, player_stats_home, player_stats_away.
+    """
+    
     formations_home = []
     player_stats_home = []
     formations_away = []
@@ -124,6 +134,17 @@ def get_substitute(
     df: pd.DataFrame = None,
     outletAuthKey: str = None,
 ) -> pd.DataFrame:
+    """Vergaar de wissels tijdens een wedstrijd van een team, met een API call naar OPTA toe.
+
+    Args:
+        df (pd.DataFrame, optional): De dataset als pandas dataframe die moet worden uitgebreid met de kolommen: 
+        substitutions_home, substitutions_away. Defaults to None.
+        outletAuthKey (str, optional): De authorisatie key die hoort bij het een bepaalde: sport/competitie/seizoen. Defaults to None.
+
+    Returns:
+        pd.DataFrame: Een geupdate pandas dataframe met 2 extra kolommen: substitutions_home, substitutions_away.
+    """
+    
     substitutions_home = []
     substitutions_away = []
     print("\nGet substitute..")
