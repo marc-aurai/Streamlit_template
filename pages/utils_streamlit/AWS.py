@@ -3,7 +3,7 @@ import json
 from base64 import b64decode
 import pandas as pd
 
-def get_secret(secret_name: str, region: str) -> dict:
+def _getSecret(secret_name: str, region: str) -> dict:
         """
         Reads secret from secrets manager.
         """
@@ -18,13 +18,13 @@ def get_secret(secret_name: str, region: str) -> dict:
         return json.loads(secret)
 
 
-def read_S3_file(bucketName: str, fileName: str) -> pd.DataFrame:
+def _readS3File(bucketName: str, fileName: str) -> pd.DataFrame:
     s3 = boto3.client('s3') 
     obj = s3.get_object(Bucket= bucketName, Key= fileName) 
     return pd.read_csv(obj['Body']) # 'Body' is a key word
 
 
-def read_S3_club_logos(bucketName: str, fileName: str):
+def _readS3ClubLogos(bucketName: str, fileName: str):
     s3 = boto3.client('s3') 
     obj = s3.get_object(Bucket= bucketName, Key= fileName) 
     return obj['Body'].read() # 'Body' is a key word
