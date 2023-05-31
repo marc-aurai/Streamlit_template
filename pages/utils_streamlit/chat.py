@@ -1,9 +1,9 @@
 import openai
 import streamlit as st
-from pages.utils_streamlit.AWS import get_secret
+from pages.utils_streamlit.AWS import _getSecret
 
 try:
-    secret_response = get_secret(secret_name="dev/openai", region="eu-central-1")
+    secret_response = _getSecret(secret_name="dev/openai", region="eu-central-1")
     openai.api_key = secret_response["OPENAI_KEY"]
 except:
     print("AWS API secret not found.")
