@@ -1,3 +1,9 @@
+<style>
+r { color: Red }
+o { color: Orange }
+g { color: Green }
+b { color: Blue }
+</style>
 # Introductie 
 *Author: Marc Blomvliet - Aurai* </br>
 Dit project is gestart als MVP voor Southfields (Project GPT3 - GPT3.5).
@@ -22,7 +28,7 @@ Een voorbeeld hiervan is: </br>
 > prompt natural language (Goed): {Córdoba scoorde voor Fortuna Sittard in de 1e helft in minuut 3} </br>
 
 Ten derde is er een Trainings pipeline gebouwd, dit is het process wat na de OPTA pipeline komt. Dus zodra alle OPTA data opgehaald, geprocessed en weggeschreven is naar een *.csv* file. </br>
-De trainings pipeline creeert het juiste format wat gewenst is vanuit OpenAI, enkel twee columns/keys: prompt en completion.
+De trainings pipeline creëert het juiste format wat gewenst is vanuit OpenAI, enkel twee columns/keys: prompt en completion.
 De trainings pipeline engineert alle OPTA data wat is opgehaald tot een vlot en begrijpbaar verhaal. En daarnaast zorgt het er ook voor dat alle events in de juiste tijdlijn achter elkaar staan, wat uiteindelijk weer de kans verhoogd voor een goed lopend en een correcte wedstrijdsamenvatting. </br>
 
 Om iedereen te laten testen met het Language model met diverse wedstrijden, is er een applicatie gebouwd in Streamlit. De applicatie bestaat uit 3 pagina's.
@@ -30,7 +36,8 @@ Om iedereen te laten testen met het Language model met diverse wedstrijden, is e
 **De volgende hoofdstukken zullen dieper ingaan op deze bouwstenen van de Git Repository.**
 
 # ESPN Website Scraper 
-De wedstrijd samenvattingen van ESPN staan niet in een grijpbare Database van bijvoorbeeld een cloudprovider zoals: AWS, Azure of GCloud. Daarom is er een webscraper gebouwd om alle Eredivisie en Keuken kampioen divisie wedstrijdsamenvattingen op te halen.
+De wedstrijd samenvattingen van ESPN staan niet in een grijpbare Database van bijvoorbeeld een cloudprovider zoals: AWS, Azure of GCloud. Daarom is er een webscraper gebouwd om alle Eredivisie en Keuken kampioen divisie wedstrijdsamenvattingen op te halen. </br>
+De scraper is te vinden in folder: *./espn_scraper*, in te vinden in de Repository branch **ESPN_scraper**.
 
 # OPTA (API) - Data to Prompt Pipeline
 De Pipeline is opgebouwd in File: *soccer_pipeline.py*. Het idee is dat deze Pipeline wordt getriggerd op bepaalde momenten zoals: </br>
@@ -45,8 +52,9 @@ De pipeline is opgebouwd als volgt: </br>
 
 Zoals je ziet heeft de Pipeline 2 Parameters nodig om te starten *competitie ID* en de bijbehorende *authorisatie key(OPTA)* die bij deze competitie hoort. </br>
 Dit betekent dat de pipeline inprincipe universeel werkt voor elke voetbal competitie. Zolang OPTA dezelfde structuur behoud voor elke voetbal competitie. </br>
+De volgende lijst geeft weer wat voor <b>functies</b> er gebruikt worden in de pipeline, en indien het in de vorm van een dictionary is wat voor <o>keys</o> er bestaan per kolom. </br>
 De eerste stap in de pipeline is: </br>
-**get_tournamentschedule()** Deze functie vergaart het volgende, en zet alles in een *pandas dataframe*:
+**<b>get_tournamentschedule()</b>** Deze functie vergaart het volgende, en zet alles in een *pandas dataframe*:
 - id (Wedstrijd ID's)
 - date (Datum)
 - homeContestantId (Thuisploeg ID)
@@ -54,63 +62,63 @@ De eerste stap in de pipeline is: </br>
 - homeContestantOfficialName (Thuisploegnaam)
 - awayContestantOfficialName (Uitploegnaam)
 
-**get_cup()** Deze functie vergaart het volgende:
+**<b>get_cup()</b>** Deze functie vergaart het volgende:
 - cup (Naam van de competitie als *string*)
 
-**get_matchLength()** Deze functie vergaart het volgende:
+**<b>get_matchLength()</b>** Deze functie vergaart het volgende:
 - matchLength (De duur van de wedstrijd in minuten)
 
-**get_score()** Deze functie vergaart het volgende:
+**<b>get_score()</b>** Deze functie vergaart het volgende:
 - score_home (Doelsaldo thuisploeg)
 - score_away (Doelsaldo uitploeg)
 
-**get_matchstats_possession()** Deze functie vergaart het volgende:
+**<b>get_matchstats_possession()</b>** Deze functie vergaart het volgende:
 - possession_home (Balbezit thuisploeg, uitgedrukt in %)
 - possession_away (Balbezit uitploeg, uitgedrukt in %)
 
-**get_matchstats_cards()** Deze functie vergaart het volgende:
+**<b>get_matchstats_cards()</b>** Deze functie vergaart het volgende:
 - card_events (Als *dictionary*)
-    - contestantName (Team naam)
-    - contestantId (ID van team)
-    - periodId (Helft nummer -> 1 of 2)
-    - timeMin (In welke minuut het event heeft plaats gevonden)
-    - playerId (ID van speler)
-    - playerName (Spelers naam)
-    - cardType (Kaart type die de speler heeft gekregen -> geel, tweede geel of rood)
-    - cardReason (De reden van de kaart)
+    - <o>contestantName</o> (Team naam)
+    - <o>contestantId</o> (ID van team)
+    - <o>periodId</o> (Helft nummer -> 1 of 2)
+    - <o>timeMin</o> (In welke minuut het event heeft plaats gevonden)
+    - <o>playerId</o> (ID van speler)
+    - <o>playerName</o> (Spelers naam)
+    - <o>cardType</o> (Kaart type die de speler heeft gekregen -> geel, tweede geel of rood)
+    - <o>cardReason</o> (De reden van de kaart)
 
-**get_venue()** Deze functie vergaart het volgende:
+**<b>get_venue()</b>** Deze functie vergaart het volgende:
 - venue: Vergaar de naam van het stadion waar de wedstrijd plaats vond.
 
-**get_matchstats_goals()** Deze functie vergaart het volgende:
+**<b>get_matchstats_goals()</b>** Deze functie vergaart het volgende:
 - goal_events (Als *dictionary*)
-    - contestantName (Team naam)
-    - contestantId (ID van team)
-    - periodId (Helft nummer -> 1 of 2)
-    - timeMin (In welke minuut het event heeft plaats gevonden)
-    - scorerId (ID van speler die heeft gescoord)
-    - scorerName (Spelers naam van de gene die het doelpunt maakte)
-    - goalType (The type of the goal - one of the following: G (goal) | OG (own goal) | PG (penalty goal))
-    - assistName (Indien aanwezeg: Spelersnaam van de gene die de assist gaf)
+    - <o>contestantName</o> (Team naam)
+    - <o>contestantId</o> (ID van team)
+    - <o>periodId</o> (Helft nummer -> 1 of 2)
+    - <o>timeMin</o> (In welke minuut het event heeft plaats gevonden)
+    - <o>scorerId</o> (ID van speler die heeft gescoord)
+    - <o>scorerName</o> (Spelers naam van de gene die het doelpunt maakte)
+    - <o>goalType</o> (The type of the goal - one of the following: G (goal) | OG (own goal) | PG (penalty goal))
+    - <o>assistName</o> (Indien aanwezeg: Spelersnaam van de gene die de assist gaf)
 - goalMakers (Lijst met namen, van de spelers die een goal hebben gemaakt deze wedstrijd)
 
-**get_trainer()** Deze functie vergaart het volgende:
+**<b>get_trainer()</b>** Deze functie vergaart het volgende:
 - trainer_home (De naam van de trainer, thuisploeg)
 - trainer_away (De naam van de trainer, uitploeg)
  
-**get_keepers()** Deze functie vergaart het volgende:
+**<b>get_keepers()</b>** Deze functie vergaart het volgende:
 - keeper_home (De naam van de keeper, thuisploeg)
 - keeper_away (De naam van de keeper, uitploeg)
 
-**get_injuries()** Deze functie vergaart het volgende:
+**<b>get_injuries()</b>** Deze functie vergaart het volgende:
 - home_injuries (Lijst van de lopende blessures van de thuisploeg)
-    - Spelersnaam
-    - Type blessure
+    - <o>Spelersnaam</o>
+    - <o>Type blessure</o>
 - away_injuries (Lijst van de lopende blessures van de uitploeg)
-    - Spelersnaam
-    - Type blessure
+    - <o>Spelersnaam</o>
+    - <o>Type blessure</o>
 
-**get_rankStatus()** Deze functie vergaart het volgende:
+**<b>get_rankStatus()</b>** Deze functie vergaart het volgende:
 - rank_home (Uitgedrukt in een getal, dat de plaats in de ranglijst van de competitie aanduidt)
 - rank_away (Uitgedrukt in een getal, dat de plaats in de ranglijst van de competitie aanduidt)
 - last_six_home (Uitslag reeks laatste 6 wedstrijden: W=Gewonnen, D=Gelijk, L=Verloren)
@@ -120,32 +128,35 @@ De eerste stap in de pipeline is: </br>
 - lastRank_home: De rank van de thuisploeg vóór de wedstrijd
 - lastRank_away: De rank van de uitploeg vóór de wedstrijd
 
-**get_formations()** Deze functie vergaart het volgende:
+**<b>get_formations()</b>** Deze functie vergaart het volgende:
 - formation_home (De opstelling van de thuisploeg)
     - Spelersnaam
     - Positie
     - Positie kant
     - Speler informatie/Statistieken
-        - minsPlayed (Minuten gepspeeld in de huidige wedstrijd)
-        - totalPass (Aantal passes in de wedstrijd van de speler)
-        - accuratePass (Accuracy van de aangekomen passes, uitgedrukt in percentage)
-        - x
-        - x
-        - x
+        - <o>minsPlayed</o> (Minuten gepspeeld in de huidige wedstrijd)
+        - <o>totalPass</o> (Aantal passes in de wedstrijd van de speler)
+        - <o>accuratePass</o> (Accuracy van de aangekomen passes, uitgedrukt in percentage)
+        - <o>goalAssist</o> (Identificeert of een speler een assist heeft gemaakt tijdens de wedstrijd, uitgedrukt in aantal/getal)
+        - <o>totalScoringAtt</o> (Identificeert het aantal doelpunt pogingen van een speler, gedurende de wedstrijd. Uitgedrukt in aantal/getal)
+        - <o>saves</o> (Beschikbaar voor de keepers, geeft aan hoeveel 'saves' een keeper heeft gemaakt tijdens de wedstrijd. Uitgedrukt in aantal/getal)
 - formation_away
 - player_stats_home
 - player_stats_away
 
-**get_substitute()** Deze functie vergaart het volgende:
+**<b>get_substitute()</b>** Deze functie vergaart het volgende:
 
-**get_totalCardsPlayer()** Deze functie vergaart het volgende:
+**<b>get_totalCardsPlayer()</b>** Deze functie vergaart het volgende:
 
-**get_matchStats()** Deze functie vergaart het volgende:
-**get_countPlayerGoals()** Deze functie vergaart het volgende:
-**get_totalMinsPlayed_Season_Player()** Deze functie vergaart het volgende:
-**get_totalMinsPlayed_Season_Team()** Deze functie vergaart het volgende:
+**<b>get_matchStats()</b>** Deze functie vergaart het volgende:
 
-**prompt_engineering()** Deze functie vergaart het volgende:
+**<b>get_countPlayerGoals()</b>** Deze functie vergaart het volgende:
+
+**<b>get_totalMinsPlayed_Season_Player()</b>** Deze functie vergaart het volgende:
+
+**<b>get_totalMinsPlayed_Season_Team()</b>** Deze functie vergaart het volgende:
+
+**<b>prompt_engineering()</b>** Deze functie vergaart het volgende:
 
 **Om de pipeline succesvol uit te voeren, is er een .env file nodig onder folder */opta* met de OPTA authorisatie key voor de bijbehorende competitie.**
 
@@ -163,7 +174,7 @@ Het is erg gebruiksvriendelijk voor zowel de user als de developer. Het is fijn 
 ## Constructie
 Om iedereen te laten testen met het Language model met diverse wedstrijden, is er een applicatie gebouwd in Streamlit. De applicatie is opgebouwd met het Streamlit multipage principe. Bestaande uit 3 pagina's: </br>
 1. **Home page**: Introductie pagina van de Web App. </br>
-2. **Genereer Samenvatting page**: Hier kan men met diverse wedstrijden testen en zelf diverse prompts creeëren door middel van de fijne User Interface. </br>
+2. **Genereer Samenvatting page**: Hier kan men met diverse wedstrijden testen en zelf diverse prompts creëren door middel van de fijne User Interface. </br>
     ***2a.*** Voetbal</br>
     ***2b.*** Voetbal Stats</br>
     ***2c.*** Voetbal Videos</br>
@@ -194,7 +205,7 @@ Meenemen in de prompt ja/nee:
 <img src="assets/streamlit_app/other_preferences.png" width="70%" height="70%"/>
 
 #### Genereer Samenvatting
-Het textveld veranderd interactief, door de handelingen van de user. Zo word er dus voor elke wedstrijd een unieke prompt gecreeërd in het textveld onder 'Wedstrijd data'. </br>
+Het textveld veranderd interactief, door de handelingen van de user. Zo word er dus voor elke wedstrijd een unieke prompt gecreëerd in het textveld onder 'Wedstrijd data'. </br>
 In de background wordt alle OPTA data van de geselecteerde wedstrijd opgehaald en geprocessed in een 'natural language' format, dit process word ook wel een pipeline genoemd. </br>
 Het is zelfs ook nog mogelijk om in het textveld handmatig extra data/text mee te geven als input voor het model. </br>
 Zodra de user de gewenste prompt voor zich heeft, hoeft de user enkel de '**Genereer**' button te activeren. </br>
@@ -206,3 +217,53 @@ Voor nu is het enkel gebaseerd op Eredivisie data, en is het puur ter illustrati
 <img src="assets/streamlit_app/words_SF.png" width="45%" height="45%"/>
 <img src="assets/streamlit_app/trigrams_SF.png" width="47.5%" height="51%"/>
 
+
+
+# AWS - Cloud resources
+Voor dit project zijn een aantal resources gebruikt in AWS, om de applicatie te kunnen gebruiken in productie. </br>
+## EC2 Instance - elastic ip
+De datasets (*.csv* files in de S3 Bucket: **gpt-ai-tool-wsc**) voor de eredivisie en KKD (tot nu toe), worden geüpdated door de EC2 instance. </br>
+Voor nu gebeurt dit handmatig, en kan dit gedaan worden indien er nieuwe wedstrijden zijn geweest. </br>
+
+De EC2 maakt gebruik van een elastic IP, indien de EC2 wordt gestopt op wat voor een reden dan ook dan behoud de compute zijn IP address (3.78.91.250). </br>
+Indien de EC2 is gestopt door iemand, dan dient de volgende service opnieuw te worden gestart: </br>
+> sudo systemctl start nginx.service </br>
+</br>
+
+**Hoe update ik de datasets?** </br>
+Gebruik SSH om de EC2 instance te beheren, zorg ervoor dat je dit command uitvoert in dezelfde folder waar de <o>GPT3-AI-tool.pem</o> staat:
+> sudo ssh -i <o>GPT3-AI-tool.pem</o> ec2-user@ec2-3-78-91-250.eu-central-1.compute.amazonaws.com </br>
+
+De *.pem* file heb je nodig om de EC2 in te kunnen. (Vraag Steven of Mitchell van Southfields om deze file) </br> 
+Wanneer je binnen bent in de EC2, zit je zeer waarschijnlijk in de folder *ec2-user*.</br>
+Ga een folder terug door middel van het volgende commands: </br>
+> cd .. </br>
+> ls </br>
+
+Als het goed is zie je nu:</br>
+<b>app ec2-user</b> </br>
+
+Ga naar de folder app:
+> cd app </br>
+
+Nu kan je de datasets updaten door middel van het volgende command: </br>
+> sudo ./AWS_scripts/dataset_pipeline/eredivisie.sh </br>
+> sudo ./AWS_scripts/dataset_pipeline/KKD.sh </br>
+
+**Herstarten van de applicatie.** </br>
+Indien het script klaar is met runnen, dien je de streamlit applicatie opnieuw op te starten. Zodat de nieuwe datasets worden ingeladen. Dit kan vanuit elke folder: </br>
+> sudo systemctl restart streamlit.service </br>
+
+Of:
+
+> sudo systemctl stop streamlit.service </br>
+> sudo systemctl start streamlit.service </br>
+
+Extra: </br>
+Status van de service kan je inzien door middel van: </br>
+> journalctl -u streamlit.service -n 40
+## Code Pipeline + Code Deploy
+
+## S3 bucket
+## Route 53
+## Secrets Manager
