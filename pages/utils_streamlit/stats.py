@@ -199,7 +199,7 @@ def ST_AssistMakers(
             df['Spelernaam'] = df['Spelernaam'].str.replace(team_name, '', regex=True)
             df['Spelernaam'] = df['Spelernaam'].str.replace("|", '', regex=True)       
             #df = df.set_index("Spelernaam")
-            df = df.sort_values(by="Assists dit Seizoen", ascending=False)
+            df = df.sort_values(by="Assists dit Seizoen", ascending=False).reset_index()
             df.index = df.index + 1
             st.dataframe(df.style.set_properties(**{'color': 'rgb(255, 255, 255)'}), use_container_width=True)
         except:
@@ -268,6 +268,7 @@ def ST_minsPlayed(
         speelMinutenPercentage = [str(round(((speelMinuten*100) / speelminutenTeam), 2))+"%" for speelMinuten in df["Speelminuten"].values]
         df["Speelminuten Seizoen"] = speelMinutenPercentage
         # df = df.set_index("Speelminuten")
+        df.reset_index(inplace=True)
         df.index = df.index + 1
         st.dataframe(df.style.set_properties(**{'color': 'rgb(255, 255, 255)'}), use_container_width=True)
 
