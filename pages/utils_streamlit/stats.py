@@ -221,7 +221,7 @@ def ST_GoalMakers(
             df['Spelernaam'] = df['Spelernaam'].str.replace(team_name, '', regex=True)
             df['Spelernaam'] = df['Spelernaam'].str.replace("|", '', regex=True)
             df.sort_values(by="Goals dit Seizoen", ascending=False)
-            df['Spelernaam'].where(df['Goals dit Seizoen'] <10, df['Spelernaam'].astype(str) + "🔥", inplace=True)
+            df['Spelernaam'].where(df['Goals dit Seizoen'] <10, df['Spelernaam'].astype(str) + "🔥", inplace=True).reset_index()
             #df = df.set_index("Spelernaam")
             df.index = df.index + 1
             st.dataframe(df.style.set_properties(**{'color': 'rgb(255, 255, 255)'}), use_container_width=True)
