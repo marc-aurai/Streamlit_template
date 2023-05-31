@@ -5,6 +5,11 @@ g { color: Green }
 b { color: Blue }
 </style>
 
+<img src="assets/company_logos/SF_icon.png" width="10%" height="10%" align="middle" style="margin:0px 150px"/>
+<img src="assets/company_logos/aurai_logo_black.png" width="25%" height="25%" align="middle" style="margin:0px 50px"/>
+
+<hr>
+
 # Introductie 
 *Author: Marc Blomvliet - Aurai* </br>
 Dit project is gestart als MVP voor Southfields (Project GPT3 - GPT3.5).
@@ -37,6 +42,7 @@ Om iedereen te laten testen met het Language model met diverse wedstrijden, is e
 
 **De volgende hoofdstukken zullen dieper ingaan op deze bouwstenen van de Git Repository. </br>Maar eerst volgt er een toelichting over de gebruikte Cloud Resources in AWS.**
 
+<hr>
 
 # AWS - Cloud resources
 Voor dit project zijn een aantal resources gebruikt in AWS, om de applicatie te kunnen gebruiken in productie. </br>
@@ -111,10 +117,13 @@ AWS Secrets Manager wordt gebruikt voor de volgende zaken die privé moeten blij
 - API Key (*OpenAI*)
 - API authorisatie Keys (*OPTA*)
 
+<hr>
 
 # ESPN Website Scraper 
 De wedstrijd samenvattingen van ESPN staan niet in een grijpbare Database van bijvoorbeeld een cloudprovider zoals: AWS, Azure of GCloud. Daarom is er een webscraper gebouwd om alle Eredivisie en Keuken kampioen divisie wedstrijdsamenvattingen op te halen. </br>
 De scraper is te vinden in folder: *./espn_scraper*, in te vinden in de Repository branch **ESPN_scraper**.
+
+<hr>
 
 # OPTA (API) - Data to Prompt Pipeline
 De Pipeline is opgebouwd in File: *soccer_pipeline.py*. Het idee is dat deze Pipeline wordt getriggerd op bepaalde momenten zoals: </br>
@@ -242,6 +251,7 @@ In het onderstaande voorbeeld zie je hoe een authorisatie key wordt opgehaald ui
 Voorbeeld authorisatie key: </br>
 *outletAuthKey_ereD = os.getenv("outletAuthKey_ereD")*
 
+<hr>
 
 # Streamlit Application
 **Introductie Streamlit:** </br>
@@ -299,6 +309,7 @@ Voor nu is het enkel gebaseerd op Eredivisie data, en is het puur ter illustrati
 <img src="assets/streamlit_app/words_SF.png" width="45%" height="45%"/>
 <img src="assets/streamlit_app/trigrams_SF.png" width="47.5%" height="51%"/>
 
+<hr>
 
 # OpenAI GPT3 - Trainings Pipeline 
 
