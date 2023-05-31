@@ -10,13 +10,13 @@ b { color: Blue }
 Dit project is gestart als MVP voor Southfields (Project GPT3 - GPT3.5).
 Het doel van het project is om middels van play by play data, afkomstig van OPTA, voetbal wedstrijdsamenvattingen te genereren met een Language model.
 
-# <g>Test</g>
 ## Bouwstenen
 Om een beter beeld te krijgen hoe de GIT Repository is opgebouwd, verdeel ik het in hoofdzakelijk 4 componenten. </br>
 - ESPN Scraper om Wedstrijd samenvattingen te vergaren */espn_scraper*
 - OPTA Data (API) - Data to prompt Pipeline */opta*
-- OpenAI GPT3 Trainings Pipeline */openai_GPT3*
 - Streamlit Web Application */pages* + */.streamlit* + File *Home.py*
+- OpenAI GPT3 Trainings Pipeline */openai_GPT3* om een GPT model te finetunen op ESPN samenvattingen/data
+
 
 Om een gefinetuned model voor zowel Curie als Davinci te realiseren waren de ESPN wedstrijdsamenvattingen (web scraped) van essentieel belang. Aangezien er twee 'Main components' nodig zijn om een eigen model te trainen: </br>
 1. Play by Play data (OPTA) als input (Prompt), dit wordt gebruikt als input voor het model om te kunnen begrijpen wat het nodig heeft om een wedstrijdsamenvatting te kunnen schrijven.  </br>
@@ -35,7 +35,82 @@ De trainings pipeline engineert alle OPTA data wat is opgehaald tot een vlot en 
 
 Om iedereen te laten testen met het Language model met diverse wedstrijden, is er een applicatie gebouwd in Streamlit. De applicatie bestaat uit 3 pagina's.
 
-**De volgende hoofdstukken zullen dieper ingaan op deze bouwstenen van de Git Repository.**
+**De volgende hoofdstukken zullen dieper ingaan op deze bouwstenen van de Git Repository. </br>Maar eerst volgt er een toelichting over de gebruikte Cloud Resources in AWS.**
+
+
+# AWS - Cloud resources
+Voor dit project zijn een aantal resources gebruikt in AWS, om de applicatie te kunnen gebruiken in productie. </br>
+
+<img src="assets/aws_logos/aws_ec2_logo.png" width="8%" height="8%" align="top"/>
+<img src="assets/aws_logos/aws_codepipeline_logo.png" width="12%" height="12%" align="top"/>
+<img src="assets/aws_logos/aws_codedeploy_logo.png" width="11.5%" height="11.5%" align="top"/>
+<img src="assets/aws_logos/aws_route53_logo.png" width="11.7%" height="11.7%" align="top"/>
+<img src="assets/aws_logos/aws_s3_logo.png" width="10%" height="10%" align="top"/>
+<img src="assets/aws_logos/aws_secretManager_logo.png" width="25%" height="25%" align="top"/>
+
+## EC2 Instance 
+
+
+De datasets (*.csv* files in de S3 Bucket: **gpt-ai-tool-wsc**) voor de eredivisie en KKD (tot nu toe), worden geüpdated door de EC2 instance. </br>
+Voor nu gebeurt dit handmatig, en kan dit gedaan worden indien er nieuwe wedstrijden zijn geweest. </br>
+
+De EC2 maakt gebruik van een elastic IP, indien de EC2 wordt gestopt op wat voor een reden dan ook dan behoud de compute zijn IP address (3.78.91.250). </br>
+Indien de EC2 is gestopt door iemand, dan dient de volgende service opnieuw te worden gestart: </br>
+> sudo systemctl start nginx.service </br>
+</br>
+
+**Hoe update ik de datasets?** </br>
+Gebruik SSH om de EC2 instance te beheren, zorg ervoor dat je dit command uitvoert in dezelfde folder waar de <o>GPT3-AI-tool.pem</o> staat:
+> sudo ssh -i <o>GPT3-AI-tool.pem</o> ec2-user@ec2-3-78-91-250.eu-central-1.compute.amazonaws.com </br>
+
+De *.pem* file heb je nodig om de EC2 in te kunnen. (Vraag Steven of Mitchell van Southfields om deze file) </br> 
+Wanneer je binnen bent in de EC2, zit je zeer waarschijnlijk in de folder *ec2-user*.</br>
+Ga een folder terug door middel van het volgende commands: </br>
+> cd .. </br>
+> ls </br>
+
+Als het goed is zie je nu:</br>
+<b>app ec2-user</b> </br>
+
+Ga naar de folder app:
+> cd app </br>
+
+Nu kan je de datasets updaten door middel van het volgende command: </br>
+> sudo ./AWS_scripts/dataset_pipeline/eredivisie.sh </br>
+> sudo ./AWS_scripts/dataset_pipeline/KKD.sh </br>
+
+**Herstarten van de applicatie.** </br>
+Indien het script klaar is met runnen, dien je de streamlit applicatie opnieuw op te starten. Zodat de nieuwe datasets worden ingeladen. Dit kan vanuit elke folder: </br>
+> sudo systemctl restart streamlit.service </br>
+
+Of:
+
+> sudo systemctl stop streamlit.service </br>
+> sudo systemctl start streamlit.service </br>
+
+Extra: </br>
+Status van de service kan je inzien door middel van: </br>
+> journalctl -u streamlit.service -n 40
+## Code Pipeline + Code Deploy
+AWS CodePipeline wordt gebruikt om continous delivery pipelines te automatiseren voor snelle en betrouwbare updates op de *main* branch van de Git-repository. Dus telkens wanneer een nieuwe push is doorgevoerd naar de *main* branch, wordt de pipeline geactiveerd en daarom worden de bestanden op de EC2-instantie bijgewerkt, met behulp van CodeDeploy. </br>
+AWS CodeDeploy is een volledig beheerde deployment service, die de software deployments automatiseert op de EC2 instance i.c.m. CodePipeline.
+
+## Route 53
+AWS Route53 is een DNS webservice en verbindt gebruikers met de web applicatie die op de EC2 instance draait. </br>
+Gebruikers worden dus veilig geroute naar de web applicatie [dashboard.sportnatives.com](http://dashboard.sportnatives.com/) (Die als service op de EC2 draait).</br>
+
+
+## S3 bucket
+AWS S3 (bucket naam: **gpt-ai-tool-wsc**) wordt gebruikt om files op te slaan, zoals de datasets die in format *.csv* zijn.
+Ook de video's die afkomstig zijn van WSC worden opgeslagen in een S3 bucket (bucket naam: **wsc-espn-site**).
+
+## Secrets Manager
+AWS Secrets Manager wordt gebruikt voor de volgende zaken die privé moeten blijven, en niet openbaar gemaakt mogen worden: </br>
+- Gebruikersnamen (*Streamlit*)
+- Wachtwoorden (*Streamlit*)
+- API Key (*OpenAI*)
+- API authorisatie Keys (*OPTA*)
+
 
 # ESPN Website Scraper 
 De wedstrijd samenvattingen van ESPN staan niet in een grijpbare Database van bijvoorbeeld een cloudprovider zoals: AWS, Azure of GCloud. Daarom is er een webscraper gebouwd om alle Eredivisie en Keuken kampioen divisie wedstrijdsamenvattingen op te halen. </br>
@@ -166,7 +241,6 @@ In het onderstaande voorbeeld zie je hoe een authorisatie key wordt opgehaald ui
 Voorbeeld authorisatie key: </br>
 *outletAuthKey_ereD = os.getenv("outletAuthKey_ereD")*
 
-# OpenAI GPT3 - Trainings Pipeline 
 
 # Streamlit Application
 **Introductie Streamlit:** </br>
@@ -182,14 +256,14 @@ Om iedereen te laten testen met het Language model met diverse wedstrijden, is e
     ***2c.*** Voetbal Videos</br>
 3. **Analyse Page**: Hier zijn diverse insights te vinden over de data die is gebruikt (Eredivisie). </br>
 
-### Home page
+### Home - Page
 De home pagina is puur ter introductie van de Applicatie, niets meer en minder.
-### Genereer samenvatting page
-#### Security
+### Genereer samenvatting - Page 
 Deze pagina is beveiligd door middel van een gebruikersnaam en wachtwoord. </br>
 De reden hiervoor is dat onbevoegde mensen dan niet zomaar gebruik kunnen maken van de OpenAI API key van Southfields. Dit voorkomt random kosten/verbuik in API calls. </br>
+#### Voetbal - Tabpage
 
-#### Parameters 
+##### Parameters 
 Nadat je succesvol bent geautoriseerd heb je toegang tot de officiele 'genereer samenvatting page'. </br>
 Op deze pagina is het mogelijk om in de **sidebar** het model te selecteren (*gpt-3.5-turbo geadviseerd*). Daarnaast is het mogelijk om twee model parameters te veranderen: </br>
 - **Maximum Tokens**: Maximum of characters/tokens in the output (1000 tokens is about 750 words)</br>
@@ -206,90 +280,24 @@ Meenemen in de prompt ja/nee:
 - De trainersnamen </br>
 <img src="assets/streamlit_app/other_preferences.png" width="70%" height="70%"/>
 
-#### Genereer Samenvatting
+##### Genereer een samenvatting
 Het textveld veranderd interactief, door de handelingen van de user. Zo wordt er dus voor elke wedstrijd een unieke prompt gecreëerd in het textveld onder 'Wedstrijd data'. </br>
 In de background wordt alle OPTA data van de geselecteerde wedstrijd opgehaald en geprocessed in een 'natural language' format, dit process wordt ook wel een pipeline genoemd. </br>
 Het is zelfs ook nog mogelijk om in het textveld handmatig extra data/text mee te geven als input voor het model. </br>
 Zodra de user de gewenste prompt voor zich heeft, hoeft de user enkel de '**Genereer**' button te activeren. </br>
 <img src="assets/streamlit_app/example_generate.gif" width="80%" height="80%"/>
 
-### Analyse page
+#### Voetbal Stats - Tabpage
+In deze tab van de hoofd page: *Genereer Samenvatting*, kun je diverse statistieken inzien. Op speler en team niveau, en daarnaast zijn sommige stastieken gebaseerd op de wedstrijd maar sommige weer seizoens gebonden.
+#### Voetbal Videos - Tabpage
+In deze tab van de hoofd page: *Genereer Samenvatting*, kun je videos zien van Goal events op de geselecteerde datum.
+
+### Analyse - Page
 Op deze pagina is het mogelijk om analyse uit te voeren door middel van interactieve plots. </br>
 Voor nu is het enkel gebaseerd op Eredivisie data, en is het puur ter illustratie en geneert het interessante user insights. </br>
 <img src="assets/streamlit_app/words_SF.png" width="45%" height="45%"/>
 <img src="assets/streamlit_app/trigrams_SF.png" width="47.5%" height="51%"/>
 
 
+# OpenAI GPT3 - Trainings Pipeline 
 
-# AWS - Cloud resources
-Voor dit project zijn een aantal resources gebruikt in AWS, om de applicatie te kunnen gebruiken in productie. </br>
-
-<img src="assets/aws_logos/aws_ec2_logo.png" width="8%" height="8%" align="top"/>
-<img src="assets/aws_logos/aws_codepipeline_logo.png" width="12%" height="12%" align="top"/>
-<img src="assets/aws_logos/aws_codedeploy_logo.png" width="11.5%" height="11.5%" align="top"/>
-<img src="assets/aws_logos/aws_route53_logo.png" width="11.7%" height="11.7%" align="top"/>
-<img src="assets/aws_logos/aws_s3_logo.png" width="10%" height="10%" align="top"/>
-<img src="assets/aws_logos/aws_secretManager_logo.png" width="25%" height="25%" align="top"/>
-
-## EC2 Instance 
-
-
-De datasets (*.csv* files in de S3 Bucket: **gpt-ai-tool-wsc**) voor de eredivisie en KKD (tot nu toe), worden geüpdated door de EC2 instance. </br>
-Voor nu gebeurt dit handmatig, en kan dit gedaan worden indien er nieuwe wedstrijden zijn geweest. </br>
-
-De EC2 maakt gebruik van een elastic IP, indien de EC2 wordt gestopt op wat voor een reden dan ook dan behoud de compute zijn IP address (3.78.91.250). </br>
-Indien de EC2 is gestopt door iemand, dan dient de volgende service opnieuw te worden gestart: </br>
-> sudo systemctl start nginx.service </br>
-</br>
-
-**Hoe update ik de datasets?** </br>
-Gebruik SSH om de EC2 instance te beheren, zorg ervoor dat je dit command uitvoert in dezelfde folder waar de <o>GPT3-AI-tool.pem</o> staat:
-> sudo ssh -i <o>GPT3-AI-tool.pem</o> ec2-user@ec2-3-78-91-250.eu-central-1.compute.amazonaws.com </br>
-
-De *.pem* file heb je nodig om de EC2 in te kunnen. (Vraag Steven of Mitchell van Southfields om deze file) </br> 
-Wanneer je binnen bent in de EC2, zit je zeer waarschijnlijk in de folder *ec2-user*.</br>
-Ga een folder terug door middel van het volgende commands: </br>
-> cd .. </br>
-> ls </br>
-
-Als het goed is zie je nu:</br>
-<b>app ec2-user</b> </br>
-
-Ga naar de folder app:
-> cd app </br>
-
-Nu kan je de datasets updaten door middel van het volgende command: </br>
-> sudo ./AWS_scripts/dataset_pipeline/eredivisie.sh </br>
-> sudo ./AWS_scripts/dataset_pipeline/KKD.sh </br>
-
-**Herstarten van de applicatie.** </br>
-Indien het script klaar is met runnen, dien je de streamlit applicatie opnieuw op te starten. Zodat de nieuwe datasets worden ingeladen. Dit kan vanuit elke folder: </br>
-> sudo systemctl restart streamlit.service </br>
-
-Of:
-
-> sudo systemctl stop streamlit.service </br>
-> sudo systemctl start streamlit.service </br>
-
-Extra: </br>
-Status van de service kan je inzien door middel van: </br>
-> journalctl -u streamlit.service -n 40
-## Code Pipeline + Code Deploy
-AWS CodePipeline wordt gebruikt om continous delivery pipelines te automatiseren voor snelle en betrouwbare updates op de *main* branch van de Git-repository. Dus telkens wanneer een nieuwe push is doorgevoerd naar de *main* branch, wordt de pipeline geactiveerd en daarom worden de bestanden op de EC2-instantie bijgewerkt, met behulp van CodeDeploy. </br>
-AWS CodeDeploy is een volledig beheerde deployment service, die de software deployments automatiseert op de EC2 instance i.c.m. CodePipeline.
-
-## Route 53
-AWS Route53 is een DNS webservice en verbindt gebruikers met de web applicatie die op de EC2 instance draait. </br>
-Gebruikers worden dus veilig geroute naar de web applicatie [dashboard.sportnatives.com](http://dashboard.sportnatives.com/) (Die als service op de EC2 draait).</br>
-
-
-## S3 bucket
-AWS S3 (bucket naam: **gpt-ai-tool-wsc**) wordt gebruikt om files op te slaan, zoals de datasets die in format *.csv* zijn.
-Ook de video's die afkomstig zijn van WSC worden opgeslagen in een S3 bucket (bucket naam: **wsc-espn-site**).
-
-## Secrets Manager
-AWS Secrets Manager wordt gebruikt voor de volgende zaken die privé moeten blijven, en niet openbaar gemaakt mogen worden: </br>
-- Gebruikersnamen (*Streamlit*)
-- Wachtwoorden (*Streamlit*)
-- API Key (*OpenAI*)
-- API authorisatie Keys (*OPTA*)
