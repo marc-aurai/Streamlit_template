@@ -221,7 +221,17 @@ Voor nu is het enkel gebaseerd op Eredivisie data, en is het puur ter illustrati
 
 # AWS - Cloud resources
 Voor dit project zijn een aantal resources gebruikt in AWS, om de applicatie te kunnen gebruiken in productie. </br>
-## EC2 Instance - elastic ip
+
+<img src="assets/aws_logos/aws_ec2_logo.png" width="8%" height="8%" align="top"/>
+<img src="assets/aws_logos/aws_codepipeline_logo.png" width="12%" height="12%" align="top"/>
+<img src="assets/aws_logos/aws_codedeploy_logo.png" width="11.5%" height="11.5%" align="top"/>
+<img src="assets/aws_logos/aws_route53_logo.png" width="11.7%" height="11.7%" align="top"/>
+<img src="assets/aws_logos/aws_s3_logo.png" width="10%" height="10%" align="top"/>
+<img src="assets/aws_logos/aws_secretManager_logo.png" width="25%" height="25%" align="top"/>
+
+## EC2 Instance 
+
+
 De datasets (*.csv* files in de S3 Bucket: **gpt-ai-tool-wsc**) voor de eredivisie en KKD (tot nu toe), worden geüpdated door de EC2 instance. </br>
 Voor nu gebeurt dit handmatig, en kan dit gedaan worden indien er nieuwe wedstrijden zijn geweest. </br>
 
@@ -263,7 +273,14 @@ Extra: </br>
 Status van de service kan je inzien door middel van: </br>
 > journalctl -u streamlit.service -n 40
 ## Code Pipeline + Code Deploy
+AWS CodePipeline wordt gebruikt om continous delivery pipelines te automatiseren voor snelle en betrouwbare updates op de *main* branch van de Git-repository. Dus telkens wanneer een nieuwe push is doorgevoerd naar de *main* branch, wordt de pipeline geactiveerd en daarom worden de bestanden op de EC2-instantie bijgewerkt, met behulp van CodeDeploy. </br>
+AWS CodeDeploy is een volledig beheerde deployment service, die de software deployments automatiseert op de EC2 instance i.c.m. CodePipeline.
 
-## S3 bucket
 ## Route 53
+AWS Route53 is een DNS webservice en verbindt gebruikers met de web applicatie die op de EC2 instance draait. </br>
+Gebruikers worden dus veilig geroute naar de web applicatie [dashboard.sportnatives.com](dashboard.sportnatives.com) (Die als service op de EC2 draait).</br>
+## S3 bucket
+AWS S3 (bucket naam: **gpt-ai-tool-wsc**) wordt gebruikt om files op te slaan, zoals de datasets die in format *.csv* zijn.
+Ook de video's die afkomstig zijn van WSC worden opgeslagen in een S3 bucket (bucket naam: **wsc-espn-site** ).
+
 ## Secrets Manager
