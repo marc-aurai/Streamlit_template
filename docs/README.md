@@ -303,6 +303,13 @@ Voorbeeld authorisatie key: </br>
 Voor dit project heb ik gebruik gemaakt van Streamlit, een open-source Python library. 
 Het is erg gebruiksvriendelijk voor zowel de user als de developer. Het is fijn in gebruik om snel een 'fancy' maar met name 'praktische' custom  web applicatie mee te bouwen. Zelf vind ik het erg fijn om te gebruiken voor machine learning demos/toepassingen.
 
+Test Streamlit lokaal, vanuit de root folder:
+> streamlit run Home.py
+
+Ga naar: http://localhost:8501 of http://localhost:8502
+
+
+
 ## Constructie
 Om iedereen te laten testen met het Language model met diverse wedstrijden, is er een applicatie gebouwd in Streamlit. De applicatie is opgebouwd met het Streamlit multipage principe. Bestaande uit 3 pagina's: </br>
 1. **Home page**: Introductie pagina van de Web App. </br>
