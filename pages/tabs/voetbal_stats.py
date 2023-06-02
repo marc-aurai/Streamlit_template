@@ -78,6 +78,7 @@ def TAB_voetbal_stats(
     select_penaltyRanking, select_goalRanking = st.columns((1.6, 2))
     ST_penaltyRankingList(df_player_stats, select_penaltyRanking)
     ST_goalRankingList(df_player_stats, select_goalRanking)
+    # Assist ranking list competitie
 
     st.markdown(
         "<h2 style='text-align: center; color: white;'>Opstelling</h2>",
