@@ -358,3 +358,7 @@ Voor nu is het enkel gebaseerd op Eredivisie data, en is het puur ter illustrati
 
 # OpenAI GPT3 - Trainings Pipeline 
 
+
+# Toekomst perspectief
+- Datasets ipv *.csv* in een S3 bucket, migreren naar bijvoorbeeld een RDS Database.
+- Datasets (üpdaten), triggeren op basis van een schedule ipv handmatig.
