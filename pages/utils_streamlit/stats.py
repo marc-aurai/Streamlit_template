@@ -25,7 +25,8 @@ def ST_showFormation(
             print(df_match_selected)
             df = ast.literal_eval(df_match_selected["formation_{}".format(str(team))].values[0])
             df = pd.DataFrame(df)
-            print(df)
+            df = df.iloc[-1:] # Indien er meerdere rows aanwezig zijn: utrecht vs ajax (2x voorkomt bijvoorbeeld, dit is mogelijk)
+
             df.rename(
                 columns={"playerName": "Naam",
                         "position": "Positie",
