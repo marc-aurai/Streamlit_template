@@ -236,18 +236,59 @@ De eerste stap in de pipeline is: </br>
 - player_stats_away
 
 **<b>get_substitute()</b>** - <g>utils/opstelling.py</g> - Deze functie vergaart het volgende:
-
+- substitutions_home
+    - player_off_name / player_on_name (De spelers naam die er af gaat, of de spelers naam van de speler die in het spel komt)
+    - playerOnId (ID van de speler die in het spel komt)
+    - playerOffId (ID van de speler die uit het spel gaat)
+    - timeMin (Identificeert in hoeveelste minuut de wissel heeft plaats gevonden)
+    - minsPlayed (Hoeveel minuten de speler die er in komt heeft gespeeld)
+    - subReason (De reden van de wissel)
+- substitutions_away
+    - player_off_name / player_on_name (De spelers naam die er af gaat, of de spelers naam van de speler die in het spel komt)
+    - playerOnId (ID van de speler die in het spel komt)
+    - playerOffId (ID van de speler die uit het spel gaat)
+    - timeMin (Identificeert in hoeveelste minuut de wissel heeft plaats gevonden)
+    - minsPlayed (Hoeveel minuten de speler die er in komt heeft gespeeld)
+    - subReason (De reden van de wissel)
 **<b>get_totalCardsPlayer()</b>** - <g>utils/playerStats.py</g> - Deze functie vergaart het volgende:
+- cardsHistoryRed (Een dictionary van spelersnamen die tijdens de wedstrijd een rode kaart hebben gekregen, en een getal die bijhoudt hoeveel rode kaarten de speler al in dit seizoen in totaal heeft gekregen)
+- cardsHistoryYellow (Een dictionary van spelersnamen die tijdens de wedstrijd een gele kaart hebben gekregen, en een getal die bijhoudt hoeveel gele kaarten de speler al in dit seizoen in totaal heeft gekregen)
 
 **<b>get_matchStats()</b>** - <g>utils/playerStats.py</g> - Deze functie vergaart het volgende:
+- SchotenOpDoel_Home (Een getal dat aangeeft hoeveel schoten op doel het Thuis team in totaal heeft gemaakt)
+- SchotenOpDoel_Away (Een getal dat aangeeft hoeveel schoten op doel het Uit team in totaal heeft gemaakt)
+- penaltyHome
+    - playerName (Spelersnaam van de keeper)
+    - playerId (ID Van de speler/keeper)
+    - penaltyFaced (Geeft aan dat de keeper een penalty tegen had)
+    - penaltySave (Enkel aanwezig als de keeper de penalty heeft tegen gehouden)
+- penaltyAway
+    - playerName (Spelersnaam van de keeper)
+    - playerId (ID Van de speler/keeper)
+    - penaltyFaced (Geeft aan dat de keeper een penalty tegen had)
+    - penaltySave (Enkel aanwezig als de keeper de penalty heeft tegen gehouden)
+- MatchStatsHome (Statistieken van de Thuisploeg spelers)
+    - SchotenOpDoel (Aantal schoten op doel tijdens de wedstrijd, in totaal)
+    - playerName (Spelersnaam )
+    - playerId (ID Van de speler)
+- MatchStatsAway (Statistieken van de Uitploeg spelers)
+    - SchotenOpDoel (Aantal schoten op doel tijdens de wedstrijd, in totaal)
+    - playerName (Spelersnaam )
+    - playerId (ID Van de speler)
 
 **<b>get_countPlayerGoals()</b>** - <g>utils/playerStats.py</g> - Deze functie vergaart het volgende:
+- GoalCounter (Een dictionary van spelers die tijdens de wedstrijd hebben gescoord inclusief clubnaam, en een getal wat het totaal aantal goals aanduidt gedurende het hele seizoen van de speler)
+- AssistCounter (Een dictionary van spelers die tijdens de wedstrijd een assist hebben gemaakt inclusief clubnaam, en een getal wat het totaal aantal assists aanduidt gedurende het hele seizoen van de speler)
 
 **<b>get_totalMinsPlayed_Season_Player()</b>** - <g>utils/playerStats.py</g> - Deze functie vergaart het volgende:
+- minsPlayedCounter (Een dictionary van alle spelers die hebben gespeeld tijden de wedstrijd, met een totaal aantal gespeelde minuten van die speler van het gehele seizoen. Waarbij de geselecteerde wedstrijd al is inbegrepen)
 
 **<b>get_totalMinsPlayed_Season_Team()</b>** - <g>utils/playerStats.py</g> - Deze functie vergaart het volgende:
+- sum_matchLength_home (Identificeert het totaal aantal gespeelde minuten van het thuis team dit seizoen)
+- sum_matchLength_away (Identificeert het totaal aantal gespeelde minuten van het uit team dit seizoen)
 
 **<b>prompt_engineering()</b>** - <g>utils/soccer_prompt.py</g> - Deze functie vergaart het volgende:
+- Deze functie doet een paar laatste transformaties op de dataset.
 
 **Om de pipeline succesvol uit te voeren, is er een .env file nodig onder folder */opta* met de OPTA authorisatie key voor de bijbehorende competitie.**
 
