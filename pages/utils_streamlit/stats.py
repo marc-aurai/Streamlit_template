@@ -153,6 +153,7 @@ def ST_SchotenOpDoelTeam(
 ):
     with select_field:
         try:
+            print(df)
             df = pd.DataFrame({"Team": team_name,"Schoten op doel Totaal": df["SchotenOpDoel_" + str(team)]})
             df = df.set_index("Schoten op doel Totaal")
             st.dataframe(df.style.set_properties(**{'color': 'rgb(255, 255, 255)'}), use_container_width=True)
