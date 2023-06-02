@@ -155,7 +155,8 @@ def ST_SchotenOpDoelTeam(
         try:
             df = pd.DataFrame({"Team": team_name,"Schoten op doel Totaal": df["SchotenOpDoel_" + str(team)]})
             df = df.set_index("Schoten op doel Totaal")
-            df = df.iloc[-1]
+
+            df = df.iloc[-1:]
             st.dataframe(df.style.set_properties(**{'color': 'rgb(255, 255, 255)'}), use_container_width=True)
         except:
             pass
