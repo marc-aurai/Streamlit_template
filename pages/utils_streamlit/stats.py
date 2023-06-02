@@ -22,7 +22,8 @@ def ST_showFormation(
             ),
         )
         if selected_formations:
-            
+            print(df)
+
             df.rename(
                 columns={"playerName": "Naam",
                         "position": "Positie",

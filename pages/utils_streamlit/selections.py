@@ -240,7 +240,6 @@ def ST_selectFormation(
                 df_match_selected["formation_" + str(team)].values[0]
             )
             df = pd.DataFrame(formation_away)
-            print(df)
             df.rename(
                 columns={"playerName": "Naam",
                         "position": "Positie",
