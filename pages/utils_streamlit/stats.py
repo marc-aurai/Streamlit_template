@@ -22,9 +22,10 @@ def ST_showFormation(
             ),
         )
         if selected_formations:
+            print(df_match_selected)
             df = ast.literal_eval(df_match_selected["formation_{}".format(str(team))].values[0])
             df = pd.DataFrame(df)
-
+            print(df)
             df.rename(
                 columns={"playerName": "Naam",
                         "position": "Positie",
