@@ -64,7 +64,7 @@ Voor dit project zijn een aantal resources gebruikt in AWS, om de applicatie te 
 De datasets (*.csv* files in de S3 Bucket: **gpt-ai-tool-wsc**) voor de eredivisie en KKD (tot nu toe), worden geüpdated door de EC2 instance. </br>
 Voor nu gebeurt dit handmatig, en kan dit gedaan worden indien er nieuwe wedstrijden zijn geweest. </br>
 
-De EC2 maakt gebruik van een elastic IP, indien de EC2 wordt gestopt op wat voor een reden dan ook dan behoud de compute zijn IP address (3.78.91.250). </br>
+De EC2 maakt gebruik van een elastic IP, indien de EC2 wordt gestopt op wat voor een reden dan ook dan behoudt de compute zijn IP address (3.78.91.250). </br>
 Indien de EC2 is gestopt door iemand, dan dient de volgende service opnieuw te worden gestart: </br>
 > sudo systemctl start nginx.service </br>
 </br>
@@ -90,7 +90,7 @@ Nu kan je de datasets updaten door middel van het volgende command: </br>
 > sudo ./AWS_scripts/dataset_pipeline/KKD.sh </br>
 
 **Herstarten van de applicatie.** </br>
-Indien het script klaar is met runnen, dien je de streamlit applicatie opnieuw op te starten. Zodat de nieuwe datasets worden ingeladen. Dit kan vanuit elke folder: </br>
+Indien het script klaar is met runnen, dien je de streamlit applicatie opnieuw op te starten. Zodat de nieuwe datasets worden ingeladen in de Streamlit applicatie. Dit kan vanuit elke folder: </br>
 > sudo systemctl restart streamlit.service </br>
 
 Of:

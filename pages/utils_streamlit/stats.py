@@ -22,8 +22,8 @@ def ST_showFormation(
             ),
         )
         if selected_formations:
-            df = df_match_selected.iloc[-1:] # Indien er meerdere rows aanwezig zijn: utrecht vs ajax (2x voorkomt bijvoorbeeld, dit is mogelijk)
-            df = ast.literal_eval(df["formation_{}".format(str(team))].values[0])
+            df_match_selected = df_match_selected.iloc[-1:] # Indien er meerdere rows aanwezig zijn: utrecht vs ajax (2x voorkomt bijvoorbeeld, dit is mogelijk)
+            df = ast.literal_eval(df_match_selected["formation_{}".format(str(team))].values[0])
             df = pd.DataFrame(df)
             
             df.rename(
