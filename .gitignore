@@ -2,21 +2,6 @@
 .vscode
 __pycache__
 
-all_competitions.ipynb
-prompt_engineering.ipynb
 
 .env
 secrets.toml
-
-xDragdrop.py
-qr_code.py
-xAgenda.py
-
-connector.py
-soccer_prompt_ESPN.py
-
-test
-logos
-analysis
-espn_scraper
-openai_GPT3
