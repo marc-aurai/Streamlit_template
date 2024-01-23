@@ -13,8 +13,8 @@ jobs:
     - name : Install Packages 
       run : |
         pip install -r requirements.txt
-      working-directory: ../../
+      working-directory: .
 
     - name : Run tests 
-      run : python -m unittest test_home.py
-      working-directory: tests/
+      run : python -m unittest tests/test_home.py
+      working-directory: .
