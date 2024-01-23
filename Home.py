@@ -4,7 +4,7 @@ from PIL import Image
 
 def streamlit_page_config():
     st.set_page_config(
-        page_title="Aurai",
+        page_title="",
         page_icon=Image.open("assets/image/aurai_logo.png"),
         layout="wide",
         initial_sidebar_state="expanded",
@@ -21,14 +21,15 @@ def streamlit_page_config():
 
 
 @st.cache_data(show_spinner="Een momentje...")
-def load_images():
-    # image = Image.open("assets/image/southfields_logo.png")
-    image_aurai = Image.open("assets/image/aurai_logo.png")
+def load_images(image_path: str):
+    image_aurai = Image.open(image_path)
     return image_aurai
 
 
 streamlit_page_config()
-image_aurai = load_images()
+image_aurai = load_images(
+    image_path = "assets/image/aurai_logo.png"
+    )
 
 st.image(image_aurai)
 st.write("# Welkom bij Aurai!")
