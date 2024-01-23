@@ -12,7 +12,7 @@ jobs:
       
     - name : Install Packages 
       run : |
-        pip install -r ../requirements.txt
+        pip install -r requirements.txt
       working-directory: ../
 
     - name : Run tests 
